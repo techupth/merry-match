@@ -1,12 +1,11 @@
-import "./App.css";
-import Home from "./pages/Home";
 import Devtools from "./components/devtools";
+import Header from "./components/Header";
 
 function App() {
   return (
     <div>
-      <Home />
-      <Devtools />
+      <Header />
+      {/* <Devtools /> */}
     </div>
   );
 }
