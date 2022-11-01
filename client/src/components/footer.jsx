@@ -60,7 +60,7 @@ export default function footer() {
         </div>
       </div>
 
-      <div className="footer-sections bg-white w-full mt-[200px]">
+      <div className="footer-sections bg-[#F6F7FC] w-full mt-[200px]">
         <div className="footer-wrapper flex flex-col justify-center items-center">
           <div className="footer-content flex justify-center items-center flex-col">
             <div className="logo flex flex-row text-[50px] mb-7 mt-7">
@@ -72,7 +72,7 @@ export default function footer() {
             </div>
           </div>
           <div className=" bg-gray-200 w-[1100px] p-[1px] mt-5"></div>
-          <div className="bottom flex justify-center items-center  flex-col mt-[40px]">
+          <div className="bottom flex justify-center items-center  flex-col mt-[20px]">
             <p className="text-[#9AA1B9] text-[14px]">
               copyright ©2022 merrymatch.com All rights reserved
             </p>
