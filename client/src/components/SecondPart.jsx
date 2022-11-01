@@ -1,4 +1,5 @@
 import React from 'react'
+import vector from '../../public/asset/SecondPart/vector.svg'
 
 function SecondPart() {
   return (
@@ -20,7 +21,7 @@ function SecondPart() {
         </div>
 
         <div className='Picture w-[549px] h-[325px]'>
-           <img src='../../public/asset/SecondPart/vector.png'></img>
+           <img src={vector}></img>
         </div>
 
       </div>
