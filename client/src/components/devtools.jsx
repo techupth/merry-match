@@ -4,7 +4,7 @@ import { Button, ButtonGroup } from '@chakra-ui/react'
 function Devtools() {
     return (
         <div>
-            <Button colorScheme='blue'>Button</Button>
+            <Button className='w-[100px] bg-slate-500'>Button</Button>
             
             <div className="w-[100%] h-[180px] bg-[#FF1659]">
                 <div className="flex justify-start">
