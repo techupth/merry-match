@@ -23,7 +23,7 @@ export default function footer() {
             </div>
             <p className="bg-transparent">Let’s start finding and</p>
             <p className="bg-transparent">and matching someone new</p>
-            <button className="bg-[#FFE1EA] text-[#95002B] p-4 rounded-full mt-[50px] text-[16px] hover:bg-red-400 ">
+            <button className="bg-[#FFE1EA] text-[#95002B] p-4 rounded-full mt-[50px] text-[16px] w-[160px] hover:bg-red-400 ">
               Start Matching!
             </button>
             <div className="absolute right-0 bottom-6">
@@ -76,7 +76,7 @@ export default function footer() {
             <p className="text-[#9AA1B9] text-[14px]">
               copyright ©2022 merrymatch.com All rights reserved
             </p>
-            <div className="flex flex-row mt-[20px]">
+            <div className="flex flex-row mt-[20px] mb-6">
               <svg
                 className="mr-[16px]"
                 width="48"
