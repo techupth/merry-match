@@ -1,5 +1,4 @@
 import React from "react";
-import "../components/pok.css";
 import emoji_img1 from "../../public/assets/ThirdPart_Pic/emoji_img1.png";  
 import emoji_img2 from "../../public/assets/ThirdPart_Pic/emoji_img2.png";
 import emoji_img3 from "../../public/assets/ThirdPart_Pic/emoji_img3.png";
@@ -7,7 +6,7 @@ import emoji_img4 from "../../public/assets/ThirdPart_Pic/emoji_img4.png";
 
 function ThirdPart() {
   return (
-    <div className="bg-[#160404] w-full">
+    <div className="bg-[#160404] w-full h-[622px]">
       <h2 className="howtomerry text-[#DF89C6] text-[46px] text-center">
         How to Merry
       </h2>
