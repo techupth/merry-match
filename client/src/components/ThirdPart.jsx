@@ -62,7 +62,7 @@ function ThirdPart() {
           </div>
           <div className="containerText w-[198px] mx-auto mt-[40px]">
             <p className="text-[24px] text-[#FFFFFF]">Start chating and relationship </p>
-            <p className="text-[16px] text-[#C8CCDB] leading-3">Lorem ipsum is a placeholder text</p>
+            <p className="text-[16px] text-[#C8CCDB] leading-6">Lorem ipsum is a placeholder text</p>
           </div>
         </div>
         {/* End Item1 */}
