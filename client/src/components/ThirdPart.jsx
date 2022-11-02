@@ -1,0 +1,74 @@
+import React from "react";
+import emoji_img1 from "../../public/assets/ThirdPart_Pic/emoji_img1.png";  
+import emoji_img2 from "../../public/assets/ThirdPart_Pic/emoji_img2.png";
+import emoji_img3 from "../../public/assets/ThirdPart_Pic/emoji_img3.png";
+import emoji_img4 from "../../public/assets/ThirdPart_Pic/emoji_img4.png";
+
+function ThirdPart() {
+  return (
+    <div className="bg-[#160404] w-full h-[622px]">
+      <h2 className="howtomerry text-[#DF89C6] text-[46px] text-center">
+        How to Merry
+      </h2>
+      <div className="card flex mt-[48px] justify-center ">
+        {/* item1 */}
+        <div className="cardItem item1 w-[262px] h-[348px] bg-[#2A0B21] text-center rounded-[40px] mx-[12px]">
+          <div className="frameIMG w-[120px] h-[120px] rounded-full bg-[#411032] relative m-auto mt-[32px]">
+            <div className="imgItem w-[50px] h-[50px] ">
+              <img src={emoji_img1} alt="" />
+            </div>
+          </div>
+          <div className="containerText w-[198px] mx-auto mt-[40px]">
+            <p className="text-[24px] text-[#FFFFFF]">Upload your cool picture</p>
+            <p className="text-[16px] text-[#C8CCDB]">Lorem ipsum is a placeholder text</p>
+          </div>
+        </div>
+        {/* End Item1 */}
+
+        {/* item2 */}
+        <div className="cardItem item2 w-[262px] h-[348px] bg-[#2A0B21] text-center rounded-[40px] mx-[12px]">
+          <div className="frameIMG w-[120px] h-[120px] rounded-full bg-[#411032] relative m-auto mt-[32px]">
+            <div className="imgItem w-[50px] h-[50px] ">
+              <img src={emoji_img2} alt="" />
+            </div>
+          </div>
+          <div className="containerText w-[198px] mx-auto mt-[40px]">
+            <p className="text-[24px] text-[#FFFFFF]">Explore and find the one you like</p>
+            <p className="text-[16px] text-[#C8CCDB]">Lorem ipsum is a placeholder text</p>
+          </div>
+        </div>
+        {/* End Item2 */}
+
+        {/* item3 */}
+        <div className="cardItem item3 w-[262px] h-[348px] bg-[#2A0B21] text-center rounded-[40px] mx-[12px]">
+          <div className="frameIMG w-[120px] h-[120px] rounded-full bg-[#411032] relative m-auto mt-[32px]">
+            <div className="imgItem w-[50px] h-[50px] ">
+              <img src={emoji_img3} alt="" />
+            </div>
+          </div>
+          <div className="containerText w-[198px] mx-auto mt-[40px]">
+            <p className="text-[24px] text-[#FFFFFF]">Click ‘Merry’ for get to know!</p>
+            <p className="text-[16px] text-[#C8CCDB]">Lorem ipsum is a placeholder text</p>
+          </div>
+        </div>
+        {/* End Item3 */}
+
+        {/* item4 */}
+        <div className="cardItem item4 w-[262px] h-[348px] bg-[#2A0B21] text-center rounded-[40px] mx-[12px]">
+          <div className="frameIMG w-[120px] h-[120px] rounded-full bg-[#411032] relative m-auto mt-[32px]">
+            <div className="imgItem w-[50px] h-[50px] ">
+              <img src={emoji_img4} alt="" />
+            </div>
+          </div>
+          <div className="containerText w-[198px] mx-auto mt-[40px]">
+            <p className="text-[24px] text-[#FFFFFF]">Start chating and relationship </p>
+            <p className="text-[16px] text-[#C8CCDB] leading-3">Lorem ipsum is a placeholder text</p>
+          </div>
+        </div>
+        {/* End Item1 */}
+      </div>
+    </div>
+  );
+}
+
+export default ThirdPart;
