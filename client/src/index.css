@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+/******************* pls don't delete  */
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -9,35 +11,13 @@
   font-family: "Nunito", sans-serif;
 }
 
-.imgItem {
+.imgItem{
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-#root {
-  margin: 0;
-  padding: 0;
-  background-color: #160404;
-}
 
-.homepage-box-footer {
-  background: radial-gradient(
-    106.64% 594.8% at 3.13% 0%,
-    #820025 35.64%,
-    #a95bcd 100%
-  );
-}
-
-.button-nav:hover {
-  background: #ff1659;
-  transition: background-color 1s ease-out 10ms;
-}
-.button-header:hover {
-  background: #ff1659;
-  transition: background-color 1s ease-out 10ms;
-}
-.button-footer:hover {
-  background: #ffb1c8;
-  transition: background-color 1s ease-out 10ms;
+.homepage-box-footer{
+  background: radial-gradient(106.64% 594.8% at 3.13% 0%, #820025 35.64%, #A95BCD 100%)
 }

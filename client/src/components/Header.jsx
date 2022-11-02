@@ -3,7 +3,7 @@ import React from "react";
 function Header() {
   return (
     <>
-      <nav className="bg-[#FFFFFF] absolute z-10 overflow-auto  flex flex-row items-center justify-between h-[100px] w-full text-[16px] font-bold ">
+      {/* <nav className="bg-[#FFFFFF] absolute z-10 overflow-auto  flex flex-row items-center justify-between h-[100px] w-full text-[16px] font-bold ">
         <img
           src="/asset/header/header-merrymatch-logo.svg"
           alt="merry match logo"
@@ -17,7 +17,7 @@ function Header() {
             Login
           </button>
         </div>
-      </nav>
+      </nav> */}
 
       <div className="w-[100%] h-[100vh] bg-[url('../../public/asset/header/hero-section-crop.svg')] bg-no-repeat bg-cover z-0 overflow-auto ">
         <div className="h-[100%]w-[100%] flex flex-col items-center justify-center ">

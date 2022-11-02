@@ -1,9 +1,14 @@
 import Home from "./pages/Home";
+import Register from "./pages/Register";
+import Navbar from "./components/navbar";
 
 function App() {
   return (
     <div>
-      <Home />
+
+       {/* <Navbar /> */}
+      {/* <Home /> */}
+      <Register />
     </div>
   );
 }
