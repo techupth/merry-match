@@ -1,0 +1,14 @@
+{
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "server": "satao.db.elephantsql.com",
+      "port": 5432,
+      "askForPassword": true,
+      "driver": "PostgreSQL",
+      "name": "Merry Match",
+      "database": "xjwnziwl",
+      "username": "xjwnziwl"
+    }
+  ]
+}

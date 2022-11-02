@@ -23,7 +23,7 @@ export default function footer() {
             </div>
             <p className="bg-transparent">Let’s start finding and</p>
             <p className="bg-transparent">and matching someone new</p>
-            <button className="bg-[#FFE1EA] text-[#95002B] p-4 rounded-full mt-[50px] text-[16px] w-[160px] hover:bg-red-400 shadow-xl ">
+            <button className="button-footer bg-[#FFE1EA] text-[#95002B] p-4 rounded-full mt-[50px] text-[16px] w-[160px] shadow-xl">
               Start Matching!
             </button>
             <div className="absolute right-0 bottom-6">
