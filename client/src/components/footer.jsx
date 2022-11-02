@@ -3,9 +3,9 @@ import React from "react";
 export default function footer() {
   return (
     <div>
-      <div className="CTA-Section">
+      <div className="CTA-Section w-full">
         <div className="cta-wrapper flex justify-center items-center">
-          <div className="box-container relative bg-gradient-to-r from-[#742138]  to-[#A878BF] w-[1120px] h-[369px] rounded-[32px] flex items-center justify-center flex-col text-[#FFFFFF] text-[46px] mt-[50px]">
+          <div className="box-container relative  w-[700px] h-[369px] rounded-[32px] flex items-center justify-center flex-col text-[#FFFFFF] text-[46px] mt-[50px] xl:w-[1120px]">
             <div className="absolute left-0 top-7">
               <svg
                 width="129"
@@ -23,7 +23,7 @@ export default function footer() {
             </div>
             <p className="bg-transparent">Let’s start finding and</p>
             <p className="bg-transparent">and matching someone new</p>
-            <button className="bg-[#FFE1EA] text-[#95002B] p-4 rounded-full mt-[50px] text-[16px] w-[160px] hover:bg-red-400 ">
+            <button className="bg-[#FFE1EA] text-[#95002B] p-4 rounded-full mt-[50px] text-[16px] w-[160px] hover:bg-red-400 shadow-xl ">
               Start Matching!
             </button>
             <div className="absolute right-0 bottom-6">
@@ -71,7 +71,7 @@ export default function footer() {
               New generation of online dating website for everyone
             </div>
           </div>
-          <div className=" bg-gray-200 w-[1100px] p-[1px] mt-5"></div>
+          <div className=" bg-gray-200 w-[300px] p-[1px] mt-5 xl:w-[1100px] sm:w-[700px] "></div>
           <div className="bottom flex justify-center items-center  flex-col mt-[20px]">
             <p className="text-[#9AA1B9] text-[14px]">
               copyright ©2022 merrymatch.com All rights reserved

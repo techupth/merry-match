@@ -2,13 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
-
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-family: 'Nunito', sans-serif;
-  
+  font-family: "Nunito", sans-serif;
+}
+
+#root {
+  margin: 0;
+  padding: 0;
+  background-color: #160404;
+}
+
+
+.box-container{
+  background: radial-gradient(106.64% 594.8% at 3.13% 0%, #820025 35.64%, #A95BCD 100%)
 }
