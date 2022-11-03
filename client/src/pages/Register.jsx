@@ -1,8 +1,22 @@
 import React, { useState } from "react";
 import Countrydata from "../mock-city/countrydata";
-import Datepicker from "flowbite-datepicker/Datepicker";
+
 
 const Register = () => {
+  const [step,setStep]= useState(1)
+
+  const handleNext = () => {
+    if (step !== 3) {
+      setStep(step + 1);
+    }
+  };
+
+  const handleBack = () => {
+    if (step !== 1) {
+      setStep(step - 1);
+    }
+  };
+
   const [text, setText] = useState("");
   const [hobbies, setHobbies] = useState([]);
 
@@ -15,6 +29,7 @@ const Register = () => {
       event.preventDefault();
       const newHobbies = [...hobbies, text];
       setHobbies(newHobbies);
+      setText("")
     }
   };
   const handleInputChange = (event) => {
@@ -45,28 +60,103 @@ const Register = () => {
     setStateid(stateid);
   };
 
+
+
   return (
     <div className="w-full bg-[#FCFCFE]">
-      {/* start Header */}
-      <div className="registerHeaderContainer flex ">
-        <div className="registerHeaderContianer-LSide w-1/2 border-solid border-2 border-indigo-600">
-          <p>REGISTER</p>
-          Join us and start matching
-        </div>
-        <div className="registerHeaderContianer-RSide w-1/2 border-solid border-2 border-indigo-600">
-          <div className="registerPage">
-            <div className="page1">1</div>
-            <div className="page2">2</div>
-            <div className="page3">3</div>
+
+        <div className="flex w-full ">
+          <div className="w-1/2">
+            <div className="flex flex-col items-center">
+            <p className="text-[80%] text-[#7B4429] mb-[1%]">REGISTER</p>
+            <h1 className="text-[250%] text-[#A62D82] leading-[95%] drop-shadow-md font-[800]">
+              Join us and start <br /> matching{" "}
+            </h1>
+            </div>
+          </div>
+
+          <div className="w-1/2">
+            {step === 1 && (
+              <div className=" flex flex-row items-center">
+                {/* BOX Content */}
+                <div className="w-[30vh] h-[60%] shrink border-[3px] ml-1 mr-1 border-[#A62D82] rounded-3xl relative">
+                  <p className="absolute left-[6%] bottom-1 text-[60px] text-[#A62D82]">
+                    1
+                  </p>
+                  <p className="absolute left-[90px] bottom-9">Step 1/3</p>
+                  <p className="absolute right-4 bottom-4 text-[#A62D82]">
+                    Basic Information
+                  </p>
+                </div>
+                  
+                <div className="w-[10vh] h-[60%]  border-[3px] ml-1 mr-1 border-[#E4E6ED] rounded-3xl text-center text-[#C8CCDB]">
+                  <p className="bottom-1 text-[60px]">2</p>
+                </div>
+
+                <div className="w-[10vh] h-[60%]  border-[3px] ml-1 mr-1 border-[#E4E6ED] rounded-3xl text-center text-[#C8CCDB]">
+                  <p className="bottom-1 text-[60px]">3</p>
+                </div>
+              </div>
+            )}{" "}
+            {step === 2 && (
+              <div className="w-[70vh] h-[100%] flex flex-row items-center ml-[20%]">
+                <div className="w-[10vh] h-[60%]  border-[3px] ml-1 mr-1 border-[#E4E6ED] rounded-3xl text-center text-[#C8CCDB]">
+                  {" "}
+                  <p className="bottom-1 text-[60px]">1</p>
+                </div>  
+                {/* BOX Content */}
+                <div className="w-[30vh] h-[60%] shrink border-[3px] ml-1 mr-1 border-[#A62D82] rounded-3xl relative">
+                  <p className="absolute left-[3%] bottom-0 text-[60px] text-[#A62D82]">
+                    2
+                  </p>
+                  <p className="absolute left-[90px] bottom-9">Step 2/3</p>
+                  <p className="absolute right-4 bottom-4 text-[17px] text-[#A62D82]">
+                    Identities and Interests
+                  </p>
+                </div>
+
+                <div className="w-[10vh] h-[60%]  border-[3px] ml-1 mr-1 border-[#E4E6ED] rounded-3xl text-center text-[#C8CCDB]">
+                  {" "}
+                  <p className="bottom-1 text-[60px]">3</p>
+                </div>
+                {/* <Register2 /> */}
+              </div>
+            )}{" "}
+            {step === 3 && (
+              <div className="w-[70vh] h-[100%] flex flex-row items-center ml-[20%]">
+                <div className="w-[10vh] h-[60%]  border-[3px] ml-1 mr-1 border-[#E4E6ED] rounded-3xl text-center text-[#C8CCDB]">
+                  {" "}
+                  <p className="bottom-1 text-[60px]">1</p>
+                </div>
+                <div className="w-[10vh] h-[60%]  border-[3px] ml-1 mr-1 border-[#E4E6ED] rounded-3xl text-center text-[#C8CCDB]">
+                  {" "}
+                  <p className="bottom-1 text-[60px]">2</p>
+                </div>
+                {/* BOX Content */}
+                <div className="w-[30vh] h-[60%] shrink border-[3px] ml-1 mr-1 border-[#A62D82] rounded-3xl relative">
+                  <p className="absolute left-[8%] bottom-1 text-[60px] text-[#A62D82]">
+                    3
+                  </p>
+                  <p className="absolute left-[90px] bottom-9">Step 3/3</p>
+                  <p className="absolute right-9 bottom-4 text-[#A62D82]">
+                    Upload Photos
+                  </p>
+                </div>
+                {/* <Register3 /> */}
+              </div>
+            )}
           </div>
         </div>
-      </div>
+
       {/* End Header */}
+
 
       <div className="informationContainer flex justify-center border-solid border-2 border-indigo-600 ">
         <form>
           {/* Page 1 */}
           {/* colomn 1 */}
+          {step === 1 ?  
+          <div>
           <h1 className="basicInformation text-[#A62D82] mt-[80px] ">
             Basic Information
           </h1>
@@ -92,7 +182,6 @@ const Register = () => {
               />
             </div>
           </div>
-
           {/* colomn2 */}
           <div className="column2 flex">
             <div className="flex flex-col mr-[12px] mt-[40px]">
@@ -123,9 +212,8 @@ const Register = () => {
               </select>
             </div>
           </div>
-
-          {/* colomn 3 */}
-          <div className="column3 flex">
+               {/* colomn 3 */}
+               <div className="column3 flex">
             <div className="flex flex-col mr-[12px] mt-[40px]">
               <label for="username">Username</label>
               <input
@@ -147,7 +235,6 @@ const Register = () => {
               />
             </div>
           </div>
-
           {/* colomn 4 */}
           <div className="column4 flex">
             <div className="flex flex-col mr-[12px] mt-[40px]">
@@ -171,8 +258,13 @@ const Register = () => {
               />
             </div>
           </div>
+          </div>
+          :null}
+         
 
           {/* Page 2 */}
+          {step === 2 ? 
+          <div>
           <h1 className="basicInformation text-[#A62D82] mt-[80px]">
             Identities and Interests
           </h1>
@@ -236,9 +328,10 @@ const Register = () => {
           <input
             className="w-full rounded-lg "
             type="text"
+            value={text}
             onChange={handleInputChange}
-            onKeyDown={handleKeyDown}
-          />
+            onKeyDown={handleKeyDown}>
+          </input>
           {hobbies.map((item, index) => {
             return (
               <div className="inline-block mt-2 mr-2 px-2 h-[30px] rounded-lg text-center text-[#7D2262] bg-[#F4EBF2]">
@@ -254,8 +347,12 @@ const Register = () => {
               </div>
             );
           })}
-
-          <h1 className="ProfilePictures text-[#A62D82] mt-[80px]">
+          </div> :null }
+          
+          {/* Page3 */}
+          {step === 3 ?
+          <div>
+            <h1 className="ProfilePictures text-[#A62D82] mt-[80px]">
              Profile pictures
           </h1>
           <p>Upload at least x photos</p>
@@ -265,6 +362,77 @@ const Register = () => {
           <div className="profile Pic3 w-[167px] h-[167px] bg-[#d908ac] mr-[12px]">xx</div>
           <div className="profile Pic4 w-[167px] h-[167px] bg-[#d908ac] mr-[12px]">xx</div>
           <div className="profile Pic5 w-[167px] h-[167px] bg-[#d908ac] mr-[12px]">xx</div>
+          </div>
+          </div>:null} 
+
+
+          <div className=" mt-[2%] space-x-6 flex flex-row justify-end content-end">
+          <p className="flex justify-start items-start content-start mt-[1.5%] mr-[70%]">
+            {step === 1 && "1/3"} {step === 2 && "2/3"} {step === 3 && "3/3"}
+          </p>
+
+          {/* Go Back button */}
+       
+          {/* Go Next button */}
+          {step === 1 && (
+            <div>
+              <button
+              onClick={handleBack}
+              type="button"
+              className="text-[#C8CCDB] invisible  mr-[32px]" 
+            >
+              🡐 Back
+            </button>
+
+            <button
+              type="button"
+              onClick={handleNext}
+              class="mt-[0.5%] text-white bg-[#C70039] hover:bg-red-800  font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+            >
+              Next step
+            </button>
+            </div>
+          )}
+
+          {step === 2 && (
+            <div>
+              <button
+              onClick={handleBack}
+              type="button"
+              className="text-[#C70039] hover:text-black mr-[32px]" 
+            >
+              🡐 Back
+            </button>
+            
+            <button
+              type="button"
+              onClick={handleNext}
+              class="mt-[0.5%] text-white bg-[#C70039] hover:bg-red-800  rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+            >
+              Next step
+            </button>
+            </div>
+          )}
+          {/* Submit button */}
+          {step === 3 && (
+            <div> 
+              <button
+              onClick={handleBack}
+              type="button"
+              className="text-[#C70039] hover:text-black mr-[32px]" 
+            >
+              🡐 Back
+            </button>
+
+            <button
+              type="submit"
+              onClick=""
+              class="mt-[0.5%] text-white bg-[#C70039] hover:bg-red-800 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+            >
+              Submit
+            </button>
+            </div>
+          )}
           </div>
 
         </form>
