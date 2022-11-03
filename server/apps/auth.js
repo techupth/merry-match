@@ -48,11 +48,12 @@ authRouter.post("/register", async (req, res) => {
 authRouter.post("/login", async (req, res) => {
   const loginKey = req.body.username;
   const password = req.body.password;
-
+  
   const result = await pool.query(
     `select user_id,name,username,password,email from users where username = $1 or email = $1`,
     [loginKey]
   );
+  
 
   if (!result.rows[0]) {
     return res.status(404).json({
@@ -86,7 +87,12 @@ authRouter.post("/login", async (req, res) => {
   return res.json({
     message: "Logged in Successfully!",
     token,
+    data : result
   });
+});
+
+authRouter.get("/", async(req, res)=>{
+  return res.send("hello auth!!")
 });
 
 export default authRouter;

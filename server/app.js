@@ -6,8 +6,6 @@ import userRouter from "./apps/users.js";
 import authRouter from "./apps/auth.js";
 
 async function init() {
-  
-  
   dotenv.config();
 
   const app = express();

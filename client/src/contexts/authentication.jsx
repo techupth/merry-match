@@ -3,46 +3,51 @@ import { useNavigate } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 import React, { useState } from "react";
 
-const AuthContext = React.createContext();
+export const AuthContext = React.createContext();
 
-function AuthProviders(props) {
-  const [state, setState] = useState({
-    loading: null,
-    error: null,
-    user: null,
-  });
-  const navigate = useNavigate();
+function AuthProvider(props) {
+  const [state, setState] = useState({});
+
+  const nevigate = useNavigate();
 
   const register = async (data) => {
     await axios.post("http://localhost:4001/auth/register", data);
-    navigate("/login");
+    nevigate("/login");
   };
 
   const login = async (data) => {
-    await axios.post("http://localhost:4001/auth/login", data);
-
+    console.log(data)
+    try{
+      const result = await axios.post("http://localhost:4000/auth/login", data);
+    console.log(result);
     const token = result.data.token;
-    localStorage.setItem("token", token);
-
-    const userDataFromToken = jwtDecode(token);
-    setState({ ...state, user: userDataFromToken });
-    console.log(state);
-    navigate("/");
+    // console.log(token);
+    localStorage.setItem("token", token)
+    const userData = jwtDecode(token);
+    setState({ ...state, user: userData})
+    nevigate("/")
+    }catch(err){
+      console.log("Err is : " + err)
+    }
+    
   };
+
   const logout = () => {
     localStorage.removeItem("token");
-    setState({ ...state, user: null, error: false });
+    setState({ ...state, user: null });
   };
 
   const isAuthenticated = Boolean(localStorage.getItem("token"));
 
   return (
-    <AuthProviders value={{ state, login, logout, register, isAuthenticated }}>
+    <AuthContext.Provider
+      value={{ state, login, logout, register, isAuthenticated }}
+    >
       {props.children}
-    </AuthProviders>
+    </AuthContext.Provider>
   );
 }
 
 const useAuth = () => React.useContext(AuthContext);
 
-export { AuthProviders, useAuth };
+export { AuthProvider, useAuth };
