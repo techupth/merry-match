@@ -1,4 +1,4 @@
-import jwtInterceptor from "../utils/jwtInterceptors";
+import jwt from "jsonwebtoken";
 
 export const protect = async (req, res, next) => {
   const token = req.headers.authorization;

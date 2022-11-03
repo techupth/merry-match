@@ -29,5 +29,9 @@ function AuthProviders(props) {
   };
   navigate("/");
 }
+const logout = () => {
+  localStorage.removeItem("token");
+  setState({ ...state, user: null });
+};
 
 export default AuthProviders;
