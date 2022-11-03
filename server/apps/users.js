@@ -1,7 +1,9 @@
 import Router from "express";
 import { pool } from "../utils/db.js";
+import { protect } from "../middlewares/protect.js";
 
 const userRouter = Router();
+userRouter.use(protect);
 
 userRouter.get("/", async (req, res) => {
   const result = await pool.query(`select * from users`);

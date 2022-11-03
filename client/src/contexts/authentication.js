@@ -2,6 +2,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 
+const AuthContext = React.createContext();
+
 function AuthProviders(props) {
   const [state, setState] = useState({
     loading: null,
@@ -27,3 +29,5 @@ function AuthProviders(props) {
   };
   navigate("/");
 }
+
+export default AuthProviders;
