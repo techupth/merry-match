@@ -50,7 +50,7 @@ authRouter.post("/login", async (req, res) => {
   const password = req.body.password;
 
   const result = await pool.query(
-    `select username,password,email from users where username = $1 or email = $1`,
+    `select user_id,name,username,password,email from users where username = $1 or email = $1`,
     [loginKey]
   );
 
@@ -70,8 +70,22 @@ authRouter.post("/login", async (req, res) => {
     });
   }
 
+  const token = jwt.sign(
+    {
+      user_id: result.rows[0].user_id,
+      username: result.rows[0].username,
+      email: result.rows[0].email,
+      name: result.rows[0].name,
+    },
+    process.env.SECRET_KEY,
+    {
+      expiresIn: "900000",
+    }
+  );
+
   return res.json({
     message: "Logged in Successfully!",
+    token,
   });
 });
 
