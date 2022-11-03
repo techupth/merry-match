@@ -1,5 +1,9 @@
 import React from "react";
 import { useState } from "react";
+import Register1 from "../components/registerform/Register1";
+import Register2 from "../components/registerform/Register2";
+import Register3 from "../components/registerform/Register3";
+
 
 function Register() {
   const [step, setStep] = useState(1);
@@ -41,8 +45,9 @@ function Register() {
                   <p className="absolute right-4 bottom-4 text-[#A62D82]">
                     Basic Information
                   </p>
+                  
                 </div>
-
+                  
                 <div className="w-[10vh] h-[60%]  border-[3px] ml-1 mr-1 border-[#E4E6ED] rounded-3xl text-center text-[#C8CCDB]">
                   <p className="bottom-1 text-[60px]">2</p>
                 </div>
@@ -50,6 +55,8 @@ function Register() {
                 <div className="w-[10vh] h-[60%]  border-[3px] ml-1 mr-1 border-[#E4E6ED] rounded-3xl text-center text-[#C8CCDB]">
                   <p className="bottom-1 text-[60px]">3</p>
                 </div>
+
+                
               </div>
             )}{" "}
             {step === 2 && (
@@ -73,6 +80,7 @@ function Register() {
                   {" "}
                   <p className="bottom-1 text-[60px]">3</p>
                 </div>
+                {/* <Register2 /> */}
               </div>
             )}{" "}
             {step === 3 && (
@@ -95,6 +103,7 @@ function Register() {
                     Upload Photos
                   </p>
                 </div>
+                {/* <Register3 /> */}
               </div>
             )}
           </div>
@@ -104,17 +113,23 @@ function Register() {
 
         {/* Form 1 /} */}
         {step === 1 && (
-          <div className="w-[95%] h-[80%] border-[10px] border-sky-500"></div>
+          <div className="w-[95%] h-[80%] border-[10px] flex justify-center">
+            <Register1 />
+          </div>
         )}
 
         {/* {/ Form 2 /} */}
         {step === 2 && (
-          <div className="w-[95%] h-[80%] border-[10px] border-green-500"></div>
+          <div className="w-[95%] h-[80%] border-[10px] flex justify-center">
+            <Register2 />
+          </div>
         )}
         {/* {/ Form 3 */}
 
         {step === 3 && (
-          <div className="w-[95%] h-[80%] border-[10px] border-orange-500"></div>
+          <div className="w-[95%] h-[80%] border-[10px] flex justify-center">
+            <Register3 />
+          </div>
         )}
 
         {/* *************************** Button ********************************************************************** */}

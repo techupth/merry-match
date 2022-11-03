@@ -2,8 +2,8 @@ import React from "react";
 
 export default function footer() {
   return (
-    <div>
-      <div className="CTA-Section w-full">
+    <div className="bg-[#160404]">
+      <div className="CTA-Section w-full ">
         <div className="cta-wrapper flex justify-center items-center">
           <div className="homepage-box-footer relative  w-[700px] h-[369px] rounded-[32px] flex items-center justify-center flex-col text-[#FFFFFF] text-[46px] mt-[50px] xl:w-[1120px]">
             <div className="absolute left-0 top-7">
@@ -60,7 +60,7 @@ export default function footer() {
         </div>
       </div>
 
-      <div className="footer-sections bg-[#F6F7FC] w-full mt-[200px]">
+      <div className="footer-sections bg-[#F6F7FC] w-full mt-[200px] ">
         <div className="footer-wrapper flex flex-col justify-center items-center">
           <div className="footer-content flex justify-center items-center flex-col">
             <div className="homepage-footer-logo flex flex-row text-[50px] mb-7 mt-7">
