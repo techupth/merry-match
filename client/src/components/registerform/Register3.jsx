@@ -87,26 +87,26 @@ const Register3 = () => {
          <h1 className="ProfilePictures text-[#A62D82] mt-[80px]">
             Profile pictures
           </h1>
-          <p>Upload at least x photos</p>
+          <p>Upload at least 2 photos</p>
 
           <div className="profileContainer mt-[24px] flex">
        
           </div>
 
-          <label for="file-upload" class="custom-file-upload">
+          {/* <label for="file-upload" class="custom-file-upload">
             <i className="fa fa-plus"></i> Custom Upload
           </label>
-          <input id="file-upload" type="file" />
+          <input id="file-upload" type="file" /> */}
 
         <button
-              className="profile Pic1 w-[167px] h-[167px] bg-[#F1F2F6] mr-[12px] text-[50px] rounded-lg text-[#7D2262]"
+              className="profile Pic1 w-[167px] h-[167px] bg-[#F1F2F6] mr-[12px] text-[50px] rounded-lg text-[#7D2262] "
               onClick={() => handleOpenWiget()}
             >
               +
               <p className="text-[#7D2262]">
                 {images.map((image) => (
-                  <div className="image-preview">
-                    <img src={image.url} />
+                  <div className="image-preview flex flex-row items-center justify-center ">
+                    <img className='flex items-center justify-center m-3' src={image.url} />
                     {imageToRemove != image.public_id && (
                       <i
                         className="fa fa-plus"

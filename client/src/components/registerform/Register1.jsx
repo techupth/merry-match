@@ -115,11 +115,11 @@ const Register1 = () => {
     <div className="flex flex-col mr-[12px] mt-[40px]">
       <label for="location">Location</label>
       <select
-        className="w-[453px] h-[48px] rounded-lg"
+        className="w-[453px] h-[48px] rounded-lg p-2"
         onChange={(e) => handlecounty(e)}
       >
         {Countrydata.map((getcountry, index) => (
-          <option value={getcountry.country_id} key={index}>
+          <option className='' value={getcountry.country_id} key={index}>
             {getcountry.country_name}
           </option>
         ))}
@@ -129,7 +129,7 @@ const Register1 = () => {
     <div className="flex flex-col ml-[12px] mt-[40px]">
       <label for="city">City</label>
       <select
-        className="w-[453px] h-[48px] rounded-lg"
+        className="w-[453px] h-[48px] rounded-lg p-2"
         onChange={(e) => handlestate(e)}
       >
         {state.map((getstate, index) => (

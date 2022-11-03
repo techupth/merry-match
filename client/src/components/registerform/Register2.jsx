@@ -92,7 +92,7 @@ const Register2 = () => {
             <div className="SexualIdentities flex flex-col mr-[12px] mt-[40px]">
               <label for="SexualIdentities">Sexual identities</label>
               <select
-                className="w-[453px] rounded-lg h-[48px]"
+                className="w-[453px] rounded-lg h-[48px] p-2"
                 id="SexualIdentities"
                 name="status"
               >
@@ -104,7 +104,7 @@ const Register2 = () => {
             <div className="SexualPreferences flex flex-col ml-[12px] mt-[40px]">
               <label for="SexualPreferences">Sexual preferences</label>
               <select
-                className="w-[453px] rounded-lg h-[48px]"
+                className="w-[453px] rounded-lg h-[48px] p-2"
                 id="SexualPreferences"
                 name="SexualPreferences"
               >
@@ -119,7 +119,7 @@ const Register2 = () => {
             <div className="RacialPreferences flex flex-col mr-[12px] mt-[40px] ">
               <label for="RacialPreferences">Racial preferences</label>
               <select
-                className="w-[453px] rounded-lg h-[48px]"
+                className="w-[453px] rounded-lg h-[48px] p-2"
                 id="RacialPreferences"
                 name="RacialPreferences"
               >
@@ -130,8 +130,8 @@ const Register2 = () => {
 
             <div className="MeetingInterests flex flex-col  ml-[12px] mt-[40px]">
               <label for="MeetingInterests">Meeting interests</label>
-              <select
-                className="w-[453px] h-[48px] rounded-lg"
+              <select 
+                className="w-[453px] h-[48px] rounded-lg p-2"
                 id="MeetingInterests"
                 name="MeetingInterests"
               >
@@ -153,9 +153,10 @@ const Register2 = () => {
               value={text}
               onChange={handleInputChange}
               onKeyDown={handleKeyDown}
+              placeholder="Enter Your Hobbies / Interests"
             />
 
-            <div className="StoreInput border-[1px] border-black h-[50px] w-[55%] border-l-none rounded-r-lg">
+            <div className="StoreInput border-[1px] border-black h-[60px] w-[55%] border-l-none rounded-r-lg">
               {hobbies.map((item, index) => {
                 return (
                   <div className="inline-block mt-2 mr-2 px-2 h-[30px] rounded-lg text-center text-[#7D2262] bg-[#F4EBF2]">
