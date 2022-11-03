@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import userRouter from "./apps/users.js";
+import authRouter from "./apps/auth.js";
 
 async function init() {
   const app = express();
@@ -9,15 +10,16 @@ async function init() {
 
   app.use(cors());
   app.use(bodyParser.json());
-  
-  app.use('/users', userRouter)
+
+  app.use("/auth", authRouter);
+  app.use("/users", userRouter);
 
   app.get("/", (req, res) => {
     return res.json({
       message: "Merry Match!! ",
     });
   });
-  
+
   app.get("*", (req, res) => {
     res.status(404).send("Not found");
   });
@@ -26,6 +28,5 @@ async function init() {
     console.log(`Server is listening on port ${port}`);
   });
 }
-
 
 init();

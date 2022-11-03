@@ -20,7 +20,6 @@ userRouter.post("/", async (req, res) => {
       updated_at: new Date(),
     };
     console.log(newUserProfile);
-    // await pool.query(`SET datestyle = dmy`);
     await pool.query(
       `insert into users(name,birthday,location,city,username,email,password,sex_identity,sex_pref,racial_pref,meeting_int,hobby,created_at,updated_at,profile_pics) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15)`,
       [
