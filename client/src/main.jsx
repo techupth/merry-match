@@ -2,18 +2,18 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
-import jwtInterceptor from "../../client/utils/jwtInterceptors.js";
-import { AuthProviders } from "./contexts/authentication.jsx";
+import { AuthProviders} from './contexts/authentication'
 import { ChakraProvider } from "@chakra-ui/react";
+import jwtInterceptor from "./ulils/jwtInterceptors";
 
-// jwtInterceptor();
+jwtInterceptor();
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ChakraProvider>
-      {/* <AuthProviders> */}
+      
         <App />
-      {/* </AuthProviders> */}
+      
     </ChakraProvider>
   </React.StrictMode>
 );

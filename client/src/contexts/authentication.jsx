@@ -1,5 +1,5 @@
 import axios from "axios";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 import React, { useState } from "react";
 
@@ -11,11 +11,11 @@ function AuthProviders(props) {
     error: null,
     user: null,
   });
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const register = async (data) => {
     await axios.post("http://localhost:4001/auth/register", data);
-    // navigate("/login");
+    navigate("/login");
   };
 
   const login = async (data) => {
@@ -27,12 +27,12 @@ function AuthProviders(props) {
     const userDataFromToken = jwtDecode(token);
     setState({ ...state, user: userDataFromToken });
     console.log(state);
-    // navigate("/");
+    navigate("/");
   };
-  // const logout = () => {
-  //   localStorage.removeItem("token");
-  //   setState({ ...state, user: null, error: false });
-  // };
+  const logout = () => {
+    localStorage.removeItem("token");
+    setState({ ...state, user: null, error: false });
+  };
 
   const isAuthenticated = Boolean(localStorage.getItem("token"));
 
@@ -42,10 +42,7 @@ function AuthProviders(props) {
     </AuthProviders>
   );
 }
-const logout = () => {
-  localStorage.removeItem("token");
-  setState({ ...state, user: null });
-};
+
 const useAuth = () => React.useContext(AuthContext);
 
 export { AuthProviders, useAuth };
