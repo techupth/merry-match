@@ -57,7 +57,7 @@ function Register() {
                 <div className="w-[10vh] h-[60%]  border-[3px] ml-1 mr-1 border-[#E4E6ED] rounded-3xl text-center text-[#C8CCDB]">
                   {" "}
                   <p className="bottom-1 text-[60px]">1</p>
-                </div>
+                </div>  
                 {/* BOX Content */}
                 <div className="w-[30vh] h-[60%] shrink border-[3px] ml-1 mr-1 border-[#A62D82] rounded-3xl relative">
                   <p className="absolute left-[3%] bottom-0 text-[60px] text-[#A62D82]">
