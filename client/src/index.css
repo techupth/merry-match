@@ -21,3 +21,19 @@
 .homepage-box-footer{
   background: radial-gradient(106.64% 594.8% at 3.13% 0%, #820025 35.64%, #A95BCD 100%)
 }
+
+.HobbiesInput{
+  border-right-style: hidden;
+  
+}
+
+.HobbiesInput:focus {
+  border-right:0;
+  border-color: black;
+  outline:none;
+  box-shadow:none;
+}
+
+.StoreInput {
+  border-left-style: hidden;
+}

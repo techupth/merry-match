@@ -9,12 +9,24 @@ const Register = () => {
   const [countryid, setCountryid] = useState("");
   const [state, setState] = useState([]);
   const [stateid, setStateid] = useState("");
+  
+  const [images, setImages] = useState([]);
+  const [imageToRemove, setImageToRemove] = useState(null);
+
+
+
+
+
+
+
+  
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       event.preventDefault();
       const newHobbies = [...hobbies, text];
       setHobbies(newHobbies);
+      setText("");
     }
   };
   const handleInputChange = (event) => {
@@ -45,6 +57,39 @@ const Register = () => {
     setStateid(stateid);
   };
 
+  function handleRemoveImage(img) {
+    setImageToRemove(img.public_id);
+    axios
+      .delete(`http://localhost:8080/${img.public_id}`)
+      .then(() => {
+        setImageToRemove(null);
+        setImages((prev) =>
+          prev.filter((imgs) => imgs.public_id !== img.public_id)
+        );
+      })
+      .catch((e) => console.log(e));
+  }
+
+  function handleOpenWiget() {
+    let myWidget = window.cloudinary.createUploadWidget(
+      {
+        cloudName: "dn4jfzbs6",
+        uploadPreset: "Merry Match",
+      },
+      (error, result) => {
+        if (!error && result && result.event === "success") {
+          setImages((prev) => [
+            ...prev,
+            { url: result.info.url, publid_id: result.info.public_id },
+          ]);
+        }
+      }
+    );
+    myWidget.open();
+  }
+
+  console.log(images)
+
   return (
     <div className="w-full bg-[#FCFCFE]">
       {/* start Header */}
@@ -64,7 +109,7 @@ const Register = () => {
       {/* End Header */}
 
       <div className="informationContainer flex justify-center border-solid border-2 border-indigo-600 ">
-        <form>
+        <div>
           {/* Page 1 */}
           {/* colomn 1 */}
           <h1 className="basicInformation text-[#A62D82] mt-[80px] ">
@@ -176,7 +221,7 @@ const Register = () => {
           <h1 className="basicInformation text-[#A62D82] mt-[80px]">
             Identities and Interests
           </h1>
-          {/* colomn1 */}
+          {/* column 1 */}
           <div className="column1 flex">
             <div className="SexualIdentities flex flex-col mr-[12px] mt-[40px]">
               <label for="SexualIdentities">Sexual identities</label>
@@ -232,42 +277,70 @@ const Register = () => {
               </select>
             </div>
           </div>
-          <div className="mt-[40px]">Hobbies / Interests (Maximum 10)</div>
-          <input
-            className="w-full rounded-lg "
-            type="text"
-            onChange={handleInputChange}
-            onKeyDown={handleKeyDown}
-          />
-          {hobbies.map((item, index) => {
-            return (
-              <div className="inline-block mt-2 mr-2 px-2 h-[30px] rounded-lg text-center text-[#7D2262] bg-[#F4EBF2]">
-                {item}
-                <button
-                className="ml-[12px]"
-                  onClick={() => {
-                    deleteHobbies(index);
-                  }}
-                >
-                  x
-                </button>
-              </div>
-            );
-          })}
 
-          <h1 className="ProfilePictures text-[#A62D82] mt-[80px]">
-             Profile pictures
-          </h1>
-          <p>Upload at least x photos</p>
-          <div className="profileContainer mt-[24px] flex">
-          <div className="profile Pic1 w-[167px] h-[167px] bg-[#d908ac] mr-[12px]">xx</div>
-          <div className="profile Pic2 w-[167px] h-[167px] bg-[#d908ac] mr-[12px]">xx</div>
-          <div className="profile Pic3 w-[167px] h-[167px] bg-[#d908ac] mr-[12px]">xx</div>
-          <div className="profile Pic4 w-[167px] h-[167px] bg-[#d908ac] mr-[12px]">xx</div>
-          <div className="profile Pic5 w-[167px] h-[167px] bg-[#d908ac] mr-[12px]">xx</div>
+          
+            <div className="mt-[40px]">Hobbies / Interests (Maximum 10)</div>
+
+            <div className="HobbiesBox flex">
+            <input
+              className="HobbiesInput w-[45%] rounded-l-lg   "
+              type="text"
+              value={text}
+              onChange={handleInputChange}
+              onKeyDown={handleKeyDown}
+            />
+
+            <div className="StoreInput border-[1px] border-black h-[50px] w-[55%] border-l-none rounded-r-lg">
+              {hobbies.map((item, index) => {
+                return (
+                  <div className="inline-block mt-2 mr-2 px-2 h-[30px] rounded-lg text-center text-[#7D2262] bg-[#F4EBF2]">
+                    {item}
+                    <button
+                      className="ml-[12px]"
+                      onClick={() => {
+                        deleteHobbies(index);
+                      }}
+                    >
+                      x
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
           </div>
 
-        </form>
+
+          {/* Photos upload */}
+
+          <h1 className="ProfilePictures text-[#A62D82] mt-[80px]">
+            Profile pictures
+          </h1>
+          <p>Upload at least x photos</p>
+
+          <div className="profileContainer mt-[24px] flex">
+            <button
+              className="profile Pic1 w-[167px] h-[167px] bg-[#F1F2F6] mr-[12px] text-[50px] rounded-lg text-[#7D2262]"
+              onClick={() => handleOpenWiget()} 
+            >
+              +
+              {/* ******************** Photos ********************** */}
+              <p className="text-[#7D2262]">
+                {images.map((image) => (
+                  <div className="image-preview">
+                    <img src={image.url} />
+                    {imageToRemove != image.public_id && (
+                      <i
+                        className="fa fatimes close-icon"
+                        onClick={() => handleRemoveImage()}
+                      ></i>
+                    )}
+                  </div>
+                ))}
+              </p>
+              {/* *********************************************** */}
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
