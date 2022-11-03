@@ -21,7 +21,7 @@ function Register() {
   };
 
   return (
-    <div className="bg-white flex flex-col items-center justify-center w-[100%] h-[895px] ">
+    <div className="bg-white flex flex-col items-center justify-center w-[100%] h-[1200px] ">
       <div className="flex justify-center items-center flex-col w-[60%] h-[950px] ] ">
         {/* **************************** Basic Information ******************************************************************** */}
 
