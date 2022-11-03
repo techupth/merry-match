@@ -9,17 +9,9 @@ const Register = () => {
   const [countryid, setCountryid] = useState("");
   const [state, setState] = useState([]);
   const [stateid, setStateid] = useState("");
-  
+
   const [images, setImages] = useState([]);
   const [imageToRemove, setImageToRemove] = useState(null);
-
-
-
-
-
-
-
-  
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
@@ -88,7 +80,7 @@ const Register = () => {
     myWidget.open();
   }
 
-  console.log(images)
+  console.log(images);
 
   return (
     <div className="w-full bg-[#FCFCFE]">
@@ -109,7 +101,7 @@ const Register = () => {
       {/* End Header */}
 
       <div className="informationContainer flex justify-center border-solid border-2 border-indigo-600 ">
-        <div>
+        <form>
           {/* Page 1 */}
           {/* colomn 1 */}
           <h1 className="basicInformation text-[#A62D82] mt-[80px] ">
@@ -278,10 +270,9 @@ const Register = () => {
             </div>
           </div>
 
-          
-            <div className="mt-[40px]">Hobbies / Interests (Maximum 10)</div>
+          <div className="mt-[40px]">Hobbies / Interests (Maximum 10)</div>
 
-            <div className="HobbiesBox flex">
+          <div className="HobbiesBox flex">
             <input
               className="HobbiesInput w-[45%] rounded-l-lg   "
               type="text"
@@ -309,7 +300,6 @@ const Register = () => {
             </div>
           </div>
 
-
           {/* Photos upload */}
 
           <h1 className="ProfilePictures text-[#A62D82] mt-[80px]">
@@ -318,31 +308,36 @@ const Register = () => {
           <p>Upload at least x photos</p>
 
           <div className="profileContainer mt-[24px] flex">
-            <button
+       
+          </div>
+
+          <label for="file-upload" class="custom-file-upload">
+            <i className="fa fa-plus"></i> Custom Upload
+          </label>
+          <input id="file-upload" type="file" />
+        </form>
+
+        <button
               className="profile Pic1 w-[167px] h-[167px] bg-[#F1F2F6] mr-[12px] text-[50px] rounded-lg text-[#7D2262]"
-              onClick={() => handleOpenWiget()} 
+              onClick={() => handleOpenWiget()}
             >
               +
-              {/* ******************** Photos ********************** */}
               <p className="text-[#7D2262]">
                 {images.map((image) => (
                   <div className="image-preview">
                     <img src={image.url} />
                     {imageToRemove != image.public_id && (
                       <i
-                        className="fa fatimes close-icon"
+                        className="fa fa-plus"
                         onClick={() => handleRemoveImage()}
                       ></i>
                     )}
                   </div>
                 ))}
               </p>
-              {/* *********************************************** */}
-
-              sdf
             </button>
-          </div>
-        </div>
+
+
       </div>
     </div>
   );
