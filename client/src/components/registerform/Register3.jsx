@@ -5,10 +5,6 @@ const Register3 = () => {
     const [text, setText] = useState("");
     const [hobbies, setHobbies] = useState([]);
   
-    const [countryid, setCountryid] = useState("");
-    const [state, setState] = useState([]);
-    const [stateid, setStateid] = useState("");
-  
     const [images, setImages] = useState([]);
     const [imageToRemove, setImageToRemove] = useState(null);
   
