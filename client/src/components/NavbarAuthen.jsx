@@ -1,12 +1,17 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import UserPopup from "./userPopup";
+import useClickOutside from '../ulils/useClickOutside'
 
 const Navbarauthen = () => {
     const [callPop, setCallPop] = useState(false);
 
+    const ref = useRef(null);
+
+    useClickOutside(ref, () => setCallPop(false));
+
     return (
-        <div className="bg-white absolute flex flex-row items-center justify-between w-full h-[115px] text-[16px] font-bold z-40">
+        <div ref={ref} className="bg-white absolute flex flex-row items-center justify-between w-full h-[115px] text-[16px] font-bold z-40">
             <img
                 src="/asset/header/header-merrymatch-logo.svg"
                 alt="merry match logo"
@@ -17,8 +22,8 @@ const Navbarauthen = () => {
                 <h2>Why Merry Match?</h2>
                 <h2>How to Merry</h2>
 
-                <button className="text-[40px] mr-[]" onClick={() => setCallPop(true)}>
-                    🦸🏻‍♀️
+                <button type="button" className="text-[40px] mr-[]" onClick={() => setCallPop(!callPop)}>
+                🧕🏻
                 </button>
                 {callPop && <UserPopup close={setCallPop} />}
             </div>
