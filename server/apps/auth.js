@@ -2,16 +2,26 @@ import { Router } from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { pool } from "../utils/db.js";
+import multer from "multer";
+import { cloudinaryUpload } from "../utils/cloudinary.upload.js";
 
 const authRouter = Router();
 
-authRouter.post("/register", async (req, res) => {
+const multerUpload = multer({ dest: "uploads/" });
+const avatarUpload = multerUpload.fields([{ name: "avatar", maxCount: 5 }]);
+
+authRouter.post("/register", avatarUpload, async (req, res) => {
+  console.log(req);
   try {
     const newUserProfile = {
       ...req.body,
       created_at: new Date(),
       updated_at: new Date(),
     };
+
+    // const avatarUrl = await cloudinaryUpload(req.files);
+
+    // // user["avatars"] = avatarUrl;
 
     const salt = await bcrypt.genSalt(10);
     newUserProfile.password = await bcrypt.hash(newUserProfile.password, salt);
@@ -49,14 +59,13 @@ authRouter.post("/login", async (req, res) => {
   const loginKey = req.body.username;
   const password = req.body.password;
 
-  console.log(loginKey)
-  console.log(password)
-  
+  console.log(loginKey);
+  console.log(password);
+
   const result = await pool.query(
     `select user_id,name,username,password,email from users where username = $1 or email = $1`,
     [loginKey]
   );
-  
 
   if (!result.rows[0]) {
     return res.status(401).json({
@@ -94,8 +103,8 @@ authRouter.post("/login", async (req, res) => {
   });
 });
 
-authRouter.get("/", async(req, res)=>{
-  return res.send("hello auth!!")
+authRouter.get("/", async (req, res) => {
+  return res.send("hello auth!!");
 });
 
 export default authRouter;
