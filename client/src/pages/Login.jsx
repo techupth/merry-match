@@ -3,11 +3,13 @@ import bannerLogin from "../../public/asset/Login/bannerLogin.png";
 import { useState } from "react";
 import { useAuth } from "../contexts/authentication";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const { login } = useAuth();
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -57,7 +59,7 @@ const Login = () => {
         </button>
         <div className="flex mt-[40px]">
           <p className="mr-[12px]">Don’t have an account?</p>
-          <a href="" className="text-[#C70039]">
+          <a href="" className="text-[#C70039]" onClick={() => navigate('/register')}>
             Register
           </a>
         </div>
