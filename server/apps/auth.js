@@ -48,15 +48,17 @@ authRouter.post("/register", async (req, res) => {
 authRouter.post("/login", async (req, res) => {
   const loginKey = req.body.username;
   const password = req.body.password;
-  
+
+  console.log(loginKey);
+  console.log(password);
+
   const result = await pool.query(
     `select user_id,name,username,password,email from users where username = $1 or email = $1`,
     [loginKey]
   );
-  
 
   if (!result.rows[0]) {
-    return res.status(404).json({
+    return res.status(401).json({
       message: "Username or Email not found",
     });
   }
@@ -66,7 +68,7 @@ authRouter.post("/login", async (req, res) => {
     result.rows[0].password
   );
   if (!isValidPassword) {
-    return res.status(404).json({
+    return res.status(401).json({
       message: "Password is invalid",
     });
   }
@@ -84,15 +86,15 @@ authRouter.post("/login", async (req, res) => {
     }
   );
 
-  return res.json({
+  return res.status(200).json({
     message: "Logged in Successfully!",
     token,
-    data : result
+    // data : result
   });
 });
 
-authRouter.get("/", async(req, res)=>{
-  return res.send("hello auth!!")
+authRouter.get("/", async (req, res) => {
+  return res.send("hello auth!!");
 });
 
 export default authRouter;

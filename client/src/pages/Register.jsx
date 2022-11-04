@@ -51,6 +51,7 @@ function Register() {
   console.log(userInfo);
   console.log(images);
 
+  //  register function
   const registerNewUser = async () => {
     await axios.post("http://localhost:4001/auth/register", userInfo);
   };
@@ -58,10 +59,11 @@ function Register() {
   const handleSubmit = (event) => {
     event.preventDefault();
     registerNewUser();
-    alert("Register Sucessful");
+    alert("Register Successful");
     navigate("/login");
   };
 
+  // input box function
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       event.preventDefault();
