@@ -7,6 +7,7 @@ import { AuthProvider } from "./contexts/authentication";
 import { ChakraProvider } from "@chakra-ui/react";
 import { BrowserRouter } from "react-router-dom";
 
+
 jwtInterceptor();
 
 ReactDOM.createRoot(document.getElementById("root")).render(

@@ -12,6 +12,7 @@ function App() {
 
       <Routes>
         <Route path="/dev" element={<Devtools />} />
+        <Route path="/nav" element={<Navbar />} />
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />

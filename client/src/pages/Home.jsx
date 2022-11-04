@@ -6,6 +6,7 @@ import ThirdPart from '../components/ThirdPart'
 
 
 
+
 function Home() {
   return (
     <div>
