@@ -4,7 +4,7 @@ import Register from "./Register";
 import Home from "./Home";
 import Navbar from "../components/Navbar";
 
-const Unauthenication = () => {
+const Unauthenticated = () => {
   return (
     <>
       <Navbar />
@@ -13,11 +13,10 @@ const Unauthenication = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="*" element={<Home />}/>
+        <Route path="*" element={<Home />} />
       </Routes>
     </>
   );
 };
 
-
-export default Unauthenication
+export default Unauthenticated;

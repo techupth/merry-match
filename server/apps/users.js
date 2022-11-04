@@ -14,6 +14,17 @@ userRouter.get("/", async (req, res) => {
   });
 });
 
+userRouter.get("/:userId", async (req, res) => {
+  const userId = req.params.userId;
+  const result = await pool.query(`select * from users where user_id=$1`, [
+    userId,
+  ]);
+  return res.json({
+    message: `User info at user id : ${userId} is found`,
+    data: result.rows,
+  });
+});
+
 userRouter.post("/", async (req, res) => {
   try {
     const newUserProfile = {
@@ -49,6 +60,15 @@ userRouter.post("/", async (req, res) => {
     console.log("error is");
     console.log(error);
   }
+});
+
+userRouter.put("/:userId", async (req, res) => {
+  const userId = req.params.userId;
+  await pool.query(`select * from users where user_id=$1`, [userId]);
+  return res.json({
+    message: `User info at user id : ${userId} is found`,
+    data: result.rows,
+  });
 });
 
 export default userRouter;

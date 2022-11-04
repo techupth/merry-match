@@ -1,9 +1,11 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../contexts/authentication'
+
 
 const Navbar = () => {
   const navigate = useNavigate();
-
+  const { logout } = useAuth()
   const handleNavigate = (e) => {
     e.preventDefault();
     navigate("/login");
@@ -24,6 +26,7 @@ const Navbar = () => {
         <button className="button-nav bg-[#c70039] shadow-[2px_2px_12px_0_rgba(64, 50, 133, 0.16)] rounded-[99px] text-[#ffffff] h-[48px] w-[90px]" onClick={handleNavigate}>
           Login
         </button>
+        <button onClick={() => logout()}>Logout</button>
       </div>
     </nav>
   )

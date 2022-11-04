@@ -1,39 +1,87 @@
 import React from "react";
+import axios from "axios";
 import { useState } from "react";
-// import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import Countrydata from "../mock-city/Countrydata.json";
 
 function Register() {
+  const navigate = useNavigate();
   const [step, setStep] = useState(1);
+  const [state, setState] = useState([]);
 
-  const [text, setText] = useState("");
+  // states of form 1
+  const [name, setName] = useState("");
+  const [birthday, setBirthday] = useState("");
   const [hobbies, setHobbies] = useState([]);
   const [countryid, setCountryid] = useState("");
-  const [state, setState] = useState([]);
   const [stateid, setStateid] = useState("");
-
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  // states of form 2
+  const [sexualIdentities, setSexualIdentities] = useState("");
+  const [sexualPreferences, setSexualPreferences] = useState("");
+  const [racialPreferences, setRacialPreferences] = useState("");
+  const [meetingInterests, setMeetingInterests] = useState("");
+  const [text, setText] = useState([]);
+
+  //states of form 3
   const [images, setImages] = useState([]);
   const [imageToRemove, setImageToRemove] = useState(null);
 
+  const userInfo = {
+    name,
+    birthday,
+    location: countryid,
+    city: stateid,
+    username,
+    email,
+    password,
+    confirm_password: confirmPassword,
+    sex_identity: sexualIdentities,
+    sex_pref: sexualPreferences,
+    racial_pref: racialPreferences,
+    meeting_int: meetingInterests,
+    hobby: hobbies,
+    profile_pics: images,
+  };
+
+  console.log(userInfo);
+  console.log(images);
+
+  //  register function
+  const registerNewUser = async () => {
+    await axios.post("http://localhost:4001/auth/register", userInfo);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    registerNewUser();
+    alert("Register Successful");
+    navigate("/login");
+  };
+
+  // input box function
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       event.preventDefault();
-      const newHobbies = [...hobbies, text];
-      setHobbies(newHobbies);
-      setText("");
+      if (hobbies.length < 10) {
+        const newHobbies = [...hobbies, text];
+        setHobbies(newHobbies);
+        setText("");
+      } else {
+        alert("Maximum 10 Hobbies/ Interests");
+      }
     }
   };
   const handleInputChange = (event) => {
     setText(event.target.value);
   };
 
-  const deleteHobbies = (key) => {
-    key.preventDefault();
+  const deleteHobbies = (key, event) => {
+    event.preventDefault();
     console.log("test click");
     const temp = hobbies.filter((value, index) => {
       return index !== key;
@@ -57,7 +105,7 @@ function Register() {
   };
 
   //   LOG countryid, stateid
-  console.log(countryid, stateid)
+  console.log(countryid, stateid);
 
   function handleRemoveImage(img) {
     setImageToRemove(img.public_id);
@@ -72,7 +120,7 @@ function Register() {
       .catch((e) => console.log(e));
   }
 
-  function handleOpenWiget() {
+  function handleOpenWidget() {
     let myWidget = window.cloudinary.createUploadWidget(
       {
         cloudName: "dn4jfzbs6",
@@ -82,7 +130,7 @@ function Register() {
         if (!error && result && result.event === "success") {
           setImages((prev) => [
             ...prev,
-            { url: result.info.url, publid_id: result.info.public_id },
+            { url: result.info.url, public_id: result.info.public_id },
           ]);
         }
       }
@@ -102,20 +150,14 @@ function Register() {
     }
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log("Submit data to server");
-  };
-
-  const onSubmit = (data) => {
-    data.preventDefault();
-    console.log(data);
-  };
-
   return (
-    <form onSubmit={handleSubmit}>
+    <form
+      onSubmit={(e) => {
+        handleSubmit(e);
+      }}
+    >
       <div className="bg-white flex flex-col items-center justify-center w-[100%] h-[1200px] ">
-        <div className="flex justify-center items-center flex-col w-[60%] h-[950px] ] ">
+        <div className="flex justify-center items-center flex-col w-[60%] h-[950px]">
           {/* **************************** Basic Information ******************************************************************** */}
 
           <div className="flex w-[95%] h-[20%]">
@@ -218,6 +260,9 @@ function Register() {
                       name="firstname"
                       placeholder="John Snow"
                       required
+                      onChange={(event) => {
+                        setName(event.target.value);
+                      }}
                     />
                   </div>
                   <div className="flex flex-col ml-[12px] mt-[24px]">
@@ -229,6 +274,9 @@ function Register() {
                       name="birthday"
                       placeholder="01/01/2020"
                       required
+                      onChange={(event) => {
+                        setBirthday(event.target.value);
+                      }}
                     />
                   </div>
                 </div>
@@ -279,7 +327,7 @@ function Register() {
                       name="username"
                       value={username}
                       onChange={(event) => setUsername(event.target.value)}
-                      placeholder="At leaset 6 charactor"
+                      placeholder="At least 6 characters"
                       required
                     />
                   </div>
@@ -308,7 +356,7 @@ function Register() {
                       name="Password"
                       value={password}
                       onChange={(event) => setPassword(event.target.value)}
-                      placeholder="At leaset 8 charactor"
+                      placeholder="At least 8 character"
                       required
                       minLength={8}
                     />
@@ -324,7 +372,7 @@ function Register() {
                       onChange={(event) =>
                         setConfirmPassword(event.target.value)
                       }
-                      placeholder="At leaset 8 character"
+                      placeholder="At least 8 character"
                       required
                       minLength={8}
                     />
@@ -348,6 +396,9 @@ function Register() {
                       className="w-[453px] rounded-lg h-[48px] p-2"
                       id="SexualIdentities"
                       name="status"
+                      onChange={(event) => {
+                        setSexualIdentities(event.target.value);
+                      }}
                     >
                       <option value="Male">Male</option>
                       <option value="Female">Female</option>
@@ -360,6 +411,10 @@ function Register() {
                       className="w-[453px] rounded-lg h-[48px] p-2"
                       id="SexualPreferences"
                       name="SexualPreferences"
+                      value={sexualPreferences}
+                      onChange={(event) => {
+                        setSexualPreferences(event.target.value);
+                      }}
                     >
                       <option value="Male">Male</option>
                       <option value="Female">Female</option>
@@ -374,9 +429,13 @@ function Register() {
                       className="w-[453px] rounded-lg h-[48px] p-2"
                       id="RacialPreferences"
                       name="RacialPreferences"
+                      value={racialPreferences}
+                      onChange={(event) => {
+                        setRacialPreferences(event.target.value);
+                      }}
                     >
-                      <option value="Male">Asian</option>
-                      <option value="Female">Europe</option>
+                      <option value="Asian">Asian</option>
+                      <option value="Europe">Europe</option>
                     </select>
                   </div>
 
@@ -386,6 +445,9 @@ function Register() {
                       className="w-[453px] h-[48px] rounded-lg p-2"
                       id="MeetingInterests"
                       name="MeetingInterests"
+                      onChange={(event) => {
+                        setMeetingInterests(event.target.value);
+                      }}
                     >
                       <option value="Friend">Friend</option>
                       <option value="FWB">FWB</option>
@@ -420,7 +482,7 @@ function Register() {
                           <button
                             className="ml-[12px]"
                             onClick={() => {
-                              deleteHobbies(index);
+                              deleteHobbies(index, event);
                             }}
                           >
                             x
@@ -446,8 +508,9 @@ function Register() {
                 <div className="profileContainer mt-[24px] flex"></div>
 
                 <button
-                  className="profile Pic1 w-[167px] h-[167px] bg-[#F1F2F6] mr-[12px] text-[50px] rounded-lg text-[#7D2262] "
-                  onClick={() => handleOpenWiget()}
+                  className="profile Pic1 w-[167px] h-[167px] bg-[#F1F2F6] mr-[12px] text-[50px] rounded-lg text-[#7D2262]"
+                  type="button"
+                  onClick={handleOpenWidget}
                 >
                   +
                   <p className="text-[#7D2262]">

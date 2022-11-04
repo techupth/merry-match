@@ -1,10 +1,10 @@
-import Unauthenication from "./pages/Unauthenication";
+import Unauthenticated from "./pages/Unauthenticated";
 import { useAuth } from "./contexts/authentication";
-import Authenicationed from "./pages/Authenicationed";
+import Authenticated from "./pages/Authenticated";
 
 function App() {
   const auth = useAuth();
-  return auth.isAuthenticated ? <Authenicationed/> : <Unauthenication/>;
+  return auth.isAuthenticated ? <Authenticated /> : <Unauthenticated />;
 }
 
 export default App;
