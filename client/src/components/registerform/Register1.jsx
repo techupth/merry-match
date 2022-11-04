@@ -4,13 +4,18 @@ import Countrydata from "../../mock-city/countrydata";
 const Register1 = () => {
     const [text, setText] = useState("");
     const [hobbies, setHobbies] = useState([]);
-  
     const [countryid, setCountryid] = useState("");
     const [state, setState] = useState([]);
     const [stateid, setStateid] = useState("");
-  
+    
+    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+
     const [images, setImages] = useState([]);
     const [imageToRemove, setImageToRemove] = useState(null);
+  
   
     const handleKeyDown = (event) => {
       if (event.key === "Enter") {
@@ -25,7 +30,7 @@ const Register1 = () => {
     };
   
     const deleteHobbies = (key) => {
-      event.preventDefault();
+      key.preventDefault();
       console.log("test click");
       const temp = hobbies.filter((value, index) => {
         return index !== key;
@@ -96,6 +101,7 @@ const Register1 = () => {
         id="name"
         name="firstname"
         placeholder="John Snow"
+        required
       />
     </div>
     <div className="flex flex-col ml-[12px] mt-[24px]">
@@ -106,6 +112,7 @@ const Register1 = () => {
         id="birth"
         name="birthday"
         placeholder="01/01/2020"
+        required
       />
     </div>
   </div>
@@ -117,6 +124,7 @@ const Register1 = () => {
       <select
         className="w-[453px] h-[48px] rounded-lg p-2"
         onChange={(e) => handlecounty(e)}
+        required
       >
         {Countrydata.map((getcountry, index) => (
           <option className='' value={getcountry.country_id} key={index}>
@@ -131,6 +139,7 @@ const Register1 = () => {
       <select
         className="w-[453px] h-[48px] rounded-lg p-2"
         onChange={(e) => handlestate(e)}
+        required
       >
         {state.map((getstate, index) => (
           <option value={getstate.state_id} key={index}>
@@ -150,7 +159,10 @@ const Register1 = () => {
         type="text"
         id="username"
         name="username"
+        value={username}
+        onChange={(event) => setUsername(event.target.value)}
         placeholder="At leaset 6 charactor"
+        required
       />
     </div>
     <div className="flex flex-col ml-[12px] mt-[40px]">
@@ -160,7 +172,10 @@ const Register1 = () => {
         type="email"
         id="Email"
         name="Email"
+        value={email}
+        onChange={(event) => setEmail(event.target.value)}
         placeholder="name@website.com"
+        required
       />
     </div>
   </div>
@@ -174,7 +189,10 @@ const Register1 = () => {
         type="password"
         id="Password"
         name="Password"
+        value={password}
+        onChange={(event) => setPassword(event.target.value)}
         placeholder="At leaset 8 charactor"
+        required
       />
     </div>
     <div className="flex flex-col ml-[12px] mt-[40px]">
@@ -184,7 +202,10 @@ const Register1 = () => {
         type="password"
         id="ConfirmPassword"
         name="ConfirmPassword"
+        value={confirmPassword}
+        onChange={(event) => setConfirmPassword(event.target.value)}
         placeholder="At leaset 8 charactor"
+        required
       />
     </div>
   </div>

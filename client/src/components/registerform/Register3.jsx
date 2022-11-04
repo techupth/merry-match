@@ -2,18 +2,25 @@ import React, { useState } from 'react'
 import Countrydata from "../../mock-city/countrydata";
 
 const Register3 = () => {
-  const [text, setText] = useState("");
-  const [hobbies, setHobbies] = useState([]);
-
-  const [countryid, setCountryid] = useState("");
-  const [state, setState] = useState([]);
-  const [stateid, setStateid] = useState("");
-
-  const [images, setImages] = useState({});
-  const [imageToRemove, setImageToRemove] = useState(null);
-  console.log(Object.values(images))
-  const handleKeyDown = (event) => {
-    if (event.key === "Enter") {
+    const [text, setText] = useState("");
+    const [hobbies, setHobbies] = useState([]);
+  
+    const [images, setImages] = useState([]);
+    const [imageToRemove, setImageToRemove] = useState(null);
+  
+    const handleKeyDown = (event) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        const newHobbies = [...hobbies, text];
+        setHobbies(newHobbies);
+        setText("");
+      }
+    };
+    const handleInputChange = (event) => {
+      setText(event.target.value);
+    };
+  
+    const deleteHobbies = (key) => {
       event.preventDefault();
       const newHobbies = [...hobbies, text];
       setHobbies(newHobbies);
