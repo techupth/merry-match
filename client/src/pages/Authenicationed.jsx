@@ -7,6 +7,8 @@ const Authenicationed = () =>{
         <Routes>
             <Route path="/" element ={<HomepageAuth/>}/>
             <Route path="*" element = {<HomepageAuth/>}/>
+            {/* <Route path="/home" element={<Home />} /> */}
+
         </Routes>
         
     </>)
