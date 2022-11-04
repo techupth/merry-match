@@ -16,9 +16,10 @@ function AuthProvider(props) {
   };
 
   const login = async (data) => {
-    console.log(data)
+    
     try{
-      const result = await axios.post("http://localhost:4000/auth/login", data);
+      console.log(data)
+    const result = await axios.post("http://localhost:4001/auth/login", data);
     console.log(result);
     const token = result.data.token;
     // console.log(token);

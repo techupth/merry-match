@@ -1,21 +1,10 @@
-import Navbar from "./components/Navbar";
-import Home from "./pages/Home";
-import Register from "./pages/Register";
-import { Routes, Route } from "react-router-dom";
-import Login from "./pages/Login";
+import Unauthenication from "./pages/Unauthenication";
+import { useAuth } from "./contexts/authentication";
+import Authenicationed from "./pages/Authenicationed";
 
 function App() {
-  return (
-    <>
-      <Navbar />
-
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-      </Routes>
-    </>
-  );
+  const auth = useAuth();
+  return auth.isAuthenticated ? <Authenicationed/> : <Unauthenication/>;
 }
 
 export default App;
