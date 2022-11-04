@@ -1,9 +1,8 @@
 import axios from "axios";
 
-
 function jwtInterceptor() {
   axios.interceptors.request.use((req) => {
-    const hasToken = Boolean(window.localStorage.getItem("token"));
+    const hasToken = Boolean(window.localStorage.getItem("token")); //Check token in localStorage
 
     if (hasToken) {
       req.headers = {
@@ -11,6 +10,7 @@ function jwtInterceptor() {
         Authorization: `Bearer ${window.localStorage.getItem("token")}`,
       };
     }
+
     return req;
   });
 
@@ -18,15 +18,16 @@ function jwtInterceptor() {
     (req) => {
       return req;
     },
-    (error) => {
+    (err) => {
       if (
-        error.response.status === 401 &&
-        error.response.statusText === "Unauthorized"
+        err.status === 401 &&
+        err.statusText === "Unauthorized"
       ) {
         window.localStorage.removeItem("token");
-        window.localStorage.replace("/");
+        window.location.replace("/");
       }
     }
   );
 }
+
 export default jwtInterceptor;
