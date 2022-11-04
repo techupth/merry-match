@@ -56,7 +56,7 @@ function Register() {
     setStateid(stateid);
   };
 
-//   LOG countryid, stateid
+  //   LOG countryid, stateid
   console.log(countryid, stateid)
 
   function handleRemoveImage(img) {
@@ -104,7 +104,6 @@ function Register() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert(`Submit data to server`);
     console.log("Submit data to server");
   };
 
