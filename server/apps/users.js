@@ -7,7 +7,7 @@ userRouter.use(protect);
 
 userRouter.get("/", async (req, res) => {
   const result = await pool.query(`select * from users`);
-  console.log(result);
+
   return res.json({
     message: "Successful!",
     data: result.rows,
@@ -33,6 +33,8 @@ userRouter.post("/", async (req, res) => {
       updated_at: new Date(),
     };
     console.log(newUserProfile);
+    await pool.query(`SET datestyle = dmy`);
+
     await pool.query(
       `insert into users(name,birthday,location,city,username,email,password,sex_identity,sex_pref,racial_pref,meeting_int,hobby,created_at,updated_at,profile_pics) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15)`,
       [
@@ -64,10 +66,48 @@ userRouter.post("/", async (req, res) => {
 
 userRouter.put("/:userId", async (req, res) => {
   const userId = req.params.userId;
-  await pool.query(`select * from users where user_id=$1`, [userId]);
+  const updatedUser = {
+    ...req.body,
+    updated_at: new Date(),
+  };
+  await pool.query(
+    `UPDATE users
+    SET name=$1,birthday=$2,location=$3,city=$4,username=$5,email=$6,sex_identity=$7,sex_pref=$8,racial_pref=$9,meeting_int=$10,hobby=$11,about_me=$12,updated_at=$13,profile_pics=$14
+    WHERE user_id = $15`,
+    [
+      updatedUser.name,
+      updatedUser.birthday,
+      updatedUser.location,
+      updatedUser.city,
+      updatedUser.username,
+      updatedUser.email,
+      updatedUser.sex_identity,
+      updatedUser.sex_pref,
+      updatedUser.racial_pref,
+      updatedUser.meeting_int,
+      updatedUser.hobby,
+      updatedUser.about_me,
+      updatedUser.updated_at,
+      updatedUser.profile_pics,
+      userId,
+    ]
+  );
   return res.json({
-    message: `User info at user id : ${userId} is found`,
-    data: result.rows,
+    message: `User ${userId} info has been updated!`,
+  });
+});
+
+userRouter.delete("/:userId", async (req, res) => {
+  const userId = req.params.userId;
+  await pool.query(
+    `
+ delete from users where user_id = $1
+ `,
+    [userId]
+  );
+
+  return res.json({
+    message: `User ${userId} has been deleted!`,
   });
 });
 
