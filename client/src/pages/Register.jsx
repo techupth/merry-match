@@ -65,6 +65,7 @@ function Register() {
     checkNoNull();
     registerNewUser();
     alert("Register Successfully!");
+    navigate("/login");
   };
 
   useEffect(() => {
@@ -308,12 +309,14 @@ function Register() {
           {step === 1 && (
             <div className="w-[95%] h-[80%] border-[10px] flex justify-center">
               <div>
-                <h1 className="basicInformation text-[#A62D82] mt-[80px] ">
+                <h1 className="basicInformation text-[#A62D82] mt-[80px] font-[800] text-[24px]">
                   Basic Information
                 </h1>
                 <div className="column1 flex">
                   <div className="flex flex-col mr-[12px] mt-[24px]">
-                    <label htmlFor="name">Name</label>
+                    <label htmlFor="name" className="font-[600] ">
+                      Name
+                    </label>
                     <input
                       className="w-[453px] rounded-lg "
                       type="text"
@@ -328,7 +331,9 @@ function Register() {
                     />
                   </div>
                   <div className="flex flex-col ml-[12px] mt-[24px]">
-                    <label htmlFor="birth">Date of birth</label>
+                    <label htmlFor="birth" className="font-[600]">
+                      Date of birth
+                    </label>
                     <input
                       className="w-[453px] rounded-lg"
                       type="date"
@@ -346,7 +351,9 @@ function Register() {
 
                 <div className="column2 flex">
                   <div className="flex flex-col mr-[12px] mt-[40px]">
-                    <label htmlFor="location">Location</label>
+                    <label htmlFor="location" className="font-[600]">
+                      Location
+                    </label>
                     <select
                       className="w-[453px] h-[48px] rounded-lg p-2"
                       onChange={(e) => handlecounty(e)}
@@ -390,7 +397,9 @@ function Register() {
 
                 <div className="column3 flex">
                   <div className="flex flex-col mr-[12px] mt-[40px]">
-                    <label htmlFor="username">Username</label>
+                    <label htmlFor="username" className="font-[600]">
+                      Username
+                    </label>
                     <input
                       className="w-[453px] rounded-lg"
                       type="text"
@@ -408,7 +417,9 @@ function Register() {
                     <div className="text-[#C70039]">{usernameError}</div>
                   </div>
                   <div className="flex flex-col ml-[12px] mt-[40px]">
-                    <label htmlFor="Email">Email</label>
+                    <label htmlFor="Email" className="font-[600]">
+                      Email
+                    </label>
                     <input
                       className="w-[453px] rounded-lg"
                       type="email"
@@ -428,7 +439,9 @@ function Register() {
 
                 <div className="column4 flex">
                   <div className="flex flex-col mr-[12px] mt-[40px]">
-                    <label htmlFor="Password">Password</label>
+                    <label htmlFor="Password" className="font-[600]">
+                      Password
+                    </label>
                     <input
                       className="w-[453px] rounded-lg"
                       type="password"
@@ -446,7 +459,9 @@ function Register() {
                     <div className="text-[#C70039]">{passwordLengthError}</div>
                   </div>
                   <div className="flex flex-col ml-[12px] mt-[40px]">
-                    <label htmlFor="ConfirmPassword">Confirm Password</label>
+                    <label htmlFor="ConfirmPassword" className="font-[600]">
+                      Confirm Password
+                    </label>
                     <input
                       className="w-[453px] rounded-lg"
                       type="password"
@@ -472,12 +487,14 @@ function Register() {
           {step === 2 && (
             <div className="w-[95%] h-[80%] border-[10px] flex justify-center">
               <div>
-                <h1 className="basicInformation text-[#A62D82] mt-[80px]">
+                <h1 className="basicInformation text-[#A62D82] mt-[80px] font-[800] text-[24px]">
                   Identities and Interests
                 </h1>
                 <div className="column1 flex">
                   <div className="SexualIdentities flex flex-col mr-[12px] mt-[40px]">
-                    <label htmlFor="SexualIdentities">Sexual identities</label>
+                    <label htmlFor="SexualIdentities" className="font-[600]">
+                      Sexual identities
+                    </label>
                     <select
                       className="w-[453px] rounded-lg h-[48px] p-2"
                       id="SexualIdentities"
@@ -497,7 +514,7 @@ function Register() {
                   </div>
 
                   <div className="SexualPreferences flex flex-col ml-[12px] mt-[40px]">
-                    <label htmlFor="SexualPreferences">
+                    <label htmlFor="SexualPreferences" className="font-[600]">
                       Sexual preferences
                     </label>
                     <select
@@ -521,7 +538,7 @@ function Register() {
 
                 <div className="column2 flex">
                   <div className="RacialPreferences flex flex-col mr-[12px] mt-[40px] ">
-                    <label htmlFor="RacialPreferences">
+                    <label htmlFor="RacialPreferences" className="font-[600]">
                       Racial preferences
                     </label>
                     <select
@@ -547,7 +564,9 @@ function Register() {
                   </div>
 
                   <div className="MeetingInterests flex flex-col  ml-[12px] mt-[40px]">
-                    <label htmlFor="MeetingInterests">Meeting interests</label>
+                    <label htmlFor="MeetingInterests" className="font-[600]">
+                      Meeting interests
+                    </label>
                     <select
                       className="w-[453px] h-[48px] rounded-lg p-2"
                       id="MeetingInterests"
@@ -571,7 +590,7 @@ function Register() {
                   </div>
                 </div>
 
-                <div className="mt-[40px]">
+                <div className="mt-[40px] font-[600]">
                   Hobbies / Interests (Maximum 10)
                 </div>
 
@@ -614,7 +633,7 @@ function Register() {
           {step === 3 && (
             <div className="w-[95%] h-[80%] border-[10px] flex justify-center">
               <div>
-                <h1 className="ProfilePictures text-[#A62D82] mt-[80px]">
+                <h1 className="ProfilePictures text-[#A62D82] mt-[80px] font-[800] text-[24px]">
                   Profile pictures
                 </h1>
                 <p>Upload at least 2 photos</p>
@@ -663,7 +682,7 @@ function Register() {
             <button
               onClick={handleBack}
               type="button"
-              className="text-[#C70039] hover:text-black "
+              className="text-[#C70039] hover:text-black font-[800] "
             >
               🡐 Back
             </button>
@@ -673,7 +692,7 @@ function Register() {
               <button
                 type=""
                 onClick={handleNext}
-                className="mt-[0.5%] text-white bg-[#C70039] hover:bg-red-800  font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                className="mt-[0.5%] text-white bg-[#C70039] hover:bg-red-800  font-[800] rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
               >
                 Next step
               </button>
@@ -683,7 +702,7 @@ function Register() {
               <button
                 type=""
                 onClick={handleNext}
-                className="mt-[0.5%] text-white bg-[#C70039] hover:bg-red-800  rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                className="mt-[0.5%] text-white  font-[800] bg-[#C70039] hover:bg-red-800 rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
               >
                 Next step
               </button>
