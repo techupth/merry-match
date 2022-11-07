@@ -49,12 +49,9 @@ function Register() {
     profile_pics: images,
   };
 
-<<<<<<< HEAD
-=======
   console.log(userInfo);
   console.log(images);
 
->>>>>>> parent of 389901f8 (feat:data validation feature)
   //  register function
   const registerNewUser = async () => {
     await axios.post("http://localhost:4001/auth/register", userInfo, {
@@ -65,73 +62,8 @@ function Register() {
   const handleSubmit = (event) => {
     event.preventDefault();
     registerNewUser();
-<<<<<<< HEAD
-    alert("Register Successfully!");
-    navigate("/login");
-  };
-
-  useEffect(() => {
-    validatePasswordMatch();
-    validateEmail();
-    validateUsername();
-  }, [confirmPassword, email, username]);
-
-  const checkNoNull = () => {
-    if (
-      name == "" ||
-      birthday == "" ||
-      countryid == "" ||
-      stateid == "" ||
-      username == "" ||
-      email == "" ||
-      password == "" ||
-      confirmPassword == "" ||
-      sexualIdentities == "" ||
-      sexualPreferences == "" ||
-      racialPreferences == "" ||
-      meetingInterests == ""
-    ) {
-      alert("Please complete all answers!");
-      setStep(1);
-      return false;
-    }
-  };
-
-  const validateEmail = () => {
-    const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    if (!email.match(mailFormat)) {
-      setEmailError("* Invalid email address!");
-    } else {
-      setEmailError("");
-    }
-  };
-
-  const validateUsername = () => {
-    if (userInfo.username.length < 5) {
-      setUsernameError("* Username must be at least 6 characters");
-    } else {
-      setUsernameError("");
-    }
-  };
-
-  const validatePasswordLength = () => {
-    if (password.length < 7) {
-      setPasswordLengthError("* Password must be at least 8 characters");
-    } else {
-      setPasswordLengthError("");
-    }
-  };
-
-  const validatePasswordMatch = () => {
-    if (confirmPassword !== userInfo.password) {
-      setPasswordMatchError("* Password doesn't match");
-    } else {
-      setPasswordMatchError("");
-    }
-=======
     alert("Register Successful");
     navigate("/login");
->>>>>>> parent of 389901f8 (feat:data validation feature)
   };
 
   // input box function
@@ -324,13 +256,9 @@ function Register() {
                 </h1>
                 <div className="column1 flex">
                   <div className="flex flex-col mr-[12px] mt-[24px]">
-<<<<<<< HEAD
                     <label htmlFor="name" className="font-[600] ">
                       Name
                     </label>
-=======
-                    <label for="name">Name</label>
->>>>>>> parent of 389901f8 (feat:data validation feature)
                     <input
                       className="w-[453px] rounded-lg "
                       type="text"
@@ -344,13 +272,9 @@ function Register() {
                     />
                   </div>
                   <div className="flex flex-col ml-[12px] mt-[24px]">
-<<<<<<< HEAD
                     <label htmlFor="birth" className="font-[600]">
                       Date of birth
                     </label>
-=======
-                    <label for="birth">Date of birth</label>
->>>>>>> parent of 389901f8 (feat:data validation feature)
                     <input
                       className="w-[453px] rounded-lg"
                       type="date"
@@ -367,13 +291,9 @@ function Register() {
 
                 <div className="column2 flex">
                   <div className="flex flex-col mr-[12px] mt-[40px]">
-<<<<<<< HEAD
                     <label htmlFor="location" className="font-[600]">
                       Location
                     </label>
-=======
-                    <label for="location">Location</label>
->>>>>>> parent of 389901f8 (feat:data validation feature)
                     <select
                       className="w-[453px] h-[48px] rounded-lg p-2"
                       onChange={(e) => handlecounty(e)}
@@ -409,13 +329,9 @@ function Register() {
 
                 <div className="column3 flex">
                   <div className="flex flex-col mr-[12px] mt-[40px]">
-<<<<<<< HEAD
                     <label htmlFor="username" className="font-[600]">
                       Username
                     </label>
-=======
-                    <label for="username">Username</label>
->>>>>>> parent of 389901f8 (feat:data validation feature)
                     <input
                       className="w-[453px] rounded-lg"
                       type="text"
@@ -428,13 +344,9 @@ function Register() {
                     />
                   </div>
                   <div className="flex flex-col ml-[12px] mt-[40px]">
-<<<<<<< HEAD
                     <label htmlFor="Email" className="font-[600]">
                       Email
                     </label>
-=======
-                    <label for="Email">Email</label>
->>>>>>> parent of 389901f8 (feat:data validation feature)
                     <input
                       className="w-[453px] rounded-lg"
                       type="email"
@@ -450,13 +362,9 @@ function Register() {
 
                 <div className="column4 flex">
                   <div className="flex flex-col mr-[12px] mt-[40px]">
-<<<<<<< HEAD
                     <label htmlFor="Password" className="font-[600]">
                       Password
                     </label>
-=======
-                    <label for="Password">Password</label>
->>>>>>> parent of 389901f8 (feat:data validation feature)
                     <input
                       className="w-[453px] rounded-lg"
                       type="password"
@@ -470,13 +378,9 @@ function Register() {
                     />
                   </div>
                   <div className="flex flex-col ml-[12px] mt-[40px]">
-<<<<<<< HEAD
                     <label htmlFor="ConfirmPassword" className="font-[600]">
                       Confirm Password
                     </label>
-=======
-                    <label for="ConfirmPassword">Confirm Password</label>
->>>>>>> parent of 389901f8 (feat:data validation feature)
                     <input
                       className="w-[453px] rounded-lg"
                       type="password"
@@ -505,13 +409,9 @@ function Register() {
                 </h1>
                 <div className="column1 flex">
                   <div className="SexualIdentities flex flex-col mr-[12px] mt-[40px]">
-<<<<<<< HEAD
                     <label htmlFor="SexualIdentities" className="font-[600]">
                       Sexual identities
                     </label>
-=======
-                    <label for="SexualIdentities">Sexual identities</label>
->>>>>>> parent of 389901f8 (feat:data validation feature)
                     <select
                       className="w-[453px] rounded-lg h-[48px] p-2"
                       id="SexualIdentities"
@@ -526,13 +426,9 @@ function Register() {
                   </div>
 
                   <div className="SexualPreferences flex flex-col ml-[12px] mt-[40px]">
-<<<<<<< HEAD
                     <label htmlFor="SexualPreferences" className="font-[600]">
                       Sexual preferences
                     </label>
-=======
-                    <label for="SexualPreferences">Sexual preferences</label>
->>>>>>> parent of 389901f8 (feat:data validation feature)
                     <select
                       className="w-[453px] rounded-lg h-[48px] p-2"
                       id="SexualPreferences"
@@ -550,13 +446,9 @@ function Register() {
 
                 <div className="column2 flex">
                   <div className="RacialPreferences flex flex-col mr-[12px] mt-[40px] ">
-<<<<<<< HEAD
                     <label htmlFor="RacialPreferences" className="font-[600]">
                       Racial preferences
                     </label>
-=======
-                    <label for="RacialPreferences">Racial preferences</label>
->>>>>>> parent of 389901f8 (feat:data validation feature)
                     <select
                       className="w-[453px] rounded-lg h-[48px] p-2"
                       id="RacialPreferences"
@@ -572,13 +464,9 @@ function Register() {
                   </div>
 
                   <div className="MeetingInterests flex flex-col  ml-[12px] mt-[40px]">
-<<<<<<< HEAD
                     <label htmlFor="MeetingInterests" className="font-[600]">
                       Meeting interests
                     </label>
-=======
-                    <label for="MeetingInterests">Meeting interests</label>
->>>>>>> parent of 389901f8 (feat:data validation feature)
                     <select
                       className="w-[453px] h-[48px] rounded-lg p-2"
                       id="MeetingInterests"
@@ -694,11 +582,7 @@ function Register() {
               <button
                 type=""
                 onClick={handleNext}
-<<<<<<< HEAD
                 className="mt-[0.5%] text-white bg-[#C70039] hover:bg-red-800  font-[800] rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
-=======
-                class="mt-[0.5%] text-white bg-[#C70039] hover:bg-red-800  font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
->>>>>>> parent of 389901f8 (feat:data validation feature)
               >
                 Next step
               </button>
@@ -708,11 +592,7 @@ function Register() {
               <button
                 type=""
                 onClick={handleNext}
-<<<<<<< HEAD
                 className="mt-[0.5%] text-white  font-[800] bg-[#C70039] hover:bg-red-800 rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
-=======
-                class="mt-[0.5%] text-white bg-[#C70039] hover:bg-red-800  rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
->>>>>>> parent of 389901f8 (feat:data validation feature)
               >
                 Next step
               </button>

@@ -66,7 +66,6 @@ userRouter.post("/", async (req, res) => {
 userRouter.put("/:userId", async (req, res) => {
 
   const userId = req.params.userId;
-<<<<<<< HEAD
   const updatedUser = {
     ...req.body,
     updated_at: new Date(),
@@ -94,8 +93,6 @@ userRouter.put("/:userId", async (req, res) => {
     ]
   );
   console.log(userId)
-=======
->>>>>>> parent of 389901f8 (feat:data validation feature)
   await pool.query(`select * from users where user_id=$1`, [userId]);
   return res.json({
     message: `User info at user id : ${userId} is found`,
