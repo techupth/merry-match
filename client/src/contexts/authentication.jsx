@@ -6,7 +6,7 @@ import React, { useState } from "react";
 export const AuthContext = React.createContext();
 
 function AuthProvider(props) {
-  const [state, setState] = useState({});
+  const [userData, setUserData] = useState({});
 
   const navigate = useNavigate();
 
@@ -16,16 +16,16 @@ function AuthProvider(props) {
   };
 
   const login = async (data) => {
-    console.log(data)
+    // console.log(data)
     try {
-      console.log(data);
+      // console.log(data);
       const result = await axios.post("http://localhost:4001/auth/login", data);
-      console.log(result);
+      // console.log(result);
       const token = result.data.token;
       // console.log(token);
       localStorage.setItem("token", token);
       const userData = jwtDecode(token);
-      setState({ ...state, user: userData });
+      setUserData({ ...userData, user: userData });
       navigate("/");
     } catch (err) {
       console.log("Err is : " + err);
@@ -34,14 +34,14 @@ function AuthProvider(props) {
 
   const logout = () => {
     localStorage.removeItem("token");
-    setState({ ...state, user: null });
+    setUserData({ ...userData,user: null });
   };
 
   const isAuthenticated = Boolean(localStorage.getItem("token"));
 
   return (
     <AuthContext.Provider
-      value={{ state, login, logout, register, isAuthenticated }}
+      value={{ userData, login, logout, register, isAuthenticated }}
     >
       {props.children}
     </AuthContext.Provider>
