@@ -64,9 +64,38 @@ userRouter.post("/", async (req, res) => {
 });
 
 userRouter.put("/:userId", async (req, res) => {
-  
+
   const userId = req.params.userId;
+<<<<<<< HEAD
+  const updatedUser = {
+    ...req.body,
+    updated_at: new Date(),
+  };
+  await pool.query(
+    `UPDATE users
+    SET name=$1,birthday=$2,location=$3,city=$4,username=$5,email=$6,sex_identity=$7,sex_pref=$8,racial_pref=$9,meeting_int=$10,hobby=$11,about_me=$12,updated_at=$13,profile_pics=$14
+    WHERE user_id = $15`,
+    [
+      updatedUser.name,
+      updatedUser.birthday,
+      updatedUser.location,
+      updatedUser.city,
+      updatedUser.username,
+      updatedUser.email,
+      updatedUser.sex_identity,
+      updatedUser.sex_pref,
+      updatedUser.racial_pref,
+      updatedUser.meeting_int,
+      updatedUser.hobby,
+      updatedUser.about_me,
+      updatedUser.updated_at,
+      updatedUser.profile_pics,
+      userId,
+    ]
+  );
   console.log(userId)
+=======
+>>>>>>> parent of 389901f8 (feat:data validation feature)
   await pool.query(`select * from users where user_id=$1`, [userId]);
   return res.json({
     message: `User info at user id : ${userId} is found`,

@@ -3,7 +3,7 @@ import starts from "../../public/asset/NavBarIcon/starts.svg";
 import profile from "../../public/asset/NavBarIcon/profile.svg";
 import merryList from "../../public/asset/NavBarIcon/merryList.svg";
 import member from "../../public/asset/NavBarIcon/member.svg";
-import logout from "../../public/asset/NavBarIcon/logout.svg";
+import logouticon from "../../public/asset/NavBarIcon/logout.svg";
 import compliant from "../../public/asset/NavBarIcon/compliant.svg";
 import { useAuth } from "../contexts/authentication";
 
@@ -12,11 +12,12 @@ import { useAuth } from "../contexts/authentication";
 function UserPopup({ close }) {
 
   const { logout } = useAuth()
+
   return (
     <div class="inline-block text-left z-50 h-[500px] absolute right-[3%] top-[80%]">
       <div class="origin-top-right  right-0 mt-2 w-56 rounded-2xl shadow-lg bg-[#FFFFFF] dark:bg-gray-800 ring-1 ring-black ring-opacity-5 text-[#646D89] ">
 
-        <button onClick={() => close(false)} className="text-red-700 text-[30px] border-3 border-white rounded-full">X</button>
+        {/* <button onClick={() => close(false)} className="text-red-700 text-[30px] border-3 border-white rounded-full"></button> */}
 
 
         <div
@@ -77,10 +78,10 @@ function UserPopup({ close }) {
           </a>
           <a
             href="#"
-            class="block block px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600 flex flex-row border-t-2"
+            class="block block px-4 py-2 text-md text-gray-700 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600 flex flex-row border-t-2"
             role="menuitem"
           >
-            <img src={logout} className="mr-2" />
+            <img src={logouticon} className="mr-2" />
             <span class="flex flex-col">
               <span onClick={() => logout()}>Log out</span>
             </span>

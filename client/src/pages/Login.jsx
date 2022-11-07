@@ -59,7 +59,11 @@ const Login = () => {
         </button>
         <div className="flex mt-[40px]">
           <p className="mr-[12px]">Don’t have an account?</p>
-          <a href="" className="text-[#C70039]" onClick={() => navigate('/register')}>
+          <a
+            href=""
+            className="text-[#C70039] font-[800]"
+            onClick={() => navigate("/register")}
+          >
             Register
           </a>
         </div>

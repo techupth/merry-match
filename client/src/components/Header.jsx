@@ -29,7 +29,7 @@ function Header() {
               first ‘Merry’
             </h3>
 
-            <h4 className="text-[120%] text-[#FFFFFF] text-center leading-[150%] mt-[5%]">
+            <h4 className="text-[120%] font-[200] text-[#FFFFFF] text-center leading-[150%] mt-[5%]">
               If you feel lonely, let’s start meeting <br></br> new people in
               your area! <br></br>Don’t forget to get Merry with us
             </h4>
