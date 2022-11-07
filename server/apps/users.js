@@ -7,7 +7,7 @@ const userRouter = Router();
 
 userRouter.get("/", async (req, res) => {
   const result = await pool.query(`select * from users`);
-  console.log(result);
+
   return res.json({
     message: "Successful!",
     data: result.rows,
@@ -34,6 +34,8 @@ userRouter.post("/", async (req, res) => {
       updated_at: new Date(),
     };
     console.log(newUserProfile);
+    await pool.query(`SET datestyle = dmy`);
+
     await pool.query(
       `insert into users(name,birthday,location,city,username,email,password,sex_identity,sex_pref,racial_pref,meeting_int,hobby,created_at,updated_at,profile_pics) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15)`,
       [
@@ -95,8 +97,21 @@ userRouter.put("/:userId", async (req, res) => {
   console.log(userId)
   await pool.query(`select * from users where user_id=$1`, [userId]);
   return res.json({
-    message: `User info at user id : ${userId} is found`,
-    data: result.rows,
+    message: `User ${userId} info has been updated!`,
+  });
+});
+
+userRouter.delete("/:userId", async (req, res) => {
+  const userId = req.params.userId;
+  await pool.query(
+    `
+ delete from users where user_id = $1
+ `,
+    [userId]
+  );
+
+  return res.json({
+    message: `User ${userId} has been deleted!`,
   });
 });
 

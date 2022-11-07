@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Countrydata from "../mock-city/Countrydata.json";
 
@@ -8,6 +8,10 @@ function Register() {
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [state, setState] = useState([]);
+  const [usernameError, setUsernameError] = useState("* Required");
+  const [emailError, setEmailError] = useState("* Required");
+  const [passwordLengthError, setPasswordLengthError] = useState("* Required");
+  const [passwordMatchError, setPasswordMatchError] = useState("* Required");
 
   // states of form 1
   const [name, setName] = useState("");
@@ -61,9 +65,70 @@ function Register() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    checkNoNull();
     registerNewUser();
-    alert("Register Successful");
+    alert("Register Successfully!");
     navigate("/login");
+  };
+
+  useEffect(() => {
+    validatePasswordMatch();
+    validateEmail();
+    validateUsername();
+  }, [confirmPassword, email, username]);
+
+  const checkNoNull = () => {
+    if (
+      name == "" ||
+      birthday == "" ||
+      countryid == "" ||
+      stateid == "" ||
+      username == "" ||
+      email == "" ||
+      password == "" ||
+      confirmPassword == "" ||
+      sexualIdentities == "" ||
+      sexualPreferences == "" ||
+      racialPreferences == "" ||
+      meetingInterests == ""
+    ) {
+      alert("Please complete all answers!");
+      setStep(1);
+      return false;
+    }
+  };
+
+  const validateEmail = () => {
+    const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (!email.match(mailFormat)) {
+      setEmailError("* Invalid email address!");
+    } else {
+      setEmailError("");
+    }
+  };
+
+  const validateUsername = () => {
+    if (userInfo.username.length < 5) {
+      setUsernameError("* Username must be at least 6 characters");
+    } else {
+      setUsernameError("");
+    }
+  };
+
+  const validatePasswordLength = () => {
+    if (password.length < 7) {
+      setPasswordLengthError("* Password must be at least 8 characters");
+    } else {
+      setPasswordLengthError("");
+    }
+  };
+
+  const validatePasswordMatch = () => {
+    if (confirmPassword !== userInfo.password) {
+      setPasswordMatchError("* Password doesn't match");
+    } else {
+      setPasswordMatchError("");
+    }
   };
 
   // input box function
@@ -106,9 +171,6 @@ function Register() {
     const stateid = e.target.value;
     setStateid(stateid);
   };
-
-  //   LOG countryid, stateid
-  console.log(countryid, stateid);
 
   function handleRemoveImage(img) {
     setImageToRemove(img.public_id);
@@ -263,6 +325,7 @@ function Register() {
                       className="w-[453px] rounded-lg "
                       type="text"
                       id="name"
+                      value={name}
                       name="firstname"
                       placeholder="John Snow"
                       required
@@ -280,6 +343,7 @@ function Register() {
                       type="date"
                       id="birth"
                       name="birthday"
+                      value={birthday}
                       placeholder="01/01/2020"
                       required
                       onChange={(event) => {
@@ -297,8 +361,12 @@ function Register() {
                     <select
                       className="w-[453px] h-[48px] rounded-lg p-2"
                       onChange={(e) => handlecounty(e)}
+                      value={countryid}
                       required
                     >
+                      <option disabled value="">
+                        -- Select Country--
+                      </option>
                       {Countrydata.map((getcountry, index) => (
                         <option
                           className=""
@@ -312,12 +380,16 @@ function Register() {
                   </div>
 
                   <div className="flex flex-col ml-[12px] mt-[40px]">
-                    <label for="city">City</label>
+                    <label htmlFor="city">City</label>
                     <select
                       className="w-[453px] h-[48px] rounded-lg p-2"
                       onChange={(e) => handlestate(e)}
+                      value={stateid}
                       required
                     >
+                      <option disabled value="">
+                        -- Select City --
+                      </option>
                       {state.map((getstate, index) => (
                         <option value={getstate.state_name} key={index}>
                           {getstate.state_name}
@@ -337,11 +409,16 @@ function Register() {
                       type="text"
                       id="username"
                       name="username"
-                      value={username}
-                      onChange={(event) => setUsername(event.target.value)}
+                      value={userInfo.username}
                       placeholder="At least 6 characters"
+                      minLength={6}
                       required
+                      onChange={(event) => {
+                        setUsername(event.target.value);
+                        validateUsername();
+                      }}
                     />
+                    <div className="text-[#C70039]">{usernameError}</div>
                   </div>
                   <div className="flex flex-col ml-[12px] mt-[40px]">
                     <label htmlFor="Email" className="font-[600]">
@@ -350,13 +427,17 @@ function Register() {
                     <input
                       className="w-[453px] rounded-lg"
                       type="email"
-                      id="Email"
-                      name="Email"
+                      id="email"
+                      name="email"
                       value={email}
-                      onChange={(event) => setEmail(event.target.value)}
+                      onChange={(event) => {
+                        setEmail(event.target.value);
+                        validateEmail();
+                      }}
                       placeholder="name@website.com"
                       required
                     />
+                    <div className="text-[#C70039]">{emailError}</div>
                   </div>
                 </div>
 
@@ -370,12 +451,16 @@ function Register() {
                       type="password"
                       id="Password"
                       name="Password"
-                      value={password}
-                      onChange={(event) => setPassword(event.target.value)}
-                      placeholder="At least 8 character"
+                      value={userInfo.password}
+                      onChange={(event) => {
+                        setPassword(event.target.value);
+                        validatePasswordLength();
+                      }}
+                      placeholder="At least 8 characters"
                       required
                       minLength={8}
                     />
+                    <div className="text-[#C70039]">{passwordLengthError}</div>
                   </div>
                   <div className="flex flex-col ml-[12px] mt-[40px]">
                     <label htmlFor="ConfirmPassword" className="font-[600]">
@@ -387,13 +472,15 @@ function Register() {
                       id="ConfirmPassword"
                       name="ConfirmPassword"
                       value={confirmPassword}
-                      onChange={(event) =>
-                        setConfirmPassword(event.target.value)
-                      }
-                      placeholder="At least 8 character"
+                      onChange={(event) => {
+                        setConfirmPassword(event.target.value);
+                        validatePasswordMatch();
+                      }}
+                      placeholder="At least 8 characters"
                       required
                       minLength={8}
                     />
+                    <div className="text-[#C70039]">{passwordMatchError}</div>
                   </div>
                 </div>
               </div>
@@ -416,12 +503,17 @@ function Register() {
                       className="w-[453px] rounded-lg h-[48px] p-2"
                       id="SexualIdentities"
                       name="status"
+                      value={sexualIdentities}
                       onChange={(event) => {
                         setSexualIdentities(event.target.value);
                       }}
                     >
+                      <option disabled value="">
+                        -- Select your Sexual Identity --
+                      </option>
                       <option value="Male">Male</option>
                       <option value="Female">Female</option>
+                      <option value="Intersex">Intersex</option>
                     </select>
                   </div>
 
@@ -438,8 +530,12 @@ function Register() {
                         setSexualPreferences(event.target.value);
                       }}
                     >
+                      <option disabled value="">
+                        -- Select your Sexual Preference --
+                      </option>
                       <option value="Male">Male</option>
                       <option value="Female">Female</option>
+                      <option value="Intersex">Intersex</option>
                     </select>
                   </div>
                 </div>
@@ -458,8 +554,16 @@ function Register() {
                         setRacialPreferences(event.target.value);
                       }}
                     >
+                      <option disabled value="">
+                        -- Select your Racial Preference --
+                      </option>
+                      <option value="American Indian">American Indian</option>
                       <option value="Asian">Asian</option>
-                      <option value="Europe">Europe</option>
+                      <option value="White">White</option>
+                      <option value="African American">African American</option>
+                      <option value="Hispanic or Latino">
+                        Hispanic or Latino
+                      </option>
                     </select>
                   </div>
 
@@ -471,10 +575,14 @@ function Register() {
                       className="w-[453px] h-[48px] rounded-lg p-2"
                       id="MeetingInterests"
                       name="MeetingInterests"
+                      value={meetingInterests}
                       onChange={(event) => {
                         setMeetingInterests(event.target.value);
                       }}
                     >
+                      <option disabled value="">
+                        -- Select your Meeting Interest--
+                      </option>
                       <option value="Friend">Friend</option>
                       <option value="FWB">FWB</option>
                       <option value="ONS">ONS</option>
@@ -503,7 +611,10 @@ function Register() {
                   <div className="StoreInput border-[1px] border-black h-[60px] w-[55%] border-l-none rounded-r-lg">
                     {hobbies.map((item, index) => {
                       return (
-                        <div className="inline-block mt-2 mr-2 px-2 h-[30px] rounded-lg text-center text-[#7D2262] bg-[#F4EBF2]">
+                        <div
+                          className="inline-block mt-2 mr-2 px-2 h-[30px] rounded-lg text-center text-[#7D2262] bg-[#F4EBF2]"
+                          key={index}
+                        >
                           {item}
                           <button
                             className="ml-[12px]"
@@ -540,8 +651,11 @@ function Register() {
                 >
                   +
                   <p className="text-[#7D2262]">
-                    {images.map((image) => (
-                      <div className="image-preview flex flex-row items-center justify-center ">
+                    {images.map((image, index) => (
+                      <div
+                        className="image-preview flex flex-row items-center justify-center "
+                        key={index}
+                      >
                         <img
                           className="flex items-center justify-center m-3"
                           src={image.url}
@@ -601,7 +715,13 @@ function Register() {
             {step === 3 && (
               <button
                 type="submit"
-                class="mt-[0.5%] text-white bg-[#C70039] hover:bg-red-800 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                disabled={
+                  passwordLengthError !== "" ||
+                  passwordMatchError !== "" ||
+                  usernameError !== "" ||
+                  emailError !== ""
+                }
+                className="mt-[0.5%] text-white bg-[#C70039] hover:bg-red-800 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 disabled:bg-[#e2e8f0]"
               >
                 Submit
               </button>
