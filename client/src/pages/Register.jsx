@@ -33,8 +33,9 @@ function Register() {
 
   //states of form 3
   const [images, setImages] = useState([]);
-  const [imageToRemove, setImageToRemove] = useState(null);
 
+  const [imageToRemove, setImageToRemove] = useState(null);
+  console.log(images);
   const userInfo = {
     name,
     birthday,
@@ -52,12 +53,11 @@ function Register() {
     profile_pics: images,
   };
 
-  console.log(userInfo);
-  // console.log(images);
-
   //  register function
   const registerNewUser = async () => {
-    await axios.post("http://localhost:4001/auth/register", userInfo);
+    await axios.post("http://localhost:4001/auth/register", userInfo, {
+      headers: { "Content-Types": "multipart/form-data" },
+    });
   };
 
   const handleSubmit = (event) => {
