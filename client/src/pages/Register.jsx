@@ -211,6 +211,10 @@ function Register() {
   };
 
   const handleRemoveImage = (i) => {
+<<<<<<< HEAD
+=======
+  
+>>>>>>> 2722b24 (fix: photos upload)
     console.log(i);
 
     const imageId = i;
@@ -791,7 +795,11 @@ function Register() {
             {/* {/ Form 3 */}
 
             {step === 3 && (
+<<<<<<< HEAD
               <div className="w-[100%] h-[50%] flex flex-col justify-start items-center mb-[15vh]">
+=======
+              <div className="w-[100%] h-[50%] flex flex-col justify-start items-center">
+>>>>>>> 2722b24 (fix: photos upload)
                 <div className=" w-[100%] h-[20%] flex flex-col justify-center items-start mt-[3%]">
                   <h1 className="ProfilePictures text-[#A62D82] font-[800] text-[24px] ">
                     Profile pictures <br />
@@ -809,9 +817,13 @@ function Register() {
                       className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500]"
                       type="button"
                       onClick={handleStateWiged}
+<<<<<<< HEAD
                     >
                       + <br /> Upload photo{" "}
                     </button>
+=======
+                    >+ <br /> Upload photo </button>
+>>>>>>> 2722b24 (fix: photos upload)
                   ) : (
                     <p className="w-[35%] h-[60%] flex relative rounded-md overflow-hidden justify-center z-10">
                       <img
@@ -820,7 +832,11 @@ function Register() {
                         className=" mt-3 ml-3 w-auto h-auto rounded-md overflow-hidden z-0 "
                       />
                       <button
+<<<<<<< HEAD
                         type="button"
+=======
+                      type="button"
+>>>>>>> 2722b24 (fix: photos upload)
                         className="sticky right-[10%] top-[1%] z-20 w-[30px] h-[30px] flex justify-center items-center text-white text-[20px] rounded-full bg-[#7D2262] overflow-hidden"
                         onClick={() => handleRemoveImage(0)}
                       >
@@ -835,9 +851,13 @@ function Register() {
                       className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 text-[1rem] font-[500] rounded-lg text-[#7D2262]  "
                       type="button"
                       onClick={handleStateWiged}
+<<<<<<< HEAD
                     >
                       + <br /> Upload photo{" "}
                     </button>
+=======
+                    >+ <br /> Upload photo </button>
+>>>>>>> 2722b24 (fix: photos upload)
                   ) : (
                     <p className="w-[35%] h-[60%] flex  relative rounded-lg overflow-hidden justify-center z-10">
                       <img
@@ -846,7 +866,11 @@ function Register() {
                         className=" mt-3 ml-3  w-auto h-auto rounded-lg overflow-hidden z-10 "
                       />
                       <button
+<<<<<<< HEAD
                         type="button"
+=======
+                      type="button"
+>>>>>>> 2722b24 (fix: photos upload)
                         className="sticky right-[10%] top-[1%] z-20 w-[30px] h-[30px] flex justify-center items-center text-white text-[20px] rounded-full bg-[#7D2262] overflow-hidden"
                         onClick={() => handleRemoveImage(1)}
                       >
@@ -860,9 +884,13 @@ function Register() {
                       className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 text-[1rem] font-[500] rounded-lg text-[#7D2262]  "
                       type="button"
                       onClick={handleStateWiged}
+<<<<<<< HEAD
                     >
                       + <br /> Upload photo{" "}
                     </button>
+=======
+                    >+ <br /> Upload photo </button>
+>>>>>>> 2722b24 (fix: photos upload)
                   ) : (
                     <p className="w-[35%] h-[60%] flex  relative rounded-lg overflow-hidden justify-center z-10">
                       <img
@@ -871,7 +899,11 @@ function Register() {
                         className=" mt-3 ml-3  rounded-lg overflow-hidden z-10 "
                       />
                       <button
+<<<<<<< HEAD
                         type="button"
+=======
+                      type="button"
+>>>>>>> 2722b24 (fix: photos upload)
                         className="sticky right-[10%] top-[1%] z-20 w-[30px] h-[30px] flex justify-center items-center text-white text-[20px] rounded-full bg-[#7D2262] overflow-hidden"
                         onClick={() => handleRemoveImage(2)}
                       >
@@ -885,9 +917,13 @@ function Register() {
                       className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] "
                       type="button"
                       onClick={handleStateWiged}
+<<<<<<< HEAD
                     >
                       + <br /> Upload photo{" "}
                     </button>
+=======
+                    >+ <br /> Upload photo </button>
+>>>>>>> 2722b24 (fix: photos upload)
                   ) : (
                     <p className="w-[35%] h-[60%] flex  relative rounded-lg overflow-hidden justify-center z-10">
                       <img
@@ -896,7 +932,11 @@ function Register() {
                         className=" mt-3 ml-3 rounded-lg overflow-hidden z-10 "
                       />
                       <button
+<<<<<<< HEAD
                         type="button"
+=======
+                      type="button"
+>>>>>>> 2722b24 (fix: photos upload)
                         className="sticky right-[10%] top-[1%] z-20 w-[30px] h-[30px] flex justify-center items-center text-white text-[20px] rounded-full bg-[#7D2262] overflow-hidden"
                         onClick={() => handleRemoveImage(3)}
                       >
@@ -910,9 +950,13 @@ function Register() {
                       className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] "
                       type="button"
                       onClick={handleStateWiged}
+<<<<<<< HEAD
                     >
                       + <br /> Upload photo{" "}
                     </button>
+=======
+                    >+ <br /> Upload photo </button>
+>>>>>>> 2722b24 (fix: photos upload)
                   ) : (
                     <p className="w-[35%] h-[60%] flex  relative rounded-lg overflow-hidden justify-center z-10">
                       <img
@@ -921,7 +965,11 @@ function Register() {
                         className=" mt-3 ml-3 rounded-lg overflow-hidden z-10 "
                       />
                       <button
+<<<<<<< HEAD
                         type="button"
+=======
+                      type="button"
+>>>>>>> 2722b24 (fix: photos upload)
                         className="sticky right-[10%] top-[1%] z-20 w-[30px] h-[30px] flex justify-center items-center text-white text-[20px] rounded-full bg-[#7D2262] overflow-hidden"
                         onClick={() => handleRemoveImage(4)}
                       >

@@ -17,7 +17,11 @@ const Unauthenticated = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="*" element={<Home />} />
+<<<<<<< HEAD
         <Route path="/dev" element={<EditModal />} />
+=======
+        <Route path="/dev" element={<Login />} />
+>>>>>>> 2722b24 (fix: photos upload)
 
       </Routes>
     </>
