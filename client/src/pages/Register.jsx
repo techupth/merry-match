@@ -92,7 +92,7 @@ function Register() {
       racialPreferences == "" ||
       meetingInterests == ""
     ) {
-      alert("Please complete all answers!");
+      // alert("Please complete all answers!");
       setStep(1);
       return false;
     }
@@ -140,7 +140,7 @@ function Register() {
         setHobbies(newHobbies);
         setText("");
       } else {
-        alert("Maximum 10 Hobbies/ Interests");
+        // alert("Maximum 10 Hobbies/ Interests");
       }
     }
   };
@@ -172,18 +172,17 @@ function Register() {
     setStateid(stateid);
   };
 
-  function handleRemoveImage(img) {
-    setImageToRemove(img.public_id);
-    axios
-      .delete(`http://localhost:8080/${img.public_id}`)
-      .then(() => {
-        setImageToRemove(null);
-        setImages((prev) =>
-          prev.filter((imgs) => imgs.public_id !== img.public_id)
-        );
-      })
-      .catch((e) => console.log(e));
-  }
+  const handleRemoveImage = (i) => {
+    console.log(i);
+
+    const imageId = i;
+
+    const imageDelete = images.filter((value, i) => {
+      return i !== imageId;
+    });
+
+    setImages(imageDelete);
+  };
 
   function handleOpenWidget() {
     let myWidget = window.cloudinary.createUploadWidget(
@@ -202,6 +201,14 @@ function Register() {
     );
     myWidget.open();
   }
+
+  const handleStateWiged = () => {
+    handleOpenWidget();
+
+    if (images.length > 1) {
+      setWiged === false;
+    }
+  };
 
   const handleNext = () => {
     if (step !== 3) {
@@ -692,41 +699,143 @@ function Register() {
             {/* {/ Form 3 */}
 
             {step === 3 && (
-              <div className="w-[95%] h-[80%] border-[10px] border-[#fcfcfe] flex justify-center">
-                <div>
-                  <h1 className="ProfilePictures text-[#A62D82] mt-[80px] font-[800] text-[24px]">
-                    Profile pictures
+              <div className="w-[100%] h-[50%] flex flex-col justify-start items-center">
+                <div className=" w-[100%] h-[20%] flex flex-col justify-center items-start mt-[3%]">
+                  <h1 className="ProfilePictures text-[#A62D82] font-[800] text-[24px] ">
+                    Profile pictures <br />
                   </h1>
                   <p className="font-[400]">Upload at least 2 photos</p>
+                </div>
 
-                  <div className="profileContainer mt-[24px] flex"></div>
+                <div className="w-[100%] h-[80%] flex justify-center flex-row">
+                  {/* Images uploader */}
 
-                  <button
-                    className="profile Pic1 w-[167px] h-[167px] bg-[#F1F2F6] mr-[12px] text-[50px] rounded-lg text-[#7D2262]"
-                    type="button"
-                    onClick={handleOpenWidget}
-                  >
-                    +
-                    <p className="text-[#7D2262]">
-                      {images.map((image, index) => (
-                        <div
-                          className="image-preview flex flex-row items-center justify-center "
-                          key={index}
-                        >
-                          <img
-                            className="flex items-center justify-center m-3"
-                            src={image.url}
-                          />
-                          {imageToRemove != image.public_id && (
-                            <i
-                              className="fa fa-plus"
-                              onClick={() => handleRemoveImage()}
-                            ></i>
-                          )}
-                        </div>
-                      ))}
+                  {/* 1 ** */}
+                  {images.length < 1 ? (
+                    <button
+                      className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500]"
+                      type="button"
+                      onClick={handleStateWiged}
+                    >
+                      + <br /> Upload photo{" "}
+                    </button>
+                  ) : (
+                    <p className="w-[35%] h-[60%] flex relative rounded-md overflow-hidden justify-center z-10">
+                      <img
+                        src={images[0].url}
+                        alt="pic-1"
+                        className=" mt-3 ml-3 w-auto h-auto rounded-md overflow-hidden z-0 "
+                      />
+                      <button
+                        type="button"
+                        className="sticky right-[10%] top-[1%] z-20 w-[30px] h-[30px] flex justify-center items-center text-white text-[20px] rounded-full bg-[#7D2262] overflow-hidden"
+                        onClick={() => handleRemoveImage(0)}
+                      >
+                        X
+                      </button>
                     </p>
-                  </button>
+                  )}
+
+                  {/* 2 ** */}
+                  {images.length < 2 ? (
+                    <button
+                      className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 text-[1rem] font-[500] rounded-lg text-[#7D2262]  "
+                      type="button"
+                      onClick={handleStateWiged}
+                    >
+                      + <br /> Upload photo{" "}
+                    </button>
+                  ) : (
+                    <p className="w-[35%] h-[60%] flex  relative rounded-lg overflow-hidden justify-center z-10">
+                      <img
+                        src={images[1].url}
+                        alt="pic-1"
+                        className=" mt-3 ml-3  w-auto h-auto rounded-lg overflow-hidden z-10 "
+                      />
+                      <button
+                        type="button"
+                        className="sticky right-[10%] top-[1%] z-20 w-[30px] h-[30px] flex justify-center items-center text-white text-[20px] rounded-full bg-[#7D2262] overflow-hidden"
+                        onClick={() => handleRemoveImage(1)}
+                      >
+                        X
+                      </button>
+                    </p>
+                  )}
+                  {/* 3 ** */}
+                  {images.length < 3 ? (
+                    <button
+                      className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 text-[1rem] font-[500] rounded-lg text-[#7D2262]  "
+                      type="button"
+                      onClick={handleStateWiged}
+                    >
+                      + <br /> Upload photo{" "}
+                    </button>
+                  ) : (
+                    <p className="w-[35%] h-[60%] flex  relative rounded-lg overflow-hidden justify-center z-10">
+                      <img
+                        src={images[2].url}
+                        alt="pic-1"
+                        className=" mt-3 ml-3  rounded-lg overflow-hidden z-10 "
+                      />
+                      <button
+                        type="button"
+                        className="sticky right-[10%] top-[1%] z-20 w-[30px] h-[30px] flex justify-center items-center text-white text-[20px] rounded-full bg-[#7D2262] overflow-hidden"
+                        onClick={() => handleRemoveImage(2)}
+                      >
+                        X
+                      </button>
+                    </p>
+                  )}
+                  {/* 4 ** */}
+                  {images.length < 4 ? (
+                    <button
+                      className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] "
+                      type="button"
+                      onClick={handleStateWiged}
+                    >
+                      + <br /> Upload photo{" "}
+                    </button>
+                  ) : (
+                    <p className="w-[35%] h-[60%] flex  relative rounded-lg overflow-hidden justify-center z-10">
+                      <img
+                        src={images[3].url}
+                        alt="pic-1"
+                        className=" mt-3 ml-3 rounded-lg overflow-hidden z-10 "
+                      />
+                      <button
+                        type="button"
+                        className="sticky right-[10%] top-[1%] z-20 w-[30px] h-[30px] flex justify-center items-center text-white text-[20px] rounded-full bg-[#7D2262] overflow-hidden"
+                        onClick={() => handleRemoveImage(3)}
+                      >
+                        X
+                      </button>
+                    </p>
+                  )}
+                  {/* 5 ** */}
+                  {images.length < 5 ? (
+                    <button
+                      className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] "
+                      type="button"
+                      onClick={handleStateWiged}
+                    >
+                      + <br /> Upload photo{" "}
+                    </button>
+                  ) : (
+                    <p className="w-[35%] h-[60%] flex  relative rounded-lg overflow-hidden justify-center z-10">
+                      <img
+                        src={images[4].url}
+                        alt="pic-1"
+                        className=" mt-3 ml-3 rounded-lg overflow-hidden z-10 "
+                      />
+                      <button
+                        type="button"
+                        className="sticky right-[10%] top-[1%] z-20 w-[30px] h-[30px] flex justify-center items-center text-white text-[20px] rounded-full bg-[#7D2262] overflow-hidden"
+                        onClick={() => handleRemoveImage(4)}
+                      >
+                        X
+                      </button>
+                    </p>
+                  )}
                 </div>
               </div>
             )}
