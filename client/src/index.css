@@ -19,19 +19,18 @@
 }
 
 .homepage-box-footer {
-  background: radial-gradient(
-    106.64% 594.8% at 3.13% 0%,
-    #820025 35.64%,
-    #a95bcd 100%
-  );
+  background: radial-gradient(106.64% 594.8% at 3.13% 0%, #820025 35.64%, #A95BCD 100%)
 }
 
 #root {
-  background-color: #160404;
+  margin: 0;
+  padding: 0;
+  /* background-color: #160404; */
 }
 
 .HobbiesInput {
   border-right-style: hidden;
+
 }
 
 .HobbiesInput:focus {
@@ -45,9 +44,11 @@
   border-left-style: hidden;
 }
 
+
 input[type="file"] {
   display: none;
 }
+
 .custom-file-upload {
   border: 1px solid #ccc;
   display: inline-block;
