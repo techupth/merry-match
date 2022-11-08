@@ -4,6 +4,10 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/authentication";
 import Countrydata from "../mock-city/Countrydata.json";
+// import Hobbies, { } from "./hobbieData.";
+import makeAnimated from 'react-select/animated';
+import Select from 'react-select';
+import { options, optionsContact } from './optionSelect'
 
 function Register() {
   const navigate = useNavigate();
@@ -27,6 +31,12 @@ function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  //hobbies part
+  const animatedComponents = makeAnimated();
+  const [selectedOption, setSelectedOption] = useState([]);
+  const [contact, setContact] = useState([]);
+
 
   // states of form 2
   const [sexualIdentities, setSexualIdentities] = useState("");
@@ -120,7 +130,7 @@ function Register() {
       setPasswordLengthError("* Password must be at least 8 characters");
     } else {
       setPasswordLengthError("");
-    }
+    } preventDefault
   };
 
   const validatePasswordMatch = () => {
@@ -659,10 +669,40 @@ function Register() {
                   </div>
 
                   <div className="mt-[40px] font-[600]">
-                    Hobbies / Interests (Maximum 10)
+                    Hobbies / Interests (Maximum 5)
+                    <Select
+                      components={animatedComponents}
+                      defaultValue={selectedOption}
+                      onChange={setSelectedOption}
+                      options={options}
+                      isClearable={true}
+                      isSearchable={true}
+                      isDisabled={false}
+                      isLoading={false}
+                      isRtl={false}
+                      closeMenuOnSelect={false}
+                      isMulti
+                    />
                   </div>
 
-                  <div className="HobbiesBox flex">
+                  <div className="mt-[40px] font-[600]">
+                    Contact
+                    <Select
+                      components={animatedComponents}
+                      defaultValue={contact}
+                      onChange={setContact}
+                      options={optionsContact}
+                      isClearable={true}
+                      isSearchable={true}
+                      isDisabled={false}
+                      isLoading={false}
+                      isRtl={false}
+                      closeMenuOnSelect={false}
+                      isMulti
+                    />
+                  </div>
+
+                  {/* <div className="HobbiesBox flex">
                     <input
                       className="HobbiesInput w-[45%] rounded-l-lg border-[#D6D9E4]  "
                       type="text"
@@ -671,6 +711,8 @@ function Register() {
                       onKeyDown={handleKeyDown}
                       placeholder="Enter Your Hobbies / Interests"
                     />
+                  
+
 
                     <div className="StoreInput border-[1px] h-[60px] w-[55%] border-l-none border-[#D6D9E4] rounded-r-lg">
                       {hobbies.map((item, index) => {
@@ -692,7 +734,7 @@ function Register() {
                         );
                       })}
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             )}
@@ -899,8 +941,8 @@ function Register() {
             </div>
           </div>
         </div>
-      </form>
-    </div>
+      </form >
+    </div >
   );
 }
 
