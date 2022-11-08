@@ -4,10 +4,17 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/authentication";
 import Countrydata from "../mock-city/Countrydata.json";
+<<<<<<< HEAD
 import makeAnimated from "react-select/animated";
 import Select from "react-select";
 import { options, optionsContact } from "./optionSelect";
 
+=======
+// import Hobbies, { } from "./hobbieData.";
+import makeAnimated from 'react-select/animated';
+import Select from 'react-select';
+import { options, optionsContact } from './optionSelect'
+>>>>>>> b3ff6a6 (add:react selectOn Hobbie/contact)
 
 function Register() {
   const navigate = useNavigate();
@@ -36,6 +43,7 @@ function Register() {
   const animatedComponents = makeAnimated();
   const [selectedOption, setSelectedOption] = useState([]);
   const [contact, setContact] = useState([]);
+<<<<<<< HEAD
   const colorStyles = {
     control: (styles) => ({ ...styles, backgroundColor: "white" }),
     option: (styles, { data, isDisabled, isFocused, isSelected }) => {
@@ -65,6 +73,9 @@ function Register() {
       };
     },
   };
+=======
+
+>>>>>>> b3ff6a6 (add:react selectOn Hobbie/contact)
 
   // states of form 2
   const [sexualIdentities, setSexualIdentities] = useState("");
@@ -157,8 +168,12 @@ function Register() {
       setPasswordLengthError("* Password must be at least 8 characters");
     } else {
       setPasswordLengthError("");
+<<<<<<< HEAD
     }
     preventDefault;
+=======
+    } preventDefault
+>>>>>>> b3ff6a6 (add:react selectOn Hobbie/contact)
   };
 
   const validatePasswordMatch = () => {
@@ -723,7 +738,11 @@ function Register() {
                   <div className="mt-[40px] font-[600]">
                     Hobbies / Interests (Maximum 5)
                     <Select
+<<<<<<< HEAD
                       className="text-[#7D2262] bg-[#F4EBF2]"
+=======
+                      components={animatedComponents}
+>>>>>>> b3ff6a6 (add:react selectOn Hobbie/contact)
                       defaultValue={selectedOption}
                       onChange={setSelectedOption}
                       options={options}
@@ -733,9 +752,13 @@ function Register() {
                       isLoading={false}
                       isRtl={false}
                       closeMenuOnSelect={false}
+<<<<<<< HEAD
                       isOptionDisabled={() => selectedOption.length >= 5}
                       isMulti
 
+=======
+                      isMulti
+>>>>>>> b3ff6a6 (add:react selectOn Hobbie/contact)
                     />
                   </div>
 
@@ -1040,8 +1063,8 @@ function Register() {
             </div>
           </div>
         </div>
-      </form>
-    </div>
+      </form >
+    </div >
   );
 }
 
