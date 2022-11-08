@@ -5,9 +5,9 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/authentication";
 import Countrydata from "../mock-city/Countrydata.json";
 // import Hobbies, { } from "./hobbieData.";
-import makeAnimated from "react-select/animated";
-import Select from "react-select";
-import { options, optionsContact } from "./optionSelect";
+import makeAnimated from 'react-select/animated';
+import Select from 'react-select';
+import { options, optionsContact } from './optionSelect'
 
 function Register() {
   const navigate = useNavigate();
@@ -127,8 +127,7 @@ function Register() {
       setPasswordLengthError("* Password must be at least 8 characters");
     } else {
       setPasswordLengthError("");
-    }
-    preventDefault;
+    } preventDefault
   };
 
   const validatePasswordMatch = () => {
@@ -931,8 +930,8 @@ function Register() {
             </div>
           </div>
         </div>
-      </form>
-    </div>
+      </form >
+    </div >
   );
 }
 
