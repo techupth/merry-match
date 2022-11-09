@@ -5,12 +5,18 @@ import merryList from "../../public/asset/NavBarIcon/merryList.svg";
 import member from "../../public/asset/NavBarIcon/member.svg";
 import logouticon from "../../public/asset/NavBarIcon/logout.svg";
 import compliant from "../../public/asset/NavBarIcon/compliant.svg";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/authentication";
 
 // Using by redering to Nav page
 
+
+
 function UserPopup({ close }) {
-  const { logout } = useAuth();
+
+  const navigate = useNavigate()
+
+  const { logout } = useAuth()
 
   return (
     <div className="inline-block text-left z-50 h-[500px] absolute right-[3%] top-[80%]">
@@ -39,8 +45,8 @@ function UserPopup({ close }) {
             role="menuitem"
           >
             <img src={profile} className="mr-2" />
-            <span className="flex flex-col">
-              <span>Profile</span>
+            <span class="flex flex-col">
+              <span onClick={() => { navigate("/edit") }}>Profile</span>
             </span>
           </a>
           <a

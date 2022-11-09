@@ -7,6 +7,7 @@ import Navbarauthen from '../components/NavbarAuthen'
 import EditModal from '../components/editPageComponents/EditModal'
 
 
+
 const Unauthenticated = () => {
   return (
     <>
@@ -18,6 +19,8 @@ const Unauthenticated = () => {
         <Route path="/register" element={<Register />} />
         <Route path="*" element={<Home />} />
         <Route path="/dev" element={<EditModal />} />
+        <Route path="/dev" element={<Navbarauthen />} />
+
 
       </Routes>
     </>
