@@ -16,7 +16,7 @@ userRouter.get("/", async (req, res) => {
 
 userRouter.get("/:userId", async (req, res) => {
   const userId = req.params.userId;
-  console.log(userId);
+
   const result = await pool.query(`select * from users where user_id=$1`, [
     userId,
   ]);
@@ -96,7 +96,7 @@ userRouter.put("/:userId", async (req, res) => {
       userId,
     ]
   );
-  console.log(userId);
+ 
   await pool.query(`select * from users where user_id=$1`, [userId]);
   return res.json({
     message: `User ${userId} info has been updated!`,
