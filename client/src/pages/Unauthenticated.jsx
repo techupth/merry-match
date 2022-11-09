@@ -17,6 +17,7 @@ const Unauthenticated = () => {
         <Route path="*" element={<Home />} />
         <Route path="/dev" element={<Navbarauthen />} />
         <Route path="/dev" element={<Login />} />
+
       </Routes>
     </>
   );
