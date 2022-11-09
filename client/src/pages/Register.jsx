@@ -76,7 +76,8 @@ function Register() {
       console.log("no null");
       const registerResult = await register(userInfo);
       console.log("regis");
-      console.log(registerResult);
+      alert(registerResult);
+      navigate("/login");
     }
   };
 
@@ -125,7 +126,7 @@ function Register() {
   };
 
   const validatePasswordLength = () => {
-    if (password.length <= 7) {
+    if (password.length < 7) {
       setPasswordLengthError("* Password must be at least 8 characters");
     } else {
       setPasswordLengthError("");

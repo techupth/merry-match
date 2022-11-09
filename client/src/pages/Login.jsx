@@ -23,8 +23,12 @@ const Login = () => {
       setLoginMsg({ ...loginMsg, loginKey: loginResult });
     } else if (loginResult.match("Password")) {
       setLoginMsg({ ...loginMsg, passwordKey: loginResult });
+      setTimeout(() => {
+        setPassword("");
+      }, 1000);
     }
   };
+
   // console.log(userData);
   console.log(username);
   console.log(password);
@@ -67,9 +71,10 @@ const Login = () => {
           className="w-[453px] h-[48px] border-[#D6D9E4] mt-[4px] rounded-lg"
           type="password"
           placeholder="Enter password"
+          value={password}
           onChange={(e) => {
             setPassword(e.target.value);
-            if (e.target.value == "") {
+            if (password == "") {
               setLoginMsg({ ...loginMsg, passwordKey: "" });
             }
           }}

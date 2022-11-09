@@ -55,7 +55,10 @@ const Navbarauthen = () => {
           className="text-[40px] mr-[]"
           onClick={() => setCallPop(!callPop)}
         >
-          <img src={images} className="w-[70px] h-[70px] rounded-full " />
+          <img
+            src={images}
+            className="w-[70px] h-[70px] rounded-full object-cover "
+          />
         </button>
         {callPop && <UserPopup close={setCallPop} />}
       </div>
