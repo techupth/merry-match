@@ -11,14 +11,15 @@ const multerUpload = multer({ dest: "uploads/" });
 const avatarUpload = multerUpload.fields([{ name: "avatar", maxCount: 5 }]);
 
 authRouter.post("/register", avatarUpload, async (req, res) => {
-  // console.log(req);
+
   try {
     const newUserProfile = {
       ...req.body,
       created_at: new Date(),
       updated_at: new Date(),
     };
-
+    
+    console.log(newUserProfile)
     const salt = await bcrypt.genSalt(10);
     newUserProfile.password = await bcrypt.hash(newUserProfile.password, salt);
 
@@ -124,8 +125,7 @@ authRouter.post("/login", async (req, res) => {
 
   return res.json({
     message: "Logged in Successfully!",
-    token,
-    // data : result
+    token, 
   });
 });
 
