@@ -24,7 +24,11 @@
 }
 
 .homepage-box-footer {
-  background: radial-gradient(106.64% 594.8% at 3.13% 0%, #820025 35.64%, #A95BCD 100%)
+  background: radial-gradient(
+    106.64% 594.8% at 3.13% 0%,
+    #820025 35.64%,
+    #a95bcd 100%
+  );
 }
 
 #root {
@@ -35,7 +39,6 @@
 
 .HobbiesInput {
   border-right-style: hidden;
-
 }
 
 .HobbiesInput:focus {
@@ -49,7 +52,6 @@
   border-left-style: hidden;
 }
 
-
 input[type="file"] {
   display: none;
 }
@@ -61,3 +63,24 @@ input[type="file"] {
   cursor: pointer;
 }
 
+input[type="date"] {
+  background: transparent;
+  color: rgb(189, 8, 8);
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--in-selecting-range,
+.react-datepicker__day--in-range,
+.react-datepicker__month-text--selected,
+.react-datepicker__month-text--in-selecting-range,
+.react-datepicker__month-text--in-range,
+.react-datepicker__quarter-text--selected,
+.react-datepicker__quarter-text--in-selecting-range,
+.react-datepicker__quarter-text--in-range,
+.react-datepicker__year-text--selected,
+.react-datepicker__year-text--in-selecting-range,
+.react-datepicker__year-text--in-range {
+  border-radius: 0.3rem;
+  background-color: red;
+  color: #fff;
+}

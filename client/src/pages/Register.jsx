@@ -15,12 +15,21 @@ import { options, optionsContact } from "./optionSelect";
 <<<<<<< HEAD
 =======
 // import Hobbies, { } from "./hobbieData.";
+<<<<<<< HEAD
 import makeAnimated from 'react-select/animated';
 import Select from 'react-select';
 import { options, optionsContact } from './optionSelect'
 >>>>>>> b3ff6a6 (add:react selectOn Hobbie/contact)
 =======
 >>>>>>> db62597 (feat: Edit profile modal preview)
+=======
+import makeAnimated from "react-select/animated";
+import Select from "react-select";
+import { options, optionsContact } from "./optionSelect";
+import DatePicker from "react-datepicker"
+import "react-datepicker/dist/react-datepicker.css";
+
+>>>>>>> 7f714ce (feat : Calendar style)
 
 function Register() {
   const navigate = useNavigate();
@@ -44,6 +53,7 @@ function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [startDate, setStartDate] = useState(new Date());
 
   //hobbies part
   const animatedComponents = makeAnimated();
@@ -88,6 +98,7 @@ function Register() {
 =======
 =======
 
+<<<<<<< HEAD
 
 >>>>>>> 757ce4a (add:contact)
 
@@ -98,6 +109,8 @@ function Register() {
 
 =======
 >>>>>>> db62597 (feat: Edit profile modal preview)
+=======
+>>>>>>> 7f714ce (feat : Calendar style)
   // states of form 2
   const [sexualIdentities, setSexualIdentities] = useState("");
   const [sexualPreferences, setSexualPreferences] = useState("");
@@ -109,7 +122,10 @@ function Register() {
   const [images, setImages] = useState([]);
 
   const [imageToRemove, setImageToRemove] = useState(null);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7f714ce (feat : Calendar style)
   const userInfo = {
     name,
     birthday,
@@ -127,10 +143,17 @@ function Register() {
     profile_pics: images,
     contact
   };
+<<<<<<< HEAD
 
   console.log(userInfo);
   console.log(msg);
   // console.log(images);
+=======
+  // console.log(birthday);
+  // console.log(userInfo);
+  // console.log(images);
+  console.log(startDate);
+>>>>>>> 7f714ce (feat : Calendar style)
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -192,6 +215,7 @@ function Register() {
       setPasswordLengthError("");
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     }
     preventDefault;
 =======
@@ -201,6 +225,10 @@ function Register() {
     }
     preventDefault;
 >>>>>>> db62597 (feat: Edit profile modal preview)
+=======
+    }
+    preventDefault;
+>>>>>>> 7f714ce (feat : Calendar style)
   };
 
   const validatePasswordMatch = () => {
@@ -256,6 +284,7 @@ function Register() {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   
 >>>>>>> 2722b24 (fix: photos upload)
@@ -264,6 +293,8 @@ function Register() {
 >>>>>>> 51451ae (minor fix:09/11/22)
 =======
 >>>>>>> db62597 (feat: Edit profile modal preview)
+=======
+>>>>>>> 7f714ce (feat : Calendar style)
     console.log(i);
 
     const imageId = i;
@@ -470,12 +501,17 @@ function Register() {
                         }}
                       />
                     </div>
+                        <DatePicker selected={startDate} onChange={(date) => {
+                          console.log(date)
+                          setStartDate(date)
+                          }}/>
                     <div className="flex flex-col ml-[12px] mt-[24px]">
                       <label htmlFor="birth" className="font-[600]">
                         Date of birth
                       </label>
                       <input
-                        className="w-[453px] rounded-lg border-[#D6D9E4]"
+                        className="calenda w-[453px] rounded-lg border-[#D6D9E4] "
+                        
                         type="date"
                         id="birth"
                         name="birthday"
@@ -895,6 +931,7 @@ function Register() {
                       onClick={handleStateWiged}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     >
                       + <br /> Upload photo{" "}
                     </button>
@@ -906,6 +943,11 @@ function Register() {
                       + <br /> Upload photo{" "}
                     </button>
 >>>>>>> db62597 (feat: Edit profile modal preview)
+=======
+                    >
+                      + <br /> Upload photo{" "}
+                    </button>
+>>>>>>> 7f714ce (feat : Calendar style)
                   ) : (
                     <p className="w-[35%] h-[60%] flex relative rounded-md overflow-hidden justify-center z-10">
                       <img
@@ -914,6 +956,7 @@ function Register() {
                         className=" mt-3 ml-3 w-auto h-auto rounded-md overflow-hidden z-0 "
                       />
                       <button
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -927,6 +970,9 @@ function Register() {
 =======
                         type="button"
 >>>>>>> db62597 (feat: Edit profile modal preview)
+=======
+                        type="button"
+>>>>>>> 7f714ce (feat : Calendar style)
                         className="sticky right-[10%] top-[1%] z-20 w-[30px] h-[30px] flex justify-center items-center text-white text-[20px] rounded-full bg-[#7D2262] overflow-hidden"
                         onClick={() => handleRemoveImage(0)}
                       >
@@ -943,6 +989,7 @@ function Register() {
                       onClick={handleStateWiged}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     >
                       + <br /> Upload photo{" "}
                     </button>
@@ -954,6 +1001,11 @@ function Register() {
                       + <br /> Upload photo{" "}
                     </button>
 >>>>>>> db62597 (feat: Edit profile modal preview)
+=======
+                    >
+                      + <br /> Upload photo{" "}
+                    </button>
+>>>>>>> 7f714ce (feat : Calendar style)
                   ) : (
                     <p className="w-[35%] h-[60%] flex  relative rounded-lg overflow-hidden justify-center z-10">
                       <img
@@ -962,6 +1014,7 @@ function Register() {
                         className=" mt-3 ml-3  w-auto h-auto rounded-lg overflow-hidden z-10 "
                       />
                       <button
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -975,6 +1028,9 @@ function Register() {
 =======
                         type="button"
 >>>>>>> db62597 (feat: Edit profile modal preview)
+=======
+                        type="button"
+>>>>>>> 7f714ce (feat : Calendar style)
                         className="sticky right-[10%] top-[1%] z-20 w-[30px] h-[30px] flex justify-center items-center text-white text-[20px] rounded-full bg-[#7D2262] overflow-hidden"
                         onClick={() => handleRemoveImage(1)}
                       >
@@ -990,6 +1046,7 @@ function Register() {
                       onClick={handleStateWiged}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     >
                       + <br /> Upload photo{" "}
                     </button>
@@ -1001,6 +1058,11 @@ function Register() {
                       + <br /> Upload photo{" "}
                     </button>
 >>>>>>> db62597 (feat: Edit profile modal preview)
+=======
+                    >
+                      + <br /> Upload photo{" "}
+                    </button>
+>>>>>>> 7f714ce (feat : Calendar style)
                   ) : (
                     <p className="w-[35%] h-[60%] flex  relative rounded-lg overflow-hidden justify-center z-10">
                       <img
@@ -1009,6 +1071,7 @@ function Register() {
                         className=" mt-3 ml-3  rounded-lg overflow-hidden z-10 "
                       />
                       <button
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1022,6 +1085,9 @@ function Register() {
 =======
                         type="button"
 >>>>>>> db62597 (feat: Edit profile modal preview)
+=======
+                        type="button"
+>>>>>>> 7f714ce (feat : Calendar style)
                         className="sticky right-[10%] top-[1%] z-20 w-[30px] h-[30px] flex justify-center items-center text-white text-[20px] rounded-full bg-[#7D2262] overflow-hidden"
                         onClick={() => handleRemoveImage(2)}
                       >
@@ -1037,6 +1103,7 @@ function Register() {
                       onClick={handleStateWiged}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     >
                       + <br /> Upload photo{" "}
                     </button>
@@ -1048,6 +1115,11 @@ function Register() {
                       + <br /> Upload photo{" "}
                     </button>
 >>>>>>> db62597 (feat: Edit profile modal preview)
+=======
+                    >
+                      + <br /> Upload photo{" "}
+                    </button>
+>>>>>>> 7f714ce (feat : Calendar style)
                   ) : (
                     <p className="w-[35%] h-[60%] flex  relative rounded-lg overflow-hidden justify-center z-10">
                       <img
@@ -1056,6 +1128,7 @@ function Register() {
                         className=" mt-3 ml-3 rounded-lg overflow-hidden z-10 "
                       />
                       <button
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1069,6 +1142,9 @@ function Register() {
 =======
                         type="button"
 >>>>>>> db62597 (feat: Edit profile modal preview)
+=======
+                        type="button"
+>>>>>>> 7f714ce (feat : Calendar style)
                         className="sticky right-[10%] top-[1%] z-20 w-[30px] h-[30px] flex justify-center items-center text-white text-[20px] rounded-full bg-[#7D2262] overflow-hidden"
                         onClick={() => handleRemoveImage(3)}
                       >
@@ -1084,6 +1160,7 @@ function Register() {
                       onClick={handleStateWiged}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     >
                       + <br /> Upload photo{" "}
                     </button>
@@ -1095,6 +1172,11 @@ function Register() {
                       + <br /> Upload photo{" "}
                     </button>
 >>>>>>> db62597 (feat: Edit profile modal preview)
+=======
+                    >
+                      + <br /> Upload photo{" "}
+                    </button>
+>>>>>>> 7f714ce (feat : Calendar style)
                   ) : (
                     <p className="w-[35%] h-[60%] flex  relative rounded-lg overflow-hidden justify-center z-10">
                       <img
@@ -1103,6 +1185,7 @@ function Register() {
                         className=" mt-3 ml-3 rounded-lg overflow-hidden z-10 "
                       />
                       <button
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1116,6 +1199,9 @@ function Register() {
 =======
                         type="button"
 >>>>>>> db62597 (feat: Edit profile modal preview)
+=======
+                        type="button"
+>>>>>>> 7f714ce (feat : Calendar style)
                         className="sticky right-[10%] top-[1%] z-20 w-[30px] h-[30px] flex justify-center items-center text-white text-[20px] rounded-full bg-[#7D2262] overflow-hidden"
                         onClick={() => handleRemoveImage(4)}
                       >
