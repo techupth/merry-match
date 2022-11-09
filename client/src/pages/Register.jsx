@@ -35,36 +35,8 @@ function Register() {
   //hobbies part
   const animatedComponents = makeAnimated();
   const [selectedOption, setSelectedOption] = useState([]);
-  const [contact, setContact] = useState([]);
-  const colorStyles = {
-    control: (styles) => ({ ...styles, backgroundColor: "white" }),
-    option: (styles, { data, isDisabled, isFocused, isSelected }) => {
-      return { ...styles, color: data.color };
-    },
-    multiValue: (styles, { data }) => {
-      return {
-        ...styles,
-        backgroundColor: data.color,
-        color: "#fff",
-      };
-    },
-    multiValueLabel: (styles, { data }) => {
-      return {
-        ...styles,
-        color: "#fff",
-      };
-    },
-    multiValueRemove: (styles, { data }) => {
-      return {
-        ...styles,
-        color: "#fff",
-        cursor: "pointer",
-        ":hover": {
-          color: "#fff",
-        },
-      };
-    },
-  };
+
+
 
   // states of form 2
   const [sexualIdentities, setSexualIdentities] = useState("");
@@ -72,7 +44,7 @@ function Register() {
   const [racialPreferences, setRacialPreferences] = useState("");
   const [meetingInterests, setMeetingInterests] = useState("");
   const [text, setText] = useState([]);
-
+  const [contact, setContact] = useState([]);
   //states of form 3
   const [images, setImages] = useState([]);
 
@@ -93,6 +65,7 @@ function Register() {
     meeting_int: meetingInterests,
     hobby: selectedOption,
     profile_pics: images,
+    contact
   };
 
   console.log(userInfo);
@@ -723,22 +696,27 @@ function Register() {
                     />
                   </div>
 
-                  <div className="mt-[40px] font-[600]">
-                    Contact
-                    <Select
-                      components={animatedComponents}
-                      defaultValue={contact}
-                      onChange={setContact}
-                      options={optionsContact}
-                      isClearable={true}
-                      isSearchable={true}
-                      isDisabled={false}
-                      isLoading={false}
-                      isRtl={false}
-                      closeMenuOnSelect={false}
-                      isMulti
-                    />
+                  <div className="column1 flex">
+                    <div className="flex flex-col mr-[12px] mt-[24px]">
+                      <label htmlFor="name" className="font-[600] ">
+                        Contact Information
+                      </label>
+                      <input
+                        className="w-[930px] h-[36px] rounded-lg border-[#D6D9E4]"
+                        type="text"
+                        id="name"
+                        value={contact}
+                        name="contact"
+                        placeholder="Ex Line:ID"
+                        required
+                        onChange={(event) => {
+                          setContact(event.target.value);
+                        }}
+                      />
+                    </div>
+
                   </div>
+
 
                   {/* <div className="HobbiesBox flex">
                     <input
