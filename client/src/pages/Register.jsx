@@ -36,6 +36,36 @@ function Register() {
   const animatedComponents = makeAnimated();
   const [selectedOption, setSelectedOption] = useState([]);
   const [contact, setContact] = useState([]);
+  const colorStyles = {
+    control: (styles) => ({ ...styles, backgroundColor: "white" }),
+    option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+      return { ...styles, color: data.color };
+    },
+    multiValue: (styles, { data }) => {
+      return {
+        ...styles,
+        backgroundColor: data.color,
+        color: "#fff",
+      };
+    },
+    multiValueLabel: (styles, { data }) => {
+      return {
+        ...styles,
+        color: "#fff",
+      };
+    },
+    multiValueRemove: (styles, { data }) => {
+      return {
+        ...styles,
+        color: "#fff",
+        cursor: "pointer",
+        ":hover": {
+          color: "#fff",
+        },
+      };
+    },
+  };
+
 
   // states of form 2
   const [sexualIdentities, setSexualIdentities] = useState("");
@@ -681,7 +711,7 @@ function Register() {
                   <div className="mt-[40px] font-[600]">
                     Hobbies / Interests (Maximum 5)
                     <Select
-                      components={animatedComponents}
+                      className="text-[#7D2262] bg-[#F4EBF2]"
                       defaultValue={selectedOption}
                       onChange={setSelectedOption}
                       options={options}
@@ -691,7 +721,9 @@ function Register() {
                       isLoading={false}
                       isRtl={false}
                       closeMenuOnSelect={false}
+                      isOptionDisabled={() => selectedOption.length >= 5}
                       isMulti
+
                     />
                   </div>
 
