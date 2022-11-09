@@ -5,16 +5,22 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/authentication";
 import Countrydata from "../mock-city/Countrydata.json";
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> db62597 (feat: Edit profile modal preview)
 import makeAnimated from "react-select/animated";
 import Select from "react-select";
 import { options, optionsContact } from "./optionSelect";
 
+<<<<<<< HEAD
 =======
 // import Hobbies, { } from "./hobbieData.";
 import makeAnimated from 'react-select/animated';
 import Select from 'react-select';
 import { options, optionsContact } from './optionSelect'
 >>>>>>> b3ff6a6 (add:react selectOn Hobbie/contact)
+=======
+>>>>>>> db62597 (feat: Edit profile modal preview)
 
 function Register() {
   const navigate = useNavigate();
@@ -80,10 +86,13 @@ function Register() {
 =======
 =======
 
+<<<<<<< HEAD
 >>>>>>> 51451ae (minor fix:09/11/22)
 
 >>>>>>> b3ff6a6 (add:react selectOn Hobbie/contact)
 
+=======
+>>>>>>> db62597 (feat: Edit profile modal preview)
   // states of form 2
   const [sexualIdentities, setSexualIdentities] = useState("");
   const [sexualPreferences, setSexualPreferences] = useState("");
@@ -176,11 +185,16 @@ function Register() {
     } else {
       setPasswordLengthError("");
 <<<<<<< HEAD
+<<<<<<< HEAD
     }
     preventDefault;
 =======
     } preventDefault
 >>>>>>> b3ff6a6 (add:react selectOn Hobbie/contact)
+=======
+    }
+    preventDefault;
+>>>>>>> db62597 (feat: Edit profile modal preview)
   };
 
   const validatePasswordMatch = () => {
@@ -235,12 +249,15 @@ function Register() {
   const handleRemoveImage = (i) => {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   
 >>>>>>> 2722b24 (fix: photos upload)
 =======
 
 >>>>>>> 51451ae (minor fix:09/11/22)
+=======
+>>>>>>> db62597 (feat: Edit profile modal preview)
     console.log(i);
 
     const imageId = i;
@@ -466,7 +483,11 @@ function Register() {
 
                       {/* .............. */}
 
+<<<<<<< HEAD
 
+=======
+                      
+>>>>>>> db62597 (feat: Edit profile modal preview)
 
                       {/* ............... */}
                     </div>
@@ -862,12 +883,18 @@ function Register() {
                       type="button"
                       onClick={handleStateWiged}
 <<<<<<< HEAD
+<<<<<<< HEAD
                     >
                       + <br /> Upload photo{" "}
                     </button>
 =======
                     >+ <br /> Upload photo </button>
 >>>>>>> 2722b24 (fix: photos upload)
+=======
+                    >
+                      + <br /> Upload photo{" "}
+                    </button>
+>>>>>>> db62597 (feat: Edit profile modal preview)
                   ) : (
                     <p className="w-[35%] h-[60%] flex relative rounded-md overflow-hidden justify-center z-10">
                       <img
@@ -878,6 +905,7 @@ function Register() {
                       <button
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                         type="button"
 =======
                       type="button"
@@ -885,6 +913,9 @@ function Register() {
 =======
                         type="button"
 >>>>>>> 51451ae (minor fix:09/11/22)
+=======
+                        type="button"
+>>>>>>> db62597 (feat: Edit profile modal preview)
                         className="sticky right-[10%] top-[1%] z-20 w-[30px] h-[30px] flex justify-center items-center text-white text-[20px] rounded-full bg-[#7D2262] overflow-hidden"
                         onClick={() => handleRemoveImage(0)}
                       >
@@ -900,12 +931,18 @@ function Register() {
                       type="button"
                       onClick={handleStateWiged}
 <<<<<<< HEAD
+<<<<<<< HEAD
                     >
                       + <br /> Upload photo{" "}
                     </button>
 =======
                     >+ <br /> Upload photo </button>
 >>>>>>> 2722b24 (fix: photos upload)
+=======
+                    >
+                      + <br /> Upload photo{" "}
+                    </button>
+>>>>>>> db62597 (feat: Edit profile modal preview)
                   ) : (
                     <p className="w-[35%] h-[60%] flex  relative rounded-lg overflow-hidden justify-center z-10">
                       <img
@@ -916,6 +953,7 @@ function Register() {
                       <button
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                         type="button"
 =======
                       type="button"
@@ -923,6 +961,9 @@ function Register() {
 =======
                         type="button"
 >>>>>>> 51451ae (minor fix:09/11/22)
+=======
+                        type="button"
+>>>>>>> db62597 (feat: Edit profile modal preview)
                         className="sticky right-[10%] top-[1%] z-20 w-[30px] h-[30px] flex justify-center items-center text-white text-[20px] rounded-full bg-[#7D2262] overflow-hidden"
                         onClick={() => handleRemoveImage(1)}
                       >
@@ -937,12 +978,18 @@ function Register() {
                       type="button"
                       onClick={handleStateWiged}
 <<<<<<< HEAD
+<<<<<<< HEAD
                     >
                       + <br /> Upload photo{" "}
                     </button>
 =======
                     >+ <br /> Upload photo </button>
 >>>>>>> 2722b24 (fix: photos upload)
+=======
+                    >
+                      + <br /> Upload photo{" "}
+                    </button>
+>>>>>>> db62597 (feat: Edit profile modal preview)
                   ) : (
                     <p className="w-[35%] h-[60%] flex  relative rounded-lg overflow-hidden justify-center z-10">
                       <img
@@ -953,6 +1000,7 @@ function Register() {
                       <button
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                         type="button"
 =======
                       type="button"
@@ -960,6 +1008,9 @@ function Register() {
 =======
                         type="button"
 >>>>>>> 51451ae (minor fix:09/11/22)
+=======
+                        type="button"
+>>>>>>> db62597 (feat: Edit profile modal preview)
                         className="sticky right-[10%] top-[1%] z-20 w-[30px] h-[30px] flex justify-center items-center text-white text-[20px] rounded-full bg-[#7D2262] overflow-hidden"
                         onClick={() => handleRemoveImage(2)}
                       >
@@ -974,12 +1025,18 @@ function Register() {
                       type="button"
                       onClick={handleStateWiged}
 <<<<<<< HEAD
+<<<<<<< HEAD
                     >
                       + <br /> Upload photo{" "}
                     </button>
 =======
                     >+ <br /> Upload photo </button>
 >>>>>>> 2722b24 (fix: photos upload)
+=======
+                    >
+                      + <br /> Upload photo{" "}
+                    </button>
+>>>>>>> db62597 (feat: Edit profile modal preview)
                   ) : (
                     <p className="w-[35%] h-[60%] flex  relative rounded-lg overflow-hidden justify-center z-10">
                       <img
@@ -990,6 +1047,7 @@ function Register() {
                       <button
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                         type="button"
 =======
                       type="button"
@@ -997,6 +1055,9 @@ function Register() {
 =======
                         type="button"
 >>>>>>> 51451ae (minor fix:09/11/22)
+=======
+                        type="button"
+>>>>>>> db62597 (feat: Edit profile modal preview)
                         className="sticky right-[10%] top-[1%] z-20 w-[30px] h-[30px] flex justify-center items-center text-white text-[20px] rounded-full bg-[#7D2262] overflow-hidden"
                         onClick={() => handleRemoveImage(3)}
                       >
@@ -1011,12 +1072,18 @@ function Register() {
                       type="button"
                       onClick={handleStateWiged}
 <<<<<<< HEAD
+<<<<<<< HEAD
                     >
                       + <br /> Upload photo{" "}
                     </button>
 =======
                     >+ <br /> Upload photo </button>
 >>>>>>> 2722b24 (fix: photos upload)
+=======
+                    >
+                      + <br /> Upload photo{" "}
+                    </button>
+>>>>>>> db62597 (feat: Edit profile modal preview)
                   ) : (
                     <p className="w-[35%] h-[60%] flex  relative rounded-lg overflow-hidden justify-center z-10">
                       <img
@@ -1027,6 +1094,7 @@ function Register() {
                       <button
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                         type="button"
 =======
                       type="button"
@@ -1034,6 +1102,9 @@ function Register() {
 =======
                         type="button"
 >>>>>>> 51451ae (minor fix:09/11/22)
+=======
+                        type="button"
+>>>>>>> db62597 (feat: Edit profile modal preview)
                         className="sticky right-[10%] top-[1%] z-20 w-[30px] h-[30px] flex justify-center items-center text-white text-[20px] rounded-full bg-[#7D2262] overflow-hidden"
                         onClick={() => handleRemoveImage(4)}
                       >
@@ -1104,8 +1175,8 @@ function Register() {
             </div>
           </div>
         </div>
-      </form >
-    </div >
+      </form>
+    </div>
   );
 }
 
