@@ -32,6 +32,36 @@ function Register() {
   const animatedComponents = makeAnimated();
   const [selectedOption, setSelectedOption] = useState([]);
   const [contact, setContact] = useState([]);
+  const colorStyles = {
+    control: (styles) => ({ ...styles, backgroundColor: "white" }),
+    option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+      return { ...styles, color: data.color };
+    },
+    multiValue: (styles, { data }) => {
+      return {
+        ...styles,
+        backgroundColor: data.color,
+        color: "#fff",
+      };
+    },
+    multiValueLabel: (styles, { data }) => {
+      return {
+        ...styles,
+        color: "#fff",
+      };
+    },
+    multiValueRemove: (styles, { data }) => {
+      return {
+        ...styles,
+        color: "#fff",
+        cursor: "pointer",
+        ":hover": {
+          color: "#fff",
+        },
+      };
+    },
+  };
+
 
 
   // states of form 2
@@ -183,7 +213,7 @@ function Register() {
   };
 
   const handleRemoveImage = (i) => {
-  
+
     console.log(i);
 
     const imageId = i;
@@ -653,7 +683,7 @@ function Register() {
                   <div className="mt-[40px] font-[600]">
                     Hobbies / Interests (Maximum 5)
                     <Select
-                      components={animatedComponents}
+                      className="text-[#7D2262] bg-[#F4EBF2]"
                       defaultValue={selectedOption}
                       onChange={setSelectedOption}
                       options={options}
@@ -663,7 +693,9 @@ function Register() {
                       isLoading={false}
                       isRtl={false}
                       closeMenuOnSelect={false}
+                      isOptionDisabled={() => selectedOption.length >= 5}
                       isMulti
+
                     />
                   </div>
 
@@ -750,7 +782,7 @@ function Register() {
                         className=" mt-3 ml-3 w-auto h-auto rounded-md overflow-hidden z-0 "
                       />
                       <button
-                      type="button"
+                        type="button"
                         className="sticky right-[10%] top-[1%] z-20 w-[30px] h-[30px] flex justify-center items-center text-white text-[20px] rounded-full bg-[#7D2262] overflow-hidden"
                         onClick={() => handleRemoveImage(0)}
                       >
@@ -774,7 +806,7 @@ function Register() {
                         className=" mt-3 ml-3  w-auto h-auto rounded-lg overflow-hidden z-10 "
                       />
                       <button
-                      type="button"
+                        type="button"
                         className="sticky right-[10%] top-[1%] z-20 w-[30px] h-[30px] flex justify-center items-center text-white text-[20px] rounded-full bg-[#7D2262] overflow-hidden"
                         onClick={() => handleRemoveImage(1)}
                       >
@@ -797,7 +829,7 @@ function Register() {
                         className=" mt-3 ml-3  rounded-lg overflow-hidden z-10 "
                       />
                       <button
-                      type="button"
+                        type="button"
                         className="sticky right-[10%] top-[1%] z-20 w-[30px] h-[30px] flex justify-center items-center text-white text-[20px] rounded-full bg-[#7D2262] overflow-hidden"
                         onClick={() => handleRemoveImage(2)}
                       >
@@ -820,7 +852,7 @@ function Register() {
                         className=" mt-3 ml-3 rounded-lg overflow-hidden z-10 "
                       />
                       <button
-                      type="button"
+                        type="button"
                         className="sticky right-[10%] top-[1%] z-20 w-[30px] h-[30px] flex justify-center items-center text-white text-[20px] rounded-full bg-[#7D2262] overflow-hidden"
                         onClick={() => handleRemoveImage(3)}
                       >
@@ -843,7 +875,7 @@ function Register() {
                         className=" mt-3 ml-3 rounded-lg overflow-hidden z-10 "
                       />
                       <button
-                      type="button"
+                        type="button"
                         className="sticky right-[10%] top-[1%] z-20 w-[30px] h-[30px] flex justify-center items-center text-white text-[20px] rounded-full bg-[#7D2262] overflow-hidden"
                         onClick={() => handleRemoveImage(4)}
                       >
