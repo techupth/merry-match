@@ -8,9 +8,8 @@ import Countrydata from "../mock-city/Countrydata.json";
 import makeAnimated from "react-select/animated";
 import Select from "react-select";
 import { options, optionsContact } from "./optionSelect";
-import DatePicker from "react-datepicker"
+import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
 
 function Register() {
   const navigate = useNavigate();
@@ -40,7 +39,7 @@ function Register() {
   const animatedComponents = makeAnimated();
   const [selectedOption, setSelectedOption] = useState([]);
   const [contact, setContact] = useState([]);
-  
+
   // states of form 2
   const [sexualIdentities, setSexualIdentities] = useState("");
   const [sexualPreferences, setSexualPreferences] = useState("");
@@ -54,7 +53,7 @@ function Register() {
   const [imageToRemove, setImageToRemove] = useState(null);
   const userInfo = {
     name,
-    birthday : startDate,
+    birthday: startDate,
     location: countryid,
     city: stateid,
     username,
@@ -72,22 +71,20 @@ function Register() {
   console.log(userInfo);
   // console.log(images);
   console.log(startDate);
-  
+
   const registerNewUser = async () => {
     await axios.post("http://localhost:4001/auth/register", userInfo, {
       headers: { "Content-Types": "multipart/form-data" },
     });
   };
-  
+
   //GetAgeuser
-  const userYear = startDate.getFullYear()
-  console.log(userYear)
-  const now = new Date().getFullYear()
-  console.log(now)
-  const Age = now - userYear
-  console.log(Age)
-
-
+  const userYear = startDate.getFullYear();
+  console.log(userYear);
+  const now = new Date().getFullYear();
+  console.log(now);
+  const Age = now - userYear;
+  console.log(Age);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -96,7 +93,6 @@ function Register() {
     // alert("Register Successfully!");
     navigate("/login");
   };
-
 
   useEffect(() => {
     validatePasswordMatch();
@@ -250,8 +246,6 @@ function Register() {
     }
   };
 
-
-
   return (
     <div>
       <form
@@ -383,7 +377,7 @@ function Register() {
                         Name
                       </label>
                       <input
-                        className="w-[453px] rounded-lg border-[#D6D9E4]"
+                        className="w-[453px] rounded-lg border-[#D6D9E4]  focus:border-pink-300"
                         type="text"
                         id="name"
                         value={name}
@@ -395,31 +389,21 @@ function Register() {
                         }}
                       />
                     </div>
-                        <DatePicker selected={startDate} onChange={(date) => {
-                          console.log(date)
-                          setStartDate(date)
-                          }}/>
+
                     <div className="flex flex-col ml-[12px] mt-[24px]">
                       <label htmlFor="birth" className="font-[600]">
                         Date of birth
                       </label>
-                      <input
-                        className="calenda w-[453px] rounded-lg border-[#D6D9E4] "
-                        
-                        type="date"
-                        id="birth"
-                        name="birthday"
-                        value={birthday}
-                        placeholder="01/01/2020"
-                        required
-                        onChange={(event) => {
-                          setBirthday(event.target.value);
+                      <DatePicker
+                        className="w-[453px] rounded-lg border-[#D6D9E4] focus:border-pink-300"
+                        selected={startDate}
+                        onChange={(date) => {
+                          console.log(date);
+                          setStartDate(date);
                         }}
                       />
 
                       {/* .............. */}
-
-
 
                       {/* ............... */}
                     </div>
@@ -714,7 +698,6 @@ function Register() {
                       closeMenuOnSelect={false}
                       isOptionDisabled={() => selectedOption.length >= 5}
                       isMulti
-
                     />
                   </div>
 
