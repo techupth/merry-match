@@ -72,13 +72,10 @@ function Register() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (!checkNoNull()) {
-      console.log("no null");
-      const registerResult = await register(userInfo);
-      console.log("regis");
-      alert(registerResult);
-      navigate("/login");
-    }
+    checkNoNull();
+    registerNewUser();
+    // alert("Register Successfully!");
+    navigate("/login");
   };
 
   useEffect(() => {
@@ -184,6 +181,7 @@ function Register() {
   };
 
   const handleRemoveImage = (i) => {
+
     console.log(i);
 
     const imageId = i;
@@ -748,7 +746,7 @@ function Register() {
                     Profile pictures <br />
                   </h1>
 
-                  <p className="font-[400]">Upload at least 2 photos</p>
+                  <p>Upload at least 2 photos</p>
                 </div>
 
                 <div className="w-[100%] h-[80%] flex justify-center flex-row">
@@ -760,9 +758,7 @@ function Register() {
                       className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500]"
                       type="button"
                       onClick={handleStateWiged}
-                    >
-                      + <br /> Upload photo{" "}
-                    </button>
+                    >+ <br /> Upload photo </button>
                   ) : (
                     <p className="w-[35%] h-[60%] flex relative rounded-md overflow-hidden justify-center z-10">
                       <img
@@ -786,9 +782,7 @@ function Register() {
                       className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 text-[1rem] font-[500] rounded-lg text-[#7D2262]  "
                       type="button"
                       onClick={handleStateWiged}
-                    >
-                      + <br /> Upload photo{" "}
-                    </button>
+                    >+ <br /> Upload photo </button>
                   ) : (
                     <p className="w-[35%] h-[60%] flex  relative rounded-lg overflow-hidden justify-center z-10">
                       <img
@@ -811,9 +805,7 @@ function Register() {
                       className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 text-[1rem] font-[500] rounded-lg text-[#7D2262]  "
                       type="button"
                       onClick={handleStateWiged}
-                    >
-                      + <br /> Upload photo{" "}
-                    </button>
+                    >+ <br /> Upload photo </button>
                   ) : (
                     <p className="w-[35%] h-[60%] flex  relative rounded-lg overflow-hidden justify-center z-10">
                       <img
@@ -836,9 +828,7 @@ function Register() {
                       className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] "
                       type="button"
                       onClick={handleStateWiged}
-                    >
-                      + <br /> Upload photo{" "}
-                    </button>
+                    >+ <br /> Upload photo </button>
                   ) : (
                     <p className="w-[35%] h-[60%] flex  relative rounded-lg overflow-hidden justify-center z-10">
                       <img
@@ -861,9 +851,7 @@ function Register() {
                       className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] "
                       type="button"
                       onClick={handleStateWiged}
-                    >
-                      + <br /> Upload photo{" "}
-                    </button>
+                    >+ <br /> Upload photo </button>
                   ) : (
                     <p className="w-[35%] h-[60%] flex  relative rounded-lg overflow-hidden justify-center z-10">
                       <img
