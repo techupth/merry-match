@@ -2,11 +2,14 @@ import React, { useState,useEffect } from "react";
 import Countrydata from "../mock-city/countrydata";
 import { useAuth } from "../contexts/authentication";
 import axios from "axios";
+import makeAnimated from 'react-select/animated';
+import { options, optionsContact } from './optionSelect'
+import Select from 'react-select';
 
 
 const Register = () => {
   const [text, setText] = useState("");
-  const [hobbies, setHobbies] = useState([]);
+
 
   const [countryid, setCountryid] = useState("");
   const [state, setState] = useState([]);
@@ -23,8 +26,18 @@ const Register = () => {
   const [meetingint, setMeetingint] = useState("")
   const [location, setLocation] = useState("")
   const [city, setCity] = useState("")
+  const [hobbies, setHobbies] = useState([])
 
 
+//hobbies part
+  const animatedComponents = makeAnimated();
+  const [selectedOption, setSelectedOption] = useState([]);
+  const [contact, setContact] = useState([]);
+
+console.log(selectedOption)
+console.log(setSelectedOption)
+
+  
   const getData = async () => {
     const userId = userData.user.user_id;
     const result = await axios(`http://localhost:4001/users/${userId}`);
@@ -38,6 +51,7 @@ const Register = () => {
     const meeting_int = result.data.data[0].meeting_int;
     const location = result.data.data[0].location;
     const city = result.data.data[0].city;
+    const hobbies = result.data.data[0].hobby;
     
 
 
@@ -45,7 +59,14 @@ const Register = () => {
     const formatDate = todayDate.getDate() < 10 ? `0${todayDate.getDate()}`:todayDate.getDate();
     const formatMonth = todayDate.getMonth() < 10 ? `0${todayDate.getMonth()}`: todayDate.getMonth();
     const formattedDate = [todayDate.getFullYear(), formatMonth, formatDate].join('-');
-   
+
+
+    // console.log(hobbies)
+    const hobbiesObj = JSON.parse(hobbies[0])
+    console.log(hobbiesObj)
+    
+
+
    
     
     setName(name)
@@ -58,19 +79,21 @@ const Register = () => {
     setMeetingint(meeting_int)
     setLocation(location)
     setCity(city)
+    setHobbies([hobbiesObj])
   };
  
-  
+  console.log(selectedOption)
+  console.log(hobbies)
   console.log(location)
   console.log(city)
 
-  const handleKeyDown = (event) => {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      const newHobbies = [...hobbies, text];
-      setHobbies(newHobbies);
-    }
-  };
+  // const handleKeyDown = (event) => {
+  //   if (event.key === "Enter") {
+  //     event.preventDefault();
+  //     const newHobbies = [...hobbies, text];
+  //     setHobbies(newHobbies);
+  //   }
+  // };
  
 
   const deleteHobbies = (key) => {
@@ -305,7 +328,28 @@ const Register = () => {
               </select>
             </div>
           </div>
-          <div className="mt-[40px]">Hobbies / Interests (Maximum 10)</div>
+
+          <div className="mt-[40px] font-[600]">
+                    Hobbies / Interests (Maximum 5)
+                    <Select
+                      components={animatedComponents}
+                      defaultValue={[options[0],options[1]]}
+                      // defaultValue={selectedOption}
+                      // defaultValue={hobbies}
+                      values={hobbies}
+                      onChange={setSelectedOption}
+                      options={options}
+                      isClearable={true}
+                      isSearchable={true}
+                      isDisabled={false}
+                      isLoading={false}
+                      isRtl={false}
+                      closeMenuOnSelect={false}
+                      isMulti
+                    />
+                  </div>
+
+          {/* <div className="mt-[40px]">Hobbies / Interests (Maximum 10)</div>
           <input
             className="w-full rounded-lg "
             type="text"
@@ -328,7 +372,7 @@ const Register = () => {
                 </button>
               </div>
             );
-          })}
+          })} */}
           <div className="flex flex-col mt-[24px]">
             <label for="AboutMe">About me (Maximum 150 characters)</label>
             <textarea id="AboutMe" name="AboutMe" maxlength="150" rows="1" className="rounded-lg h-[127px] p-[12px]"></textarea>

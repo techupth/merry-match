@@ -59,7 +59,7 @@ function Register() {
     sex_pref: sexualPreferences,
     racial_pref: racialPreferences,
     meeting_int: meetingInterests,
-    hobby: hobbies,
+    hobby: selectedOption,
     profile_pics: images,
   };
 
