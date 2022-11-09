@@ -1,10 +1,11 @@
 import React from "react";
 import { useState, useRef, useEffect } from "react";
 import UserPopup from "./userPopup";
-import useClickOutside from "../ulils/useClickOutside";
 import jwtDecode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import useClickOutside from "../ulils/hooks/useClickOutside";
+import { useAuth } from "../contexts/authentication";
+import axios, { Axios } from "axios";
 
 const Navbarauthen = () => {
   const [images, setImage] = useState("");
