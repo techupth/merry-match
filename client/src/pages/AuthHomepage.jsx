@@ -5,11 +5,13 @@ import Navbarauthen from "../components/NavbarAuthen";
 import { useAuth } from "../contexts/authentication";
 import axios from "axios";
 
+
 const HomepageAuth = () => {
   return (
     <div>
       <Navbarauthen />
       <Home />
+      
     </div>
   );
 };

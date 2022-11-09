@@ -5,11 +5,16 @@ import merryList from "../../public/asset/NavBarIcon/merryList.svg";
 import member from "../../public/asset/NavBarIcon/member.svg";
 import logouticon from "../../public/asset/NavBarIcon/logout.svg";
 import compliant from "../../public/asset/NavBarIcon/compliant.svg";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/authentication";
 
 // Using by redering to Nav page 
 
+
+
 function UserPopup({ close }) {
+
+  const navigate = useNavigate()
 
   const { logout } = useAuth()
 
@@ -43,7 +48,7 @@ function UserPopup({ close }) {
           >
             <img src={profile} className="mr-2" />
             <span class="flex flex-col">
-              <span>Profile</span>
+              <span onClick={()=>{navigate("/edit")}}>Profile</span>
             </span>
           </a>
           <a
