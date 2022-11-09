@@ -5,11 +5,13 @@ import Navbarauthen from "../components/NavbarAuthen";
 
 
 
+
 const HomepageAuth = () => {
   return (
     <div>
       <Navbarauthen />
       <Home />
+      
     </div>
   );
 };

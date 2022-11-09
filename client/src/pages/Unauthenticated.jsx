@@ -17,6 +17,8 @@ const Unauthenticated = () => {
         <Route path="/register" element={<Register />} />
         <Route path="*" element={<Home />} />
 
+        <Route path="/dev" element={<Navbarauthen />} />
+
         <Route path="/dev" element={<EditModal />} />
 
         <Route path="/dev" element={<Login />} />

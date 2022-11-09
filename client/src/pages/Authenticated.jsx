@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import HomepageAuth from "./AuthHomepage";
+import EditProfile from "./EditProfile";
 
 const Authenticated = () => {
     return (
@@ -8,6 +9,7 @@ const Authenticated = () => {
                 <Route path="/" element={<HomepageAuth />} />
                 <Route path="*" element={<HomepageAuth />} />
                 {/* <Route path="/dev" element={<Login />} /> */}
+                <Route path="/edit" element={<EditProfile />} />
             </Routes>
         </>
     );
