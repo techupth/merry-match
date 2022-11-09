@@ -772,7 +772,7 @@ function Register() {
                   {/* 1 ** */}
                   {images.length < 1 ? (
                     <button
-                      className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500]"
+                      className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]  items-center justify-center "
                       type="button"
                       onClick={handleStateWiged}
                     >
@@ -787,7 +787,7 @@ function Register() {
                       />
                       <button
                         type="button"
-                        className="sticky right-[10%] top-[1%] z-20 w-[30px] h-[30px] flex justify-center items-center text-white text-[20px] rounded-full bg-[#7D2262] overflow-hidden"
+                        className="sticky right-[10%] top-[1%] z-20 w-[30px] h-[30px] flex justify-center items-center text-white text-[20px] rounded-full bg-[#7D2262] overflow-hidden "
                         onClick={() => handleRemoveImage(0)}
                       >
                         X
@@ -798,7 +798,7 @@ function Register() {
                   {/* 2 ** */}
                   {images.length < 2 ? (
                     <button
-                      className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 text-[1rem] font-[500] rounded-lg text-[#7D2262]  "
+                      className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 text-[1rem] font-[500] rounded-lg text-[#7D2262] bg-[#F1F2F6]  items-center justify-center "
                       type="button"
                       onClick={handleStateWiged}
                     >
@@ -823,7 +823,7 @@ function Register() {
                   {/* 3 ** */}
                   {images.length < 3 ? (
                     <button
-                      className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 text-[1rem] font-[500] rounded-lg text-[#7D2262]  "
+                      className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 text-[1rem] font-[500] rounded-lg text-[#7D2262] bg-[#F1F2F6]  items-center justify-center   "
                       type="button"
                       onClick={handleStateWiged}
                     >
@@ -848,7 +848,7 @@ function Register() {
                   {/* 4 ** */}
                   {images.length < 4 ? (
                     <button
-                      className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] "
+                      className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]  items-center justify-center  "
                       type="button"
                       onClick={handleStateWiged}
                     >
@@ -873,7 +873,7 @@ function Register() {
                   {/* 5 ** */}
                   {images.length < 5 ? (
                     <button
-                      className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] "
+                      className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]  items-center justify-center  "
                       type="button"
                       onClick={handleStateWiged}
                     >

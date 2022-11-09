@@ -41,7 +41,7 @@ function UserPopup({ close }) {
           </a>
           <a
             href="#"
-            className="block px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600 flex flex-row"
+            className="block px-4 py-2 text-md mt-3 text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600 flex flex-row"
             role="menuitem"
           >
             <img src={profile} className="mr-2" />
