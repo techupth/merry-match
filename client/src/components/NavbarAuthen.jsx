@@ -1,9 +1,9 @@
 import React from "react";
 import { useState, useRef, useEffect } from "react";
 import UserPopup from "./userPopup";
+import useClickOutside from "../ulils/hooks/useClickOutside";
 import jwtDecode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
-import useClickOutside from "../ulils/hooks/useClickOutside";
 import { useAuth } from "../contexts/authentication";
 import axios, { Axios } from "axios";
 
@@ -16,23 +16,22 @@ const Navbarauthen = () => {
 
   const decodeFromToken = async () => {
     const token = localStorage.getItem("token");
-    // console.log(token);
+
     const userData = jwtDecode(token);
-    // const  myObj = JSON.parse(userData);
-    // console.log(userData.profile_pics);
+
     const object = JSON.parse(userData.profile_pics[0]);
-    // console.log(object.url);
+
     setImage(object.url);
-    // console.log(userData)
+
     const data = await axios.get(
       `http://localhost:4001/users/${userData.user_id}`
     );
-    console.log(data.data.data[0]);
+
     setUserData(data.data.data[0]);
   };
 
   const ref = useRef(null);
-  console.log(userData);
+  // console.log(userData)
   useClickOutside(ref, () => setCallPop(false));
 
   useEffect(() => {

@@ -62,6 +62,7 @@ function Register() {
   const [contact, setContact] = useState([]);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 51451ae (minor fix:09/11/22)
   const colorStyles = {
@@ -111,6 +112,9 @@ function Register() {
 >>>>>>> db62597 (feat: Edit profile modal preview)
 =======
 >>>>>>> 7f714ce (feat : Calendar style)
+=======
+  
+>>>>>>> 966ed99 (Add : can map datato edithpmepage)
   // states of form 2
   const [sexualIdentities, setSexualIdentities] = useState("");
   const [sexualPreferences, setSexualPreferences] = useState("");
@@ -128,7 +132,7 @@ function Register() {
 >>>>>>> 7f714ce (feat : Calendar style)
   const userInfo = {
     name,
-    birthday,
+    birthday : startDate,
     location: countryid,
     city: stateid,
     username,
@@ -150,10 +154,23 @@ function Register() {
   // console.log(images);
 =======
   // console.log(birthday);
-  // console.log(userInfo);
+  console.log(userInfo);
   // console.log(images);
   console.log(startDate);
+<<<<<<< HEAD
 >>>>>>> 7f714ce (feat : Calendar style)
+=======
+  
+  //GetAgeuser
+  const userYear = startDate.getFullYear()
+  console.log(userYear)
+  const now = new Date().getFullYear()
+  console.log(now)
+  const Age = now - userYear
+  console.log(Age)
+
+
+>>>>>>> 966ed99 (Add : can map datato edithpmepage)
 
   const handleSubmit = async (event) => {
     event.preventDefault();
