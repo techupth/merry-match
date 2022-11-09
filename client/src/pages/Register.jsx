@@ -5,9 +5,9 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/authentication";
 import Countrydata from "../mock-city/Countrydata.json";
 // import Hobbies, { } from "./hobbieData.";
-import makeAnimated from 'react-select/animated';
-import Select from 'react-select';
-import { options, optionsContact } from './optionSelect'
+import makeAnimated from "react-select/animated";
+import Select from "react-select";
+import { options, optionsContact } from "./optionSelect";
 
 function Register() {
   const navigate = useNavigate();
@@ -36,7 +36,6 @@ function Register() {
   const animatedComponents = makeAnimated();
   const [selectedOption, setSelectedOption] = useState([]);
   const [contact, setContact] = useState([]);
-
 
   // states of form 2
   const [sexualIdentities, setSexualIdentities] = useState("");
@@ -130,7 +129,8 @@ function Register() {
       setPasswordLengthError("* Password must be at least 8 characters");
     } else {
       setPasswordLengthError("");
-    } preventDefault
+    }
+    preventDefault;
   };
 
   const validatePasswordMatch = () => {
@@ -746,6 +746,7 @@ function Register() {
                   <h1 className="ProfilePictures text-[#A62D82] font-[800] text-[24px] ">
                     Profile pictures <br />
                   </h1>
+
                   <p className="font-[400]">Upload at least 2 photos</p>
                 </div>
 
@@ -941,8 +942,8 @@ function Register() {
             </div>
           </div>
         </div>
-      </form >
-    </div >
+      </form>
+    </div>
   );
 }
 
