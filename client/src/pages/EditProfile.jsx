@@ -8,8 +8,7 @@ import Select from 'react-select';
 
 
 const Register = () => {
-  const [text, setText] = useState("");
-
+  const [text, setText] = useState(""); 
 
   const [countryid, setCountryid] = useState("");
   const [state, setState] = useState([]);
@@ -27,15 +26,13 @@ const Register = () => {
   const [location, setLocation] = useState("")
   const [city, setCity] = useState("")
   const [hobbies, setHobbies] = useState([])
+ 
 
 
 //hobbies part
   const animatedComponents = makeAnimated();
   const [selectedOption, setSelectedOption] = useState([]);
   const [contact, setContact] = useState([]);
-
-console.log(selectedOption)
-console.log(setSelectedOption)
 
   
   const getData = async () => {
@@ -61,9 +58,30 @@ console.log(setSelectedOption)
     const formattedDate = [todayDate.getFullYear(), formatMonth, formatDate].join('-');
 
 
-    // console.log(hobbies)
+    console.log(hobbies)
+
+    
+    
+    
+    // hobbies.map((item,index)=>{
+    //   // console.log(item,index)
+    //    const hobbiesItem = JSON.parse(item)
+    //    hobbiesObj = hobbiesItem.push
+    // })
+
+    let test = []
+
+    options.map((item,index)=>{
+      console.log(item,index)
+      //  const hobbiesItem = JSON.parse(item)
+      //  hobbiesObj = hobbiesItem.push
+      test = item.push
+    })
+    console.log(test)
+
     const hobbiesObj = JSON.parse(hobbies[0])
     console.log(hobbiesObj)
+   
     
 
 
@@ -79,31 +97,35 @@ console.log(setSelectedOption)
     setMeetingint(meeting_int)
     setLocation(location)
     setCity(city)
-    setHobbies([hobbiesObj])
+    // setHobbies([hobbiesObj])
+
+    // if(){
+      
+    // }
+    setHobbies(hobbiesObj.value)
   };
  
-  console.log(selectedOption)
+  // console.log(selectedOption)
   console.log(hobbies)
   console.log(location)
   console.log(city)
 
-  // const handleKeyDown = (event) => {
-  //   if (event.key === "Enter") {
-  //     event.preventDefault();
-  //     const newHobbies = [...hobbies, text];
-  //     setHobbies(newHobbies);
-  //   }
-  // };
- 
 
-  const deleteHobbies = (key) => {
-    event.preventDefault();
-    console.log("test click");
-    const temp = hobbies.filter((value, index) => {
-      return index !== key;
-    });
-    setHobbies(temp);
-  };
+  // const checkselect = () => {
+  //   options.map((item,index)=>
+  //   {
+  //   if(item.value === hobbies.value)
+  //   console.log("hi")
+  //   console.log(item,index)
+  //   console.log(item.value)
+  //   }) 
+  // }
+  // console.log(hobbies[0].value)
+  // checkselect()
+
+
+
+
 
   const handlecounty = (e) => {
     const getcountryId = e.target.value;
@@ -333,7 +355,7 @@ console.log(setSelectedOption)
                     Hobbies / Interests (Maximum 5)
                     <Select
                       components={animatedComponents}
-                      defaultValue={[options[0],options[1]]}
+                      defaultValue={[options[0]]}
                       // defaultValue={selectedOption}
                       // defaultValue={hobbies}
                       values={hobbies}
@@ -399,7 +421,7 @@ console.log(setSelectedOption)
             <div className="profile Pic5 w-[167px] h-[167px] bg-[#d908ac] mr-[12px]">
               xx
             </div>
-          </div>
+          </div>    
         </form>
       </div>
     </div>
