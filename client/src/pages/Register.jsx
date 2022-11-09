@@ -73,6 +73,12 @@ function Register() {
   // console.log(images);
   console.log(startDate);
   
+  const registerNewUser = async () => {
+    await axios.post("http://localhost:4001/auth/register", userInfo, {
+      headers: { "Content-Types": "multipart/form-data" },
+    });
+  };
+  
   //GetAgeuser
   const userYear = startDate.getFullYear()
   console.log(userYear)

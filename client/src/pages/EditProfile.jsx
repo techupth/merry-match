@@ -18,7 +18,6 @@ const Register = () => {
   const [state, setState] = useState([]);
   const [stateid, setStateid] = useState("");
 
-
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [birthday, setBirthday] = useState("");
@@ -31,15 +30,13 @@ const Register = () => {
   const [city, setCity] = useState("");
   const [hobbies, setHobbies] = useState([]);
   const [startDate, setStartDate] = useState(new Date());
-  
+
   //hobbies part
   const animatedComponents = makeAnimated();
   const [selectedOption, setSelectedOption] = useState([]);
   const [contact, setContact] = useState([]);
 
   const getData = async () => {
-    
-
     // const name = result.data.data[0].name;
     // const birthday = result.data.data[0].birthday;
     // const username = result.data.data[0].username;
@@ -51,7 +48,6 @@ const Register = () => {
     // const location = result.data.data[0].location;
     // const city = result.data.data[0].city;
     // const hobbies = result.data.data[0].hobby;
-
     // const todayDate = new Date(birthday);
     // const formatDate =
     //   todayDate.getDate() < 10
@@ -66,15 +62,12 @@ const Register = () => {
     //   formatMonth,
     //   formatDate,
     // ].join("-");
-
     // hobbies.map((item,index)=>{
     //   // console.log(item,index)
     //    const hobbiesItem = JSON.parse(item)
     //    hobbiesObj = hobbiesItem.push
     // })
-
     // let test = [];
-
     // options.map((item, index) => {
     //   console.log(item, index);
     //   //  const hobbiesItem = JSON.parse(item)
@@ -82,10 +75,8 @@ const Register = () => {
     //   test = item.push;
     // });
     // console.log(test);
-
     // const hobbiesObj = JSON.parse(hobbies[0]);
     // console.log(hobbiesObj);
-
     // setName(name);
     // setBirthday(formattedDate);
     // setUsername(username);
@@ -97,9 +88,7 @@ const Register = () => {
     // setLocation(location);
     // setCity(city);
     // // setHobbies([hobbiesObj])
-
     // // if(){
-
     // // }
     // setHobbies(hobbiesObj.value);
   };
@@ -131,7 +120,7 @@ const Register = () => {
   //   setStateid(stateid);
   // };
 
-  const decodeFromToken = async() => {
+  const decodeFromToken = async () => {
     const token = localStorage.getItem("token");
     const userData = jwtDecode(token);
     setUserData(userData);
@@ -139,17 +128,24 @@ const Register = () => {
       `http://localhost:4001/users/${userData.user_id}`
     );
     setUserData(result.data.data[0]);
-    
-    setBirthday(result.data.data[0].birthday)
-    
+
+    setBirthday(result.data.data[0].birthday);
+
+    // console.log(myDate.toDateString());
   };
-  
-  // console.log(userData.birthday)
-  console.log(birthday)
- 
+
   useEffect(() => {
     decodeFromToken();
 
+    let parts = birthday.split("T");
+    let strDate = parts[0].split("-");
+    console.log(strDate);
+    const myDate = new Date(strDate[0], strDate[1] - 1, strDate[2]);
+    console.log(myDate);
+
+    if (myDate != "Invalid Date") {
+      setStartDate(myDate);
+    }
   }, [birthday]);
 
   return (
@@ -197,26 +193,17 @@ const Register = () => {
                 }}
               />
             </div>
-            <DatePicker
+            
+            <div className="flex flex-col ml-[12px] mt-[24px]">
+              <label for="birth">Date of birth</label>
+              <DatePicker
+              className="w-[453px] rounded-lg focus:border-pink-300 focus:border-[2px]"
               selected={startDate}
               onChange={(date) => {
                 console.log(date);
-                
+                setStartDate(date);
               }}
             />
-            <div className="flex flex-col ml-[12px] mt-[24px]">
-              <label for="birth">Date of birth</label>
-              <input
-                className="w-[453px] rounded-lg"
-                type="date"
-                id="birth"
-                name="birthday"
-                // placeholder="01/01/2020"
-                value={birthday}
-                onChange={(e) => {
-                  setBirthday(e.target.value);
-                }}
-              />
             </div>
           </div>
 
