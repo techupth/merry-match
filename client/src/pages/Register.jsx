@@ -4,9 +4,12 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/authentication";
 import Countrydata from "../mock-city/Countrydata.json";
+// import Hobbies, { } from "./hobbieData.";
 import makeAnimated from "react-select/animated";
 import Select from "react-select";
 import { options, optionsContact } from "./optionSelect";
+import DatePicker from "react-datepicker"
+import "react-datepicker/dist/react-datepicker.css";
 
 
 function Register() {
@@ -31,6 +34,7 @@ function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [startDate, setStartDate] = useState(new Date());
 
   //hobbies part
   const animatedComponents = makeAnimated();
@@ -77,7 +81,6 @@ function Register() {
   const [images, setImages] = useState([]);
 
   const [imageToRemove, setImageToRemove] = useState(null);
-
   const userInfo = {
     name,
     birthday,
@@ -94,10 +97,10 @@ function Register() {
     hobby: selectedOption,
     profile_pics: images,
   };
-
-  console.log(userInfo);
-  console.log(msg);
+  // console.log(birthday);
+  // console.log(userInfo);
   // console.log(images);
+  console.log(startDate);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -405,12 +408,17 @@ function Register() {
                         }}
                       />
                     </div>
+                        <DatePicker selected={startDate} onChange={(date) => {
+                          console.log(date)
+                          setStartDate(date)
+                          }}/>
                     <div className="flex flex-col ml-[12px] mt-[24px]">
                       <label htmlFor="birth" className="font-[600]">
                         Date of birth
                       </label>
                       <input
-                        className="w-[453px] rounded-lg border-[#D6D9E4]"
+                        className="calenda w-[453px] rounded-lg border-[#D6D9E4] "
+                        
                         type="date"
                         id="birth"
                         name="birthday"

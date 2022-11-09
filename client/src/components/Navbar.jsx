@@ -7,15 +7,15 @@ const Navbar = () => {
   return (
     <nav className="bg-[#FFFFFF] absolute z-10 overflow-auto  flex flex-row items-center justify-between h-[100px] w-full text-[16px] font-bold shadow-[2px_2px_12px_0_rgba(64,50,133,0.12)] ">
       <button
-        onClick={() => {
-          navigate("/")
-        }}
+      onClick={()=>{
+        navigate("/")
+      }}
       >
-        <img
-          src="/asset/header/header-merrymatch-logo.svg"
-          alt="merry match logo"
-          className="ml-[70px]"
-        />
+      <img
+        src="/asset/header/header-merrymatch-logo.svg"
+        alt="merry match logo"
+        className="ml-[70px]"
+      />
       </button>
 
       <div className="mr-[10%]  flex flex-row  items-center justify-between p-0 gap-8">
