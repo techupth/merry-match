@@ -44,6 +44,9 @@ function Register() {
   const [selectedOption, setSelectedOption] = useState([]);
   const [contact, setContact] = useState([]);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 51451ae (minor fix:09/11/22)
   const colorStyles = {
     control: (styles) => ({ ...styles, backgroundColor: "white" }),
     option: (styles, { data, isDisabled, isFocused, isSelected }) => {
@@ -73,7 +76,11 @@ function Register() {
       };
     },
   };
+<<<<<<< HEAD
 =======
+=======
+
+>>>>>>> 51451ae (minor fix:09/11/22)
 
 >>>>>>> b3ff6a6 (add:react selectOn Hobbie/contact)
 
@@ -227,9 +234,13 @@ function Register() {
 
   const handleRemoveImage = (i) => {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   
 >>>>>>> 2722b24 (fix: photos upload)
+=======
+
+>>>>>>> 51451ae (minor fix:09/11/22)
     console.log(i);
 
     const imageId = i;
@@ -739,10 +750,14 @@ function Register() {
                     Hobbies / Interests (Maximum 5)
                     <Select
 <<<<<<< HEAD
+<<<<<<< HEAD
                       className="text-[#7D2262] bg-[#F4EBF2]"
 =======
                       components={animatedComponents}
 >>>>>>> b3ff6a6 (add:react selectOn Hobbie/contact)
+=======
+                      className="text-[#7D2262] bg-[#F4EBF2]"
+>>>>>>> 51451ae (minor fix:09/11/22)
                       defaultValue={selectedOption}
                       onChange={setSelectedOption}
                       options={options}
@@ -753,12 +768,18 @@ function Register() {
                       isRtl={false}
                       closeMenuOnSelect={false}
 <<<<<<< HEAD
+<<<<<<< HEAD
                       isOptionDisabled={() => selectedOption.length >= 5}
                       isMulti
 
 =======
                       isMulti
 >>>>>>> b3ff6a6 (add:react selectOn Hobbie/contact)
+=======
+                      isOptionDisabled={() => selectedOption.length >= 5}
+                      isMulti
+
+>>>>>>> 51451ae (minor fix:09/11/22)
                     />
                   </div>
 
@@ -856,10 +877,14 @@ function Register() {
                       />
                       <button
 <<<<<<< HEAD
+<<<<<<< HEAD
                         type="button"
 =======
                       type="button"
 >>>>>>> 2722b24 (fix: photos upload)
+=======
+                        type="button"
+>>>>>>> 51451ae (minor fix:09/11/22)
                         className="sticky right-[10%] top-[1%] z-20 w-[30px] h-[30px] flex justify-center items-center text-white text-[20px] rounded-full bg-[#7D2262] overflow-hidden"
                         onClick={() => handleRemoveImage(0)}
                       >
@@ -890,10 +915,14 @@ function Register() {
                       />
                       <button
 <<<<<<< HEAD
+<<<<<<< HEAD
                         type="button"
 =======
                       type="button"
 >>>>>>> 2722b24 (fix: photos upload)
+=======
+                        type="button"
+>>>>>>> 51451ae (minor fix:09/11/22)
                         className="sticky right-[10%] top-[1%] z-20 w-[30px] h-[30px] flex justify-center items-center text-white text-[20px] rounded-full bg-[#7D2262] overflow-hidden"
                         onClick={() => handleRemoveImage(1)}
                       >
@@ -923,10 +952,14 @@ function Register() {
                       />
                       <button
 <<<<<<< HEAD
+<<<<<<< HEAD
                         type="button"
 =======
                       type="button"
 >>>>>>> 2722b24 (fix: photos upload)
+=======
+                        type="button"
+>>>>>>> 51451ae (minor fix:09/11/22)
                         className="sticky right-[10%] top-[1%] z-20 w-[30px] h-[30px] flex justify-center items-center text-white text-[20px] rounded-full bg-[#7D2262] overflow-hidden"
                         onClick={() => handleRemoveImage(2)}
                       >
@@ -956,10 +989,14 @@ function Register() {
                       />
                       <button
 <<<<<<< HEAD
+<<<<<<< HEAD
                         type="button"
 =======
                       type="button"
 >>>>>>> 2722b24 (fix: photos upload)
+=======
+                        type="button"
+>>>>>>> 51451ae (minor fix:09/11/22)
                         className="sticky right-[10%] top-[1%] z-20 w-[30px] h-[30px] flex justify-center items-center text-white text-[20px] rounded-full bg-[#7D2262] overflow-hidden"
                         onClick={() => handleRemoveImage(3)}
                       >
@@ -989,10 +1026,14 @@ function Register() {
                       />
                       <button
 <<<<<<< HEAD
+<<<<<<< HEAD
                         type="button"
 =======
                       type="button"
 >>>>>>> 2722b24 (fix: photos upload)
+=======
+                        type="button"
+>>>>>>> 51451ae (minor fix:09/11/22)
                         className="sticky right-[10%] top-[1%] z-20 w-[30px] h-[30px] flex justify-center items-center text-white text-[20px] rounded-full bg-[#7D2262] overflow-hidden"
                         onClick={() => handleRemoveImage(4)}
                       >
