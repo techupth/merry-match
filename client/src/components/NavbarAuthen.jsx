@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useRef, useEffect } from "react";
 import UserPopup from "./userPopup";
-import useClickOutside from "../ulils/useClickOutside";
+import useClickOutside from "../ulils/hooks/useClickOutside";
 import { useAuth } from "../contexts/authentication";
 import axios, { Axios } from "axios";
 
