@@ -8,7 +8,7 @@ const Navbar = () => {
     <nav className="bg-[#FFFFFF] absolute z-10 overflow-auto  flex flex-row items-center justify-between h-[100px] w-full text-[16px] font-bold shadow-[2px_2px_12px_0_rgba(64,50,133,0.12)] ">
       <button
         onClick={() => {
-          navigate("/")
+          navigate("/");
         }}
       >
         <img
