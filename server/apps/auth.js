@@ -11,17 +11,12 @@ const multerUpload = multer({ dest: "uploads/" });
 const avatarUpload = multerUpload.fields([{ name: "avatar", maxCount: 5 }]);
 
 authRouter.post("/register", avatarUpload, async (req, res) => {
-  console.log(req);
   try {
     const newUserProfile = {
       ...req.body,
       created_at: new Date(),
       updated_at: new Date(),
     };
-
-    // const avatarUrl = await cloudinaryUpload(req.files);
-
-    // // user["avatars"] = avatarUrl;
 
     const salt = await bcrypt.genSalt(10);
     newUserProfile.password = await bcrypt.hash(newUserProfile.password, salt);
@@ -50,7 +45,36 @@ authRouter.post("/register", avatarUpload, async (req, res) => {
       message: "Registered Successfully!",
     });
   } catch (error) {
-    console.log("error is");
+    console.log("error is", error);
+  }
+});
+
+authRouter.get("/register", async (req, res) => {
+  try {
+    const inputData = req.query;
+    if (!inputData.email) {
+      const result = await pool.query(
+        `select username from users where username = $1`,
+        [inputData.username]
+      );
+      if (result.rowCount === 0) {
+        return res.json({ message: "Username Available" });
+      } else {
+        return res.json({ message: "*This Username is already taken." });
+      }
+    } else if (inputData.email) {
+      const result = await pool.query(
+        `select email from users where email = $1`,
+        [inputData.email]
+      );
+      console.log(result);
+      if (result.rowCount === 0) {
+        return res.json({ message: "Email Available" });
+      } else {
+        return res.json({ message: "*This Email is already taken." });
+      }
+    }
+  } catch (error) {
     console.log(error);
   }
 });
@@ -59,27 +83,23 @@ authRouter.post("/login", async (req, res) => {
   const loginKey = req.body.username;
   const password = req.body.password;
 
-  console.log(loginKey);
-  console.log(password);
-
   const result = await pool.query(
     `select user_id,name,username,password,email from users where username = $1 or email = $1`,
     [loginKey]
   );
 
   if (!result.rows[0]) {
-    return res.status(401).json({
-      message: "Username or Email not found",
+    return res.json({
+      message: "*Username or Email not found",
     });
   }
-
   const isValidPassword = await bcrypt.compare(
     password,
     result.rows[0].password
   );
   if (!isValidPassword) {
-    return res.status(401).json({
-      message: "Password is invalid",
+    return res.json({
+      message: "*Password is invalid",
     });
   }
 
@@ -96,7 +116,7 @@ authRouter.post("/login", async (req, res) => {
     }
   );
 
-  return res.status(200).json({
+  return res.json({
     message: "Logged in Successfully!",
     token,
     // data : result

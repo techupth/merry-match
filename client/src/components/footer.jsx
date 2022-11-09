@@ -21,9 +21,13 @@ export default function footer() {
                 />
               </svg>
             </div>
-            <p className="bg-transparent">Let’s start finding and</p>
-            <p className="bg-transparent">and matching someone new</p>
-            <button className="button-footer bg-[#FFE1EA] text-[#95002B] p-4 rounded-full mt-[50px] text-[16px] w-[160px] shadow-xl">
+            <p className="bg-transparent font-[800] leading-[125%]">
+              Let’s start finding and
+            </p>
+            <p className="bg-transparent font-[700] leading-[125%]">
+              and matching someone new
+            </p>
+            <button className="button-footer bg-[#FFE1EA] text-[#95002B] p-4 rounded-full mt-[50px] text-[16px] w-[160px] shadow-xl font-[700]">
               Start Matching!
             </button>
             <div className="absolute right-0 bottom-6">
@@ -63,11 +67,18 @@ export default function footer() {
       <div className="footer-sections bg-[#F6F7FC] w-full mt-[200px] ">
         <div className="footer-wrapper flex flex-col justify-center items-center">
           <div className="footer-content flex justify-center items-center flex-col">
-            <div className="homepage-footer-logo flex flex-row text-[50px] mb-7 mt-7">
+            <img
+              className=" w-[50%] mt-8"
+              src="/asset/header/header-merrymatch-logo.svg"
+              alt="merry match logo"
+            />
+            {/* <div className="homepage-footer-logo flex flex-row text-[50px] mb-7 mt-7">
               <h1 className="text-black bg-transparent mr-3">Merry</h1>
-              <h1 className="text-[#C70039]  bg-transparent">Match</h1>
-            </div>
-            <div className="text text-[#646D89] bg-transparent text-[20px]">
+              <h1 className="text-[#C70039] bg-transparent font-[800]">
+                Match
+              </h1>
+            </div> */}
+            <div className="text text-[#646D89] bg-transparent text-[20px] font-[600] mb-8">
               New generation of online dating website for everyone
             </div>
           </div>
@@ -76,7 +87,7 @@ export default function footer() {
             <p className="text-[#9AA1B9] text-[14px]">
               copyright ©2022 merrymatch.com All rights reserved
             </p>
-            <div className="flex flex-row mt-[20px] mb-6">
+            <div className="flex flex-row mt-[20px] mb-10">
               <svg
                 className="mr-[16px]"
                 width="48"

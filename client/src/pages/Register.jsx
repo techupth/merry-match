@@ -2,16 +2,20 @@ import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/authentication";
 import Countrydata from "../mock-city/Countrydata.json";
 
 function Register() {
   const navigate = useNavigate();
+  const { register, checkRegister, msg } = useAuth();
+
   const [step, setStep] = useState(1);
   const [state, setState] = useState([]);
   const [usernameError, setUsernameError] = useState("* Required");
   const [emailError, setEmailError] = useState("* Required");
   const [passwordLengthError, setPasswordLengthError] = useState("* Required");
   const [passwordMatchError, setPasswordMatchError] = useState("* Required");
+  const [errorInputMsg, setErrorInputMsg] = useState(null);
 
   // states of form 1
   const [name, setName] = useState("");
@@ -35,7 +39,7 @@ function Register() {
   const [images, setImages] = useState([]);
 
   const [imageToRemove, setImageToRemove] = useState(null);
-  console.log(images);
+
   const userInfo = {
     name,
     birthday,
@@ -54,21 +58,17 @@ function Register() {
   };
 
   console.log(userInfo);
-  console.log(images);
+  console.log(msg);
+  // console.log(images);
 
-  //  register function
-  const registerNewUser = async () => {
-    await axios.post("http://localhost:4001/auth/register", userInfo, {
-      headers: { "Content-Types": "multipart/form-data" },
-    });
-  };
-
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    checkNoNull();
-    registerNewUser();
-    alert("Register Successfully!");
-    navigate("/login");
+    if (!checkNoNull()) {
+      console.log("no null");
+      const registerResult = await register(userInfo);
+      console.log("regis");
+      console.log(registerResult);
+    }
   };
 
   useEffect(() => {
@@ -108,7 +108,7 @@ function Register() {
   };
 
   const validateUsername = () => {
-    if (userInfo.username.length < 5) {
+    if (userInfo.username.length <= 5) {
       setUsernameError("* Username must be at least 6 characters");
     } else {
       setUsernameError("");
@@ -116,7 +116,7 @@ function Register() {
   };
 
   const validatePasswordLength = () => {
-    if (password.length < 7) {
+    if (password.length <= 7) {
       setPasswordLengthError("* Password must be at least 8 characters");
     } else {
       setPasswordLengthError("");
@@ -222,23 +222,23 @@ function Register() {
           handleSubmit(e);
         }}
       >
-        <div className="bg-[url('/asset/register/register-section-bg.svg')] bg-cover bg-no-repeat flex flex-col items-center justify-center w-[100%] h-[1200px] ">
-          <div className="flex justify-center items-center flex-col w-[60%] h-[950px]">
+        <div className="bg-[url('/asset/register/register-section-bg.svg')] bg-no-repeat bg-cover flex flex-col items-center justify-center w-[100%] h-[1000px] ">
+          <div className="flex justify-center items-center flex-col w-[80%] h-[950px]">
             {/* **************************** Basic Information ******************************************************************** */}
 
-            <div className="flex w-[95%] h-[20%]">
-              <div>
-                <p className="text-[80%] text-[#7B4429] mb-[1%]">REGISTER</p>
-                <h1 className="text-[250%] text-[#A62D82] leading-[95%] drop-shadow-md font-[800]">
+            <div className="flex w-[95%] h-[20%] mt-[150px]">
+              <div className="ml-[8%] mt-[2%] flex flex-col items-start justify-center">
+                <p className="text-[90%] text-[#7B4429] mb-[1%]">REGISTER</p>
+                <h1 className="text-[250%] text-[#A62D82] leading-[125%] drop-shadow-md font-[800] w-[100%]">
                   Join us and start <br /> matching{" "}
                 </h1>
               </div>
 
               <div className=" ">
                 {step === 1 && (
-                  <div className="w-[85vh] h-[100%] flex flex-row items-center ml-[20%]">
+                  <div className="w-[50vh] h-[100%] flex flex-row items-center ml-[35%]">
                     {/* BOX Content */}
-                    <div className="w-[30vh] h-[50%] shrink border-[3px] ml-1 mr-1 border-[#A62D82] rounded-3xl flex flex-row items-center justify-evenly">
+                    <div className="w-[30vh] h-[50%] shrink border-[1px] ml-1 mr-1 border-[#A62D82] rounded-3xl flex flex-row items-center justify-evenly">
                       <div className=" bg-[#F1F2F6] w-[48px] h-[48px] rounded-2xl flex flex-col items-center justify-center">
                         <p className=" bottom-1 text-[30px] text-[#A62D82] font-[700]">
                           1
@@ -252,13 +252,13 @@ function Register() {
                       </div>
                     </div>
 
-                    <div className="w-[10vh] h-[50%] border-[3px] ml-1 mr-1 border-[#E4E6ED] rounded-3xl text-center text-[#C8CCDB]  flex flex-col items-center justify-center">
+                    <div className="w-[10vh] h-[50%] border-[1px] ml-1 mr-1 border-[#E4E6ED] rounded-3xl text-center text-[#C8CCDB]  flex flex-col items-center justify-center">
                       <div className=" bg-[#F1F2F6] w-[48px] h-[48px] rounded-2xl">
                         <p className="text-[30px] font-[700]">2</p>
                       </div>
                     </div>
 
-                    <div className="w-[10vh] h-[50%] border-[3px] ml-1 mr-1 border-[#E4E6ED] rounded-3xl text-center text-[#C8CCDB]  flex flex-col items-center justify-center">
+                    <div className="w-[10vh] h-[50%] border-[1px] ml-1 mr-1 border-[#E4E6ED] rounded-3xl text-center text-[#C8CCDB]  flex flex-col items-center justify-center">
                       <div className=" bg-[#F1F2F6] w-[48px] h-[48px] rounded-2xl ">
                         <p className="text-[30px] font-[700]">3</p>
                       </div>
@@ -266,15 +266,15 @@ function Register() {
                   </div>
                 )}{" "}
                 {step === 2 && (
-                  <div className="w-[85vh] h-[100%] flex flex-row items-center ml-[20%]">
-                    <div className="w-[10vh] h-[50%] border-[3px] ml-1 mr-1 border-[#E4E6ED] rounded-3xl text-center text-[#C8CCDB] flex flex-col justify-center items-center">
+                  <div className="w-[55vh] h-[100%] flex flex-row items-center ml-[20%]">
+                    <div className="w-[10vh] h-[50%] border-[1px] ml-1 mr-1 border-[#E4E6ED] rounded-3xl text-center text-[#C8CCDB] flex flex-col justify-center items-center">
                       {" "}
                       <div className=" bg-[#F1F2F6] w-[48px] h-[48px] rounded-2xl ">
                         <p className="bottom-1 text-[30px]">1</p>
                       </div>
                     </div>
                     {/* BOX Content */}
-                    <div className="w-[40vh] h-[50%] shrink border-[3px] ml-1 mr-1 border-[#A62D82] rounded-3xl flex flex-row items-center justify-evenly">
+                    <div className="w-[40vh] h-[50%] shrink border-[1px] ml-1 mr-1 border-[#A62D82] rounded-3xl flex flex-row items-center justify-evenly">
                       <div className=" bg-[#F1F2F6] w-[48px] h-[48px] rounded-2xl flex flex-col justify-center items-center">
                         <p className=" text-[30px] text-[#A62D82] font-[700]">
                           2
@@ -288,7 +288,7 @@ function Register() {
                       </div>
                     </div>
 
-                    <div className="w-[10vh] h-[50%] border-[3px] ml-1 mr-1 border-[#E4E6ED] rounded-3xl text-center text-[#C8CCDB] flex flex-col justify-center items-center">
+                    <div className="w-[10vh] h-[50%] border-[1px] ml-1 mr-1 border-[#E4E6ED] rounded-3xl text-center text-[#C8CCDB] flex flex-col justify-center items-center">
                       {" "}
                       <div className=" bg-[#F1F2F6] w-[48px] h-[48px] rounded-2xl">
                         <p className="bottom-1 text-[30px]">3</p>
@@ -298,21 +298,21 @@ function Register() {
                   </div>
                 )}{" "}
                 {step === 3 && (
-                  <div className="w-[85vh] h-[100%] flex flex-row items-center ml-[20%]">
-                    <div className="w-[10vh] h-[50%] border-[3px] ml-1 mr-1 rounded-3xl text-center text-[#C8CCDB]  flex flex-col items-center justify-center">
+                  <div className="w-[50vh] h-[100%] flex flex-row items-center ml-[40%]">
+                    <div className="w-[10vh] h-[50%] border-[1px] ml-1 mr-1 rounded-3xl text-center text-[#C8CCDB]  flex flex-col items-center justify-center">
                       {" "}
                       <div className=" bg-[#F1F2F6] w-[48px] h-[48px] rounded-2xl ">
                         <p className="text-[30px] font-[700]">1</p>
                       </div>
                     </div>
-                    <div className="w-[10vh] h-[50%]  border-[3px] ml-1 mr-1  rounded-3xl text-center text-[#C8CCDB]  flex flex-col items-center justify-center">
+                    <div className="w-[10vh] h-[50%]  border-[1px] ml-1 mr-1  rounded-3xl text-center text-[#C8CCDB]  flex flex-col items-center justify-center">
                       {" "}
                       <div className=" bg-[#F1F2F6] w-[48px] h-[48px] rounded-2xl">
                         <p className="text-[30px] font-[700]">2</p>
                       </div>
                     </div>
                     {/* BOX Content */}
-                    <div className="w-[30vh] h-[50%] shrink border-[3px] ml-1 mr-1 border-[#A62D82] rounded-3xl relative flex flex-row items-center justify-evenly">
+                    <div className="w-[30vh] h-[50%] shrink border-[1px] ml-1 mr-1 border-[#A62D82] rounded-3xl relative flex flex-row items-center justify-evenly">
                       <div className=" bg-[#F1F2F6] w-[48px] h-[48px] rounded-2xl flex flex-col items-center justify-center">
                         <p className="text-[30px] text-[#A62D82] font-[700]">
                           3
@@ -337,7 +337,7 @@ function Register() {
             {step === 1 && (
               <div className="w-[95%] h-[80%] flex justify-center">
                 <div>
-                  <h1 className="basicInformation text-[#A62D82] mt-[80px] font-[800] text-[24px]">
+                  <h1 className="basicInformation text-[#A62D82] mt-[20px] font-[800] text-[24px]">
                     Basic Information
                   </h1>
                   <div className="column1 flex">
@@ -443,9 +443,16 @@ function Register() {
                         onChange={(event) => {
                           setUsername(event.target.value);
                           validateUsername();
+                          const inputData = { username: event.target.value };
+                          setTimeout(() => {
+                            checkRegister(inputData);
+                          }, 500);
                         }}
                       />
                       <div className="text-[#C70039]">{usernameError}</div>
+                      {msg.username === "*This Username is already taken." && (
+                        <div className="text-[#C70039]">{msg.username}</div>
+                      )}
                     </div>
                     <div className="flex flex-col ml-[12px] mt-[40px]">
                       <label htmlFor="Email" className="font-[600]">
@@ -460,11 +467,23 @@ function Register() {
                         onChange={(event) => {
                           setEmail(event.target.value);
                           validateEmail();
+                          const inputData = { email: event.target.value };
+                          setTimeout(() => {
+                            checkRegister(inputData);
+                          }, 500);
+                          if (event.target.value == "") {
+                            setMsg({ ...msg, email: "" });
+                          }
                         }}
                         placeholder="name@website.com"
                         required
                       />
-                      <div className="text-[#C70039]">{emailError}</div>
+                      <div className="text-[#C70039]">
+                        {emailError}
+                        {msg.email === "*This Email is already taken." && (
+                          <div className="text-[#C70039]">{msg.email}</div>
+                        )}
+                      </div>
                     </div>
                   </div>
 
@@ -520,9 +539,9 @@ function Register() {
 
             {/* {/ Form 2 /} */}
             {step === 2 && (
-              <div className="w-[95%] h-[80%] border-[10px] border-[#fcfcfe] flex justify-center">
+              <div className="w-[95%] h-[55%] border-[10px] border-[#fcfcfe] flex justify-center">
                 <div>
-                  <h1 className="basicInformation text-[#A62D82] mt-[80px] font-[800] text-[24px]">
+                  <h1 className="basicInformation text-[#A62D82] mt-[20px] font-[800] text-[24px]">
                     Identities and Interests
                   </h1>
                   <div className="column1 flex">
@@ -678,7 +697,7 @@ function Register() {
                   <h1 className="ProfilePictures text-[#A62D82] mt-[80px] font-[800] text-[24px]">
                     Profile pictures
                   </h1>
-                  <p>Upload at least 2 photos</p>
+                  <p className="font-[400]">Upload at least 2 photos</p>
 
                   <div className="profileContainer mt-[24px] flex"></div>
 
@@ -711,12 +730,13 @@ function Register() {
                 </div>
               </div>
             )}
+          </div>
+          {/* *************************** Button ********************************************************************** */}
 
-            {/* *************************** Button ********************************************************************** */}
-
-            {/* Counter x/3, Button Next, Button Submit */}
+          {/* Counter x/3, Button Next, Button Submit */}
+          <div className=" w-[175vh] h-[10%] border-t border-[#E4E6ED] bg-[white] mb-5 flex flex-col items-center justify-center">
             <div className=" w-[100vh]">
-              <div className=" w-[100%] mt-[2%]  border-t border-[#E4E6ED] space-x-6 flex flex-row justify-end content-end">
+              <div className=" w-[100%] mt-[2%] flex flex-row justify-center content-end mr-[30%] bg-[white]">
                 <p className="flex justify-start items-start content-start mt-[1.5%] mr-[70%]">
                   {step === 1 && "1/3"} {step === 2 && "2/3"}{" "}
                   {step === 3 && "3/3"}
@@ -736,7 +756,7 @@ function Register() {
                   <button
                     type=""
                     onClick={handleNext}
-                    className="mt-[0.5%] text-white bg-[#C70039] hover:bg-red-800  font-[800] rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                    className="mt-[0.5%] text-white bg-[#C70039] hover:bg-red-800  font-[800] rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 ml-5"
                   >
                     Next step
                   </button>
@@ -746,7 +766,7 @@ function Register() {
                   <button
                     type=""
                     onClick={handleNext}
-                    className="mt-[0.5%] text-white  font-[800] bg-[#C70039] hover:bg-red-800 rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                    className="mt-[0.5%] text-white  font-[800] bg-[#C70039] hover:bg-red-800 rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 ml-5"
                   >
                     Next step
                   </button>
@@ -761,7 +781,7 @@ function Register() {
                       usernameError !== "" ||
                       emailError !== ""
                     }
-                    className="mt-[0.5%] text-white bg-[#C70039] hover:bg-red-800 font-[700] rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 disabled:bg-[#F1F2F6] disabled:text-[#646D89]"
+                    className="mt-[0.5%] text-white bg-[#C70039] hover:bg-red-800 font-[700] rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 disabled:bg-[#F1F2F6] disabled:text-[#646D89] ml-5"
                   >
                     Confirm
                   </button>

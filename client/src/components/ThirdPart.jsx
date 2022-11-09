@@ -1,5 +1,5 @@
 import React from "react";
-import emoji_img1 from "../../public/asset/ThirdPart_Pic/emoji_img1.png";  
+import emoji_img1 from "../../public/asset/ThirdPart_Pic/emoji_img1.png";
 import emoji_img2 from "../../public/asset/ThirdPart_Pic/emoji_img2.png";
 import emoji_img3 from "../../public/asset/ThirdPart_Pic/emoji_img3.png";
 import emoji_img4 from "../../public/asset/ThirdPart_Pic/emoji_img4.png";
@@ -7,7 +7,7 @@ import emoji_img4 from "../../public/asset/ThirdPart_Pic/emoji_img4.png";
 function ThirdPart() {
   return (
     <div className="bg-[#160404] w-full h-[622px]">
-      <h2 className="howtomerry text-[#DF89C6] text-[46px] text-center">
+      <h2 className="howtomerry text-[#DF89C6] text-[46px] text-center font-[800]">
         How to Merry
       </h2>
       <div className="card flex mt-[48px] justify-center ">
@@ -19,8 +19,12 @@ function ThirdPart() {
             </div>
           </div>
           <div className="containerText w-[198px] mx-auto mt-[40px]">
-            <p className="text-[24px] text-[#FFFFFF]">Upload your cool picture</p>
-            <p className="text-[16px] text-[#C8CCDB]">Lorem ipsum is a placeholder text</p>
+            <p className="text-[24px] text-[#FFFFFF] font-[700] leading-[125%]">
+              Upload your cool picture
+            </p>
+            <p className="text-[16px] text-[#C8CCDB] font-[400] leading-[150%]">
+              Lorem ipsum is a placeholder text
+            </p>
           </div>
         </div>
         {/* End Item1 */}
@@ -33,8 +37,12 @@ function ThirdPart() {
             </div>
           </div>
           <div className="containerText w-[198px] mx-auto mt-[40px]">
-            <p className="text-[24px] text-[#FFFFFF]">Explore and find the one you like</p>
-            <p className="text-[16px] text-[#C8CCDB]">Lorem ipsum is a placeholder text</p>
+            <p className="text-[24px] text-[#FFFFFF] font-[700] leading-[125%]">
+              Explore and find the one you like
+            </p>
+            <p className="text-[16px] text-[#C8CCDB]">
+              Lorem ipsum is a placeholder text
+            </p>
           </div>
         </div>
         {/* End Item2 */}
@@ -47,8 +55,12 @@ function ThirdPart() {
             </div>
           </div>
           <div className="containerText w-[198px] mx-auto mt-[40px]">
-            <p className="text-[24px] text-[#FFFFFF]">Click ‘Merry’ for get to know!</p>
-            <p className="text-[16px] text-[#C8CCDB]">Lorem ipsum is a placeholder text</p>
+            <p className="text-[24px] text-[#FFFFFF] font-[700] leading-[125%]">
+              Click ‘Merry’ for get to know!
+            </p>
+            <p className="text-[16px] text-[#C8CCDB]">
+              Lorem ipsum is a placeholder text
+            </p>
           </div>
         </div>
         {/* End Item3 */}
@@ -61,8 +73,12 @@ function ThirdPart() {
             </div>
           </div>
           <div className="containerText w-[198px] mx-auto mt-[40px]">
-            <p className="text-[24px] text-[#FFFFFF]">Start chating and relationship </p>
-            <p className="text-[16px] text-[#C8CCDB] leading-6">Lorem ipsum is a placeholder text</p>
+            <p className="text-[24px] text-[#FFFFFF] font-[700] leading-[125%]">
+              Start chating and relationship{" "}
+            </p>
+            <p className="text-[16px] text-[#C8CCDB] leading-6">
+              Lorem ipsum is a placeholder text
+            </p>
           </div>
         </div>
         {/* End Item1 */}
