@@ -29,9 +29,8 @@ const Login = () => {
     }
   };
 
-  // console.log(userData);
-  console.log(username);
-  console.log(password);
+  // console.log(username);
+  // console.log(password);
   return (
     <div className="contanerLogin bg-white h-[1000px] w-full flex items-center ">
       <div className="lSide w-1/2 flex justify-center">
