@@ -40,36 +40,7 @@ function Register() {
   const animatedComponents = makeAnimated();
   const [selectedOption, setSelectedOption] = useState([]);
   const [contact, setContact] = useState([]);
-  const colorStyles = {
-    control: (styles) => ({ ...styles, backgroundColor: "white" }),
-    option: (styles, { data, isDisabled, isFocused, isSelected }) => {
-      return { ...styles, color: data.color };
-    },
-    multiValue: (styles, { data }) => {
-      return {
-        ...styles,
-        backgroundColor: data.color,
-        color: "#fff",
-      };
-    },
-    multiValueLabel: (styles, { data }) => {
-      return {
-        ...styles,
-        color: "#fff",
-      };
-    },
-    multiValueRemove: (styles, { data }) => {
-      return {
-        ...styles,
-        color: "#fff",
-        cursor: "pointer",
-        ":hover": {
-          color: "#fff",
-        },
-      };
-    },
-  };
-
+  
   // states of form 2
   const [sexualIdentities, setSexualIdentities] = useState("");
   const [sexualPreferences, setSexualPreferences] = useState("");
@@ -83,7 +54,7 @@ function Register() {
   const [imageToRemove, setImageToRemove] = useState(null);
   const userInfo = {
     name,
-    birthday,
+    birthday : startDate,
     location: countryid,
     city: stateid,
     username,
@@ -98,9 +69,19 @@ function Register() {
     profile_pics: images,
   };
   // console.log(birthday);
-  // console.log(userInfo);
+  console.log(userInfo);
   // console.log(images);
   console.log(startDate);
+  
+  //GetAgeuser
+  const userYear = startDate.getFullYear()
+  console.log(userYear)
+  const now = new Date().getFullYear()
+  console.log(now)
+  const Age = now - userYear
+  console.log(Age)
+
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
