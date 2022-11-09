@@ -26,11 +26,14 @@ import { options, optionsContact } from './optionSelect'
 import makeAnimated from "react-select/animated";
 import Select from "react-select";
 import { options, optionsContact } from "./optionSelect";
-import DatePicker from "react-datepicker"
+import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
+<<<<<<< HEAD
 >>>>>>> 7f714ce (feat : Calendar style)
 
+=======
+>>>>>>> ab6ba62 (style : style date on editepage and registerpage)
 function Register() {
   const navigate = useNavigate();
   const { register, checkRegister, msg } = useAuth();
@@ -60,6 +63,7 @@ function Register() {
   const [selectedOption, setSelectedOption] = useState([]);
 <<<<<<< HEAD
   const [contact, setContact] = useState([]);
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -115,6 +119,9 @@ function Register() {
 =======
   
 >>>>>>> 966ed99 (Add : can map datato edithpmepage)
+=======
+
+>>>>>>> ab6ba62 (style : style date on editepage and registerpage)
   // states of form 2
   const [sexualIdentities, setSexualIdentities] = useState("");
   const [sexualPreferences, setSexualPreferences] = useState("");
@@ -132,7 +139,7 @@ function Register() {
 >>>>>>> 7f714ce (feat : Calendar style)
   const userInfo = {
     name,
-    birthday : startDate,
+    birthday: startDate,
     location: countryid,
     city: stateid,
     username,
@@ -158,16 +165,21 @@ function Register() {
   // console.log(images);
   console.log(startDate);
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 7f714ce (feat : Calendar style)
 =======
   
+=======
+
+>>>>>>> ab6ba62 (style : style date on editepage and registerpage)
   const registerNewUser = async () => {
     await axios.post("http://localhost:4001/auth/register", userInfo, {
       headers: { "Content-Types": "multipart/form-data" },
     });
   };
-  
+
   //GetAgeuser
+<<<<<<< HEAD
   const userYear = startDate.getFullYear()
   console.log(userYear)
   const now = new Date().getFullYear()
@@ -177,6 +189,14 @@ function Register() {
 
 
 >>>>>>> 966ed99 (Add : can map datato edithpmepage)
+=======
+  const userYear = startDate.getFullYear();
+  console.log(userYear);
+  const now = new Date().getFullYear();
+  console.log(now);
+  const Age = now - userYear;
+  console.log(Age);
+>>>>>>> ab6ba62 (style : style date on editepage and registerpage)
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -185,7 +205,6 @@ function Register() {
     // alert("Register Successfully!");
     navigate("/login");
   };
-
 
   useEffect(() => {
     validatePasswordMatch();
@@ -367,8 +386,6 @@ function Register() {
     }
   };
 
-
-
   return (
     <div>
       <form
@@ -512,7 +529,7 @@ function Register() {
                         Name
                       </label>
                       <input
-                        className="w-[453px] rounded-lg border-[#D6D9E4]"
+                        className="w-[453px] rounded-lg border-[#D6D9E4]  focus:border-pink-300"
                         type="text"
                         id="name"
                         value={name}
@@ -524,36 +541,31 @@ function Register() {
                         }}
                       />
                     </div>
-                        <DatePicker selected={startDate} onChange={(date) => {
-                          console.log(date)
-                          setStartDate(date)
-                          }}/>
+
                     <div className="flex flex-col ml-[12px] mt-[24px]">
                       <label htmlFor="birth" className="font-[600]">
                         Date of birth
                       </label>
-                      <input
-                        className="calenda w-[453px] rounded-lg border-[#D6D9E4] "
-                        
-                        type="date"
-                        id="birth"
-                        name="birthday"
-                        value={birthday}
-                        placeholder="01/01/2020"
-                        required
-                        onChange={(event) => {
-                          setBirthday(event.target.value);
+                      <DatePicker
+                        className="w-[453px] rounded-lg border-[#D6D9E4] focus:border-pink-300"
+                        selected={startDate}
+                        onChange={(date) => {
+                          console.log(date);
+                          setStartDate(date);
                         }}
                       />
 
                       {/* .............. */}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
                       
 >>>>>>> db62597 (feat: Edit profile modal preview)
 
+=======
+>>>>>>> ab6ba62 (style : style date on editepage and registerpage)
                       {/* ............... */}
                     </div>
                   </div>
@@ -857,6 +869,7 @@ function Register() {
 <<<<<<< HEAD
                       isOptionDisabled={() => selectedOption.length >= 5}
                       isMulti
+<<<<<<< HEAD
 
 =======
                       isMulti
@@ -866,6 +879,8 @@ function Register() {
                       isMulti
 
 >>>>>>> 51451ae (minor fix:09/11/22)
+=======
+>>>>>>> ab6ba62 (style : style date on editepage and registerpage)
                     />
                   </div>
 
