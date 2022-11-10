@@ -1,22 +1,12 @@
 import React from "react";
 import { useState, useRef, useEffect } from "react";
 import UserPopup from "./userPopup";
-<<<<<<< HEAD:client/src/components/Navbar/NavbarAuthen.jsx
 import jwtDecode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import useClickOutside from '../../utils/hooks/useClickOutside';
 
 const NavbarAuthen = () => {
-=======
-import useClickOutside from "../ulils/hooks/useClickOutside";
-import jwtDecode from "jwt-decode";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../contexts/authentication";
-import axios, { Axios } from "axios";
-
-const Navbarauthen = () => {
->>>>>>> origin/feature/dataValidation:client/src/components/NavbarAuthen.jsx
   const [images, setImage] = useState("");
   const [callPop, setCallPop] = useState(false);
   const [userData, setUserData] = useState({});

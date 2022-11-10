@@ -2,14 +2,9 @@ import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-<<<<<<< HEAD:client/src/pages/register/Register.jsx
 import { useAuth } from "../../contexts/authentication";
 import Countrydata from "../../utils/mock-city/Countrydata.json";
 // import Hobbies, { } from "./hobbieData.";
-=======
-import { useAuth } from "../contexts/authentication";
-import Countrydata from "../mock-city/Countrydata.json";
->>>>>>> origin/feature/dataValidation:client/src/pages/Register.jsx
 import makeAnimated from "react-select/animated";
 import Select from "react-select";
 import { options, optionsContact } from "../../utils/optionSelect";
@@ -43,11 +38,7 @@ function Register() {
   //hobbies part
   const animatedComponents = makeAnimated();
   const [selectedOption, setSelectedOption] = useState([]);
-<<<<<<< HEAD:client/src/pages/register/Register.jsx
-
-
-=======
-  const [contact, setContact] = useState([]);
+ 
   const colorStyles = {
     control: (styles) => ({ ...styles, backgroundColor: "white" }),
     option: (styles, { data, isDisabled, isFocused, isSelected }) => {
@@ -77,7 +68,6 @@ function Register() {
       };
     },
   };
->>>>>>> origin/feature/dataValidation:client/src/pages/Register.jsx
 
   // states of form 2
   const [sexualIdentities, setSexualIdentities] = useState("");
@@ -297,13 +287,8 @@ function Register() {
           <div className="flex justify-center items-center flex-col w-[80%] h-[950px]">
             {/* **************************** Basic Information ******************************************************************** */}
 
-<<<<<<< HEAD:client/src/pages/register/Register.jsx
-            <div className="flex w-[95%] h-[20%] mt-[150px] mb-[2%]">
-              <div className="ml-[15%] flex flex-col items-start justify-center">
-=======
             <div className="flex w-[95%] h-[20%] mt-[150px] flex-row items-center justify-between">
               <div className="ml-[8%] mt-[2%] flex flex-col items-start justify-center">
->>>>>>> origin/feature/dataValidation:client/src/pages/Register.jsx
                 <p className="text-[90%] text-[#7B4429] mb-[1%]">REGISTER</p>
                 <h1 className="text-[250%] text-[#A62D82] leading-[125%] drop-shadow-md font-[800] w-[100%]">
                   Join us and start <br /> matching{" "}
@@ -363,13 +348,8 @@ function Register() {
                         </p>
                       </div>
                       <div className="flex flex-col items-start">
-<<<<<<< HEAD:client/src/pages/register/Register.jsx
-                        <p className="text-[#646D89]">Step 2/3</p>
-                        <p className="text-[17px] text-[#A62D82] font-[800]">
-=======
                         <p className="text-[12px]">Step 2/3</p>
                         <p className="text-[16px] text-[#A62D82] font-[700]">
->>>>>>> origin/feature/dataValidation:client/src/pages/Register.jsx
                           Identities and Interests
                         </p>
                       </div>
@@ -412,13 +392,8 @@ function Register() {
                         </p>
                       </div>
                       <div className="flex flex-col items-start justify-center">
-<<<<<<< HEAD:client/src/pages/register/Register.jsx
-                        <p className="text-[#646D89]">Step 3/3</p>
-                        <p className="text-[#A62D82] font-[800]">
-=======
                         <p className="text-[12px]">Step 3/3</p>
                         <p className="text-[#A62D82] font-[700] text-[16px]">
->>>>>>> origin/feature/dataValidation:client/src/pages/Register.jsx
                           Upload Photos
                         </p>
                       </div>
@@ -829,11 +804,7 @@ function Register() {
             {/* {/ Form 3 */}
 
             {step === 3 && (
-<<<<<<< HEAD:client/src/pages/register/Register.jsx
-              <div className="w-[80%] h-[50%] flex flex-col justify-start items-center">
-=======
               <div className="w-[100%] h-[50%] flex flex-col justify-start items-center mb-[15vh]">
->>>>>>> origin/feature/dataValidation:client/src/pages/Register.jsx
                 <div className=" w-[100%] h-[20%] flex flex-col justify-center items-start mt-[3%]">
                   <h1 className="ProfilePictures text-[#A62D82] font-[800] text-[24px] ">
                     Profile pictures <br />

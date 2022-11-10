@@ -1,5 +1,4 @@
 import React from "react";
-<<<<<<< HEAD:client/src/components/Navbar/userPopup.jsx
 import starts from "../../../public/asset/NavBarIcon/starts.svg";
 import profile from "../../../public/asset/NavBarIcon/profile.svg";
 import merryList from "../../../public/asset/NavBarIcon/merryList.svg";
@@ -8,32 +7,16 @@ import logouticon from "../../../public/asset/NavBarIcon/logout.svg";
 import compliant from "../../../public/asset/NavBarIcon/compliant.svg";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/authentication";
-=======
-import starts from "../../public/asset/NavBarIcon/starts.svg";
-import profile from "../../public/asset/NavBarIcon/profile.svg";
-import merryList from "../../public/asset/NavBarIcon/merryList.svg";
-import member from "../../public/asset/NavBarIcon/member.svg";
-import logouticon from "../../public/asset/NavBarIcon/logout.svg";
-import compliant from "../../public/asset/NavBarIcon/compliant.svg";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../contexts/authentication";
->>>>>>> origin/feature/dataValidation:client/src/components/userPopup.jsx
 
 // Using by redering to Nav page
 
 
 
 function UserPopup({ close }) {
-<<<<<<< HEAD:client/src/components/Navbar/userPopup.jsx
 
   const navigate = useNavigate()
 
   const { logout } = useAuth()
-=======
-  const navigate = useNavigate();
-
-  const { logout } = useAuth();
->>>>>>> origin/feature/dataValidation:client/src/components/userPopup.jsx
 
   return (
     <div className="inline-block text-left z-50 h-[500px] absolute right-[3%] top-[80%]">
@@ -63,17 +46,7 @@ function UserPopup({ close }) {
           >
             <img src={profile} className="mr-2" />
             <span class="flex flex-col">
-<<<<<<< HEAD:client/src/components/Navbar/userPopup.jsx
               <span onClick={() => { navigate("/edit") }}>Profile</span>
-=======
-              <span
-                onClick={() => {
-                  navigate("/edit");
-                }}
-              >
-                Profile
-              </span>
->>>>>>> origin/feature/dataValidation:client/src/components/userPopup.jsx
             </span>
           </a>
           <a
