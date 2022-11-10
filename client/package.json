@@ -17,6 +17,8 @@
     "@mui/material": "^5.10.13",
     "@mui/styled-engine-sc": "^5.10.6",
     "@mui/x-date-pickers": "^5.0.7",
+    "@react-navigation/native": "^6.0.13",
+    "@react-navigation/native-stack": "^6.9.1",
     "@themesberg/tailwind-datepicker": "^1.1.0",
     "axios": "^1.1.3",
     "chakra-dayzed-datepicker": "^0.2.5",
