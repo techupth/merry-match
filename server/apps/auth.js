@@ -19,7 +19,6 @@ authRouter.post("/register", avatarUpload, async (req, res) => {
       updated_at: new Date(),
     };
     
-    console.log(newUserProfile)
     const salt = await bcrypt.genSalt(10);
     newUserProfile.password = await bcrypt.hash(newUserProfile.password, salt);
 
@@ -69,7 +68,6 @@ authRouter.get("/register", async (req, res) => {
         `select email from users where email = $1`,
         [inputData.email]
       );
-      console.log(result);
       if (result.rowCount === 0) {
         return res.json({ message: "Email Available" });
       } else {

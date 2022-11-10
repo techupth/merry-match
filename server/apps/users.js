@@ -33,7 +33,7 @@ userRouter.post("/", async (req, res) => {
       created_at: new Date(),
       updated_at: new Date(),
     };
-    console.log(newUserProfile);
+
     await pool.query(`SET datestyle = dmy`);
 
     await pool.query(
