@@ -255,12 +255,12 @@ function Register() {
           handleSubmit(e);
         }}
       >
-        <div className="bg-[url('/asset/register/register-section-bg.svg')] bg-no-repeat bg-cover flex flex-col items-center justify-center w-[100%] h-[1000px] ">
+        <div className="bg-[url('/asset/register/register-section-bg.svg')] bg-no-repeat bg-cover flex flex-col items-center justify-center w-[100%] h-[1200px] ">
           <div className="flex justify-center items-center flex-col w-[80%] h-[950px]">
             {/* **************************** Basic Information ******************************************************************** */}
 
-            <div className="flex w-[95%] h-[20%] mt-[150px]">
-              <div className="ml-[8%] mt-[2%] flex flex-col items-start justify-center">
+            <div className="flex w-[95%] h-[20%] mt-[150px] mb-[2%]">
+              <div className="ml-[15%] flex flex-col items-start justify-center">
                 <p className="text-[90%] text-[#7B4429] mb-[1%]">REGISTER</p>
                 <h1 className="text-[250%] text-[#A62D82] leading-[125%] drop-shadow-md font-[800] w-[100%]">
                   Join us and start <br /> matching{" "}
@@ -314,8 +314,8 @@ function Register() {
                         </p>
                       </div>
                       <div className="flex flex-col items-start">
-                        <p className="">Step 2/3</p>
-                        <p className="text-[17px] text-[#A62D82] font-[700]">
+                        <p className="text-[#646D89]">Step 2/3</p>
+                        <p className="text-[17px] text-[#A62D82] font-[800]">
                           Identities and Interests
                         </p>
                       </div>
@@ -352,8 +352,8 @@ function Register() {
                         </p>
                       </div>
                       <div className="flex flex-col items-start justify-center">
-                        <p className="">Step 3/3</p>
-                        <p className="text-[#A62D82] font-[700]">
+                        <p className="text-[#646D89]">Step 3/3</p>
+                        <p className="text-[#A62D82] font-[800]">
                           Upload Photos
                         </p>
                       </div>
@@ -368,8 +368,8 @@ function Register() {
 
             {/* Form 1 /} */}
             {step === 1 && (
-              <div className="w-[95%] h-[80%] flex justify-center">
-                <div>
+              <div className="w-[105%] h-[80%] flex justify-center">
+                <div className="flex flex-col  w-[full]">
                   <h1 className="basicInformation text-[#A62D82] mt-[20px] font-[800] text-[24px]">
                     Basic Information
                   </h1>
@@ -764,7 +764,7 @@ function Register() {
             {/* {/ Form 3 */}
 
             {step === 3 && (
-              <div className="w-[100%] h-[50%] flex flex-col justify-start items-center">
+              <div className="w-[80%] h-[50%] flex flex-col justify-start items-center">
                 <div className=" w-[100%] h-[20%] flex flex-col justify-center items-start mt-[3%]">
                   <h1 className="ProfilePictures text-[#A62D82] font-[800] text-[24px] ">
                     Profile pictures <br />
@@ -773,7 +773,7 @@ function Register() {
                   <p>Upload at least 2 photos</p>
                 </div>
 
-                <div className="w-[100%] h-[80%] flex justify-center flex-row">
+                <div className="w-[100%] h-[100%] flex justify-center flex-row">
                   {/* Images uploader */}
 
                   {/* 1 ** */}
@@ -790,7 +790,7 @@ function Register() {
                       <img
                         src={images[0].url}
                         alt="pic-1"
-                        className=" mt-3 ml-3 w-auto h-auto rounded-md overflow-hidden z-0 "
+                        className=" mt-3 w-auto h-auto rounded-md overflow-hidden z-0 "
                       />
                       <button
                         type="button"
@@ -816,7 +816,7 @@ function Register() {
                       <img
                         src={images[1].url}
                         alt="pic-1"
-                        className=" mt-3 ml-3  w-auto h-auto rounded-lg overflow-hidden z-10 "
+                        className=" mt-3 w-auto h-auto rounded-lg overflow-hidden z-10 "
                       />
                       <button
                         type="button"
@@ -841,7 +841,7 @@ function Register() {
                       <img
                         src={images[2].url}
                         alt="pic-1"
-                        className=" mt-3 ml-3  rounded-lg overflow-hidden z-10 "
+                        className=" mt-3 rounded-lg overflow-hidden z-10 "
                       />
                       <button
                         type="button"
@@ -866,7 +866,7 @@ function Register() {
                       <img
                         src={images[3].url}
                         alt="pic-1"
-                        className=" mt-3 ml-3 rounded-lg overflow-hidden z-10 "
+                        className=" mt-3 rounded-lg overflow-hidden z-10 "
                       />
                       <button
                         type="button"
@@ -891,7 +891,7 @@ function Register() {
                       <img
                         src={images[4].url}
                         alt="pic-1"
-                        className=" mt-3 ml-3 rounded-lg overflow-hidden z-10 "
+                        className=" mt-3 rounded-lg overflow-hidden z-10 "
                       />
                       <button
                         type="button"
