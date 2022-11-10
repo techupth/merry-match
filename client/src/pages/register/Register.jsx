@@ -2,9 +2,14 @@ import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+<<<<<<< HEAD:client/src/pages/register/Register.jsx
 import { useAuth } from "../../contexts/authentication";
 import Countrydata from "../../utils/mock-city/Countrydata.json";
 // import Hobbies, { } from "./hobbieData.";
+=======
+import { useAuth } from "../contexts/authentication";
+import Countrydata from "../mock-city/Countrydata.json";
+>>>>>>> origin/feature/dataValidation:client/src/pages/Register.jsx
 import makeAnimated from "react-select/animated";
 import Select from "react-select";
 import { options, optionsContact } from "../../utils/optionSelect";
@@ -38,8 +43,41 @@ function Register() {
   //hobbies part
   const animatedComponents = makeAnimated();
   const [selectedOption, setSelectedOption] = useState([]);
+<<<<<<< HEAD:client/src/pages/register/Register.jsx
 
 
+=======
+  const [contact, setContact] = useState([]);
+  const colorStyles = {
+    control: (styles) => ({ ...styles, backgroundColor: "white" }),
+    option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+      return { ...styles, color: data.color };
+    },
+    multiValue: (styles, { data }) => {
+      return {
+        ...styles,
+        backgroundColor: data.color,
+        color: "#fff",
+      };
+    },
+    multiValueLabel: (styles, { data }) => {
+      return {
+        ...styles,
+        color: "#fff",
+      };
+    },
+    multiValueRemove: (styles, { data }) => {
+      return {
+        ...styles,
+        color: "#fff",
+        cursor: "pointer",
+        ":hover": {
+          color: "#fff",
+        },
+      };
+    },
+  };
+>>>>>>> origin/feature/dataValidation:client/src/pages/Register.jsx
 
   // states of form 2
   const [sexualIdentities, setSexualIdentities] = useState("");
@@ -259,101 +297,128 @@ function Register() {
           <div className="flex justify-center items-center flex-col w-[80%] h-[950px]">
             {/* **************************** Basic Information ******************************************************************** */}
 
+<<<<<<< HEAD:client/src/pages/register/Register.jsx
             <div className="flex w-[95%] h-[20%] mt-[150px] mb-[2%]">
               <div className="ml-[15%] flex flex-col items-start justify-center">
+=======
+            <div className="flex w-[95%] h-[20%] mt-[150px] flex-row items-center justify-between">
+              <div className="ml-[8%] mt-[2%] flex flex-col items-start justify-center">
+>>>>>>> origin/feature/dataValidation:client/src/pages/Register.jsx
                 <p className="text-[90%] text-[#7B4429] mb-[1%]">REGISTER</p>
                 <h1 className="text-[250%] text-[#A62D82] leading-[125%] drop-shadow-md font-[800] w-[100%]">
                   Join us and start <br /> matching{" "}
                 </h1>
               </div>
 
-              <div className=" ">
+              <div className="">
                 {step === 1 && (
-                  <div className="w-[50vh] h-[100%] flex flex-row items-center ml-[35%]">
+                  <div className="w-[430px] h-[80px] flex flex-row items-center mr-[3vw]">
                     {/* BOX Content */}
-                    <div className="w-[30vh] h-[50%] shrink border-[1px] ml-1 mr-1 border-[#A62D82] rounded-3xl flex flex-row items-center justify-evenly">
+                    <div className="w-[246px] h-[80px] shrink border-[1px] ml-1 mr-1 border-[#A62D82] rounded-3xl flex flex-row items-center justify-evenly">
                       <div className=" bg-[#F1F2F6] w-[48px] h-[48px] rounded-2xl flex flex-col items-center justify-center">
-                        <p className=" bottom-1 text-[30px] text-[#A62D82] font-[700]">
+                        <p className="text-[24px] text-[#A62D82] font-[700]">
                           1
                         </p>
                       </div>
                       <div className="flex flex-col justify-start items-start">
-                        <p className="text-[#646D89]">Step 1/3</p>
-                        <p className="text-[#A62D82] font-[800]">
+                        <p className="text-[#646D89] text-[12px]">Step 1/3</p>
+                        <p className="text-[#A62D82] font-[800] text-[16px]">
                           Basic Information
                         </p>
                       </div>
                     </div>
 
-                    <div className="w-[10vh] h-[50%] border-[1px] ml-1 mr-1 border-[#E4E6ED] rounded-3xl text-center text-[#C8CCDB]  flex flex-col items-center justify-center">
-                      <div className=" bg-[#F1F2F6] w-[48px] h-[48px] rounded-2xl">
-                        <p className="text-[30px] font-[700]">2</p>
+                    <div className="w-[80px] h-[80px] border-[1px] ml-1 mr-1 border-[#E4E6ED] rounded-3xl text-center text-[#C8CCDB]  flex flex-col items-center justify-center">
+                      <div className=" bg-[#F1F2F6] w-[48px] h-[48px] rounded-2xl flex flex-col items-center justify-center">
+                        <p className="text-[24px] text-[#(AA1B9)] font-[700]">
+                          2
+                        </p>
                       </div>
                     </div>
 
-                    <div className="w-[10vh] h-[50%] border-[1px] ml-1 mr-1 border-[#E4E6ED] rounded-3xl text-center text-[#C8CCDB]  flex flex-col items-center justify-center">
-                      <div className=" bg-[#F1F2F6] w-[48px] h-[48px] rounded-2xl ">
-                        <p className="text-[30px] font-[700]">3</p>
+                    <div className="w-[80px] h-[80px] border-[1px] ml-1 mr-1 border-[#E4E6ED] rounded-3xl text-center text-[#C8CCDB]  flex flex-col items-center justify-center">
+                      <div className=" bg-[#F1F2F6] w-[48px] h-[48px] rounded-2xl flex flex-col items-center justify-center ">
+                        <p className="text-[24px] text-[#(AA1B9)] font-[700]">
+                          3
+                        </p>
                       </div>
                     </div>
                   </div>
                 )}{" "}
                 {step === 2 && (
-                  <div className="w-[55vh] h-[100%] flex flex-row items-center ml-[20%]">
-                    <div className="w-[10vh] h-[50%] border-[1px] ml-1 mr-1 border-[#E4E6ED] rounded-3xl text-center text-[#C8CCDB] flex flex-col justify-center items-center">
+                  <div className="w-[472px] h-[80px] flex flex-row items-center mr-[3vw]">
+                    <div className="w-[80px] h-[80px] border-[1px] ml-1 mr-1 border-[#E4E6ED] rounded-3xl text-center text-[#C8CCDB] flex flex-col justify-center items-center">
                       {" "}
-                      <div className=" bg-[#F1F2F6] w-[48px] h-[48px] rounded-2xl ">
-                        <p className="bottom-1 text-[30px]">1</p>
+                      <div className=" bg-[#F1F2F6] w-[48px] h-[48px] rounded-2xl  flex flex-col items-center justify-center ">
+                        <p className="text-[24px] text-[#9AA1B9] font-[700]">
+                          1
+                        </p>
                       </div>
                     </div>
                     {/* BOX Content */}
-                    <div className="w-[40vh] h-[50%] shrink border-[1px] ml-1 mr-1 border-[#A62D82] rounded-3xl flex flex-row items-center justify-evenly">
+                    <div className="w-[288px] h-[80px] shrink border-[1px] ml-1 mr-1 border-[#A62D82] rounded-3xl flex flex-row items-center justify-evenly">
                       <div className=" bg-[#F1F2F6] w-[48px] h-[48px] rounded-2xl flex flex-col justify-center items-center">
-                        <p className=" text-[30px] text-[#A62D82] font-[700]">
+                        <p className=" text-[24px] text-[#A62D82] font-[700]">
                           2
                         </p>
                       </div>
                       <div className="flex flex-col items-start">
+<<<<<<< HEAD:client/src/pages/register/Register.jsx
                         <p className="text-[#646D89]">Step 2/3</p>
                         <p className="text-[17px] text-[#A62D82] font-[800]">
+=======
+                        <p className="text-[12px]">Step 2/3</p>
+                        <p className="text-[16px] text-[#A62D82] font-[700]">
+>>>>>>> origin/feature/dataValidation:client/src/pages/Register.jsx
                           Identities and Interests
                         </p>
                       </div>
                     </div>
 
-                    <div className="w-[10vh] h-[50%] border-[1px] ml-1 mr-1 border-[#E4E6ED] rounded-3xl text-center text-[#C8CCDB] flex flex-col justify-center items-center">
+                    <div className="w-[80px] h-[80px] border-[1px] ml-1 mr-1 border-[#E4E6ED] rounded-3xl text-center text-[#C8CCDB] flex flex-col justify-center items-center">
                       {" "}
-                      <div className=" bg-[#F1F2F6] w-[48px] h-[48px] rounded-2xl">
-                        <p className="bottom-1 text-[30px]">3</p>
+                      <div className=" bg-[#F1F2F6] w-[48px] h-[48px] rounded-2xl  flex flex-col items-center justify-center">
+                        <p className="text-[24px] text-[#9AA1B9] font-[700]">
+                          3
+                        </p>
                       </div>
                     </div>
                     {/* <Register2 /> */}
                   </div>
                 )}{" "}
                 {step === 3 && (
-                  <div className="w-[50vh] h-[100%] flex flex-row items-center ml-[40%]">
-                    <div className="w-[10vh] h-[50%] border-[1px] ml-1 mr-1 rounded-3xl text-center text-[#C8CCDB]  flex flex-col items-center justify-center">
+                  <div className="w-[409px] h-[80px] flex flex-row items-center mr-[3vw]">
+                    <div className="w-[80px] h-[80px] border-[1px] ml-1 mr-1 rounded-3xl text-center text-[#C8CCDB]  flex flex-col items-center justify-center">
                       {" "}
-                      <div className=" bg-[#F1F2F6] w-[48px] h-[48px] rounded-2xl ">
-                        <p className="text-[30px] font-[700]">1</p>
+                      <div className=" bg-[#F1F2F6] w-[48px] h-[48px] rounded-2xl flex flex-col items-center justify-center ">
+                        <p className="text-[24px] text-[#9AA1B9] font-[700]">
+                          1
+                        </p>
                       </div>
                     </div>
-                    <div className="w-[10vh] h-[50%]  border-[1px] ml-1 mr-1  rounded-3xl text-center text-[#C8CCDB]  flex flex-col items-center justify-center">
+                    <div className="w-[80px] h-[80px]  border-[1px] ml-1 mr-1  rounded-3xl text-center text-[#C8CCDB]  flex flex-col items-center justify-center">
                       {" "}
-                      <div className=" bg-[#F1F2F6] w-[48px] h-[48px] rounded-2xl">
-                        <p className="text-[30px] font-[700]">2</p>
+                      <div className=" bg-[#F1F2F6] w-[48px] h-[48px] rounded-2xl flex flex-col items-center justify-center">
+                        <p className="text-[24px] font-[700] text-[#9aa1b9]">
+                          2
+                        </p>
                       </div>
                     </div>
                     {/* BOX Content */}
-                    <div className="w-[30vh] h-[50%] shrink border-[1px] ml-1 mr-1 border-[#A62D82] rounded-3xl relative flex flex-row items-center justify-evenly">
+                    <div className="w-[225px] h-[80px] shrink border-[1px] ml-1 mr-1 border-[#A62D82] rounded-3xl relative flex flex-row items-center justify-evenly">
                       <div className=" bg-[#F1F2F6] w-[48px] h-[48px] rounded-2xl flex flex-col items-center justify-center">
-                        <p className="text-[30px] text-[#A62D82] font-[700]">
+                        <p className="text-[24px] text-[#A62D82] font-[700]">
                           3
                         </p>
                       </div>
                       <div className="flex flex-col items-start justify-center">
+<<<<<<< HEAD:client/src/pages/register/Register.jsx
                         <p className="text-[#646D89]">Step 3/3</p>
                         <p className="text-[#A62D82] font-[800]">
+=======
+                        <p className="text-[12px]">Step 3/3</p>
+                        <p className="text-[#A62D82] font-[700] text-[16px]">
+>>>>>>> origin/feature/dataValidation:client/src/pages/Register.jsx
                           Upload Photos
                         </p>
                       </div>
@@ -573,7 +638,7 @@ function Register() {
 
             {/* {/ Form 2 /} */}
             {step === 2 && (
-              <div className="w-[95%] h-[55%] border-[10px] border-[#fcfcfe] flex justify-center">
+              <div className="w-[95%] h-[55%] border-[10px] border-[#fcfcfe] flex justify-center mb-20">
                 <div>
                   <h1 className="basicInformation text-[#A62D82] mt-[20px] font-[800] text-[24px]">
                     Identities and Interests
@@ -764,7 +829,11 @@ function Register() {
             {/* {/ Form 3 */}
 
             {step === 3 && (
+<<<<<<< HEAD:client/src/pages/register/Register.jsx
               <div className="w-[80%] h-[50%] flex flex-col justify-start items-center">
+=======
+              <div className="w-[100%] h-[50%] flex flex-col justify-start items-center mb-[15vh]">
+>>>>>>> origin/feature/dataValidation:client/src/pages/Register.jsx
                 <div className=" w-[100%] h-[20%] flex flex-col justify-center items-start mt-[3%]">
                   <h1 className="ProfilePictures text-[#A62D82] font-[800] text-[24px] ">
                     Profile pictures <br />
@@ -909,8 +978,8 @@ function Register() {
           {/* *************************** Button ********************************************************************** */}
 
           {/* Counter x/3, Button Next, Button Submit */}
-          <div className=" w-[175vh] h-[10%] border-t border-[#E4E6ED] bg-[white] mb-5 flex flex-col items-center justify-center">
-            <div className=" w-[100vh]">
+          <div className=" w-[100vw] h-[10vh] border-t border-[#E4E6ED] bg-[white] flex flex-col items-center justify-center">
+            <div className=" w-[100vw]">
               <div className=" w-[100%] mt-[2%] flex flex-row justify-center content-end mr-[30%] bg-[white]">
                 <p className="flex justify-start items-start content-start mt-[1.5%] mr-[70%]">
                   {step === 1 && "1/3"} {step === 2 && "2/3"}{" "}

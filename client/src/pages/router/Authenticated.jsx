@@ -1,6 +1,10 @@
 import { Routes, Route } from "react-router-dom";
 import HomepageAuth from "./AuthHomepage";
+<<<<<<< HEAD:client/src/pages/router/Authenticated.jsx
 import EditProfile from "../editProfile/EditProfile";
+=======
+import EditProfile from "./EditProfile";
+>>>>>>> origin/feature/dataValidation:client/src/pages/Authenticated.jsx
 
 const Authenticated = () => {
     return (
