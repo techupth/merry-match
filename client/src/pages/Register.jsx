@@ -104,6 +104,7 @@ function Register() {
 =======
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 >>>>>>> 757ce4a (add:contact)
 
@@ -122,6 +123,8 @@ function Register() {
 =======
 
 >>>>>>> ab6ba62 (style : style date on editepage and registerpage)
+=======
+>>>>>>> b1a5d9c (fix:register pageUI and add swipe db)
   // states of form 2
   const [sexualIdentities, setSexualIdentities] = useState("");
   const [sexualPreferences, setSexualPreferences] = useState("");
@@ -152,7 +155,7 @@ function Register() {
     meeting_int: meetingInterests,
     hobby: selectedOption,
     profile_pics: images,
-    contact
+    contact,
   };
 <<<<<<< HEAD
 
@@ -398,12 +401,17 @@ function Register() {
             {/* **************************** Basic Information ******************************************************************** */}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             <div className="flex w-[95%] h-[20%] mt-[150px] flex-row items-center justify-between">
               <div className="ml-[8%] mt-[2%] flex flex-col items-start justify-center">
 =======
             <div className="flex w-[95%] h-[20%] mt-[150px] mb-[2%]">
               <div className="ml-[15%] flex flex-col items-start justify-center">
 >>>>>>> 853c944 (fix: (register page layout) step 1-3)
+=======
+            <div className="flex w-[95%] h-[20%] mt-[150px] flex-row items-center justify-between">
+              <div className="ml-[8%] mt-[2%] flex flex-col items-start justify-center">
+>>>>>>> b1a5d9c (fix:register pageUI and add swipe db)
                 <p className="text-[90%] text-[#7B4429] mb-[1%]">REGISTER</p>
                 <h1 className="text-[250%] text-[#A62D82] leading-[125%] drop-shadow-md font-[800] w-[100%]">
                   Join us and start <br /> matching{" "}
@@ -464,12 +472,17 @@ function Register() {
                       </div>
                       <div className="flex flex-col items-start">
 <<<<<<< HEAD
+<<<<<<< HEAD
                         <p className="text-[12px]">Step 2/3</p>
                         <p className="text-[16px] text-[#A62D82] font-[700]">
 =======
                         <p className="text-[#646D89]">Step 2/3</p>
                         <p className="text-[17px] text-[#A62D82] font-[800]">
 >>>>>>> 853c944 (fix: (register page layout) step 1-3)
+=======
+                        <p className="text-[12px]">Step 2/3</p>
+                        <p className="text-[16px] text-[#A62D82] font-[700]">
+>>>>>>> b1a5d9c (fix:register pageUI and add swipe db)
                           Identities and Interests
                         </p>
                       </div>
@@ -513,12 +526,17 @@ function Register() {
                       </div>
                       <div className="flex flex-col items-start justify-center">
 <<<<<<< HEAD
+<<<<<<< HEAD
                         <p className="text-[12px]">Step 3/3</p>
                         <p className="text-[#A62D82] font-[700] text-[16px]">
 =======
                         <p className="text-[#646D89]">Step 3/3</p>
                         <p className="text-[#A62D82] font-[800]">
 >>>>>>> 853c944 (fix: (register page layout) step 1-3)
+=======
+                        <p className="text-[12px]">Step 3/3</p>
+                        <p className="text-[#A62D82] font-[700] text-[16px]">
+>>>>>>> b1a5d9c (fix:register pageUI and add swipe db)
                           Upload Photos
                         </p>
                       </div>
@@ -917,9 +935,7 @@ function Register() {
                         }}
                       />
                     </div>
-
                   </div>
-
 
                   {/* <div className="HobbiesBox flex">
                     <input
@@ -962,6 +978,7 @@ function Register() {
             {step === 3 && (
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
               <div className="w-[100%] h-[50%] flex flex-col justify-start items-center mb-[15vh]">
 =======
               <div className="w-[100%] h-[50%] flex flex-col justify-start items-center">
@@ -969,6 +986,9 @@ function Register() {
 =======
               <div className="w-[80%] h-[50%] flex flex-col justify-start items-center">
 >>>>>>> 853c944 (fix: (register page layout) step 1-3)
+=======
+              <div className="w-[100%] h-[50%] flex flex-col justify-start items-center mb-[15vh]">
+>>>>>>> b1a5d9c (fix:register pageUI and add swipe db)
                 <div className=" w-[100%] h-[20%] flex flex-col justify-center items-start mt-[3%]">
                   <h1 className="ProfilePictures text-[#A62D82] font-[800] text-[24px] ">
                     Profile pictures <br />
