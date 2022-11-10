@@ -4,10 +4,12 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/authentication";
 import Countrydata from "../mock-city/Countrydata.json";
+// import Hobbies, { } from "./hobbieData.";
 import makeAnimated from "react-select/animated";
 import Select from "react-select";
 import { options, optionsContact } from "./optionSelect";
-
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 function Register() {
   const navigate = useNavigate();
@@ -31,6 +33,7 @@ function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [startDate, setStartDate] = useState(new Date());
 
   //hobbies part
   const animatedComponents = makeAnimated();
@@ -49,10 +52,9 @@ function Register() {
   const [images, setImages] = useState([]);
 
   const [imageToRemove, setImageToRemove] = useState(null);
-
   const userInfo = {
     name,
-    birthday,
+    birthday: startDate,
     location: countryid,
     city: stateid,
     username,
@@ -67,10 +69,24 @@ function Register() {
     profile_pics: images,
     contact
   };
-
+  // console.log(birthday);
   console.log(userInfo);
-  console.log(msg);
   // console.log(images);
+  console.log(startDate);
+
+  const registerNewUser = async () => {
+    await axios.post("http://localhost:4001/auth/register", userInfo, {
+      headers: { "Content-Types": "multipart/form-data" },
+    });
+  };
+
+  //GetAgeuser
+  const userYear = startDate.getFullYear();
+  console.log(userYear);
+  const now = new Date().getFullYear();
+  console.log(now);
+  const Age = now - userYear;
+  console.log(Age);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -79,7 +95,6 @@ function Register() {
     // alert("Register Successfully!");
     navigate("/login");
   };
-
 
   useEffect(() => {
     validatePasswordMatch();
@@ -233,8 +248,6 @@ function Register() {
     }
   };
 
-
-
   return (
     <div>
       <form
@@ -366,7 +379,7 @@ function Register() {
                         Name
                       </label>
                       <input
-                        className="w-[453px] rounded-lg border-[#D6D9E4]"
+                        className="w-[453px] rounded-lg border-[#D6D9E4]  focus:border-pink-300"
                         type="text"
                         id="name"
                         value={name}
@@ -378,26 +391,21 @@ function Register() {
                         }}
                       />
                     </div>
+
                     <div className="flex flex-col ml-[12px] mt-[24px]">
                       <label htmlFor="birth" className="font-[600]">
                         Date of birth
                       </label>
-                      <input
-                        className="w-[453px] rounded-lg border-[#D6D9E4]"
-                        type="date"
-                        id="birth"
-                        name="birthday"
-                        value={birthday}
-                        placeholder="01/01/2020"
-                        required
-                        onChange={(event) => {
-                          setBirthday(event.target.value);
+                      <DatePicker
+                        className="w-[453px] rounded-lg border-[#D6D9E4] focus:border-pink-300"
+                        selected={startDate}
+                        onChange={(date) => {
+                          console.log(date);
+                          setStartDate(date);
                         }}
                       />
 
                       {/* .............. */}
-
-
 
                       {/* ............... */}
                     </div>
@@ -692,7 +700,6 @@ function Register() {
                       closeMenuOnSelect={false}
                       isOptionDisabled={() => selectedOption.length >= 5}
                       isMulti
-
                     />
                   </div>
 
@@ -772,7 +779,7 @@ function Register() {
                   {/* 1 ** */}
                   {images.length < 1 ? (
                     <button
-                      className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500]"
+                      className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]  items-center justify-center "
                       type="button"
                       onClick={handleStateWiged}
                     >
@@ -787,7 +794,7 @@ function Register() {
                       />
                       <button
                         type="button"
-                        className="sticky right-[10%] top-[1%] z-20 w-[30px] h-[30px] flex justify-center items-center text-white text-[20px] rounded-full bg-[#7D2262] overflow-hidden"
+                        className="sticky right-[10%] top-[1%] z-20 w-[30px] h-[30px] flex justify-center items-center text-white text-[20px] rounded-full bg-[#7D2262] overflow-hidden "
                         onClick={() => handleRemoveImage(0)}
                       >
                         X
@@ -798,7 +805,7 @@ function Register() {
                   {/* 2 ** */}
                   {images.length < 2 ? (
                     <button
-                      className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 text-[1rem] font-[500] rounded-lg text-[#7D2262]  "
+                      className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 text-[1rem] font-[500] rounded-lg text-[#7D2262] bg-[#F1F2F6]  items-center justify-center "
                       type="button"
                       onClick={handleStateWiged}
                     >
@@ -823,7 +830,7 @@ function Register() {
                   {/* 3 ** */}
                   {images.length < 3 ? (
                     <button
-                      className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 text-[1rem] font-[500] rounded-lg text-[#7D2262]  "
+                      className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 text-[1rem] font-[500] rounded-lg text-[#7D2262] bg-[#F1F2F6]  items-center justify-center   "
                       type="button"
                       onClick={handleStateWiged}
                     >
@@ -848,7 +855,7 @@ function Register() {
                   {/* 4 ** */}
                   {images.length < 4 ? (
                     <button
-                      className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] "
+                      className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]  items-center justify-center  "
                       type="button"
                       onClick={handleStateWiged}
                     >
@@ -873,7 +880,7 @@ function Register() {
                   {/* 5 ** */}
                   {images.length < 5 ? (
                     <button
-                      className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] "
+                      className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]  items-center justify-center  "
                       type="button"
                       onClick={handleStateWiged}
                     >
