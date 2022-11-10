@@ -1,0 +1,18 @@
+import { Routes, Route } from "react-router-dom";
+import HomepageAuth from "./AuthHomepage";
+import EditProfile from '../EditProfile'
+
+function Authenticated() {
+    return (
+        <>
+            <Routes>
+                <Route path="/" element={<HomepageAuth />} />
+                <Route path="*" element={<HomepageAuth />} />
+                {/* <Route path="/dev" element={<Login />} /> */}
+                <Route path="/edit" element={<EditProfile />} />
+            </Routes>
+        </>
+    );
+}
+
+export default Authenticated;
