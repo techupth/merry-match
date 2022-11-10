@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import HomepageAuth from "./AuthHomepage";
-import EditProfile from "./EditProfile";
+import EditProfile from "../editProfile/EditProfile";
 
 const Authenticated = () => {
     return (

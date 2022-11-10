@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import useHandleNextBack from "../../ulils/hooks/usehandleNextBack";
 import heartLogo from "../../../public/asset/editModalItems/hearthLogo.svg";
 import xLogo from "../../../public/asset/editModalItems/xLogo.svg";
 import awL from "../../../public/asset/editModalItems/awL.svg";

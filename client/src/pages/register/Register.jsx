@@ -2,12 +2,12 @@ import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../contexts/authentication";
-import Countrydata from "../mock-city/Countrydata.json";
+import { useAuth } from "../../contexts/authentication";
+import Countrydata from "../../utils/mock-city/Countrydata.json";
 // import Hobbies, { } from "./hobbieData.";
 import makeAnimated from "react-select/animated";
 import Select from "react-select";
-import { options, optionsContact } from "./optionSelect";
+import { options, optionsContact } from "../../utils/optionSelect";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 

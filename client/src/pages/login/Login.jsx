@@ -1,7 +1,7 @@
 import React from "react";
-import bannerLogin from "../../public/asset/Login/bannerLogin.png";
+import bannerLogin from "../../../public/asset/Login/bannerLogin.png";
 import { useState, useEffect } from "react";
-import { useAuth } from "../contexts/authentication";
+import { useAuth } from "../../contexts/authentication";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 

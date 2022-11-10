@@ -1,5 +1,5 @@
 import React from "react";
-import vector from "../../public/asset/SecondPart/vector.svg";
+import vector from "../../../public/asset/SecondPart/vector.svg";
 
 function SecondPart() {
   return (

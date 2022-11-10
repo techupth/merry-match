@@ -1,13 +1,6 @@
-import Unauthenticated from "./pages/Unauthenticated";
+import Unauthenticated from "./pages/router/Unauthenticated";
 import { useAuth } from "./contexts/authentication";
-import Authenticated from "./pages/Authenticated";
-import Navbar from "./components/Navbar";
-import Home from "./pages/Home";
-import Register from "./pages/Register";
-import { Routes, Route } from "react-router-dom";
-import Login from "./pages/Login";
-import Devtools from "./components/devtools"
-
+import Authenticated from "./pages/router/Authenticated";
 
 function App() {
   const auth = useAuth();

@@ -1,12 +1,12 @@
 import React from "react";
-import starts from "../../public/asset/NavBarIcon/starts.svg";
-import profile from "../../public/asset/NavBarIcon/profile.svg";
-import merryList from "../../public/asset/NavBarIcon/merryList.svg";
-import member from "../../public/asset/NavBarIcon/member.svg";
-import logouticon from "../../public/asset/NavBarIcon/logout.svg";
-import compliant from "../../public/asset/NavBarIcon/compliant.svg";
+import starts from "../../../public/asset/NavBarIcon/starts.svg";
+import profile from "../../../public/asset/NavBarIcon/profile.svg";
+import merryList from "../../../public/asset/NavBarIcon/merryList.svg";
+import member from "../../../public/asset/NavBarIcon/member.svg";
+import logouticon from "../../../public/asset/NavBarIcon/logout.svg";
+import compliant from "../../../public/asset/NavBarIcon/compliant.svg";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../contexts/authentication";
+import { useAuth } from "../../contexts/authentication";
 
 // Using by redering to Nav page
 

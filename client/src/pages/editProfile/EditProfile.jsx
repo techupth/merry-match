@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import Countrydata from "../mock-city/countrydata";
-import { useAuth } from "../contexts/authentication";
+import Countrydata from "../../utils/mock-city/Countrydata.json";
+import { useAuth } from "../../contexts/authentication";
 import axios from "axios";
 import makeAnimated from "react-select/animated";
-import { options, optionsContact } from "./optionSelect";
+import { options, optionsContact } from "../../utils/optionSelect";
 import Select from "react-select";
-import Navbarauthen from "../components/NavbarAuthen";
+import NavbarAuthen from "../../components/Navbar/NavbarAuthen";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import jwtDecode from "jwt-decode";
@@ -150,7 +150,7 @@ const Register = () => {
 
   return (
     <div className="w-full bg-[#FCFCFE] flex flex-col">
-      <Navbarauthen />
+      <NavbarAuthen />
       <div className="informationContainer flex justify-center border-solid border-2 border-indigo-600 flex-col items-center justify-center">
         <form>
           {/* start Header */}
