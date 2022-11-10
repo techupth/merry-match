@@ -4,36 +4,10 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/authentication";
 import Countrydata from "../mock-city/Countrydata.json";
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> db62597 (feat: Edit profile modal preview)
 import makeAnimated from "react-select/animated";
 import Select from "react-select";
 import { options, optionsContact } from "./optionSelect";
 
-<<<<<<< HEAD
-=======
-// import Hobbies, { } from "./hobbieData.";
-<<<<<<< HEAD
-import makeAnimated from 'react-select/animated';
-import Select from 'react-select';
-import { options, optionsContact } from './optionSelect'
->>>>>>> b3ff6a6 (add:react selectOn Hobbie/contact)
-=======
->>>>>>> db62597 (feat: Edit profile modal preview)
-=======
-import makeAnimated from "react-select/animated";
-import Select from "react-select";
-import { options, optionsContact } from "./optionSelect";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-
-<<<<<<< HEAD
->>>>>>> 7f714ce (feat : Calendar style)
-
-=======
->>>>>>> ab6ba62 (style : style date on editepage and registerpage)
 function Register() {
   const navigate = useNavigate();
   const { register, checkRegister, msg } = useAuth();
@@ -56,19 +30,11 @@ function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [startDate, setStartDate] = useState(new Date());
 
   //hobbies part
   const animatedComponents = makeAnimated();
   const [selectedOption, setSelectedOption] = useState([]);
-<<<<<<< HEAD
   const [contact, setContact] = useState([]);
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 51451ae (minor fix:09/11/22)
   const colorStyles = {
     control: (styles) => ({ ...styles, backgroundColor: "white" }),
     option: (styles, { data, isDisabled, isFocused, isSelected }) => {
@@ -98,51 +64,22 @@ function Register() {
       };
     },
   };
-<<<<<<< HEAD
-=======
-=======
-=======
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-
->>>>>>> 757ce4a (add:contact)
-
-<<<<<<< HEAD
->>>>>>> 51451ae (minor fix:09/11/22)
-
->>>>>>> b3ff6a6 (add:react selectOn Hobbie/contact)
-
-=======
->>>>>>> db62597 (feat: Edit profile modal preview)
-=======
->>>>>>> 7f714ce (feat : Calendar style)
-=======
-  
->>>>>>> 966ed99 (Add : can map datato edithpmepage)
-=======
-
->>>>>>> ab6ba62 (style : style date on editepage and registerpage)
-=======
->>>>>>> b1a5d9c (fix:register pageUI and add swipe db)
   // states of form 2
   const [sexualIdentities, setSexualIdentities] = useState("");
   const [sexualPreferences, setSexualPreferences] = useState("");
   const [racialPreferences, setRacialPreferences] = useState("");
   const [meetingInterests, setMeetingInterests] = useState("");
   const [text, setText] = useState([]);
-  const [contact, setContact] = useState([]);
+
   //states of form 3
   const [images, setImages] = useState([]);
 
   const [imageToRemove, setImageToRemove] = useState(null);
-<<<<<<< HEAD
 
-=======
->>>>>>> 7f714ce (feat : Calendar style)
   const userInfo = {
     name,
-    birthday: startDate,
+    birthday,
     location: countryid,
     city: stateid,
     username,
@@ -153,53 +90,13 @@ function Register() {
     sex_pref: sexualPreferences,
     racial_pref: racialPreferences,
     meeting_int: meetingInterests,
-    hobby: selectedOption,
+    hobby: hobbies,
     profile_pics: images,
-    contact,
   };
-<<<<<<< HEAD
 
   console.log(userInfo);
   console.log(msg);
   // console.log(images);
-=======
-  // console.log(birthday);
-  console.log(userInfo);
-  // console.log(images);
-  console.log(startDate);
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 7f714ce (feat : Calendar style)
-=======
-  
-=======
-
->>>>>>> ab6ba62 (style : style date on editepage and registerpage)
-  const registerNewUser = async () => {
-    await axios.post("http://localhost:4001/auth/register", userInfo, {
-      headers: { "Content-Types": "multipart/form-data" },
-    });
-  };
-
-  //GetAgeuser
-<<<<<<< HEAD
-  const userYear = startDate.getFullYear()
-  console.log(userYear)
-  const now = new Date().getFullYear()
-  console.log(now)
-  const Age = now - userYear
-  console.log(Age)
-
-
->>>>>>> 966ed99 (Add : can map datato edithpmepage)
-=======
-  const userYear = startDate.getFullYear();
-  console.log(userYear);
-  const now = new Date().getFullYear();
-  console.log(now);
-  const Age = now - userYear;
-  console.log(Age);
->>>>>>> ab6ba62 (style : style date on editepage and registerpage)
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -258,22 +155,8 @@ function Register() {
       setPasswordLengthError("* Password must be at least 8 characters");
     } else {
       setPasswordLengthError("");
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     }
     preventDefault;
-=======
-    } preventDefault
->>>>>>> b3ff6a6 (add:react selectOn Hobbie/contact)
-=======
-    }
-    preventDefault;
->>>>>>> db62597 (feat: Edit profile modal preview)
-=======
-    }
-    preventDefault;
->>>>>>> 7f714ce (feat : Calendar style)
   };
 
   const validatePasswordMatch = () => {
@@ -326,20 +209,6 @@ function Register() {
   };
 
   const handleRemoveImage = (i) => {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-  
->>>>>>> 2722b24 (fix: photos upload)
-=======
-
->>>>>>> 51451ae (minor fix:09/11/22)
-=======
->>>>>>> db62597 (feat: Edit profile modal preview)
-=======
->>>>>>> 7f714ce (feat : Calendar style)
     console.log(i);
 
     const imageId = i;
@@ -396,22 +265,12 @@ function Register() {
           handleSubmit(e);
         }}
       >
-        <div className="bg-[url('/asset/register/register-section-bg.svg')] bg-no-repeat bg-cover flex flex-col items-center justify-center w-[100%] h-[1200px] ">
+        <div className="bg-[url('/asset/register/register-section-bg.svg')] bg-no-repeat bg-cover flex flex-col items-center justify-center w-[100%] h-[1000px] ">
           <div className="flex justify-center items-center flex-col w-[80%] h-[950px]">
             {/* **************************** Basic Information ******************************************************************** */}
 
-<<<<<<< HEAD
-<<<<<<< HEAD
             <div className="flex w-[95%] h-[20%] mt-[150px] flex-row items-center justify-between">
               <div className="ml-[8%] mt-[2%] flex flex-col items-start justify-center">
-=======
-            <div className="flex w-[95%] h-[20%] mt-[150px] mb-[2%]">
-              <div className="ml-[15%] flex flex-col items-start justify-center">
->>>>>>> 853c944 (fix: (register page layout) step 1-3)
-=======
-            <div className="flex w-[95%] h-[20%] mt-[150px] flex-row items-center justify-between">
-              <div className="ml-[8%] mt-[2%] flex flex-col items-start justify-center">
->>>>>>> b1a5d9c (fix:register pageUI and add swipe db)
                 <p className="text-[90%] text-[#7B4429] mb-[1%]">REGISTER</p>
                 <h1 className="text-[250%] text-[#A62D82] leading-[125%] drop-shadow-md font-[800] w-[100%]">
                   Join us and start <br /> matching{" "}
@@ -471,18 +330,8 @@ function Register() {
                         </p>
                       </div>
                       <div className="flex flex-col items-start">
-<<<<<<< HEAD
-<<<<<<< HEAD
                         <p className="text-[12px]">Step 2/3</p>
                         <p className="text-[16px] text-[#A62D82] font-[700]">
-=======
-                        <p className="text-[#646D89]">Step 2/3</p>
-                        <p className="text-[17px] text-[#A62D82] font-[800]">
->>>>>>> 853c944 (fix: (register page layout) step 1-3)
-=======
-                        <p className="text-[12px]">Step 2/3</p>
-                        <p className="text-[16px] text-[#A62D82] font-[700]">
->>>>>>> b1a5d9c (fix:register pageUI and add swipe db)
                           Identities and Interests
                         </p>
                       </div>
@@ -525,18 +374,8 @@ function Register() {
                         </p>
                       </div>
                       <div className="flex flex-col items-start justify-center">
-<<<<<<< HEAD
-<<<<<<< HEAD
                         <p className="text-[12px]">Step 3/3</p>
                         <p className="text-[#A62D82] font-[700] text-[16px]">
-=======
-                        <p className="text-[#646D89]">Step 3/3</p>
-                        <p className="text-[#A62D82] font-[800]">
->>>>>>> 853c944 (fix: (register page layout) step 1-3)
-=======
-                        <p className="text-[12px]">Step 3/3</p>
-                        <p className="text-[#A62D82] font-[700] text-[16px]">
->>>>>>> b1a5d9c (fix:register pageUI and add swipe db)
                           Upload Photos
                         </p>
                       </div>
@@ -551,8 +390,8 @@ function Register() {
 
             {/* Form 1 /} */}
             {step === 1 && (
-              <div className="w-[105%] h-[80%] flex justify-center">
-                <div className="flex flex-col  w-[full]">
+              <div className="w-[95%] h-[80%] flex justify-center">
+                <div>
                   <h1 className="basicInformation text-[#A62D82] mt-[20px] font-[800] text-[24px]">
                     Basic Information
                   </h1>
@@ -562,7 +401,7 @@ function Register() {
                         Name
                       </label>
                       <input
-                        className="w-[453px] rounded-lg border-[#D6D9E4]  focus:border-pink-300"
+                        className="w-[453px] rounded-lg border-[#D6D9E4]"
                         type="text"
                         id="name"
                         value={name}
@@ -574,31 +413,25 @@ function Register() {
                         }}
                       />
                     </div>
-
                     <div className="flex flex-col ml-[12px] mt-[24px]">
                       <label htmlFor="birth" className="font-[600]">
                         Date of birth
                       </label>
-                      <DatePicker
-                        className="w-[453px] rounded-lg border-[#D6D9E4] focus:border-pink-300"
-                        selected={startDate}
-                        onChange={(date) => {
-                          console.log(date);
-                          setStartDate(date);
+                      <input
+                        className="w-[453px] rounded-lg border-[#D6D9E4]"
+                        type="date"
+                        id="birth"
+                        name="birthday"
+                        value={birthday}
+                        placeholder="01/01/2020"
+                        required
+                        onChange={(event) => {
+                          setBirthday(event.target.value);
                         }}
                       />
 
                       {/* .............. */}
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
-                      
->>>>>>> db62597 (feat: Edit profile modal preview)
-
-=======
->>>>>>> ab6ba62 (style : style date on editepage and registerpage)
                       {/* ............... */}
                     </div>
                   </div>
@@ -880,15 +713,7 @@ function Register() {
                   <div className="mt-[40px] font-[600]">
                     Hobbies / Interests (Maximum 5)
                     <Select
-<<<<<<< HEAD
-<<<<<<< HEAD
                       className="text-[#7D2262] bg-[#F4EBF2]"
-=======
-                      components={animatedComponents}
->>>>>>> b3ff6a6 (add:react selectOn Hobbie/contact)
-=======
-                      className="text-[#7D2262] bg-[#F4EBF2]"
->>>>>>> 51451ae (minor fix:09/11/22)
                       defaultValue={selectedOption}
                       onChange={setSelectedOption}
                       options={options}
@@ -898,43 +723,26 @@ function Register() {
                       isLoading={false}
                       isRtl={false}
                       closeMenuOnSelect={false}
-<<<<<<< HEAD
-<<<<<<< HEAD
                       isOptionDisabled={() => selectedOption.length >= 5}
                       isMulti
-<<<<<<< HEAD
-
-=======
-                      isMulti
->>>>>>> b3ff6a6 (add:react selectOn Hobbie/contact)
-=======
-                      isOptionDisabled={() => selectedOption.length >= 5}
-                      isMulti
-
->>>>>>> 51451ae (minor fix:09/11/22)
-=======
->>>>>>> ab6ba62 (style : style date on editepage and registerpage)
                     />
                   </div>
 
-                  <div className="column1 flex">
-                    <div className="flex flex-col mr-[12px] mt-[24px]">
-                      <label htmlFor="name" className="font-[600] ">
-                        Contact Information
-                      </label>
-                      <input
-                        className="w-[930px] h-[36px] rounded-lg border-[#D6D9E4]"
-                        type="text"
-                        id="name"
-                        value={contact}
-                        name="contact"
-                        placeholder="Ex Line:ID"
-                        required
-                        onChange={(event) => {
-                          setContact(event.target.value);
-                        }}
-                      />
-                    </div>
+                  <div className="mt-[40px] font-[600]">
+                    Contact
+                    <Select
+                      components={animatedComponents}
+                      defaultValue={contact}
+                      onChange={setContact}
+                      options={optionsContact}
+                      isClearable={true}
+                      isSearchable={true}
+                      isDisabled={false}
+                      isLoading={false}
+                      isRtl={false}
+                      closeMenuOnSelect={false}
+                      isMulti
+                    />
                   </div>
 
                   {/* <div className="HobbiesBox flex">
@@ -976,19 +784,7 @@ function Register() {
             {/* {/ Form 3 */}
 
             {step === 3 && (
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
               <div className="w-[100%] h-[50%] flex flex-col justify-start items-center mb-[15vh]">
-=======
-              <div className="w-[100%] h-[50%] flex flex-col justify-start items-center">
->>>>>>> 2722b24 (fix: photos upload)
-=======
-              <div className="w-[80%] h-[50%] flex flex-col justify-start items-center">
->>>>>>> 853c944 (fix: (register page layout) step 1-3)
-=======
-              <div className="w-[100%] h-[50%] flex flex-col justify-start items-center mb-[15vh]">
->>>>>>> b1a5d9c (fix:register pageUI and add swipe db)
                 <div className=" w-[100%] h-[20%] flex flex-col justify-center items-start mt-[3%]">
                   <h1 className="ProfilePictures text-[#A62D82] font-[800] text-[24px] ">
                     Profile pictures <br />
@@ -997,64 +793,28 @@ function Register() {
                   <p>Upload at least 2 photos</p>
                 </div>
 
-                <div className="w-[100%] h-[100%] flex justify-center flex-row">
+                <div className="w-[100%] h-[80%] flex justify-center flex-row">
                   {/* Images uploader */}
 
                   {/* 1 ** */}
                   {images.length < 1 ? (
                     <button
-                      className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]  items-center justify-center "
+                      className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500]"
                       type="button"
                       onClick={handleStateWiged}
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
                     >
                       + <br /> Upload photo{" "}
                     </button>
-=======
-                    >+ <br /> Upload photo </button>
->>>>>>> 2722b24 (fix: photos upload)
-=======
-                    >
-                      + <br /> Upload photo{" "}
-                    </button>
->>>>>>> db62597 (feat: Edit profile modal preview)
-=======
-                    >
-                      + <br /> Upload photo{" "}
-                    </button>
->>>>>>> 7f714ce (feat : Calendar style)
                   ) : (
                     <p className="w-[35%] h-[60%] flex relative rounded-md overflow-hidden justify-center z-10">
                       <img
                         src={images[0].url}
                         alt="pic-1"
-                        className=" mt-3 w-auto h-auto rounded-md overflow-hidden z-0 "
+                        className=" mt-3 ml-3 w-auto h-auto rounded-md overflow-hidden z-0 "
                       />
                       <button
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
                         type="button"
-<<<<<<< HEAD
-=======
-                      type="button"
->>>>>>> 2722b24 (fix: photos upload)
-=======
-                        type="button"
->>>>>>> 51451ae (minor fix:09/11/22)
-=======
-                        type="button"
->>>>>>> db62597 (feat: Edit profile modal preview)
-=======
-                        type="button"
->>>>>>> 7f714ce (feat : Calendar style)
                         className="sticky right-[10%] top-[1%] z-20 w-[30px] h-[30px] flex justify-center items-center text-white text-[20px] rounded-full bg-[#7D2262] overflow-hidden"
-=======
-                        className="sticky right-[10%] top-[1%] z-20 w-[30px] h-[30px] flex justify-center items-center text-white text-[20px] rounded-full bg-[#7D2262] overflow-hidden "
->>>>>>> 2750d6a (style: edit page and photo)
                         onClick={() => handleRemoveImage(0)}
                       >
                         X
@@ -1065,53 +825,21 @@ function Register() {
                   {/* 2 ** */}
                   {images.length < 2 ? (
                     <button
-                      className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 text-[1rem] font-[500] rounded-lg text-[#7D2262] bg-[#F1F2F6]  items-center justify-center "
+                      className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 text-[1rem] font-[500] rounded-lg text-[#7D2262]  "
                       type="button"
                       onClick={handleStateWiged}
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
                     >
                       + <br /> Upload photo{" "}
                     </button>
-=======
-                    >+ <br /> Upload photo </button>
->>>>>>> 2722b24 (fix: photos upload)
-=======
-                    >
-                      + <br /> Upload photo{" "}
-                    </button>
->>>>>>> db62597 (feat: Edit profile modal preview)
-=======
-                    >
-                      + <br /> Upload photo{" "}
-                    </button>
->>>>>>> 7f714ce (feat : Calendar style)
                   ) : (
                     <p className="w-[35%] h-[60%] flex  relative rounded-lg overflow-hidden justify-center z-10">
                       <img
                         src={images[1].url}
                         alt="pic-1"
-                        className=" mt-3 w-auto h-auto rounded-lg overflow-hidden z-10 "
+                        className=" mt-3 ml-3  w-auto h-auto rounded-lg overflow-hidden z-10 "
                       />
                       <button
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
                         type="button"
-=======
-                      type="button"
->>>>>>> 2722b24 (fix: photos upload)
-=======
-                        type="button"
->>>>>>> 51451ae (minor fix:09/11/22)
-=======
-                        type="button"
->>>>>>> db62597 (feat: Edit profile modal preview)
-=======
-                        type="button"
->>>>>>> 7f714ce (feat : Calendar style)
                         className="sticky right-[10%] top-[1%] z-20 w-[30px] h-[30px] flex justify-center items-center text-white text-[20px] rounded-full bg-[#7D2262] overflow-hidden"
                         onClick={() => handleRemoveImage(1)}
                       >
@@ -1122,53 +850,21 @@ function Register() {
                   {/* 3 ** */}
                   {images.length < 3 ? (
                     <button
-                      className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 text-[1rem] font-[500] rounded-lg text-[#7D2262] bg-[#F1F2F6]  items-center justify-center   "
+                      className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 text-[1rem] font-[500] rounded-lg text-[#7D2262]  "
                       type="button"
                       onClick={handleStateWiged}
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
                     >
                       + <br /> Upload photo{" "}
                     </button>
-=======
-                    >+ <br /> Upload photo </button>
->>>>>>> 2722b24 (fix: photos upload)
-=======
-                    >
-                      + <br /> Upload photo{" "}
-                    </button>
->>>>>>> db62597 (feat: Edit profile modal preview)
-=======
-                    >
-                      + <br /> Upload photo{" "}
-                    </button>
->>>>>>> 7f714ce (feat : Calendar style)
                   ) : (
                     <p className="w-[35%] h-[60%] flex  relative rounded-lg overflow-hidden justify-center z-10">
                       <img
                         src={images[2].url}
                         alt="pic-1"
-                        className=" mt-3 rounded-lg overflow-hidden z-10 "
+                        className=" mt-3 ml-3  rounded-lg overflow-hidden z-10 "
                       />
                       <button
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
                         type="button"
-=======
-                      type="button"
->>>>>>> 2722b24 (fix: photos upload)
-=======
-                        type="button"
->>>>>>> 51451ae (minor fix:09/11/22)
-=======
-                        type="button"
->>>>>>> db62597 (feat: Edit profile modal preview)
-=======
-                        type="button"
->>>>>>> 7f714ce (feat : Calendar style)
                         className="sticky right-[10%] top-[1%] z-20 w-[30px] h-[30px] flex justify-center items-center text-white text-[20px] rounded-full bg-[#7D2262] overflow-hidden"
                         onClick={() => handleRemoveImage(2)}
                       >
@@ -1179,53 +875,21 @@ function Register() {
                   {/* 4 ** */}
                   {images.length < 4 ? (
                     <button
-                      className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]  items-center justify-center  "
+                      className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] "
                       type="button"
                       onClick={handleStateWiged}
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
                     >
                       + <br /> Upload photo{" "}
                     </button>
-=======
-                    >+ <br /> Upload photo </button>
->>>>>>> 2722b24 (fix: photos upload)
-=======
-                    >
-                      + <br /> Upload photo{" "}
-                    </button>
->>>>>>> db62597 (feat: Edit profile modal preview)
-=======
-                    >
-                      + <br /> Upload photo{" "}
-                    </button>
->>>>>>> 7f714ce (feat : Calendar style)
                   ) : (
                     <p className="w-[35%] h-[60%] flex  relative rounded-lg overflow-hidden justify-center z-10">
                       <img
                         src={images[3].url}
                         alt="pic-1"
-                        className=" mt-3 rounded-lg overflow-hidden z-10 "
+                        className=" mt-3 ml-3 rounded-lg overflow-hidden z-10 "
                       />
                       <button
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
                         type="button"
-=======
-                      type="button"
->>>>>>> 2722b24 (fix: photos upload)
-=======
-                        type="button"
->>>>>>> 51451ae (minor fix:09/11/22)
-=======
-                        type="button"
->>>>>>> db62597 (feat: Edit profile modal preview)
-=======
-                        type="button"
->>>>>>> 7f714ce (feat : Calendar style)
                         className="sticky right-[10%] top-[1%] z-20 w-[30px] h-[30px] flex justify-center items-center text-white text-[20px] rounded-full bg-[#7D2262] overflow-hidden"
                         onClick={() => handleRemoveImage(3)}
                       >
@@ -1236,53 +900,21 @@ function Register() {
                   {/* 5 ** */}
                   {images.length < 5 ? (
                     <button
-                      className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]  items-center justify-center  "
+                      className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] "
                       type="button"
                       onClick={handleStateWiged}
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
                     >
                       + <br /> Upload photo{" "}
                     </button>
-=======
-                    >+ <br /> Upload photo </button>
->>>>>>> 2722b24 (fix: photos upload)
-=======
-                    >
-                      + <br /> Upload photo{" "}
-                    </button>
->>>>>>> db62597 (feat: Edit profile modal preview)
-=======
-                    >
-                      + <br /> Upload photo{" "}
-                    </button>
->>>>>>> 7f714ce (feat : Calendar style)
                   ) : (
                     <p className="w-[35%] h-[60%] flex  relative rounded-lg overflow-hidden justify-center z-10">
                       <img
                         src={images[4].url}
                         alt="pic-1"
-                        className=" mt-3 rounded-lg overflow-hidden z-10 "
+                        className=" mt-3 ml-3 rounded-lg overflow-hidden z-10 "
                       />
                       <button
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
                         type="button"
-=======
-                      type="button"
->>>>>>> 2722b24 (fix: photos upload)
-=======
-                        type="button"
->>>>>>> 51451ae (minor fix:09/11/22)
-=======
-                        type="button"
->>>>>>> db62597 (feat: Edit profile modal preview)
-=======
-                        type="button"
->>>>>>> 7f714ce (feat : Calendar style)
                         className="sticky right-[10%] top-[1%] z-20 w-[30px] h-[30px] flex justify-center items-center text-white text-[20px] rounded-full bg-[#7D2262] overflow-hidden"
                         onClick={() => handleRemoveImage(4)}
                       >
