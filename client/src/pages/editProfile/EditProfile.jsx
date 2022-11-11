@@ -22,7 +22,7 @@ import EditModal from "../../components/editPageComponents/EditModal";
 // Click outside to close hooks
 import useClickOutside from "../../utils/hooks/useClickOutside";
 
-const Register = () => {
+const EditProfile = () => {
   const [userData, setUserData] = useState({});
   const [text, setText] = useState("");
 
@@ -30,14 +30,14 @@ const Register = () => {
   const [state, setState] = useState([]);
   const [nationStateId, setNationStateId] = useState("");
 
-  const [name, setName] = useState(""); //ใช้
-  const [username, setUsername] = useState(""); //ใช้
-  const [birthday, setBirthday] = useState(""); //ใช้
-  const [email, setEmail] = useState(""); //ใช้
-  const [sexpref, setSexpref] = useState(""); //ใช้
-  const [sexidentity, setSexidentity] = useState(""); //ใช้
-  const [racialpref, setRacialpref] = useState(""); //ใช้
-  const [meetingint, setMeetingint] = useState(""); //ใช้
+  const [name, setName] = useState(""); 
+  const [username, setUsername] = useState(""); 
+  const [birthday, setBirthday] = useState(""); 
+  const [email, setEmail] = useState(""); 
+  const [sexpref, setSexpref] = useState(""); 
+  const [sexidentity, setSexidentity] = useState(""); 
+  const [racialpref, setRacialpref] = useState(""); 
+  const [meetingint, setMeetingint] = useState(""); 
   const [location, setLocation] = useState("");
   const [city, setCity] = useState("");
   const [hobbies, setHobbies] = useState([]);
@@ -67,8 +67,7 @@ const Register = () => {
     setCountryId(getCountryId);
     setLocation(getCountryId);
   };
-  console.log(city);
-  console.log(location);
+
 
   const handleNationState = (e) => {
     const nationStateId = e.target.value;
@@ -79,6 +78,7 @@ const Register = () => {
     const token = localStorage.getItem("token");
     const userData = jwtDecode(token);
     setUserData(userData);
+   
     const result = await axios(
       `http://localhost:4001/users/${userData.user_id}`
     );
@@ -132,8 +132,6 @@ const Register = () => {
     setHobbies(hobbiesArr);
   };
 
-  // console.log(hobbies);
-
   const handleDate = (data) => {
     let parts = birthday.split("T");
     let strDate = parts[0].split("-");
@@ -142,12 +140,6 @@ const Register = () => {
       setStartDate(myDate);
     }
   };
-
-  // console.log(Images);
-  // let result = []
-  // result.push(images1,images2)
-
-  //function upload Photo
   function handleOpenWidget() {
     let myWidget = window.cloudinary.createUploadWidget(
       {
@@ -165,9 +157,7 @@ const Register = () => {
     );
     myWidget.open();
   }
-  // End Function upload Photo
-
-  //Function delete image
+ 
   function deleteImage(item) {
     console.log(item);
     const imageDelete = Images.filter((value, i) => {
@@ -700,4 +690,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default EditProfile;
