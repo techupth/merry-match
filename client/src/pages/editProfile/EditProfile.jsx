@@ -19,6 +19,7 @@ import EditPageFooter from "../../components/editPageComponents/EditPageFooter";
 
 // Modal
 import EditModal from "../../components/editPageComponents/EditModal";
+
 // Click outside to close hooks
 import useClickOutside from "../../utils/hooks/useClickOutside";
 
@@ -54,9 +55,6 @@ const Register = () => {
   const [deleteAccount, setDeleteAccount] = useState(false);
   const [preview, setPreview] = useState(false);
 
-  // preview edited profile pop-up
-  const ref = useRef(null);
-  useClickOutside(ref, () => setPreview(false));
 
   const handleCountry = (e) => {
     const getCountryId = e.target.value;
@@ -185,7 +183,12 @@ const Register = () => {
   return (
     <div className="w-full bg-[#FCFCFE] flex flex-col">
       <NavbarAuthen />
-      <div className="informationContainer flex  border-solid border-2 border-indigo-600 flex-col items-center justify-center">
+
+      <div className="informationContainer flex flex-col items-center justify-start">
+
+       {/* show preview modal */}
+      {preview && <EditModal close={() => setPreview(!preview)} />}
+
         <form>
           {/* start Header */}
           <div className="flex mt-[150px]">
@@ -217,9 +220,6 @@ const Register = () => {
 
           {/* Page 1 */}
           {/* colomn 1 */}
-
-          {/* show preview modal */}
-          {preview && <EditModal close={setPreview} />}
 
           <h4 className="basicInformation text-[#A62D82] mt-[80px] font-bold [text-[24px] z-0">
             Basic Information
