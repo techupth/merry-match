@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Countrydata from "../../utils/mock-city/Countrydata.json";
 import { useAuth } from "../../contexts/authentication";
 import axios from "axios";
@@ -15,6 +15,12 @@ import { set } from "date-fns";
 // Components
 import DeleteButton from "../../components/editPageComponents/DeleteButton";
 import NavbarAuthen from "../../components/Navbar/NavbarAuthen";
+import EditPageFooter from "../components/editPageComponents/EditPageFooter";
+
+// Modal
+import EditModal from "../components/editPageComponents/EditModal";
+// Click outside to close hooks
+import useClickOutside from "../ulils/hooks/useClickOutside";
 
 const Register = () => {
   const [userData, setUserData] = useState({});
@@ -43,6 +49,11 @@ const Register = () => {
 
   // Delete button
   const [deleteAccount, setDeleteAccount] = useState(false);
+  const [preview, setPreview] = useState(false);
+
+  // preview edited profile pop-up
+  const ref = useRef(null);
+  useClickOutside(ref, () => setPreview(false));
 
   const getData = async () => {
     // const name = result.data.data[0].name;
@@ -175,22 +186,35 @@ const Register = () => {
                 to let others know you
               </h1>
             </div>
-            <div className=" flex self-end ml-[80px]">
-              <button className="w-[162px] h-[48px] bg-[#FFE1EA] rounded-full text-[#95002B]">
+
+            {/* preview modal button */}
+            <div className=" flex self-end ml-[80px] z-0">
+              <button 
+              onClick={()=> setPreview(!preview)}
+              className="w-[162px] h-[48px] bg-[#FFE1EA] rounded-full text-[#95002B]">
                 Preview Profile
               </button>
+
+
+              {/* update profile */}
               <button className="w-[162px] h-[48px] bg-[#C70039] ml-[16px] rounded-full text-[#FFFFFF]">
                 Update Profile
               </button>
             </div>
+
           </div>
           {/* End Header */}
+
           {/* Page 1 */}
           {/* colomn 1 */}
-          <h4 className="basicInformation text-[#A62D82] mt-[80px] font-bold [text-[24px]">
+
+          {/* show preview modal */}
+          {preview && <EditModal close={setPreview} />}
+
+          <h4 className="basicInformation text-[#A62D82] mt-[80px] font-bold [text-[24px] z-0">
             Basic Information
           </h4>
-          <div className="column1 flex">
+          <div className="column1 flex z-0">
             <div className="flex flex-col mr-[12px] mt-[24px]">
               <label for="name">name</label>
               <input
@@ -206,7 +230,7 @@ const Register = () => {
               />
             </div>
 
-            <div className="flex flex-col ml-[12px] mt-[24px]">
+            <div className="flex flex-col ml-[12px] mt-[24px] z-0">
               <label for="birth">Date of birth</label>
               <DatePicker
                 className="w-[453px] rounded-lg focus:border-pink-300 focus:border-[2px]"
