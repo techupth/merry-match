@@ -32,7 +32,7 @@ function Register() {
   const [birthday, setBirthday] = useState("");
   const [hobbies, setHobbies] = useState([]);
   const [countryid, setCountryid] = useState("");
-  const [nationStateId, setnationStateId] = useState("");
+  const [nationStateId, setNationStateId] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -103,7 +103,7 @@ function Register() {
     event.preventDefault();
     checkNoNull();
     registerNewUser();
-    // alert("Register Successfully!");
+    alert("Register Successfully!");
     navigate("/login");
   };
 
@@ -206,7 +206,7 @@ function Register() {
 
   const handleState = (e) => {
     const nationStateId = e.target.value;
-    setnationStateId(nationStateId);
+    setNationStateId(nationStateId);
   };
 
   const handleRemoveImage = (i) => {
@@ -239,11 +239,11 @@ function Register() {
     myWidget.open();
   }
 
-  const handleStateWiged = () => {
+  const handleStateWidget = () => {
     handleOpenWidget();
 
     if (images.length > 1) {
-      setWiged === false;
+      setWidget === false;
     }
   };
 
@@ -810,7 +810,7 @@ function Register() {
                     <button
                       className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6] items-center justify-center "
                       type="button"
-                      onClick={handleStateWiged}
+                      onClick={handleStateWidget}
                     >
                       + <br /> Upload photo{" "}
                     </button>
@@ -836,7 +836,7 @@ function Register() {
                     <button
                       className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 text-[1rem] font-[500] rounded-lg text-[#7D2262] bg-[#F1F2F6]  items-center justify-center "
                       type="button"
-                      onClick={handleStateWiged}
+                      onClick={handleStateWidget}
                     >
                       + <br /> Upload photo{" "}
                     </button>
@@ -861,7 +861,7 @@ function Register() {
                     <button
                       className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 text-[1rem] font-[500] rounded-lg text-[#7D2262] bg-[#F1F2F6]  items-center justify-center   "
                       type="button"
-                      onClick={handleStateWiged}
+                      onClick={handleStateWidget}
                     >
                       + <br /> Upload photo{" "}
                     </button>
@@ -886,7 +886,7 @@ function Register() {
                     <button
                       className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]  items-center justify-center  "
                       type="button"
-                      onClick={handleStateWiged}
+                      onClick={handleStateWidget}
                     >
                       + <br /> Upload photo{" "}
                     </button>
@@ -911,7 +911,7 @@ function Register() {
                     <button
                       className="mt-[3%] w-[20%] h-[60%] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]  items-center justify-center  "
                       type="button"
-                      onClick={handleStateWiged}
+                      onClick={handleStateWidget}
                     >
                       + <br /> Upload photo{" "}
                     </button>
