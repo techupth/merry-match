@@ -30,18 +30,22 @@ const Register = () => {
   const [state, setState] = useState([]);
   const [stateid, setStateid] = useState("");
 
-  const [name, setName] = useState("");
-  const [username, setUsername] = useState("");
-  const [birthday, setBirthday] = useState("");
-  const [email, setEmail] = useState("");
-  const [sexpref, setSexpref] = useState("");
-  const [sexidentity, setSexidentity] = useState("");
-  const [racialpref, setRacialpref] = useState("");
-  const [meetingint, setMeetingint] = useState("");
+  const [name, setName] = useState(""); //ใช้
+  const [username, setUsername] = useState(""); //ใช้
+  const [birthday, setBirthday] = useState(""); //ใช้
+  const [email, setEmail] = useState(""); //ใช้
+  const [sexpref, setSexpref] = useState(""); //ใช้
+  const [sexidentity, setSexidentity] = useState(""); //ใช้
+  const [racialpref, setRacialpref] = useState("");//ใช้
+  const [meetingint, setMeetingint] = useState("");//ใช้
   const [location, setLocation] = useState("");
   const [city, setCity] = useState("");
   const [hobbies, setHobbies] = useState([]);
   const [startDate, setStartDate] = useState(new Date());
+
+  // Photos
+  const [Images, setImages] = useState([]);
+  
 
   //hobbies part
   const animatedComponents = makeAnimated();
@@ -134,6 +138,11 @@ const Register = () => {
     setLocation(getcountryId);
   };
 
+  const handlestate = (e) => {
+    const stateid = e.target.value;
+    setStateid(stateid);
+  };
+
   const decodeFromToken = async () => {
     const token = localStorage.getItem("token");
     const userData = jwtDecode(token);
@@ -164,6 +173,39 @@ const Register = () => {
       setStartDate(myDate);
     }
   };
+
+   console.log(Images)
+  // let result = []
+  // result.push(images1,images2)
+
+  //function upload Photo
+  function handleOpenWidget() {
+    let myWidget = window.cloudinary.createUploadWidget(
+      {
+        cloudName: "dn4jfzbs6",
+        uploadPreset: "Merry Match",
+      },
+      (error, result) => {
+        if (!error && result && result.event === "success") {
+          setImages((prev) => [
+            ...prev,
+            { url: result.info.url, public_id: result.info.public_id },
+          ]);
+        }
+      }
+    );
+    myWidget.open();
+  }
+  // End Function upload Photo
+
+  //Function delete image
+  function deleteImage(item) {
+    console.log(item)
+    const imageDelete = Images.filter((value, i) => {
+      return i !== item;
+    });
+    setImages(imageDelete);
+  }
 
   useEffect(() => {
     decodeFromToken();
@@ -426,6 +468,7 @@ const Register = () => {
               </div>
             );
           })} */}
+
           <div className="flex flex-col mt-[24px]">
             <label for="AboutMe">About me (Maximum 150 characters)</label>
             <textarea
@@ -442,42 +485,162 @@ const Register = () => {
           </h1>
           <p>Upload at least x photos</p>
           <div className="profileContainer mt-[24px] flex">
-            <button
-              className=" w-[167px] h-[167px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]  items-center justify-center  "
-              type="button"
-              onClick={""}
-            >
-              + <br /> Upload photo{" "}
-            </button>
-            <button
-              className=" w-[167px] h-[167px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]  items-center justify-center  "
-              type="button"
-              onClick={""}
-            >
-              + <br /> Upload photo{" "}
-            </button>
-            <button
-              className=" w-[167px] h-[167px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]  items-center justify-center  "
-              type="button"
-              onClick={""}
-            >
-              + <br /> Upload photo{" "}
-            </button>
-            <button
-              className=" w-[167px] h-[167px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]  items-center justify-center  "
-              type="button"
-              onClick={""}
-            >
-              + <br /> Upload photo{" "}
-            </button>
-
-            <button
-              className=" w-[167px] h-[167px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]  items-center justify-center  "
-              type="button"
-              
-            >
-              + <br /> Upload photo{" "}
-            </button>
+            {/* img Box1 */}
+            <div className="mt-[24px]">
+              {Images.length < 1 ? (
+                <button
+                  className=" w-[167px] h-[167px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]  items-center justify-center  "
+                  type="button"
+                  onClick={""}
+                >
+                  + <br /> Upload photo{" "}
+                </button>
+              ) : (
+                <div className="relative w-[167px] h-[167px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]">
+                  <img
+                    src={Images[0]}
+                    className="w-full h-full rounded-lg object-cover"
+                    alt=""
+                  />
+                  <div className="absolute bottom-0 right-[-10px] top-[-12px]">
+                    <button
+                      type="button"
+                      className="w-[24px] h-[24px] text-white text-[12px] rounded-full bg-[#7D2262] "
+                      onClick={() => {
+                        deleteImage(0);
+                      }}
+                    >
+                      X
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+            {/* img Box2 */}
+            <div className="mt-[24px]">
+              {Images.length < 2 ? (
+                <button
+                  className=" w-[167px] h-[167px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]  items-center justify-center  "
+                  type="button"
+                  onClick={""}
+                >
+                  + <br /> Upload photo{" "}
+                </button>
+              ) : (
+                <div className="relative w-[167px] h-[167px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]">
+                  <img
+                    src={Images[1]}
+                    className="w-full h-full rounded-lg object-cover"
+                    alt=""
+                  />
+                  <div className="absolute bottom-0 right-[-10px] top-[-12px]">
+                    <button
+                      type="button"
+                      className="w-[24px] h-[24px] text-white text-[12px] rounded-full bg-[#7D2262] "
+                      onClick={() => {
+                        deleteImage(1);
+                      }}
+                    >
+                      X
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+            {/* img Box3 */}
+            <div className="mt-[24px]">
+              {Images.length < 3 ? (
+                <button
+                  className=" w-[167px] h-[167px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]  items-center justify-center  "
+                  type="button"
+                  onClick={""}
+                >
+                  + <br /> Upload photo{" "}
+                </button>
+              ) : (
+                <div className="relative w-[167px] h-[167px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]">
+                  <img
+                    src={Images[2]}
+                    className="w-full h-full rounded-lg object-cover"
+                    alt=""
+                  />
+                  <div className="absolute bottom-0 right-[-10px] top-[-12px]">
+                    <button
+                      type="button"
+                      className="w-[24px] h-[24px] text-white text-[12px] rounded-full bg-[#7D2262] "
+                      onClick={() => {
+                        deleteImage(2);
+                      }}
+                    >
+                      X
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+            {/* img Box4 */}
+            <div className="mt-[24px]">
+              {Images.length < 4 ? (
+                <button
+                  className=" w-[167px] h-[167px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]  items-center justify-center  "
+                  type="button"
+                  onClick={""}
+                >
+                  + <br /> Upload photo{" "}
+                </button>
+              ) : (
+                <div className="relative w-[167px] h-[167px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]">
+                  <img
+                    src={Images[3]}
+                    className="w-full h-full rounded-lg object-cover"
+                    alt=""
+                  />
+                  <div className="absolute bottom-0 right-[-10px] top-[-12px]">
+                    <button
+                      type="button"
+                      className="w-[24px] h-[24px] text-white text-[12px] rounded-full bg-[#7D2262] "
+                      onClick={() => {
+                        deleteImage(3);
+                      }}
+                    >
+                      X
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+            {/* img Box5 */}
+            <div className="mt-[24px]">
+              {Images.length < 5  ? (
+                <button
+                  className=" w-[167px] h-[167px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]  items-center justify-center  "
+                  type="button"
+                  onClick={""}
+                >
+                  + <br /> Upload photo{" "}
+                </button>
+              ) : (
+                <div className="relative w-[167px] h-[167px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]">
+                  <img
+                    src={Images[4]}
+                    className="w-full h-full rounded-lg object-cover"
+                    alt=""
+                  />
+                  <div className="absolute bottom-0 right-[-10px] top-[-12px]">
+                    <button
+                      type="button"
+                      className="w-[24px] h-[24px] text-white text-[12px] rounded-full bg-[#7D2262] "
+                      onClick={() => {
+                        deleteImage(4);
+                      }}
+                    >
+                      X
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+            {/* End Box5 */}
           </div>
         </form>
 
