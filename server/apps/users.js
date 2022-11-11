@@ -76,15 +76,13 @@ userRouter.put("/:userId", async (req, res) => {
   };
   await pool.query(
     `UPDATE users
-    SET name=$1,birthday=$2,location=$3,city=$4,username=$5,email=$6,sex_identity=$7,sex_pref=$8,racial_pref=$9,meeting_int=$10,hobby=$11,about_me=$12,updated_at=$13,profile_pics=$14
-    WHERE user_id = $15`,
+    SET name=$1,birthday=$2,location=$3,city=$4,sex_identity=$5,sex_pref=$6,racial_pref=$7,meeting_int=$8,hobby=$9,about_me=$10,updated_at=$11,profile_pics=$12
+    WHERE user_id = $13`,
     [
       updatedUser.name,
       updatedUser.birthday,
       updatedUser.location,
       updatedUser.city,
-      updatedUser.username,
-      updatedUser.email,
       updatedUser.sex_identity,
       updatedUser.sex_pref,
       updatedUser.racial_pref,
@@ -96,7 +94,7 @@ userRouter.put("/:userId", async (req, res) => {
       userId,
     ]
   );
- 
+
   await pool.query(`select * from users where user_id=$1`, [userId]);
   return res.json({
     message: `User ${userId} info has been updated!`,

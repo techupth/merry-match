@@ -3,7 +3,7 @@ import CountryData from "../../utils/mock-city/Countrydata.json";
 import { useAuth } from "../../contexts/authentication";
 import axios from "axios";
 import makeAnimated from "react-select/animated";
-import { options, optionsContact } from "../../utils/optionSelect";
+import { options } from "../../utils/optionSelect";
 import Select from "react-select";
 
 import DatePicker from "react-datepicker";
@@ -23,7 +23,7 @@ import EditModal from "../../components/editPageComponents/EditModal";
 // Click outside to close hooks
 import useClickOutside from "../../utils/hooks/useClickOutside";
 
-const Register = () => {
+const EditProfile = () => {
   const [userData, setUserData] = useState({});
   const [text, setText] = useState("");
 
@@ -35,13 +35,14 @@ const Register = () => {
   const [username, setUsername] = useState(""); //ใช้
   const [birthday, setBirthday] = useState(""); //ใช้
   const [email, setEmail] = useState(""); //ใช้
-  const [sexpref, setSexpref] = useState(""); //ใช้
-  const [sexidentity, setSexidentity] = useState(""); //ใช้
-  const [racialpref, setRacialpref] = useState(""); //ใช้
-  const [meetingint, setMeetingint] = useState(""); //ใช้
+  const [sexPref, setSexPref] = useState(""); //ใช้
+  const [sexIdentity, setSexIdentity] = useState(""); //ใช้
+  const [racialPref, setRacialPref] = useState(""); //ใช้
+  const [meetingInt, setMeetingInt] = useState(""); //ใช้
   const [location, setLocation] = useState("");
   const [city, setCity] = useState("");
   const [hobbies, setHobbies] = useState([]);
+  const [aboutMe, setAboutMe] = useState("");
   const [startDate, setStartDate] = useState(new Date());
 
   // Photos
@@ -66,8 +67,8 @@ const Register = () => {
     setCountryId(getCountryId);
     setLocation(getCountryId);
   };
-  console.log(city);
-  console.log(location);
+  // console.log(city);
+  // console.log(location);
 
   const handleNationState = (e) => {
     const nationStateId = e.target.value;
@@ -78,6 +79,7 @@ const Register = () => {
     const token = localStorage.getItem("token");
     const userData = jwtDecode(token);
     setUserData(userData);
+
     const result = await axios(
       `http://localhost:4001/users/${userData.user_id}`
     );
@@ -86,10 +88,10 @@ const Register = () => {
     setName(result.data.data[0].name);
     setUsername(result.data.data[0].username);
     setEmail(result.data.data[0].email);
-    setSexidentity(result.data.data[0].sex_identity);
-    setSexpref(result.data.data[0].sex_pref);
-    setRacialpref(result.data.data[0].racial_pref);
-    setMeetingint(result.data.data[0].meeting_int);
+    setSexIdentity(result.data.data[0].sex_identity);
+    setSexPref(result.data.data[0].sex_pref);
+    setRacialPref(result.data.data[0].racial_pref);
+    setMeetingInt(result.data.data[0].meeting_int);
     setLocation(result.data.data[0].location);
     setCity(result.data.data[0].city);
 
@@ -119,6 +121,43 @@ const Register = () => {
     setImages(newItemImage);
   };
 
+  console.log(userData);
+
+  // update profile
+
+  const updateUserData = {
+    user_id: userData.user_id,
+    name,
+    birthday: startDate,
+    location: countryId,
+    city: nationStateId,
+    sex_identity: sexIdentity,
+    sex_pref: sexPref,
+    racial_pref: racialPref,
+    meeting_int: meetingInt,
+    about_me: aboutMe,
+    hobby: hobbies,
+    profile_pics: Images,
+    contact,
+  };
+
+  const updateUserProfile = async (updateUserData) => {
+    const userId = userData.user_id;
+    console.log(userId);
+    console.log(updateUserData);
+    const result = await axios.put(
+      `http://localhost:4001/users/${userData.user_id}`,
+      updateUserData
+    );
+  };
+
+  const handleUpdate = async (event, userData) => {
+    event.preventDefault();
+    // console.log(userData);
+    updateUserProfile(updateUserData);
+  };
+  console.log(updateUserData);
+
   const handleHobbie = (data) => {
     console.log(data);
     const hobbiesArr = [];
@@ -131,7 +170,7 @@ const Register = () => {
     setHobbies(hobbiesArr);
   };
 
-  // console.log(hobbies);
+  console.log(hobbies);
 
   const handleDate = (data) => {
     let parts = birthday.split("T");
@@ -141,12 +180,6 @@ const Register = () => {
       setStartDate(myDate);
     }
   };
-
-  // console.log(Images);
-  // let result = []
-  // result.push(images1,images2)
-
-  //function upload Photo
   function handleOpenWidget() {
     let myWidget = window.cloudinary.createUploadWidget(
       {
@@ -164,9 +197,7 @@ const Register = () => {
     );
     myWidget.open();
   }
-  // End Function upload Photo
 
-  //Function delete image
   function deleteImage(item) {
     console.log(item);
     const imageDelete = Images.filter((value, i) => {
@@ -193,10 +224,10 @@ const Register = () => {
           {/* start Header */}
           <div className="flex mt-[150px]">
             <div className="">
-              <h1 className="text-[46px] text-[#A62D82] font-extrabold">
+              <h1 className="text-[46px] text-[#A62D82] font-extrabold leading-[125%]">
                 Let’s make profile{" "}
               </h1>
-              <h1 className="text-[46px] text-[#A62D82] font-extrabold">
+              <h1 className="text-[46px] text-[#A62D82] font-extrabold leading-[125%]">
                 to let others know you
               </h1>
             </div>
@@ -205,13 +236,18 @@ const Register = () => {
             <div className=" flex self-end ml-[80px] z-0">
               <button
                 onClick={() => setPreview(!preview)}
-                className="w-[162px] h-[48px] bg-[#FFE1EA] rounded-full text-[#95002B]"
+                className="w-[162px] h-[48px] bg-[#FFE1EA] rounded-full text-[#95002B] font-[700]"
               >
                 Preview Profile
               </button>
 
               {/* update profile */}
-              <button className="w-[162px] h-[48px] bg-[#C70039] ml-[16px] rounded-full text-[#FFFFFF]">
+              <button
+                className="w-[162px] h-[48px] bg-[#C70039] ml-[16px] rounded-full text-[#FFFFFF] font-[700]"
+                onClick={(event) => {
+                  handleUpdate(event, updateUserData);
+                }}
+              >
                 Update Profile
               </button>
             </div>
@@ -248,6 +284,7 @@ const Register = () => {
                 onChange={(date) => {
                   console.log(date);
                   setStartDate(date);
+                  setBirthday(date);
                 }}
               />
             </div>
@@ -272,6 +309,7 @@ const Register = () => {
                     className=""
                     value={getCountry.country_name}
                     key={index}
+                    on
                   >
                     {getCountry.country_name}
                   </option>
@@ -284,7 +322,6 @@ const Register = () => {
               <select
                 className="w-[453px] h-[48px] rounded-lg p-[12px]"
                 value={city}
-                defaultValue={city}
                 onChange={(e) => {
                   handleNationState(e);
                 }}
@@ -303,7 +340,7 @@ const Register = () => {
             <div className="flex flex-col mr-[12px] mt-[40px]">
               <label htmlFor="username">Username</label>
               <input
-                className="w-[453px] rounded-lg"
+                className="w-[453px] rounded-lg text-[#9AA1B9]"
                 type="text"
                 id="username"
                 name="username"
@@ -312,23 +349,25 @@ const Register = () => {
                 onChange={(e) => {
                   setUsername(e.target.value);
                 }}
+                disabled
               />
             </div>
             <div className="flex flex-col ml-[12px] mt-[40px]">
               <label htmlFor="Email">Email</label>
               <input
-                className="w-[453px] rounded-lg"
+                className="w-[453px] rounded-lg text-[#9AA1B9]"
                 type="email"
                 id="Email"
                 name="Email"
                 placeholder="name@website.com"
                 value={email}
+                disabled
               />
             </div>
           </div>
 
           {/* Page 2 */}
-          <h1 className="basicInformation text-[#A62D82] mt-[80px] font-bold">
+          <h1 className="basicInformation text-[#A62D82] mt-[80px] font-bold text-[24px]">
             Identities and Interests
           </h1>
           {/* colomn1 */}
@@ -339,9 +378,9 @@ const Register = () => {
                 className="w-[453px] rounded-lg h-[48px] p-[12px]"
                 id="SexualIdentities"
                 name="status"
-                value={sexidentity}
+                value={sexIdentity}
                 onChange={(e) => {
-                  setSexidentity(e.target.value);
+                  setSexIdentity(e.target.value);
                 }}
               >
                 <option value="Male">Male</option>
@@ -355,9 +394,9 @@ const Register = () => {
                 className="w-[453px] rounded-lg h-[48px] p-[12px]"
                 id="SexualPreferences"
                 name="SexualPreferences"
-                value={sexpref}
+                value={sexPref}
                 onChange={(e) => {
-                  setSexpref(e.target.value);
+                  setSexPref(e.target.value);
                 }}
               >
                 <option value="Male">Male</option>
@@ -374,7 +413,10 @@ const Register = () => {
                 className="w-[453px] rounded-lg h-[48px] p-[12px]"
                 id="RacialPreferences"
                 name="RacialPreferences"
-                value={racialpref}
+                value={racialPref}
+                onChange={(e) => {
+                  setRacialPref(e.target.value);
+                }}
               >
                 <option value="Asian">Asian</option>
                 <option value="Europe">Europe</option>
@@ -387,7 +429,10 @@ const Register = () => {
                 className="w-[453px] h-[48px] rounded-lg p-[12px]"
                 id="MeetingInterests"
                 name="MeetingInterests"
-                value={meetingint}
+                value={meetingInt}
+                onChange={(e) => {
+                  setMeetingInt(e.target.value);
+                }}
               >
                 <option value="Friend">Friend</option>
                 <option value="FWB">FWB</option>
@@ -448,10 +493,13 @@ const Register = () => {
               maxlength="150"
               rows="1"
               className="rounded-lg h-[127px] p-[12px]"
+              onChange={(event) => {
+                setAboutMe(event.target.value);
+              }}
             ></textarea>
           </div>
 
-          <h1 className="ProfilePictures text-[#A62D82] mt-[80px]">
+          <h1 className="ProfilePictures text-[#A62D82] mt-[80px] text-[24px]">
             Profile pictures
           </h1>
           <p>Upload at least x photos</p>
@@ -700,4 +748,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default EditProfile;
