@@ -4,7 +4,9 @@ import UserPopup from "./userPopup";
 import jwtDecode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import useClickOutside from "../../utils/hooks/useClickOutside";
+
+// Hooks
+import useClickOutside from '../../utils/hooks/useClickOutside';
 
 const NavbarAuthen = () => {
   const [images, setImage] = useState("");

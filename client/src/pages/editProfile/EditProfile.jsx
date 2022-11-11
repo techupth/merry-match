@@ -5,12 +5,16 @@ import axios from "axios";
 import makeAnimated from "react-select/animated";
 import { options, optionsContact } from "../../utils/optionSelect";
 import Select from "react-select";
-import NavbarAuthen from "../../components/Navbar/NavbarAuthen";
+
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import jwtDecode from "jwt-decode";
 import { da } from "date-fns/locale";
 import { set } from "date-fns";
+
+// Components
+import DeleteButton from "../../components/editPageComponents/DeleteButton";
+import NavbarAuthen from "../../components/Navbar/NavbarAuthen";
 
 const Register = () => {
   const [userData, setUserData] = useState({});
@@ -36,6 +40,79 @@ const Register = () => {
   //hobbies part
   const animatedComponents = makeAnimated();
   const [contact, setContact] = useState([]);
+
+  // Delete button
+  const [deleteAccount, setDeleteAccount] = useState(false);
+
+  const getData = async () => {
+    // const name = result.data.data[0].name;
+    // const birthday = result.data.data[0].birthday;
+    // const username = result.data.data[0].username;
+    // const email = result.data.data[0].email;
+    // const sex_pref = result.data.data[0].sex_pref;
+    // const sex_identity = result.data.data[0].sex_identity;
+    // const racial_pref = result.data.data[0].racial_pref;
+    // const meeting_int = result.data.data[0].meeting_int;
+    // const location = result.data.data[0].location;
+    // const city = result.data.data[0].city;
+    // const hobbies = result.data.data[0].hobby;
+    // const todayDate = new Date(birthday);
+    // const formatDate =
+    //   todayDate.getDate() < 10
+    //     ? `0${todayDate.getDate()}`
+    //     : todayDate.getDate();
+    // const formatMonth =
+    //   todayDate.getMonth() < 10
+    //     ? `0${todayDate.getMonth()}`
+    //     : todayDate.getMonth();
+    // const formattedDate = [
+    //   todayDate.getFullYear(),
+    //   formatMonth,
+    //   formatDate,
+    // ].join("-");
+    // hobbies.map((item,index)=>{
+    //   // console.log(item,index)
+    //    const hobbiesItem = JSON.parse(item)
+    //    hobbiesObj = hobbiesItem.push
+    // })
+    // let test = [];
+    // options.map((item, index) => {
+    //   console.log(item, index);
+    //   //  const hobbiesItem = JSON.parse(item)
+    //   //  hobbiesObj = hobbiesItem.push
+    //   test = item.push;
+    // });
+    // console.log(test);
+    // const hobbiesObj = JSON.parse(hobbies[0]);
+    // console.log(hobbiesObj);
+    // setName(name);
+    // setBirthday(formattedDate);
+    // setUsername(username);
+    // setEmail(email);
+    // setSexpref(sex_pref);
+    // setSexidentity(sex_identity);
+    // setRacialpref(racial_pref);
+    // setMeetingint(meeting_int);
+    // setLocation(location);
+    // setCity(city);
+    // // setHobbies([hobbiesObj])
+    // // if(){
+    // // }
+    // setHobbies(hobbiesObj.value);
+  };
+
+  // const checkselect = () => {
+  //   options.map((item,index)=>
+  //   {
+  //   if(item.value === hobbies.value)
+  //   console.log("hi")
+  //   console.log(item,index)
+  //   console.log(item.value)
+  //   })
+  // }
+  // console.log(hobbies[0].value)
+  // checkselect()
+
   const handlecounty = (e) => {
     const getcountryId = e.target.value;
     const getStatedata = Countrydata.find(
@@ -373,14 +450,19 @@ const Register = () => {
             <button
               className=" w-[167px] h-[167px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]  items-center justify-center  "
               type="button"
-              onClick={""}
+              
             >
               + <br /> Upload photo{" "}
             </button>
           </div>
         </form>
+
+        {/* Delete button */}
+        {deleteAccount && <DeleteButton close={setDeleteAccount} />}
+
         <div className="delete-section flex flex-col justify-end items-end  h-[70px] w-full   ">
-          <button className="text-[#646D89] text-[16px] mr-[320px] hover:text-gray-300">
+          <button className="text-[#646D89] text-[16px] mr-[320px] hover:text-gray-300 z-0 relative"
+          onClick={() => setDeleteAccount(!deleteAccount)}>
             Delete account
           </button>
         </div>
