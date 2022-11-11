@@ -30,14 +30,14 @@ const EditProfile = () => {
   const [state, setState] = useState([]);
   const [nationStateId, setNationStateId] = useState("");
 
-  const [name, setName] = useState(""); //ใช้
-  const [username, setUsername] = useState(""); //ใช้
-  const [birthday, setBirthday] = useState(""); //ใช้
-  const [email, setEmail] = useState(""); //ใช้
-  const [sexPref, setSexPref] = useState(""); //ใช้
-  const [sexIdentity, setSexIdentity] = useState(""); //ใช้
-  const [racialPref, setRacialPref] = useState(""); //ใช้
-  const [meetingInt, setMeetingInt] = useState(""); //ใช้
+  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
+  const [birthday, setBirthday] = useState("");
+  const [email, setEmail] = useState("");
+  const [sexpref, setSexpref] = useState("");
+  const [sexidentity, setSexidentity] = useState("");
+  const [racialpref, setRacialpref] = useState("");
+  const [meetingint, setMeetingint] = useState("");
   const [location, setLocation] = useState("");
   const [city, setCity] = useState("");
   const [hobbies, setHobbies] = useState([]);
@@ -68,8 +68,6 @@ const EditProfile = () => {
     setCountryId(getCountryId);
     setLocation(getCountryId);
   };
-  // console.log(city);
-  // console.log(location);
 
   const handleNationState = (e) => {
     const nationStateId = e.target.value;
@@ -160,7 +158,6 @@ const EditProfile = () => {
   console.log(updateUserData);
 
   const handleHobbie = (data) => {
-    console.log(data);
     const hobbiesArr = [];
     if (data !== undefined) {
       for (let i = 0; i < data.length; i++) {
@@ -179,7 +176,7 @@ const EditProfile = () => {
     const myDate = new Date(strDate[0], strDate[1] - 1, strDate[2]);
     if (myDate != "Invalid Date") {
       setStartDate(myDate);
-    }
+    };
   };
   function handleOpenWidget() {
     let myWidget = window.cloudinary.createUploadWidget(
@@ -255,7 +252,13 @@ const EditProfile = () => {
           {/* colomn 1 */}
 
           {/* show preview modal */}
-          {preview && <EditModal close={setPreview} />}
+          {preview && (
+            <EditModal
+              close={setPreview}
+              data={userData}
+              className="absolute z-20 top-0"
+            />
+          )}
 
           <h4 className="basicInformation text-[#A62D82] mt-[80px] font-bold text-[24px] z-0">
             Basic Information
@@ -459,31 +462,6 @@ const EditProfile = () => {
               isMulti
             />
           </div>
-
-          {/* <div className="mt-[40px]">Hobbies / Interests (Maximum 10)</div>
-          <input
-            className="w-full rounded-lg "
-            type="text"
-            onChange={(e)=>{
-                setText(e.target.value)
-            }}
-            onKeyDown={handleKeyDown}
-          />
-          {hobbies.map((item, index) => {
-            return (
-              <div className="inline-block mt-2 mr-2 px-2 h-[30px] rounded-lg text-center text-[#7D2262] bg-[#F4EBF2]">
-                {item}
-                <button
-                  className="ml-[12px]"
-                  onClick={() => {
-                    deleteHobbies(index);
-                  }}
-                >
-                  x
-                </button>
-              </div>
-            );
-          })} */}
 
           <div className="flex flex-col mt-[24px]">
             <label htmlFor="AboutMe">About me (Maximum 150 characters)</label>

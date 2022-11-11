@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 
 // Mock pictures for example
 import heartLogo from "../../../public/asset/editModalItems/hearthLogo.svg";
@@ -14,7 +14,7 @@ import pSekYoung from "../../../public/Mock/imgMock/pSekYoung.jpg";
 import location from "../../../public/asset/editModalItems/location.svg";
 //.............................................................................
 
-const EditModal = () => {
+const EditModal = ({close,data}) => {
   const [step, setStep] = useState(1);
 
   const handleNext = (e) => {
@@ -23,6 +23,10 @@ const EditModal = () => {
       setStep(step + 1);
     }
   };
+  console.log(data)
+  const handleAge = (data) =>{
+    const year = new Date().getFullYear()
+  };
 
   const handleBack = (e) => {
     e.preventDefault()
@@ -30,10 +34,17 @@ const EditModal = () => {
       setStep(step - 1);
     }
   };
+  
+  useEffect(()=>{
+    handleAge(data)
+  },[])
 
   return (
     <div className="editModal relative bg-white w-[900px] h-[700px] rounded-3xl flex items-center justify-center font-[400] z-30 mt-[5%]">
+      <button className="absolute text-[25px] top-4 right-12 text-slate-500" onClick={()=>{close(false)}}>x</button>
       <div className="relative w-[35%] h-[80%] mb-[10%] rounded-3xl mr-[3%] flex items-center flex-col overflow-hidden mt-[10%] ">
+        
+        
         {/* ....................... Display Pics ....................... */}
         <div className="flex justify-center items-center w-[95%] h-[120%] mt-[30%] rounded-3xl">
           {step === 1 && (
@@ -130,11 +141,12 @@ const EditModal = () => {
       </div>
 
       {/* Information ...................................................................... */}
+      
 
       <div className="w-[45%] h-[85%] mt-[-5%] flex flex-col justify-center items-center">
         {/* title */}
         <div className="w-[100%] h-[20%]">
-          <span className="text-[46px] font-[900]">Sek Loso </span>
+          <span className="text-[46px] font-[900]">{data.name}</span>
           <span className="text-[46px] font-[900] text-[#646D89]">48</span>
           <br />
 
