@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Countrydata from "../../utils/mock-city/Countrydata.json";
 import { useAuth } from "../../contexts/authentication";
 import axios from "axios";
@@ -9,6 +9,7 @@ import Select from "react-select";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import jwtDecode from "jwt-decode";
+import useClickOutside from "../../utils/hooks/useClickOutside";
 
 // Components
 import DeleteButton from "../../components/editPageComponents/DeleteButton";
@@ -155,8 +156,11 @@ const Register = () => {
     }
   }, [birthday]);
 
+  const ref = useRef(null);
+  useClickOutside(ref, () => setDeleteAccount(!deleteAccount));
+
   return (
-    <div className="w-full bg-[#FCFCFE] flex flex-col">
+    <div ref={ref} className="w-full bg-[#FCFCFE] flex flex-col">
       <NavbarAuthen />
       <div className="informationContainer flex  border-solid border-2 border-indigo-600 flex-col items-center justify-center">
         <form>
@@ -416,7 +420,7 @@ const Register = () => {
             Profile pictures
           </h1>
           <p>Upload at least x photos</p>
-          <div className="profileContainer mt-[24px] flex">
+          <div className="profileContainer mt-[24px] flex relative">
             <button
               className=" w-[167px] h-[167px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]  items-center justify-center  "
               type="button"
