@@ -15,12 +15,12 @@ import { set } from "date-fns";
 // Components
 import DeleteButton from "../../components/editPageComponents/DeleteButton";
 import NavbarAuthen from "../../components/Navbar/NavbarAuthen";
-import EditPageFooter from "../components/editPageComponents/EditPageFooter";
+import EditPageFooter from '../../components/editPageComponents/EditPageFooter'
 
 // Modal
-import EditModal from "../components/editPageComponents/EditModal";
+import EditModal from "../../components/editPageComponents/EditModal";
 // Click outside to close hooks
-import useClickOutside from "../ulils/hooks/useClickOutside";
+import useClickOutside from "../../utils/hooks/useClickOutside";
 
 const Register = () => {
   const [userData, setUserData] = useState({});
