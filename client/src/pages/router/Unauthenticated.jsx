@@ -5,6 +5,7 @@ import Login from "../login/Login";
 import Register from "../register/Register";
 // For dev import here
 import DeleteButton from "../../components/editPageComponents/DeleteButton";
+import MatchingPage from "../mathcingPage/MatchingPage";
 
 
 
@@ -21,7 +22,8 @@ function Unauthenticated() {
         <Route path="*" element={<Home />} />
 
         {/* // For dev import element here */}
-        <Route path="/dev" element={<DeleteButton />} />
+        <Route path="/dev" element={<MatchingPage />} />
+ 
       </Routes>
     </>
   );
