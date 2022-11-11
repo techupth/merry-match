@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import Countrydata from "../../utils/mock-city/Countrydata.json";
+import CountryData from "../../utils/mock-city/Countrydata.json";
 import { useAuth } from "../../contexts/authentication";
 import axios from "axios";
 import makeAnimated from "react-select/animated";
@@ -26,9 +26,9 @@ const Register = () => {
   const [userData, setUserData] = useState({});
   const [text, setText] = useState("");
 
-  const [countryid, setCountryid] = useState("");
+  const [countryId, setCountryId] = useState("");
   const [state, setState] = useState([]);
-  const [stateid, setStateid] = useState("");
+  const [nationStateId, setNationStateId] = useState("");
 
   const [name, setName] = useState(""); //ใช้
   const [username, setUsername] = useState(""); //ใช้
@@ -58,19 +58,21 @@ const Register = () => {
   const ref = useRef(null);
   useClickOutside(ref, () => setPreview(false));
 
-  const handlecounty = (e) => {
-    const getcountryId = e.target.value;
-    const getStatedata = Countrydata.find(
-      (country) => country.country_name === getcountryId
+  const handleCountry = (e) => {
+    const getCountryId = e.target.value;
+    const getStateData = CountryData.find(
+      (country) => country.country_name === getCountryId
     ).states;
-    setState(getStatedata);
-    setCountryid(getcountryId);
-    setLocation(getcountryId);
+    setState(getStateData);
+    setCountryId(getCountryId);
+    setLocation(getCountryId);
   };
+  console.log(city);
+  console.log(location);
 
-  const handlestate = (e) => {
-    const stateid = e.target.value;
-    setStateid(stateid);
+  const handleNationState = (e) => {
+    const nationStateId = e.target.value;
+    setNationStateId(nationStateId);
   };
 
   const decodeFromToken = async () => {
@@ -90,6 +92,7 @@ const Register = () => {
     setRacialpref(result.data.data[0].racial_pref);
     setMeetingint(result.data.data[0].meeting_int);
     setLocation(result.data.data[0].location);
+    setCity(result.data.data[0].city);
 
     // Photo
     const newItemImage = [];
@@ -118,18 +121,18 @@ const Register = () => {
   };
 
   const handleHobbie = (data) => {
-    console.log(data)
+    console.log(data);
     const hobbiesArr = [];
     if (data !== undefined) {
       for (let i = 0; i < data.length; i++) {
         const obj = JSON.parse(data[i]);
         hobbiesArr.push(obj);
       }
-    };
+    }
     setHobbies(hobbiesArr);
   };
 
-  console.log(hobbies)
+  // console.log(hobbies);
 
   const handleDate = (data) => {
     let parts = birthday.split("T");
@@ -140,7 +143,7 @@ const Register = () => {
     }
   };
 
-  console.log(Images);
+  // console.log(Images);
   // let result = []
   // result.push(images1,images2)
 
@@ -223,7 +226,7 @@ const Register = () => {
           </h4>
           <div className="column1 flex z-0">
             <div className="flex flex-col mr-[12px] mt-[24px]">
-              <label for="name">name</label>
+              <label htmlFor="name">name</label>
               <input
                 className="w-[453px] rounded-lg "
                 type="text"
@@ -238,7 +241,7 @@ const Register = () => {
             </div>
 
             <div className="flex flex-col ml-[12px] mt-[24px] z-0">
-              <label for="birth">Date of birth</label>
+              <label htmlFor="birth">Date of birth</label>
               <DatePicker
                 className="w-[453px] rounded-lg focus:border-pink-300 focus:border-[2px]"
                 selected={startDate}
@@ -253,39 +256,42 @@ const Register = () => {
           {/* colomn2 */}
           <div className="column2 flex">
             <div className="flex flex-col mr-[12px] mt-[40px]">
-              <label for="location">Location</label>
+              <label htmlFor="location">Location</label>
               <select
                 className="w-[453px] h-[48px] rounded-lg p-[12px]"
                 value={location}
                 onChange={(e) => {
-                  handlecounty(e);
+                  handleCountry(e);
                 }}
               >
                 <option disabled value="">
                   -- Select Country--
                 </option>
-                {Countrydata.map((getcountry, index) => (
+                {CountryData.map((getCountry, index) => (
                   <option
                     className=""
-                    value={getcountry.country_name}
+                    value={getCountry.country_name}
                     key={index}
                   >
-                    {getcountry.country_name}
+                    {getCountry.country_name}
                   </option>
                 ))}
               </select>
             </div>
 
             <div className="flex flex-col ml-[12px] mt-[40px]">
-              <label for="city">City</label>
+              <label htmlFor="city">City</label>
               <select
                 className="w-[453px] h-[48px] rounded-lg p-[12px]"
                 value={city}
-                onChange={(e) => handlestate(e)}
+                defaultValue={city}
+                onChange={(e) => {
+                  handleNationState(e);
+                }}
               >
-                {state.map((getstate, index) => (
-                  <option value={getstate.state_name} key={index}>
-                    {getstate.state_name}
+                {state.map((getStateData, index) => (
+                  <option value={getStateData.state_name} key={index}>
+                    {getStateData.state_name}
                   </option>
                 ))}
               </select>
@@ -295,7 +301,7 @@ const Register = () => {
           {/* colomn 3 */}
           <div className="column3 flex">
             <div className="flex flex-col mr-[12px] mt-[40px]">
-              <label for="username">Username</label>
+              <label htmlFor="username">Username</label>
               <input
                 className="w-[453px] rounded-lg"
                 type="text"
@@ -309,7 +315,7 @@ const Register = () => {
               />
             </div>
             <div className="flex flex-col ml-[12px] mt-[40px]">
-              <label for="Email">Email</label>
+              <label htmlFor="Email">Email</label>
               <input
                 className="w-[453px] rounded-lg"
                 type="email"
@@ -322,13 +328,13 @@ const Register = () => {
           </div>
 
           {/* Page 2 */}
-          <h1 className="basicInformation text-[#A62D82] mt-[80px]">
+          <h1 className="basicInformation text-[#A62D82] mt-[80px] font-bold">
             Identities and Interests
           </h1>
           {/* colomn1 */}
           <div className="column1 flex">
             <div className="SexualIdentities flex flex-col mr-[12px] mt-[40px]">
-              <label for="SexualIdentities">Sexual identities</label>
+              <label htmlFor="SexualIdentities">Sexual identities</label>
               <select
                 className="w-[453px] rounded-lg h-[48px] p-[12px]"
                 id="SexualIdentities"
@@ -344,7 +350,7 @@ const Register = () => {
             </div>
 
             <div className="SexualPreferences flex flex-col ml-[12px] mt-[40px]">
-              <label for="SexualPreferences">Sexual preferences</label>
+              <label htmlFor="SexualPreferences">Sexual preferences</label>
               <select
                 className="w-[453px] rounded-lg h-[48px] p-[12px]"
                 id="SexualPreferences"
@@ -363,7 +369,7 @@ const Register = () => {
           {/* colomn2 */}
           <div className="column2 flex">
             <div className="RacialPreferences flex flex-col mr-[12px] mt-[40px] ">
-              <label for="RacialPreferences">Racial preferences</label>
+              <label htmlFor="RacialPreferences">Racial preferences</label>
               <select
                 className="w-[453px] rounded-lg h-[48px] p-[12px]"
                 id="RacialPreferences"
@@ -376,7 +382,7 @@ const Register = () => {
             </div>
 
             <div className="MeetingInterests flex flex-col  ml-[12px] mt-[40px]">
-              <label for="MeetingInterests">Meeting interests</label>
+              <label htmlFor="MeetingInterests">Meeting interests</label>
               <select
                 className="w-[453px] h-[48px] rounded-lg p-[12px]"
                 id="MeetingInterests"
@@ -404,8 +410,7 @@ const Register = () => {
               isLoading={false}
               isRtl={false}
               closeMenuOnSelect={false}
-              value={
-                hobbies}
+              value={hobbies}
               isMulti
             />
           </div>
@@ -436,7 +441,7 @@ const Register = () => {
           })} */}
 
           <div className="flex flex-col mt-[24px]">
-            <label for="AboutMe">About me (Maximum 150 characters)</label>
+            <label htmlFor="AboutMe">About me (Maximum 150 characters)</label>
             <textarea
               id="AboutMe"
               name="AboutMe"

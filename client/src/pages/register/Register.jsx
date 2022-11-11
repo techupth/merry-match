@@ -32,7 +32,7 @@ function Register() {
   const [birthday, setBirthday] = useState("");
   const [hobbies, setHobbies] = useState([]);
   const [countryid, setCountryid] = useState("");
-  const [stateid, setStateid] = useState("");
+  const [nationStateId, setnationStateId] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -67,7 +67,7 @@ function Register() {
     name,
     birthday: startDate,
     location: countryid,
-    city: stateid,
+    city: nationStateId,
     username,
     email,
     password,
@@ -118,7 +118,7 @@ function Register() {
       name == "" ||
       birthday == "" ||
       countryid == "" ||
-      stateid == "" ||
+      nationStateId == "" ||
       username == "" ||
       email == "" ||
       password == "" ||
@@ -195,18 +195,18 @@ function Register() {
     setHobbies(temp);
   };
 
-  const handlecounty = (e) => {
-    const getcountryId = e.target.value;
-    const getStatedata = Countrydata.find(
-      (country) => country.country_name === getcountryId
+  const handleCountry = (e) => {
+    const getCountryId = e.target.value;
+    const getStateData = Countrydata.find(
+      (country) => country.country_name === getCountryId
     ).states;
-    setState(getStatedata);
-    setCountryid(getcountryId);
+    setState(getStateData);
+    setCountryid(getCountryId);
   };
 
-  const handlestate = (e) => {
-    const stateid = e.target.value;
-    setStateid(stateid);
+  const handleState = (e) => {
+    const nationStateId = e.target.value;
+    setnationStateId(nationStateId);
   };
 
   const handleRemoveImage = (i) => {
@@ -449,7 +449,7 @@ function Register() {
                       </label>
                       <select
                         className="w-[453px] h-[48px] border-[#D6D9E4] rounded-lg p-2"
-                        onChange={(e) => handlecounty(e)}
+                        onChange={(e) => handleCountry(e)}
                         value={countryid}
                         required
                       >
@@ -474,16 +474,16 @@ function Register() {
                       </label>
                       <select
                         className="w-[453px] h-[48px] border-[#D6D9E4] rounded-lg p-2"
-                        onChange={(e) => handlestate(e)}
-                        value={stateid}
+                        onChange={(e) => handleState(e)}
+                        value={nationStateId}
                         required
                       >
                         <option disabled value="">
                           -- Select City --
                         </option>
-                        {state.map((getstate, index) => (
-                          <option value={getstate.state_name} key={index}>
-                            {getstate.state_name}
+                        {state.map((getStateData, index) => (
+                          <option value={getStateData.state_name} key={index}>
+                            {getStateData.state_name}
                           </option>
                         ))}
                       </select>
