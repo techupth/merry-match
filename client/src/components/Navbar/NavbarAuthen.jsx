@@ -4,7 +4,7 @@ import UserPopup from "./userPopup";
 import jwtDecode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import useClickOutside from '../../utils/hooks/useClickOutside';
+import useClickOutside from "../../utils/hooks/useClickOutside";
 
 const NavbarAuthen = () => {
   const [images, setImage] = useState("");
@@ -65,7 +65,10 @@ const NavbarAuthen = () => {
           className="text-[40px] mr-[]"
           onClick={() => setCallPop(!callPop)}
         >
-          <img src={images} className="w-[50px] h-[50px] rounded-full " />
+          <img
+            src={images}
+            className="w-[50px] h-[50px] rounded-full object-cover"
+          />
         </button>
 
         {callPop && <UserPopup close={setCallPop} />}
