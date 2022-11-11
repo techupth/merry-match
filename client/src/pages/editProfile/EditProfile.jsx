@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import CountryData from "../../utils/mock-city/Countrydata.json";
 import { useAuth } from "../../contexts/authentication";
 import axios from "axios";
@@ -53,8 +53,9 @@ const Register = () => {
 
   // Delete button
   const [deleteAccount, setDeleteAccount] = useState(false);
-  const [preview, setPreview] = useState(false);
 
+  // Preview modal
+  const [preview, setPreview] = useState(false);
 
   const handleCountry = (e) => {
     const getCountryId = e.target.value;
@@ -181,13 +182,12 @@ const Register = () => {
   }, [birthday]);
 
   return (
-    <div className="w-full bg-[#FCFCFE] flex flex-col">
+    <div  className="w-full bg-[#FCFCFE] flex flex-col">
       <NavbarAuthen />
 
       <div className="informationContainer flex flex-col items-center justify-start">
-
-       {/* show preview modal */}
-      {preview && <EditModal close={() => setPreview(!preview)} />}
+        {/* show preview modal */}
+        {preview && <EditModal close={() => setPreview(!preview)} />}
 
         <form>
           {/* start Header */}
