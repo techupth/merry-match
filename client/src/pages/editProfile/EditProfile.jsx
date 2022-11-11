@@ -9,8 +9,6 @@ import Select from "react-select";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import jwtDecode from "jwt-decode";
-import { da } from "date-fns/locale";
-import { set } from "date-fns";
 
 // Components
 import DeleteButton from "../../components/editPageComponents/DeleteButton";
@@ -24,7 +22,6 @@ import useClickOutside from "../../utils/hooks/useClickOutside";
 
 const EditProfile = () => {
   const [userData, setUserData] = useState({});
-  const [text, setText] = useState("");
 
   const [countryId, setCountryId] = useState("");
   const [state, setState] = useState([]);
@@ -54,6 +51,8 @@ const EditProfile = () => {
   // Delete button
   const [deleteAccount, setDeleteAccount] = useState(false);
   const [preview, setPreview] = useState(false);
+
+  console.log(Images)
 
   // preview edited profile pop-up
   const ref = useRef(null);
@@ -87,10 +86,10 @@ const EditProfile = () => {
     setName(result.data.data[0].name);
     setUsername(result.data.data[0].username);
     setEmail(result.data.data[0].email);
-    setSexIdentity(result.data.data[0].sex_identity);
-    setSexPref(result.data.data[0].sex_pref);
-    setRacialPref(result.data.data[0].racial_pref);
-    setMeetingInt(result.data.data[0].meeting_int);
+    setSexidentity(result.data.data[0].sex_identity);
+    setSexpref(result.data.data[0].sex_pref);
+    setRacialpref(result.data.data[0].racial_pref);
+    setMeetingint(result.data.data[0].meeting_int);
     setLocation(result.data.data[0].location);
     setCity(result.data.data[0].city);
 
@@ -120,20 +119,16 @@ const EditProfile = () => {
     setImages(newItemImage);
   };
 
-  console.log(userData);
-
-  // update profile
-
   const updateUserData = {
     user_id: userData.user_id,
     name,
     birthday: startDate,
     location: countryId,
     city: nationStateId,
-    sex_identity: sexIdentity,
-    sex_pref: sexPref,
-    racial_pref: racialPref,
-    meeting_int: meetingInt,
+    sex_identity: sexidentity,
+    sex_pref: sexpref,
+    racial_pref: racialpref,
+    meeting_int: meetingint,
     about_me: aboutMe,
     hobby: hobbies,
     profile_pics: Images,
@@ -155,7 +150,6 @@ const EditProfile = () => {
     // console.log(userData);
     updateUserProfile(updateUserData);
   };
-  console.log(updateUserData);
 
   const handleHobbie = (data) => {
     const hobbiesArr = [];
@@ -168,17 +162,15 @@ const EditProfile = () => {
     setHobbies(hobbiesArr);
   };
 
-  console.log(hobbies);
-
   const handleDate = (data) => {
     let parts = birthday.split("T");
     let strDate = parts[0].split("-");
     const myDate = new Date(strDate[0], strDate[1] - 1, strDate[2]);
     if (myDate != "Invalid Date") {
       setStartDate(myDate);
-    };
+    }
   };
-  function handleOpenWidget() {
+  const handleOpenWidget = () => {
     let myWidget = window.cloudinary.createUploadWidget(
       {
         cloudName: "dn4jfzbs6",
@@ -195,6 +187,26 @@ const EditProfile = () => {
     );
     myWidget.open();
   }
+
+  const handleStateWidget = () => {
+    handleOpenWidget();
+
+  //   if (Images.length > 1) {
+  //     setWidget === false;
+  //   }
+  // };
+
+  // const handleNext = () => {
+  //   if (step !== 3) {
+  //     setStep(step + 1);
+  //   }
+  // };
+
+  // const handleBack = () => {
+  //   if (step !== 1) {
+  //     setStep(step - 1);
+  //   }
+  };
 
   function deleteImage(item) {
     console.log(item);
@@ -229,7 +241,10 @@ const EditProfile = () => {
             {/* preview modal button */}
             <div className=" flex self-end ml-[80px] z-0">
               <button
-                onClick={() => setPreview(!preview)}
+                onClick={(e) => {
+                  e.preventDefault()
+                  setPreview(!preview);
+                }}
                 className="w-[162px] h-[48px] bg-[#FFE1EA] rounded-full text-[#95002B] font-[700]"
               >
                 Preview Profile
@@ -239,6 +254,7 @@ const EditProfile = () => {
               <button
                 className="w-[162px] h-[48px] bg-[#C70039] ml-[16px] rounded-full text-[#FFFFFF] font-[700]"
                 onClick={(event) => {
+                  event.preventDefault();
                   handleUpdate(event, updateUserData);
                 }}
               >
@@ -252,13 +268,7 @@ const EditProfile = () => {
           {/* colomn 1 */}
 
           {/* show preview modal */}
-          {preview && (
-            <EditModal
-              close={setPreview}
-              data={userData}
-              className="absolute z-20 top-0"
-            />
-          )}
+          {preview && <EditModal close={setPreview} data={updateUserData} />}
 
           <h4 className="basicInformation text-[#A62D82] mt-[80px] font-bold text-[24px] z-0">
             Basic Information
@@ -304,16 +314,11 @@ const EditProfile = () => {
                   handleCountry(e);
                 }}
               >
-                <option disabled value="">
+                <option disabled value={"Azerbaijan"}>
                   -- Select Country--
                 </option>
                 {CountryData.map((getCountry, index) => (
-                  <option
-                    className=""
-                    value={getCountry.country_name}
-                    key={index}
-                    on
-                  >
+                  <option value={getCountry.country_name} key={index} on>
                     {getCountry.country_name}
                   </option>
                 ))}
@@ -324,7 +329,7 @@ const EditProfile = () => {
               <label htmlFor="city">City</label>
               <select
                 className="w-[453px] h-[48px] rounded-lg p-[12px]"
-                value={city}
+                value={nationStateId}
                 onChange={(e) => {
                   handleNationState(e);
                 }}
@@ -381,9 +386,9 @@ const EditProfile = () => {
                 className="w-[453px] rounded-lg h-[48px] p-[12px]"
                 id="SexualIdentities"
                 name="status"
-                value={sexIdentity}
+                value={sexidentity}
                 onChange={(e) => {
-                  setSexIdentity(e.target.value);
+                  setSexidentity(e.target.value);
                 }}
               >
                 <option value="Male">Male</option>
@@ -397,9 +402,9 @@ const EditProfile = () => {
                 className="w-[453px] rounded-lg h-[48px] p-[12px]"
                 id="SexualPreferences"
                 name="SexualPreferences"
-                value={sexPref}
+                value={sexpref}
                 onChange={(e) => {
-                  setSexPref(e.target.value);
+                  setSexpref(e.target.value);
                 }}
               >
                 <option value="Male">Male</option>
@@ -416,9 +421,9 @@ const EditProfile = () => {
                 className="w-[453px] rounded-lg h-[48px] p-[12px]"
                 id="RacialPreferences"
                 name="RacialPreferences"
-                value={racialPref}
+                value={racialpref}
                 onChange={(e) => {
-                  setRacialPref(e.target.value);
+                  setRacialpref(e.target.value);
                 }}
               >
                 <option value="Asian">Asian</option>
@@ -432,9 +437,9 @@ const EditProfile = () => {
                 className="w-[453px] h-[48px] rounded-lg p-[12px]"
                 id="MeetingInterests"
                 name="MeetingInterests"
-                value={meetingInt}
+                value={meetingint}
                 onChange={(e) => {
-                  setMeetingInt(e.target.value);
+                  setMeetingint(e.target.value);
                 }}
               >
                 <option value="Friend">Friend</option>
@@ -488,7 +493,7 @@ const EditProfile = () => {
                 <button
                   className=" w-[167px] h-[167px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]  items-center justify-center  "
                   type="button"
-                  onClick={""}
+                  onClick={handleStateWidget}
                 >
                   + <br /> Upload photo{" "}
                 </button>
@@ -519,7 +524,7 @@ const EditProfile = () => {
                 <button
                   className=" w-[167px] h-[167px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]  items-center justify-center  "
                   type="button"
-                  onClick={""}
+                  onClick={handleStateWidget}
                 >
                   + <br /> Upload photo{" "}
                 </button>
@@ -550,7 +555,7 @@ const EditProfile = () => {
                 <button
                   className=" w-[167px] h-[167px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]  items-center justify-center  "
                   type="button"
-                  onClick={""}
+                  onClick={handleStateWidget}
                 >
                   + <br /> Upload photo{" "}
                 </button>
@@ -581,7 +586,7 @@ const EditProfile = () => {
                 <button
                   className=" w-[167px] h-[167px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]  items-center justify-center  "
                   type="button"
-                  onClick={""}
+                  onClick={handleStateWidget}
                 >
                   + <br /> Upload photo{" "}
                 </button>
@@ -612,7 +617,7 @@ const EditProfile = () => {
                 <button
                   className=" w-[167px] h-[167px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]  items-center justify-center  "
                   type="button"
-                  onClick={""}
+                  onClick={handleStateWidget}
                 >
                   + <br /> Upload photo{" "}
                 </button>

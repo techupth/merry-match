@@ -221,7 +221,7 @@ function Register() {
     setImages(imageDelete);
   };
 
-  function handleOpenWidget() {
+  const handleOpenWidget = () => {
     let myWidget = window.cloudinary.createUploadWidget(
       {
         cloudName: "dn4jfzbs6",
