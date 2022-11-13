@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import CountryData from "../../utils/mock-city/Countrydata.json";
-import { useAuth } from "../../contexts/authentication";
 import axios from "axios";
 import makeAnimated from "react-select/animated";
 import { options } from "../../utils/optionSelect";
@@ -9,8 +8,6 @@ import Select from "react-select";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import jwtDecode from "jwt-decode";
-import { da } from "date-fns/locale";
-import { set } from "date-fns";
 
 // Components
 import DeleteButton from "../../components/editPageComponents/DeleteButton";
@@ -58,8 +55,8 @@ const EditProfile = () => {
   // Preview modal
   const [preview, setPreview] = useState(false);
 
-  const handleCountry = (e) => {
-    const getCountryId = e.target.value;
+  const handleCountry = (data) => {
+    const getCountryId = data;
     const getStateData = CountryData.find(
       (country) => country.country_name === getCountryId
     ).states;
@@ -67,12 +64,10 @@ const EditProfile = () => {
     setCountryId(getCountryId);
     setLocation(getCountryId);
   };
-  // console.log(city);
-  // console.log(location);
 
   const handleNationState = (e) => {
     const nationStateId = e.target.value;
-    setNationStateId(nationStateId);
+    setCity(nationStateId);
   };
 
   const decodeFromToken = async () => {
@@ -121,16 +116,13 @@ const EditProfile = () => {
     setImages(newItemImage);
   };
 
-  console.log(userData);
-
-  // update profile
-
+  // Update Profile
   const updateUserData = {
     user_id: userData.user_id,
     name,
     birthday: startDate,
-    location: countryId,
-    city: nationStateId,
+    location: location,
+    city: city,
     sex_identity: sexIdentity,
     sex_pref: sexPref,
     racial_pref: racialPref,
@@ -141,11 +133,13 @@ const EditProfile = () => {
     contact,
   };
 
+  console.log(userData)
+
   const updateUserProfile = async (updateUserData) => {
     const userId = userData.user_id;
     console.log(userId);
     console.log(updateUserData);
-    const result = await axios.put(
+    await axios.put(
       `http://localhost:4001/users/${userData.user_id}`,
       updateUserData
     );
@@ -153,13 +147,10 @@ const EditProfile = () => {
 
   const handleUpdate = async (event, userData) => {
     event.preventDefault();
-    // console.log(userData);
     updateUserProfile(updateUserData);
   };
-  console.log(updateUserData);
 
   const handleHobbie = (data) => {
-    console.log(data);
     const hobbiesArr = [];
     if (data !== undefined) {
       for (let i = 0; i < data.length; i++) {
@@ -169,8 +160,6 @@ const EditProfile = () => {
     }
     setHobbies(hobbiesArr);
   };
-
-  console.log(hobbies);
 
   const handleDate = (data) => {
     let parts = birthday.split("T");
@@ -199,7 +188,6 @@ const EditProfile = () => {
   }
 
   function deleteImage(item) {
-    console.log(item);
     const imageDelete = Images.filter((value, i) => {
       return i !== item;
     });
@@ -210,15 +198,20 @@ const EditProfile = () => {
     decodeFromToken();
     handleDate(birthday);
     handleHobbie(userData.hobby);
+    if (userData.location !== undefined) {
+      handleCountry(location);
+    }
   }, [birthday]);
 
   return (
-    <div  className="w-full bg-[#FCFCFE] flex flex-col">
+    <div className="w-full bg-[#FCFCFE] flex flex-col">
       <NavbarAuthen />
 
       <div className="informationContainer flex flex-col items-center justify-start">
         {/* show preview modal */}
-        {preview && <EditModal close={() => setPreview(!preview)} />}
+        {preview && (
+          <EditModal close={() => setPreview(!preview)} data={updateUserData} />
+        )}
 
         <form>
           {/* start Header */}
@@ -235,9 +228,10 @@ const EditProfile = () => {
             {/* preview modal button */}
             <div className=" flex self-end ml-[80px] z-0">
               <button
-                onClick={(event) =>{
-                  event.preventDefault()
-                  setPreview(!preview)}}
+                onClick={(event) => {
+                  event.preventDefault();
+                  setPreview(!preview);
+                }}
                 className="w-[162px] h-[48px] bg-[#FFE1EA] rounded-full text-[#95002B] font-[700]"
               >
                 Preview Profile
@@ -298,21 +292,16 @@ const EditProfile = () => {
               <label htmlFor="location">Location</label>
               <select
                 className="w-[453px] h-[48px] rounded-lg p-[12px]"
-                value={location}
                 onChange={(e) => {
-                  handleCountry(e);
+                  handleCountry(e.target.value);
                 }}
+                value={location}
               >
                 <option disabled value="">
                   -- Select Country--
                 </option>
                 {CountryData.map((getCountry, index) => (
-                  <option
-                    className=""
-                    value={getCountry.country_name}
-                    key={index}
-                    on
-                  >
+                  <option key={index} on>
                     {getCountry.country_name}
                   </option>
                 ))}
@@ -323,10 +312,11 @@ const EditProfile = () => {
               <label htmlFor="city">City</label>
               <select
                 className="w-[453px] h-[48px] rounded-lg p-[12px]"
-                value={city}
                 onChange={(e) => {
                   handleNationState(e);
                 }}
+                defaultValue={"---selection----"}
+                value={city}
               >
                 {state.map((getStateData, index) => (
                   <option value={getStateData.state_name} key={index}>
