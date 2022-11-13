@@ -235,7 +235,9 @@ const EditProfile = () => {
             {/* preview modal button */}
             <div className=" flex self-end ml-[80px] z-0">
               <button
-                onClick={() => setPreview(!preview)}
+                onClick={(event) =>{
+                  event.preventDefault()
+                  setPreview(!preview)}}
                 className="w-[162px] h-[48px] bg-[#FFE1EA] rounded-full text-[#95002B] font-[700]"
               >
                 Preview Profile
