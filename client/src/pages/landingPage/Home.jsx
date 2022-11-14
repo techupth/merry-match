@@ -6,7 +6,7 @@ import ThirdPart from "../../components/ladingPage/ThirdPart";
 import Navbar from "../../components/Navbar/Navbar";
 function Home() {
   return (
-    <div>
+    <div className="bg-[#160404]">
       <Header />
       <SecondPart />
       <ThirdPart />

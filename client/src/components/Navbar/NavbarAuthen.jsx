@@ -41,7 +41,7 @@ const NavbarAuthen = () => {
         <img
           src="/asset/header/header-merrymatch-logo.svg"
           alt="merry match logo"
-          className="ml-[70px]"
+          className="ml-[170px]"
         />
       </button>
 

@@ -183,10 +183,10 @@ const EditModal = ({ close, data }) => {
         {/* title */}
         <div className="w-[100%] h-[20%]">
           <span className="text-[46px] font-[900]">{data.name} </span>
-          <span className="text-[46px] font-[900] text-[#646D89]">{age}</span>
+          <span className="text-[46px] font-[900] text-[#646D89] ml-[30px]">{age}</span>
           <br />
 
-          <div className="flex flex-row">
+          <div className="flex flex-row mt-2">
             <img src={location} className="mt-[-1%]" />
 
             <span className="relative ml-[3%] text-[20px] font-[600] text-[#646D89]">
@@ -197,26 +197,26 @@ const EditModal = ({ close, data }) => {
 
         {/* Sexual identities */}
         <div className=" w-[100%] h-[25%]">
-          <span className="text-[16px] mr-[5%]">Sexual identities</span>
-          <span className="text-[20px] text-[#646D89]">
+          <span className="text-[16px] mr-[5%] ">Sexual identities : </span>
+          <span className="text-[20px] text-[#646D89] ml-4 ">
             {data.sex_identity}
           </span>
           <br />
           {/* Sexual preferences */}
-          <span className="text-[16px] mr-[5%]">Sexual preferences</span>
+          <span className="text-[16px] mr-[5%]">Sexual preferences : </span>
           <span className="text-[20px] text-[#646D89]">
             {data.sex_pref}
           </span>{" "}
           <br />
           {/* Racial preferences */}
-          <span className="text-[16px] mr-[5%]">Racial preferences</span>
-          <span className="text-[20px] text-[#646D89]">
+          <span className="text-[16px] mr-[5%]">Racial preferences : </span>
+          <span className="text-[20px] text-[#646D89] ml-1">
             {data.racial_pref}
           </span>{" "}
           <br />
           {/* Meeting interests */}
-          <span className="text-[16px] mr-[5%]">Meeting interests</span>
-          <span className="text-[20px] text-[#646D89]">
+          <span className="text-[16px] mr-[5%]">Meeting interests : </span>
+          <span className="text-[20px] text-[#646D89] ml-3">
             {data.meeting_int}
           </span>{" "}
           <br />
@@ -232,8 +232,8 @@ const EditModal = ({ close, data }) => {
         <div className=" w-[100%] h-[10%] mt-[10%] flex flex-col">
           <h1 className="font-[700]">Hobbies and Interests</h1>
           <div className="text-[16px] flex flex-row mt-2">
-            {hobbies.map((value) => {
-              return <div className="mr-4">{value}</div>;
+            {hobbies.map((value , index) => {
+              return <div key={index} className="mr-2 text-[#7D2262] rounded-[12px] border-[1px] border-[#DF89C6] px-[12px] py-[6px] text-[16px]">{value}</div>;
             })}
           </div>
         </div>

@@ -1,6 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function footer() {
+  const navigate = useNavigate()
   return (
     <div className="bg-[#160404]">
       <div className="CTA-Section w-full ">
@@ -27,7 +29,7 @@ export default function footer() {
             <p className="bg-transparent font-[700] leading-[125%]">
               and matching someone new
             </p>
-            <button className="button-footer bg-[#FFE1EA] text-[#95002B] p-4 rounded-full mt-[50px] text-[16px] w-[160px] shadow-xl font-[700]">
+            <button onClick={()=>{navigate("/login")}} className="button-footer bg-[#FFE1EA] text-[#95002B] p-4 rounded-full mt-[50px] text-[16px] w-[160px] shadow-xl font-[700] hover:bg-pink-300">
               Start Matching!
             </button>
             <div className="absolute right-0 bottom-6">
