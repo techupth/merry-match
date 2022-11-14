@@ -4,6 +4,8 @@ import axios from "axios";
 import makeAnimated from "react-select/animated";
 import { options } from "../../utils/optionSelect";
 import Select from "react-select";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/authentication";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -55,6 +57,9 @@ const EditProfile = () => {
   // Preview modal
   const [preview, setPreview] = useState(false);
 
+  const navigate = useNavigate();
+  const { deleteuser } = useAuth();
+
   const handleCountry = (data) => {
     const getCountryId = data;
     const getStateData = CountryData.find(
@@ -74,10 +79,11 @@ const EditProfile = () => {
     const token = localStorage.getItem("token");
     const userData = jwtDecode(token);
     setUserData(userData);
-
+  
     const result = await axios(
       `http://localhost:4001/users/${userData.user_id}`
     );
+
     setUserData(result.data.data[0]);
     setBirthday(result.data.data[0].birthday);
     setName(result.data.data[0].name);
@@ -89,29 +95,31 @@ const EditProfile = () => {
     setMeetingInt(result.data.data[0].meeting_int);
     setLocation(result.data.data[0].location);
     setCity(result.data.data[0].city);
+    setAboutMe(result.data.data[0].about_me)
 
     // Photo
+   
     const newItemImage = [];
     if (result.data.data[0].profile_pics[0] !== undefined) {
-      const Photo1 = JSON.parse(result.data.data[0].profile_pics[0]);
-      newItemImage.push(Photo1.url);
+      const Photo1 = result.data.data[0].profile_pics[0]
+      newItemImage.push(Photo1);
     }
 
     if (result.data.data[0].profile_pics[1] !== undefined) {
-      const Photo2 = JSON.parse(result.data.data[0].profile_pics[1]);
-      newItemImage.push(Photo2.url);
+      const Photo2 = result.data.data[0].profile_pics[1]
+      newItemImage.push(Photo2);
     }
     if (result.data.data[0].profile_pics[2] !== undefined) {
-      const Photo3 = JSON.parse(result.data.data[0].profile_pics[2]);
-      newItemImage.push(Photo3.url);
+      const Photo3 = result.data.data[0].profile_pics[2]
+      newItemImage.push(Photo3);
     }
     if (result.data.data[0].profile_pics[3] !== undefined) {
-      const Photo4 = JSON.parse(result.data.data[0].profile_pics[3]);
-      newItemImage.push(Photo4.url);
+      const Photo4 = result.data.data[0].profile_pics[3]
+      newItemImage.push(Photo4);
     }
     if (result.data.data[0].profile_pics[4] !== undefined) {
-      const Photo5 = JSON.parse(result.data.data[0].profile_pics[4]);
-      newItemImage.push(Photo5.url);
+      const Photo5 = result.data.data[0].profile_pics[4]
+      newItemImage.push(Photo5);
     }
     setImages(newItemImage);
   };
@@ -132,13 +140,10 @@ const EditProfile = () => {
     profile_pics: Images,
     contact,
   };
-
-  console.log(userData)
+  
 
   const updateUserProfile = async (updateUserData) => {
     const userId = userData.user_id;
-    console.log(userId);
-    console.log(updateUserData);
     await axios.put(
       `http://localhost:4001/users/${userData.user_id}`,
       updateUserData
@@ -177,10 +182,7 @@ const EditProfile = () => {
       },
       (error, result) => {
         if (!error && result && result.event === "success") {
-          setImages((prev) => [
-            ...prev,
-            { url: result.info.url, public_id: result.info.public_id },
-          ]);
+          setImages((prev) => [...prev, result.info.url]);
         }
       }
     );
@@ -242,6 +244,7 @@ const EditProfile = () => {
                 className="w-[162px] h-[48px] bg-[#C70039] ml-[16px] rounded-full text-[#FFFFFF] font-[700]"
                 onClick={(event) => {
                   handleUpdate(event, updateUserData);
+                  navigate("/");
                 }}
               >
                 Update Profile
@@ -278,9 +281,8 @@ const EditProfile = () => {
                 className="w-[453px] rounded-lg focus:border-pink-300 focus:border-[2px]"
                 selected={startDate}
                 onChange={(date) => {
-                  console.log(date);
                   setStartDate(date);
-                  setBirthday(date);
+                  // setBirthday(date);
                 }}
               />
             </div>
@@ -482,9 +484,10 @@ const EditProfile = () => {
             <textarea
               id="AboutMe"
               name="AboutMe"
-              maxlength="150"
+              maxLength="150"
               rows="1"
               className="rounded-lg h-[127px] p-[12px]"
+              value={aboutMe}
               onChange={(event) => {
                 setAboutMe(event.target.value);
               }}
@@ -502,7 +505,7 @@ const EditProfile = () => {
                 <button
                   className=" w-[167px] h-[167px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]  items-center justify-center  "
                   type="button"
-                  onClick={""}
+                  onClick={handleOpenWidget}
                 >
                   + <br /> Upload photo{" "}
                 </button>
@@ -533,7 +536,7 @@ const EditProfile = () => {
                 <button
                   className=" w-[167px] h-[167px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]  items-center justify-center  "
                   type="button"
-                  onClick={""}
+                  onClick={handleOpenWidget}
                 >
                   + <br /> Upload photo{" "}
                 </button>
@@ -564,7 +567,7 @@ const EditProfile = () => {
                 <button
                   className=" w-[167px] h-[167px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]  items-center justify-center  "
                   type="button"
-                  onClick={""}
+                  onClick={handleOpenWidget}
                 >
                   + <br /> Upload photo{" "}
                 </button>
@@ -595,7 +598,7 @@ const EditProfile = () => {
                 <button
                   className=" w-[167px] h-[167px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]  items-center justify-center  "
                   type="button"
-                  onClick={""}
+                  onClick={handleOpenWidget}
                 >
                   + <br /> Upload photo{" "}
                 </button>
@@ -626,7 +629,7 @@ const EditProfile = () => {
                 <button
                   className=" w-[167px] h-[167px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]  items-center justify-center  "
                   type="button"
-                  onClick={""}
+                  onClick={handleOpenWidget}
                 >
                   + <br /> Upload photo{" "}
                 </button>
@@ -656,7 +659,7 @@ const EditProfile = () => {
         </form>
 
         {/* Delete button */}
-        {deleteAccount && <DeleteButton close={setDeleteAccount} />}
+        {deleteAccount && <DeleteButton close={setDeleteAccount} userId = {userData.user_id} />}
 
         <div className="delete-section flex flex-col justify-end items-end  h-[70px] w-full   ">
           <button

@@ -80,6 +80,14 @@ function AuthProvider(props) {
     setUserData({ ...userData, user: null });
   };
 
+  const deleteuser = async(userId) =>{
+    console.log(userId)
+    localStorage.removeItem("token");
+    setUserData({ ...userData, user: null });
+    await axios.delete(`http://localhost:4001/users/${userId}`)
+    
+  };
+
   const isAuthenticated = Boolean(localStorage.getItem("token"));
 
   return (
@@ -92,6 +100,7 @@ function AuthProvider(props) {
         msg,
         checkRegister,
         isAuthenticated,
+        deleteuser
       }}
     >
       {props.children}

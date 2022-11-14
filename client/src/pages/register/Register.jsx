@@ -229,15 +229,14 @@ function Register() {
       },
       (error, result) => {
         if (!error && result && result.event === "success") {
-          setImages((prev) => [
-            ...prev,
-            { url: result.info.url, public_id: result.info.public_id },
-          ]);
+          setImages((prev) => [...prev, result.info.url]);
         }
       }
     );
     myWidget.open();
   }
+  
+  console.log(images)
 
   const handleStateWidget = () => {
     handleOpenWidget();
@@ -817,7 +816,7 @@ function Register() {
                   ) : (
                     <p className="w-[30%] h-[60%] flex relative rounded-md overflow-hidden justify-center z-10 ">
                       <img
-                        src={images[0].url}
+                        src={images[0]}
                         alt="pic-1"
                         className=" mt-3 w-auto h-auto rounded-md overflow-hidden z-0 object-cover "
                       />
@@ -843,7 +842,7 @@ function Register() {
                   ) : (
                     <p className="w-[35%] h-[60%] flex  relative rounded-lg overflow-hidden justify-center z-10">
                       <img
-                        src={images[1].url}
+                        src={images[1]}
                         alt="pic-1"
                         className=" mt-3 w-auto h-auto rounded-lg overflow-hidden z-10 "
                       />
@@ -868,7 +867,7 @@ function Register() {
                   ) : (
                     <p className="w-[35%] h-[60%] flex  relative rounded-lg overflow-hidden justify-center z-10">
                       <img
-                        src={images[2].url}
+                        src={images[2]}
                         alt="pic-1"
                         className=" mt-3 rounded-lg overflow-hidden z-10 "
                       />
@@ -893,7 +892,7 @@ function Register() {
                   ) : (
                     <p className="w-[35%] h-[60%] flex  relative rounded-lg overflow-hidden justify-center z-10">
                       <img
-                        src={images[3].url}
+                        src={images[3]}
                         alt="pic-1"
                         className=" mt-3 rounded-lg overflow-hidden z-10 "
                       />
@@ -918,7 +917,7 @@ function Register() {
                   ) : (
                     <p className="w-[35%] h-[60%] flex  relative rounded-lg overflow-hidden justify-center z-10">
                       <img
-                        src={images[4].url}
+                        src={images[4]}
                         alt="pic-1"
                         className=" mt-3 rounded-lg overflow-hidden z-10  "
                       />
