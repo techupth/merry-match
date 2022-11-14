@@ -5,7 +5,7 @@ import makeAnimated from "react-select/animated";
 import { options } from "../../utils/optionSelect";
 import Select from "react-select";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../contexts/authentication";
+
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -58,7 +58,13 @@ const EditProfile = () => {
   const [preview, setPreview] = useState(false);
 
   const navigate = useNavigate();
-  const { deleteuser } = useAuth();
+  
+  let maxDate = new Date();
+  maxDate.setFullYear(maxDate.getFullYear() - 18);
+  // console.log(maxDate);
+
+  let minDate = new Date();
+  minDate.setFullYear(minDate.getFullYear() - 60);
 
   const handleCountry = (data) => {
     const getCountryId = data;
@@ -142,7 +148,6 @@ const EditProfile = () => {
   };
 
   const updateUserProfile = async (updateUserData) => {
-    const userId = userData.user_id;
     await axios.put(
       `http://localhost:4001/users/${userData.user_id}`,
       updateUserData
@@ -173,6 +178,8 @@ const EditProfile = () => {
       setStartDate(myDate);
     }
   };
+
+
   function handleOpenWidget() {
     let myWidget = window.cloudinary.createUploadWidget(
       {
@@ -279,6 +286,11 @@ const EditProfile = () => {
               <DatePicker
                 className="w-[453px] rounded-lg focus:border-pink-300 focus:border-[2px]"
                 selected={startDate}
+                showMonthDropdown
+                showYearDropdown
+                dropdownMode="select"
+                maxDate={maxDate}
+                minDate={minDate}
                 onChange={(date) => {
                   setStartDate(date);
                   // setBirthday(date);

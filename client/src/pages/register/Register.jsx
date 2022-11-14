@@ -99,6 +99,12 @@ function Register() {
   const Age = now - userYear;
   console.log(Age);
 
+  let maxDate = new Date();
+  maxDate.setFullYear(maxDate.getFullYear() - 18);
+
+  let minDate = new Date();
+  minDate.setFullYear(minDate.getFullYear() - 60);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     checkNoNull();
@@ -430,6 +436,8 @@ function Register() {
                         showMonthDropdown
                         showYearDropdown
                         dropdownMode="select"
+                        maxDate={maxDate}
+                        minDate={minDate}
                         // locale={en - Us}
                         // weekDayFormat="narrow"
                         // defaultWidth="narrow"
