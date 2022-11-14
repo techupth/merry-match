@@ -7,6 +7,7 @@ import Register from "../register/Register";
 import DeleteButton from "../../components/editPageComponents/DeleteButton";
 import MatchingPage from "../mathcingPage/MatchingPage";
 import MatchLog from "../../components/matchingComponents/MatchLog"
+import MerryList from "../merryList/MerryList";
 
 
 
@@ -23,7 +24,8 @@ function Unauthenticated() {
         <Route path="*" element={<Home />} />
 
         {/* // For dev import element here */}
-        <Route path="/dev" element={<MatchLog />} />
+        {/* <Route path="/dev" element={<MatchLog />} /> */}
+        <Route path="/dev" element={<MerryList />} />
  
       </Routes>
     </>
