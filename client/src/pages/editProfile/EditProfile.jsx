@@ -48,13 +48,13 @@ const EditProfile = () => {
   const [startDate, setStartDate] = useState(new Date());
   const nowDate = new Date();
   const [birthdayError, setBirthdayError] = useState("");
-  const [age, setAge] = useState("");
-  // const [maxDate, setmaxDate] = useState("");
-  // const maxDate = ;
-  // const thisYear = new Date().getFullYear();
-  var today = new Date();
-  today.setFullYear(today.getFullYear() - 18);
-  console.log(today);
+
+  let maxDate = new Date();
+  maxDate.setFullYear(maxDate.getFullYear() - 18);
+  // console.log(maxDate);
+
+  let minDate = new Date();
+  minDate.setFullYear(minDate.getFullYear() - 60);
 
   // Photos
   const [Images, setImages] = useState([]);
@@ -308,7 +308,8 @@ const EditProfile = () => {
                 showMonthDropdown
                 showYearDropdown
                 dropdownMode="select"
-                maxDate={today}
+                maxDate={maxDate}
+                minDate={minDate}
               />
               <div className="text-[#C70039]">{birthdayError}</div>
             </div>

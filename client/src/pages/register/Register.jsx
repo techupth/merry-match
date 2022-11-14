@@ -40,14 +40,13 @@ function Register() {
 
   // date picker
   const [startDate, setStartDate] = useState(new Date());
-  const days = ["S", "M", "T", "W", "T", "F", "S"];
-  const locale = {
-    localize: {
-      day: (n) => days[n],
-    },
-    formatLong: {},
-  };
 
+  let maxDate = new Date();
+  maxDate.setFullYear(maxDate.getFullYear() - 18);
+  // console.log(maxDate);
+
+  let minDate = new Date();
+  minDate.setFullYear(minDate.getFullYear() - 60);
   //hobbies part
   const animatedComponents = makeAnimated();
   const [selectedOption, setSelectedOption] = useState([]);
@@ -431,9 +430,8 @@ function Register() {
                         showMonthDropdown
                         showYearDropdown
                         dropdownMode="select"
-                        // locale={en - Us}
-                        // weekDayFormat="narrow"
-                        // defaultWidth="narrow"
+                        maxDate={maxDate}
+                        minDate={minDate}
                       />
 
                       {/* .............. */}
