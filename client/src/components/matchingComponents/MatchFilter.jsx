@@ -9,10 +9,15 @@ import {
   RangeSliderFilledTrack,
   RangeSliderThumb,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const MatchFilter = () => {
   const [ageRange, setAgeRange] = useState([]);
+  const [meetingIntArr, setMeetingIntArr] = useState([]);
+
+  // useEffect(() => {
+  //   setMeetingIntArr();
+  // }, [meetingIntArr]);
 
   return (
     <div className="w-[18%] h-[100%] bg-white">
@@ -22,19 +27,59 @@ const MatchFilter = () => {
             Meeting Interests
           </Text>
           <Stack spacing={2} direction="column" fontSize={16}>
-            <Checkbox color="#646D89" value="Friend">
+            <Checkbox
+              color="#646D89"
+              value="Friend"
+              onChange={(e) => {
+                console.log([e.target.value, e.target.checked]);
+                setMeetingIntArr([...meetingIntArr, e.target.value]);
+                console.log(meetingIntArr);
+              }}
+            >
               Friend
             </Checkbox>
-            <Checkbox color="#646D89" value="FWB">
+            <Checkbox
+              color="#646D89"
+              value="FWB"
+              onChange={(e) => {
+                console.log([e.target.value, e.target.checked]);
+                setMeetingIntArr([...meetingIntArr, e.target.value]);
+                console.log(meetingIntArr);
+              }}
+            >
               FWB
             </Checkbox>
-            <Checkbox color="#646D89" value="ONS">
+            <Checkbox
+              color="#646D89"
+              value="ONS"
+              onChange={(e) => {
+                console.log([e.target.value, e.target.checked]);
+                setMeetingIntArr([...meetingIntArr, e.target.value]);
+                console.log(meetingIntArr);
+              }}
+            >
               ONS
             </Checkbox>
-            <Checkbox color="#646D89" value="Long-term">
+            <Checkbox
+              color="#646D89"
+              value="Long-term"
+              onChange={(e) => {
+                console.log([e.target.value, e.target.checked]);
+                setMeetingIntArr([...meetingIntArr, e.target.value]);
+                console.log(meetingIntArr);
+              }}
+            >
               Long-term Relationship
             </Checkbox>
-            <Checkbox color="#646D89" value="Short-term">
+            <Checkbox
+              color="#646D89"
+              value="Short-term"
+              onChange={(e) => {
+                console.log([e.target.value, e.target.checked]);
+                setMeetingIntArr([...meetingIntArr, e.target.value]);
+                console.log(meetingIntArr);
+              }}
+            >
               Short-term Relationship
             </Checkbox>
           </Stack>
@@ -62,7 +107,7 @@ const MatchFilter = () => {
           <RangeSliderThumb index={0} />
           <RangeSliderThumb index={1} />
         </RangeSlider>
-        <div className="flex flex-crow justify-between items-center mt-5 border-b border-[#E4E6ED] pb-[60px] mb-[15px]">
+        <div className="flex flex-crow justify-center items-center mt-5 border-b border-[#E4E6ED] pb-[60px] mb-[15px]">
           <input
             className="min-age border-[#D6D9E4] text-[#9AA1B9] text-[16px] rounded-[8px] w-[85.5px] h-[48px]"
             type="text"
@@ -73,7 +118,7 @@ const MatchFilter = () => {
             //   }
             // }}
           />
-          <span> - </span>
+          <span className="ml-3 mr-3 font-[400] text-1"> - </span>
           <input
             className="max-age border-[#D6D9E4] text-[#9AA1B9] text-[16px] rounded-[8px] w-[85.5px] h-[48px]"
             type="text"

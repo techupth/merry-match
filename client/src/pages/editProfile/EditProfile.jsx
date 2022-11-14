@@ -43,20 +43,42 @@ const EditProfile = () => {
   const [city, setCity] = useState("");
   const [hobbies, setHobbies] = useState([]);
   const [aboutMe, setAboutMe] = useState("");
+  const [contact, setContact] = useState("");
+
   const [startDate, setStartDate] = useState(new Date());
+  const nowDate = new Date();
+  const [birthdayError, setBirthdayError] = useState("");
+  const [age, setAge] = useState("");
+  // const [maxDate, setmaxDate] = useState("");
+  // const maxDate = ;
+  // const thisYear = new Date().getFullYear();
+  var today = new Date();
+  today.setFullYear(today.getFullYear() - 18);
+  console.log(today);
 
   // Photos
   const [Images, setImages] = useState([]);
 
   //hobbies part
   const animatedComponents = makeAnimated();
-  const [contact, setContact] = useState([]);
 
   // Delete button
   const [deleteAccount, setDeleteAccount] = useState(false);
 
   // Preview modal
   const [preview, setPreview] = useState(false);
+
+  const handleDate = (data) => {
+    let parts = birthday.split("T");
+    let strDate = parts[0].split("-");
+    const myDate = new Date(strDate[0], strDate[1] - 1, strDate[2]);
+    if (myDate != "Invalid Date") {
+      setBirthday(myDate);
+      console.log(birthday);
+      setStartDate(myDate);
+      console.log(myDate);
+    }
+  };
 
   const handleCountry = (e) => {
     const getCountryId = e.target.value;
@@ -94,6 +116,9 @@ const EditProfile = () => {
     setMeetingInt(result.data.data[0].meeting_int);
     setLocation(result.data.data[0].location);
     setCity(result.data.data[0].city);
+    setContact(result.data.data[0].contact);
+    setAboutMe(result.data.data[0].about_me);
+    // setHobbies(result.data.data[0].hobby);
 
     // Photo
     const newItemImage = [];
@@ -121,7 +146,7 @@ const EditProfile = () => {
     setImages(newItemImage);
   };
 
-  console.log(userData);
+  // console.log(userData);
 
   // update profile
 
@@ -149,6 +174,8 @@ const EditProfile = () => {
       `http://localhost:4001/users/${userData.user_id}`,
       updateUserData
     );
+    console.log(result.data.message);
+    alert(`${result.data.message}`);
   };
 
   const handleUpdate = async (event, userData) => {
@@ -172,14 +199,6 @@ const EditProfile = () => {
 
   console.log(hobbies);
 
-  const handleDate = (data) => {
-    let parts = birthday.split("T");
-    let strDate = parts[0].split("-");
-    const myDate = new Date(strDate[0], strDate[1] - 1, strDate[2]);
-    if (myDate != "Invalid Date") {
-      setStartDate(myDate);
-    }
-  };
   function handleOpenWidget() {
     let myWidget = window.cloudinary.createUploadWidget(
       {
@@ -210,10 +229,10 @@ const EditProfile = () => {
     decodeFromToken();
     handleDate(birthday);
     handleHobbie(userData.hobby);
-  }, [birthday]);
+  }, [age]);
 
   return (
-    <div  className="w-full bg-[#FCFCFE] flex flex-col">
+    <div className="w-full bg-[#FCFCFE] flex flex-col">
       <NavbarAuthen />
 
       <div className="informationContainer flex flex-col items-center justify-start">
@@ -262,9 +281,9 @@ const EditProfile = () => {
           </h4>
           <div className="column1 flex z-0">
             <div className="flex flex-col mr-[12px] mt-[24px]">
-              <label htmlFor="name">name</label>
+              <label htmlFor="name">Name</label>
               <input
-                className="w-[453px] rounded-lg "
+                className="w-[453px] rounded-lg border-[#D6D9E4]  "
                 type="text"
                 id="name"
                 name="firstname"
@@ -279,14 +298,19 @@ const EditProfile = () => {
             <div className="flex flex-col ml-[12px] mt-[24px] z-0">
               <label htmlFor="birth">Date of birth</label>
               <DatePicker
-                className="w-[453px] rounded-lg focus:border-pink-300 focus:border-[2px]"
+                className="w-[453px] rounded-lg border-[#D6D9E4] focus:border-pink-300"
                 selected={startDate}
+                dateFormat="dd/MM/yyyy"
+                // value={startDate}
                 onChange={(date) => {
-                  console.log(date);
                   setStartDate(date);
-                  setBirthday(date);
                 }}
+                showMonthDropdown
+                showYearDropdown
+                dropdownMode="select"
+                maxDate={today}
               />
+              <div className="text-[#C70039]">{birthdayError}</div>
             </div>
           </div>
 
@@ -295,7 +319,7 @@ const EditProfile = () => {
             <div className="flex flex-col mr-[12px] mt-[40px]">
               <label htmlFor="location">Location</label>
               <select
-                className="w-[453px] h-[48px] rounded-lg p-[12px]"
+                className="w-[453px] h-[48px] rounded-lg p-[12px] border-[#D6D9E4] "
                 value={location}
                 onChange={(e) => {
                   handleCountry(e);
@@ -320,7 +344,7 @@ const EditProfile = () => {
             <div className="flex flex-col ml-[12px] mt-[40px]">
               <label htmlFor="city">City</label>
               <select
-                className="w-[453px] h-[48px] rounded-lg p-[12px]"
+                className="w-[453px] h-[48px] rounded-lg p-[12px] border-[#D6D9E4] "
                 value={city}
                 onChange={(e) => {
                   handleNationState(e);
@@ -340,12 +364,12 @@ const EditProfile = () => {
             <div className="flex flex-col mr-[12px] mt-[40px]">
               <label htmlFor="username">Username</label>
               <input
-                className="w-[453px] rounded-lg text-[#9AA1B9]"
+                className="w-[453px] rounded-lg text-[#9AA1B9] border-[#D6D9E4] "
                 type="text"
                 id="username"
                 name="username"
                 value={username}
-                placeholder="At leaset 6 charactor"
+                placeholder="At leaset 6 characters"
                 onChange={(e) => {
                   setUsername(e.target.value);
                 }}
@@ -355,7 +379,7 @@ const EditProfile = () => {
             <div className="flex flex-col ml-[12px] mt-[40px]">
               <label htmlFor="Email">Email</label>
               <input
-                className="w-[453px] rounded-lg text-[#9AA1B9]"
+                className="w-[453px] rounded-lg text-[#9AA1B9] border-[#D6D9E4] "
                 type="email"
                 id="Email"
                 name="Email"
@@ -375,7 +399,7 @@ const EditProfile = () => {
             <div className="SexualIdentities flex flex-col mr-[12px] mt-[40px]">
               <label htmlFor="SexualIdentities">Sexual identities</label>
               <select
-                className="w-[453px] rounded-lg h-[48px] p-[12px]"
+                className="w-[453px] rounded-lg h-[48px] p-[12px] border-[#D6D9E4] "
                 id="SexualIdentities"
                 name="status"
                 value={sexIdentity}
@@ -391,7 +415,7 @@ const EditProfile = () => {
             <div className="SexualPreferences flex flex-col ml-[12px] mt-[40px]">
               <label htmlFor="SexualPreferences">Sexual preferences</label>
               <select
-                className="w-[453px] rounded-lg h-[48px] p-[12px]"
+                className="w-[453px] rounded-lg h-[48px] p-[12px] border-[#D6D9E4] "
                 id="SexualPreferences"
                 name="SexualPreferences"
                 value={sexPref}
@@ -410,7 +434,7 @@ const EditProfile = () => {
             <div className="RacialPreferences flex flex-col mr-[12px] mt-[40px] ">
               <label htmlFor="RacialPreferences">Racial preferences</label>
               <select
-                className="w-[453px] rounded-lg h-[48px] p-[12px]"
+                className="w-[453px] rounded-lg h-[48px] p-[12px] border-[#D6D9E4] "
                 id="RacialPreferences"
                 name="RacialPreferences"
                 value={racialPref}
@@ -426,7 +450,7 @@ const EditProfile = () => {
             <div className="MeetingInterests flex flex-col  ml-[12px] mt-[40px]">
               <label htmlFor="MeetingInterests">Meeting interests</label>
               <select
-                className="w-[453px] h-[48px] rounded-lg p-[12px]"
+                className="w-[453px] h-[48px] rounded-lg p-[12px] border-[#D6D9E4] "
                 id="MeetingInterests"
                 name="MeetingInterests"
                 value={meetingInt}
@@ -486,15 +510,35 @@ const EditProfile = () => {
           })} */}
 
           <div className="flex flex-col mt-[24px]">
-            <label htmlFor="AboutMe">About me (Maximum 150 characters)</label>
+            <label htmlFor="AboutMe" className="font-[600]">
+              About me (Maximum 150 characters)
+            </label>
             <textarea
               id="AboutMe"
               name="AboutMe"
-              maxlength="150"
+              maxLength="150"
+              value={aboutMe}
               rows="1"
-              className="rounded-lg h-[127px] p-[12px]"
+              className="rounded-lg h-[127px] p-[12px] border-[#D6D9E4]"
               onChange={(event) => {
                 setAboutMe(event.target.value);
+              }}
+            ></textarea>
+          </div>
+
+          <div className="flex flex-col mt-[24px]">
+            <label htmlFor="Contact" className="font-[600]">
+              Contact (Maximum 150 characters)
+            </label>
+            <textarea
+              id="Contact"
+              name="Contact"
+              maxLength="150"
+              value={contact}
+              rows="1"
+              className="rounded-lg h-[100px] p-[12px] border-[#D6D9E4]"
+              onChange={(event) => {
+                setContact(event.target.value);
               }}
             ></textarea>
           </div>
@@ -668,7 +712,7 @@ const EditProfile = () => {
 
         <div className="delete-section flex flex-col justify-end items-end  h-[70px] w-full   ">
           <button
-            className="text-[#646D89] text-[16px] mr-[320px] hover:text-gray-300 z-0 relative"
+            className="text-[#646D89] text-[16px] mr-[15%] font-[700] hover:text-gray-300 z-0 relative"
             onClick={() => setDeleteAccount(!deleteAccount)}
           >
             Delete account
