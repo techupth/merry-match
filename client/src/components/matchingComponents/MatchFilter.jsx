@@ -16,7 +16,7 @@ const MatchFilter = () => {
 
   return (
     <div className="w-[18%] h-[100%] bg-white">
-      <div className="meeting-interest mt-[120px] ml-[18px] h-[80uh] w-[80%]">
+      <div className="meeting-interest mt-[140px] ml-[18px] h-[80uh] w-[80%]">
         <CheckboxGroup colorScheme="green">
           <Text fontWeight={700} color="#191C77" mb={3}>
             Meeting Interests
@@ -62,7 +62,7 @@ const MatchFilter = () => {
           <RangeSliderThumb index={0} />
           <RangeSliderThumb index={1} />
         </RangeSlider>
-        <div className="flex flex-crow justify-between items-center mt-5">
+        <div className="flex flex-crow justify-between items-center mt-5 border-b border-[#E4E6ED] pb-[60px] mb-[15px]">
           <input
             className="min-age border-[#D6D9E4] text-[#9AA1B9] text-[16px] rounded-[8px] w-[85.5px] h-[48px]"
             type="text"
@@ -85,6 +85,14 @@ const MatchFilter = () => {
             // }}
           />
         </div>
+      </div>
+      <div className=" flex flex-row justify-center items-center">
+        <button className="text-[#C70039] font-[700] w-[99px] h-[48px]">
+          Clear
+        </button>
+        <button className="bg-[#C70039] rounded-[99px] text-[white] font-[700] w-[99px] h-[48px]">
+          Search
+        </button>
       </div>
     </div>
   );

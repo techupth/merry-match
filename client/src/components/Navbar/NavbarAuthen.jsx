@@ -48,11 +48,11 @@ const NavbarAuthen = () => {
         onClick={() => {
           navigate("/");
         }}
+        className="ml-[10%]"
       >
         <img
           src="/asset/header/header-merrymatch-logo.svg"
           alt="merry match logo"
-          className="ml-[70px]"
         />
       </button>
 
