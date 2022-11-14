@@ -6,6 +6,7 @@ import Register from "../register/Register";
 // For dev import here
 import DeleteButton from "../../components/editPageComponents/DeleteButton";
 import MatchingPage from "../mathcingPage/MatchingPage";
+import MatchLog from "../../components/matchingComponents/MatchLog"
 
 
 
@@ -13,7 +14,7 @@ import MatchingPage from "../mathcingPage/MatchingPage";
 function Unauthenticated() {
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -22,7 +23,7 @@ function Unauthenticated() {
         <Route path="*" element={<Home />} />
 
         {/* // For dev import element here */}
-        <Route path="/dev" element={<MatchingPage />} />
+        <Route path="/dev" element={<MatchLog />} />
  
       </Routes>
     </>
