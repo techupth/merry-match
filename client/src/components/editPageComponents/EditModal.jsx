@@ -78,6 +78,7 @@ const EditModal = (close) => {
 
           {/* X button */}
           <div className="Button flex flex-row w-[100%] h-[100%] items-center justify-center m-[0%] space-x-3 overflow-hidden mt-[3%]">
+            
             <a className="XButton w-[3rem] h-[3rem] drop-shadow-2xl mt-[20%]  bg-white rounded-lg flex justify-center items-center hover:bg-[#2A2E3F] z-10">
               <img src={xLogo} />
             </a>
