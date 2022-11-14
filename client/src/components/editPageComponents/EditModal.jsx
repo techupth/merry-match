@@ -7,11 +7,6 @@ import heartLogo from "../../../public/asset/editModalItems/hearthLogo.svg";
 import xLogo from "../../../public/asset/editModalItems/xLogo.svg";
 import awL from "../../../public/asset/editModalItems/awL.svg";
 import awR from "../../../public/asset/editModalItems/awR.svg";
-import sek_1 from "../../../public/Mock/imgMock/sek_1.jpg";
-import sek_2 from "../../../public/Mock/imgMock/sek_2.jpg";
-import sekCute from "../../../public/Mock/imgMock/sekCute.jpg";
-import pSekWDog from "../../../public/Mock/imgMock/pSekWDog.jpg";
-import pSekYoung from "../../../public/Mock/imgMock/pSekYoung.jpg";
 import location from "../../../public/asset/editModalItems/location.svg";
 //.............................................................................
 
@@ -229,11 +224,11 @@ const EditModal = ({ close, data }) => {
           </div>
         </div>
         {/* Hobbies */}
-        <div className=" w-[100%] h-[10%] mt-[10%] flex flex-col">
+        <div className=" w-[100%]  mt-[10%] flex flex-col h-24">
           <h1 className="font-[700]">Hobbies and Interests</h1>
-          <div className="text-[16px] flex flex-row mt-2">
+          <div className="text-[16px] flex row-auto mt-2 w-32 text-center">
             {hobbies.map((value , index) => {
-              return <div key={index} className="mr-2 text-[#7D2262] rounded-[12px] border-[1px] border-[#DF89C6] px-[12px] py-[6px] text-[16px]">{value}</div>;
+              return <div key={index} className="mr-2 text-[#7D2262] rounded-[12px] border-[1px] border-[#DF89C6] px-[12px] py-[6px] text-[16px] flex justify-center items-center">{value}</div>;
             })}
           </div>
         </div>
@@ -241,9 +236,7 @@ const EditModal = ({ close, data }) => {
         <div className=" w-[100%] h-[10%] mt-[5%]">
           <h1 className="font-[700]">Contact</h1>
           <p className="text-[16px]">
-            {data.contact.map((value) => {
-              return <div>{value}</div>;
-            })}{" "}
+            {data.contact}
           </p>
         </div>
       </div>

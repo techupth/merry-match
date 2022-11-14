@@ -6,7 +6,6 @@ import { options } from "../../utils/optionSelect";
 import Select from "react-select";
 import { useNavigate } from "react-router-dom";
 
-
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import jwtDecode from "jwt-decode";
@@ -24,20 +23,17 @@ import useClickOutside from "../../utils/hooks/useClickOutside";
 
 const EditProfile = () => {
   const [userData, setUserData] = useState({});
-  const [text, setText] = useState("");
 
-  const [countryId, setCountryId] = useState("");
   const [state, setState] = useState([]);
-  const [nationStateId, setNationStateId] = useState("");
 
-  const [name, setName] = useState(""); //ใช้
-  const [username, setUsername] = useState(""); //ใช้
-  const [birthday, setBirthday] = useState(""); //ใช้
-  const [email, setEmail] = useState(""); //ใช้
-  const [sexPref, setSexPref] = useState(""); //ใช้
-  const [sexIdentity, setSexIdentity] = useState(""); //ใช้
-  const [racialPref, setRacialPref] = useState(""); //ใช้
-  const [meetingInt, setMeetingInt] = useState(""); //ใช้
+  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
+  const [birthday, setBirthday] = useState("");
+  const [email, setEmail] = useState("");
+  const [sexPref, setSexPref] = useState("");
+  const [sexIdentity, setSexIdentity] = useState("");
+  const [racialPref, setRacialPref] = useState("");
+  const [meetingInt, setMeetingInt] = useState("");
   const [location, setLocation] = useState("");
   const [city, setCity] = useState("");
   const [hobbies, setHobbies] = useState([]);
@@ -49,7 +45,7 @@ const EditProfile = () => {
 
   //hobbies part
   const animatedComponents = makeAnimated();
-  const [contact, setContact] = useState([]);
+  const [contact, setContact] = useState("");
 
   // Delete button
   const [deleteAccount, setDeleteAccount] = useState(false);
@@ -58,7 +54,7 @@ const EditProfile = () => {
   const [preview, setPreview] = useState(false);
 
   const navigate = useNavigate();
-  
+
   let maxDate = new Date();
   maxDate.setFullYear(maxDate.getFullYear() - 18);
   // console.log(maxDate);
@@ -72,7 +68,6 @@ const EditProfile = () => {
       (country) => country.country_name === getCountryId
     ).states;
     setState(getStateData);
-    setCountryId(getCountryId);
     setLocation(getCountryId);
   };
 
@@ -102,6 +97,7 @@ const EditProfile = () => {
     setLocation(result.data.data[0].location);
     setCity(result.data.data[0].city);
     setAboutMe(result.data.data[0].about_me);
+    setContact(result.data.data[0].contact)
 
     // Photo
 
@@ -144,8 +140,11 @@ const EditProfile = () => {
     about_me: aboutMe,
     hobby: hobbies,
     profile_pics: Images,
-    contact,
+    contact :contact,
   };
+
+  console.log(userData)
+  console.log(updateUserData)
 
   const updateUserProfile = async (updateUserData) => {
     await axios.put(
@@ -178,7 +177,6 @@ const EditProfile = () => {
       setStartDate(myDate);
     }
   };
-
 
   function handleOpenWidget() {
     let myWidget = window.cloudinary.createUploadWidget(
@@ -506,6 +504,23 @@ const EditProfile = () => {
             ></textarea>
           </div>
 
+          <div className="flex flex-col mt-[24px]">
+            <label htmlFor="Contact" className="font-[600]">
+              Contact (Maximum 150 characters)
+            </label>
+            <textarea
+              id="Contact"
+              name="Contact"
+              maxLength="150"
+              value={contact}
+              rows="1"
+              className="rounded-lg h-[100px] p-[12px] border-[#D6D9E4]"
+              onChange={(event) => {
+                setContact(event.target.value);
+              }}
+            ></textarea>
+          </div>
+
           <h1 className="ProfilePictures text-[#A62D82] mt-[80px] text-[24px]">
             Profile pictures
           </h1>
@@ -683,7 +698,7 @@ const EditProfile = () => {
             Delete account
           </button>
         </div>
-        <Footer/>
+        <Footer />
       </div>
     </div>
   );
