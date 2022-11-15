@@ -10,11 +10,14 @@ import {
   RangeSliderThumb,
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
+import { useSwipe } from "../../contexts/swipeContext";
 
 const MatchFilter = () => {
   const [ageRange, setAgeRange] = useState([]);
   const [meetingIntArr, setMeetingIntArr] = useState([]);
   const [userData, setUserData] = useState({});
+
+  const { test } = useSwipe();
 
   return (
     <div className="w-[18%] h-[100%] bg-white">
