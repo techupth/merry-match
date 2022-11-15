@@ -12,7 +12,7 @@ import { useAuth } from "../../contexts/authentication";
 
 
 
-function UserPopup({ close }) {
+const UserPopup = ({ close }) => {
 
   const navigate = useNavigate()
 
