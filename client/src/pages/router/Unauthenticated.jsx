@@ -15,7 +15,7 @@ import Swipe from '../../components/matchingComponents/Swipe'
 function Unauthenticated() {
   return (
     <>
-      <Navbar/>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
@@ -23,8 +23,8 @@ function Unauthenticated() {
         <Route path="*" element={<Home />} />
 
         {/* // For dev import element here */}
-        <Route path="/dev" element={<Swipe />} />
- 
+        <Route path="/dev" element={<MatchingPage />} />
+
       </Routes>
     </>
   );
