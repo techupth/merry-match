@@ -180,7 +180,7 @@ const EditProfile = () => {
     handleBirtday(myDate)
   };
 
-  function handleOpenWidget() {
+  const handleOpenWidget = () => {
     let myWidget = window.cloudinary.createUploadWidget(
       {
         cloudName: "dn4jfzbs6",
@@ -195,7 +195,7 @@ const EditProfile = () => {
     myWidget.open();
   }
 
-  function deleteImage(item) {
+  const deleteImage = (item) => {
     const imageDelete = Images.filter((value, i) => {
       return i !== item;
     });
