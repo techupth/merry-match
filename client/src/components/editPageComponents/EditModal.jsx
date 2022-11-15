@@ -62,9 +62,13 @@ const EditModal = ({ close, data }) => {
       className="editModal bg-white w-[900px] h-[700px] rounded-3xl flex z-30 absolute items-center justify-center font-[400]  mt-[20%]"
     >
       <div className="XButton absolute right-9 top-3 text-[25px] text-slate-300 ">
-        <button onClick={()=>{
-          close(false)
-        }}>x</button>
+        <button
+          onClick={() => {
+            close(false);
+          }}
+        >
+          x
+        </button>
       </div>
       <div className="relative w-[35%] h-[80%] mb-[10%] rounded-3xl mr-[3%] flex items-center flex-col overflow-hidden mt-[10%] ">
         {/* ....................... Display Pics ....................... */}
@@ -178,7 +182,9 @@ const EditModal = ({ close, data }) => {
         {/* title */}
         <div className="w-[100%] h-[20%]">
           <span className="text-[46px] font-[900]">{data.name} </span>
-          <span className="text-[46px] font-[900] text-[#646D89] ml-[30px]">{age}</span>
+          <span className="text-[46px] font-[900] text-[#646D89] ml-[30px]">
+            {age}
+          </span>
           <br />
 
           <div className="flex flex-row mt-2">
@@ -219,7 +225,7 @@ const EditModal = ({ close, data }) => {
         {/* About me */}
         <div className="w-[100%] h-[20%] ">
           <h1 className="text-[24px] font-[700]">About me</h1>
-          <div className="[100%] h-[100%] overflow-y-scroll ">
+          <div className="[100%] h-[100%] ">
             <p className="text-[16px]  ">{data.about_me}</p>
           </div>
         </div>
@@ -227,17 +233,22 @@ const EditModal = ({ close, data }) => {
         <div className=" w-[100%]  mt-[10%] flex flex-col h-24">
           <h1 className="font-[700]">Hobbies and Interests</h1>
           <div className="text-[16px] flex row-auto mt-2 w-32 text-center">
-            {hobbies.map((value , index) => {
-              return <div key={index} className="mr-2 text-[#7D2262] rounded-[12px] border-[1px] border-[#DF89C6] px-[12px] py-[6px] text-[16px] flex justify-center items-center">{value}</div>;
+            {hobbies.map((value, index) => {
+              return (
+                <div
+                  key={index}
+                  className="mr-2 text-[#7D2262] rounded-[12px] border-[1px] border-[#DF89C6] px-[12px] py-[6px] text-[16px] flex justify-center items-center"
+                >
+                  {value}
+                </div>
+              );
             })}
           </div>
         </div>
         {/* Contact */}
         <div className=" w-[100%] h-[10%] mt-[5%]">
           <h1 className="font-[700]">Contact</h1>
-          <p className="text-[16px]">
-            {data.contact}
-          </p>
+          <p className="text-[16px]">{data.contact}</p>
         </div>
       </div>
     </div>
