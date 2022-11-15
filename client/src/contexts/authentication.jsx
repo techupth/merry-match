@@ -5,7 +5,8 @@ import React, { useState } from "react";
 
 export const AuthContext = React.createContext();
 
-function AuthProvider(props) {
+
+const AuthProvider = (props) => {
   const [userData, setUserData] = useState({
     user: null,
   });
@@ -80,12 +81,12 @@ function AuthProvider(props) {
     setUserData({ ...userData, user: null });
   };
 
-  const deleteuser = async(userId) =>{
+  const deleteuser = async (userId) => {
     console.log(userId)
     localStorage.removeItem("token");
     setUserData({ ...userData, user: null });
     await axios.delete(`http://localhost:4001/users/${userId}`)
-    
+
   };
 
   const isAuthenticated = Boolean(localStorage.getItem("token"));

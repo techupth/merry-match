@@ -2,7 +2,10 @@ import React from "react";
 import { Button, ButtonGroup } from "@chakra-ui/react";
 import UserPopup from "../Navbar/userPopup";
 
-function Devtools() {
+import React from 'react'
+
+
+const Devtools = () => {
   return (
     <div className="flex justify-center items-center flex-col bg-white mt-[5%]">
       <Button className="w-[100px] bg-slate-500">Button</Button>

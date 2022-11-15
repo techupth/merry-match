@@ -11,8 +11,7 @@ import MatchingPage from "../mathcingPage/MatchingPage";
 
 
 
-
-function Unauthenticated() {
+const Unauthenticated = () => {
   return (
     <>
       <Navbar />

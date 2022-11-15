@@ -1,7 +1,9 @@
 import React from "react";
 import hero from '../../../public/asset/header/New Tab_files/headerSection.svg'
 
-function Header() {
+
+
+const Header = () => {
   return (
     <div className="z-0">
       {/* <nav className="bg-[#FFFFFF] absolute z-10 overflow-auto  flex flex-row items-center justify-between h-[100px] w-full text-[16px] font-bold ">

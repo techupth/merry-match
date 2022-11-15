@@ -1,6 +1,8 @@
 import React from "react";
 
-function Footer() {
+
+
+const Footer = () => {
   return (
     <div className="footer-sections bg-[#F6F7FC] w-full mt-[60px] ">
       <div className="footer-wrapper flex flex-col justify-center items-center">

@@ -4,7 +4,10 @@ import Header from "../../components/ladingPage/Header";
 import SecondPart from "../../components/ladingPage/SecondPart";
 import ThirdPart from "../../components/ladingPage/ThirdPart";
 import Navbar from "../../components/Navbar/Navbar";
-function Home() {
+
+
+
+const Home = () => {
   return (
     <div className="bg-[#160404]">
       <Header />

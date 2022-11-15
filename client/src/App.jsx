@@ -3,7 +3,7 @@ import { useAuth } from "./contexts/authentication";
 import Authenticated from "./pages/router/Authenticated";
 
 
-function App() {
+const App = () => {
   const auth = useAuth();
   return auth.isAuthenticated ? <Authenticated /> : <Unauthenticated />
 

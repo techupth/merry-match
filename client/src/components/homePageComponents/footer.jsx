@@ -1,6 +1,8 @@
 import React from "react";
 
-export default function footer() {
+
+
+const Footer = () => {
   return (
     <div className="bg-[#160404]">
       <div className="CTA-Section w-full ">
@@ -135,4 +137,8 @@ export default function footer() {
       </div>
     </div>
   );
+
+
 }
+
+export default Footer

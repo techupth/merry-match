@@ -13,7 +13,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import { registerLocale, setDefaultLocale } from "react-datepicker";
 import enUS from "date-fns/locale/en-US";
 
-function Register() {
+
+const Register = () => {
   const navigate = useNavigate();
   const { register, checkRegister, msg } = useAuth();
 
@@ -241,7 +242,7 @@ function Register() {
     );
     myWidget.open();
   }
-  
+
   console.log(images)
 
   const handleStateWidget = () => {
@@ -438,9 +439,9 @@ function Register() {
                         dropdownMode="select"
                         maxDate={maxDate}
                         minDate={minDate}
-                        // locale={en - Us}
-                        // weekDayFormat="narrow"
-                        // defaultWidth="narrow"
+                      // locale={en - Us}
+                      // weekDayFormat="narrow"
+                      // defaultWidth="narrow"
                       />
 
                       {/* .............. */}

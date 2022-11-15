@@ -13,7 +13,7 @@ import jwtDecode from "jwt-decode";
 // Components
 import DeleteButton from "../../components/editPageComponents/DeleteButton";
 import NavbarAuthen from "../../components/Navbar/NavbarAuthen";
-import Footer from "../../components/editPageComponents/EditPageFooter";
+import Footer from "../../components/editPageComponents/Footer";
 
 // Modal
 import EditModal from "../../components/editPageComponents/EditModal";
@@ -140,7 +140,7 @@ const EditProfile = () => {
     about_me: aboutMe,
     hobby: hobbies,
     profile_pics: Images,
-    contact :contact,
+    contact: contact,
   };
 
   console.log(userData)

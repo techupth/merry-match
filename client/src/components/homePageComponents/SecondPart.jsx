@@ -1,7 +1,9 @@
 import React from "react";
 import vector from "../../../public/asset/SecondPart/vector.svg";
 
-function SecondPart() {
+
+
+const SecondPart = () => {
   return (
     <div>
       <div className="w-[100%] bg-[#160404]  h-[533px] flex justify-center items-center space-x-9 ">

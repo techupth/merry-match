@@ -4,7 +4,9 @@ import emoji_img2 from "../../../public/asset/ThirdPart_Pic/emoji_img2.png";
 import emoji_img3 from "../../../public/asset/ThirdPart_Pic/emoji_img3.png";
 import emoji_img4 from "../../../public/asset/ThirdPart_Pic/emoji_img4.png";
 
-function ThirdPart() {
+
+
+const ThirdPart = () => {
   return (
     <div className="bg-[#160404] w-full h-[622px]">
       <h2 className="howtomerry text-[#DF89C6] text-[46px] text-center font-[800]">

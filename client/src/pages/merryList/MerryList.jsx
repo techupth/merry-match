@@ -7,7 +7,7 @@ import view from "../../../public/asset/MerryList/view.png";
 import heart from "../../../public/asset/MerryList/heart.png";
 //components
 import NavbarAuthen from "../../components/Navbar/NavbarAuthen";
-import Footer from "../../components/editPageComponents/EditPageFooter";
+import Footer from "../../components/editPageComponents/Footer";
 
 
 //mock data
