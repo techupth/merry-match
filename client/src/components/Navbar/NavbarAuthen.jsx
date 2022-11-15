@@ -48,7 +48,14 @@ const NavbarAuthen = () => {
       <div className=" flex flex-row  items-center justify-between p-0 gap-8 z-40 mr-[10%]">
         {/* <h2>{userData.name}</h2> */}
 
-        <button className="text-[#191C77]">Start Matching!</button>
+        <button
+          className="text-[#191C77]"
+          onClick={() => {
+            navigate("/match");
+          }}
+        >
+          Start Matching!
+        </button>
         <button className="text-[#191C77]">Merry Membership</button>
 
         <button

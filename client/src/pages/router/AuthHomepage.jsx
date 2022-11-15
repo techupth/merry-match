@@ -1,16 +1,13 @@
 import React from "react";
 
-import Home from "../landingPage/Home";
 import NavbarAuthen from "../../components/Navbar/NavbarAuthen";
-
-
+import HomeAuthen from "../landingPage/HomeAuthen";
 
 const HomepageAuth = () => {
   return (
     <div>
       <NavbarAuthen />
-      <Home />
-      
+      <HomeAuthen />
     </div>
   );
 };

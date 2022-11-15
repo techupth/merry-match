@@ -65,7 +65,7 @@ function Register() {
   const [imageToRemove, setImageToRemove] = useState(null);
   const userInfo = {
     name,
-    birthday: startDate,
+    birthday: birthday,
     location: countryid,
     city: nationStateId,
     username,
@@ -89,6 +89,17 @@ function Register() {
     await axios.post("http://localhost:4001/auth/register", userInfo, {
       headers: { "Content-Types": "multipart/form-data" },
     });
+  };
+
+  const handleBirtday = (data) => {
+    const year = data.getFullYear();
+    const month = data.getMonth() + 1;
+    const day = data.getDate() + 1;
+
+    const birthday = `${year}-${month}-${day}`;
+
+    setBirthday(birthday);
+    console.log(birthday);
   };
 
   //GetAgeuser
@@ -193,7 +204,7 @@ function Register() {
 
   const deleteHobbies = (key, event) => {
     event.preventDefault();
-    console.log("test click");
+
     const temp = hobbies.filter((value, index) => {
       return index !== key;
     });
@@ -216,7 +227,7 @@ function Register() {
   };
 
   const handleRemoveImage = (i) => {
-    console.log(i);
+ 
 
     const imageId = i;
 
@@ -241,8 +252,7 @@ function Register() {
     );
     myWidget.open();
   }
-  
-  console.log(images)
+
 
   const handleStateWidget = () => {
     handleOpenWidget();
@@ -430,8 +440,8 @@ function Register() {
                         selected={startDate}
                         dateFormat="dd/MM/yyyy"
                         onChange={(date) => {
-                          console.log(date);
                           setStartDate(date);
+                          handleBirtday(date)
                         }}
                         showMonthDropdown
                         showYearDropdown
