@@ -1,6 +1,6 @@
 import React from "react";
 
-function EditPageFooter() {
+function Footer() {
   return (
     <div className="footer-sections bg-[#F6F7FC] w-full mt-[60px] ">
       <div className="footer-wrapper flex flex-col justify-center items-center">
@@ -74,4 +74,4 @@ function EditPageFooter() {
   );
 }
 
-export default EditPageFooter;
+export default Footer;
