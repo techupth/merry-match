@@ -315,3 +315,52 @@ select:focus {
   color: #7d2262;
   border-radius: 6px;
 }
+
+/* Matching page filter components */
+/* Checkbox */
+.chakra-checkbox__control.css-106d0ow {
+  border-radius: 5px;
+}
+
+.chakra-checkbox__control.css-exc098 {
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+  border: 1px solid #d6d9e4;
+}
+
+.css-exc098[aria-checked="true"],
+.css-exc098[data-checked] {
+  background: var(--chakra-colors-pink-600) !important;
+  border-color: var(--chakra-colors-pink-200) !important;
+  border: 1.5px;
+  color: var(--chakra-colors-white);
+}
+
+.chakra-checkbox__label.css-6x44c9[data-checked] {
+  color: black;
+}
+
+.css-exc098:focus-visible,
+.css-exc098[data-focus-visible] {
+  box-shadow: 0 0 0 3px rgba(223, 137, 198, 1) !important;
+  border: 1px solid #a62db2;
+}
+
+
+/* Age Range */
+.chakra-slider__thumb,
+.css-pa3zzn {
+  background-color: #df89c6;
+  border: 2px solid #a62d82 !important;
+}
+
+.chakra-slider__filled-track,
+.css-1m7iqxj {
+  background: #a62d82 !important;
+}
+.css-xb97g8 {
+  background-color: #f4ebf2;
+  color: #7d2262;
+  border-radius: 6px;
+}
