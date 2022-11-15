@@ -101,13 +101,13 @@ const Swipe = () => {
     await childRefs[newIndex].current.restoreCard();
   };
 
-  const scrollEventHandler = function (e) {
-    window.scroll(0, window.pageYOffset);
-    window.scroll(0, window.pageXOffset);
-    e.preventDefault();
-  };
+  // const scrollEventHandler = function (e) {
+  //   window.scroll(0, window.pageYOffset);
+  //   window.scroll(0, window.pageXOffset);
+  //   e.preventDefault();
+  // };
 
-  window.addEventListener("scroll", scrollEventHandler, false);
+  // window.addEventListener("scroll", scrollEventHandler, false);
 
   const handleNext = (index) => {
 
