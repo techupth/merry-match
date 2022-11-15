@@ -48,8 +48,8 @@ const NavbarAuthen = () => {
       <div className=" flex flex-row  items-center justify-between p-0 gap-8 z-40 mr-[10%]">
         {/* <h2>{userData.name}</h2> */}
 
-        <h2 className="text-[#191C77]">Start Matching!</h2>
-        <h2 className="text-[#191C77]">Merry Membership</h2>
+        <button className="text-[#191C77]">Start Matching!</button>
+        <button className="text-[#191C77]">Merry Membership</button>
 
         <button
           type="button"
@@ -58,7 +58,7 @@ const NavbarAuthen = () => {
         >
           <img
             src={images}
-            className="w-[50px] h-[50px] rounded-full object-cover"
+            className="w-[4rem] h-[4rem] rounded-full object-cover"
           />
         </button>
 
