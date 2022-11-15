@@ -7,7 +7,9 @@ import authRouter from "./apps/auth.js";
 import cloudinary from "cloudinary";
 
 async function init() {
+  
   dotenv.config();
+
   cloudinary.config({
     cloud_name: process.env.CLOUD_NAME,
     api_key: process.env.API_KEY,
