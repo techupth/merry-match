@@ -39,6 +39,7 @@ const EditProfile = () => {
   const [hobbies, setHobbies] = useState([]);
   const [aboutMe, setAboutMe] = useState("");
   const [startDate, setStartDate] = useState(new Date());
+  const [date, setDate] = useState("");
 
   // Photos
   const [Images, setImages] = useState([]);
@@ -57,12 +58,12 @@ const EditProfile = () => {
 
   let maxDate = new Date();
   maxDate.setFullYear(maxDate.getFullYear() - 18);
-  // console.log(maxDate);
 
   let minDate = new Date();
   minDate.setFullYear(minDate.getFullYear() - 60);
 
   const handleCountry = (data) => {
+    console.log(data)
     const getCountryId = data;
     const getStateData = CountryData.find(
       (country) => country.country_name === getCountryId
@@ -84,9 +85,7 @@ const EditProfile = () => {
     const result = await axios(
       `http://localhost:4001/users/${userData.user_id}`
     );
-
     setUserData(result.data.data[0]);
-    setBirthday(result.data.data[0].birthday);
     setName(result.data.data[0].name);
     setUsername(result.data.data[0].username);
     setEmail(result.data.data[0].email);
@@ -97,7 +96,8 @@ const EditProfile = () => {
     setLocation(result.data.data[0].location);
     setCity(result.data.data[0].city);
     setAboutMe(result.data.data[0].about_me);
-    setContact(result.data.data[0].contact)
+    setContact(result.data.data[0].contact);
+    setDate(result.data.data[0].birthday);
 
     // Photo
 
@@ -130,7 +130,7 @@ const EditProfile = () => {
   const updateUserData = {
     user_id: userData.user_id,
     name,
-    birthday: startDate,
+    birthday: birthday,
     location: location,
     city: city,
     sex_identity: sexIdentity,
@@ -143,9 +143,7 @@ const EditProfile = () => {
     contact: contact,
   };
 
-  console.log(userData)
-  console.log(updateUserData)
-
+  console.log(updateUserData);
   const updateUserProfile = async (updateUserData) => {
     await axios.put(
       `http://localhost:4001/users/${userData.user_id}`,
@@ -170,12 +168,16 @@ const EditProfile = () => {
   };
 
   const handleDate = (data) => {
-    let parts = birthday.split("T");
+    
+    let parts = data.split("T");
     let strDate = parts[0].split("-");
-    const myDate = new Date(strDate[0], strDate[1] - 1, strDate[2]);
+    console.log(strDate)
+    const myDate = new Date(strDate[0], strDate[1] - 1, (strDate[2]));
+    console.log(myDate)
     if (myDate != "Invalid Date") {
       setStartDate(myDate);
     }
+    handleBirtday(myDate)
   };
 
   function handleOpenWidget() {
@@ -200,14 +202,26 @@ const EditProfile = () => {
     setImages(imageDelete);
   }
 
+  const handleBirtday = (data) => {
+    const year = data.getFullYear();
+    const month = data.getMonth() + 1;
+    const day = data.getDate() + 1;
+
+    const birthday = `${year}-${month}-${day}`;
+
+    setBirthday(birthday);
+    console.log(birthday);
+  };
+
+
   useEffect(() => {
     decodeFromToken();
-    handleDate(birthday);
+    handleDate(date);
     handleHobbie(userData.hobby);
     if (userData.location !== undefined) {
       handleCountry(location);
     }
-  }, [birthday]);
+  }, [date]);
 
   return (
     <div className="w-full bg-[#FCFCFE] flex flex-col">
@@ -283,6 +297,7 @@ const EditProfile = () => {
               <label htmlFor="birth">Date of birth</label>
               <DatePicker
                 className="w-[453px] rounded-lg focus:border-pink-300 focus:border-[2px]"
+                dateFormat="dd/MM/yyyy"
                 selected={startDate}
                 showMonthDropdown
                 showYearDropdown
@@ -291,7 +306,7 @@ const EditProfile = () => {
                 minDate={minDate}
                 onChange={(date) => {
                   setStartDate(date);
-                  // setBirthday(date);
+                  handleBirtday(date);
                 }}
               />
             </div>
