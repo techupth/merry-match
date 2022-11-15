@@ -17,7 +17,7 @@ const MatchFilter = () => {
   const [userData, setUserData] = useState({});
 
   return (
-    <div className="w-[18%] h-[100%] bg-white">
+    <div className="w-[28%] h-[46.9rem] bg-white">
       <div className="meeting-interest mt-[140px] ml-[18px] h-[80uh] w-[80%]">
         <CheckboxGroup colorScheme="green">
           <Text fontWeight={700} color="#191C77" mb={3}>
