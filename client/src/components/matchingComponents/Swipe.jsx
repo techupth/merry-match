@@ -1,5 +1,7 @@
-import React, { useState, useMemo, useRef } from "react";
+import React, { useState, useMemo, useRef, useContext, useEffect } from "react";
 import TinderCard from "react-tinder-card";
+import { SwipeProvider, useSwipe } from "../../contexts/swipeContext";
+import axios from "axios";
 
 // Mock pictures for example
 import sek_1 from "../../../public/Mock/imgMock/sek_1.jpg";
@@ -9,12 +11,11 @@ import pSekWDog from "../../../public/Mock/imgMock/pSekWDog.jpg";
 import pSekYoung from "../../../public/Mock/imgMock/pSekYoung.jpg";
 import chad1 from "../../../public/Mock/imgMock/Chad1.jpg";
 import chad2 from "../../../public/Mock/imgMock/Chad2.jpg";
-import auth1 from "../../../public/Mock/imgMock/auth4s2.jpg"
-import auth2 from "../../../public/Mock/imgMock/authAlbum2.jpg"
-import auth4 from "../../../public/Mock/imgMock/authSSSS.jpg"
-import johnny from "../../../public/Mock/imgMock/Johnny.jpg"
-import nunez from "../../../public/Mock/imgMock/nunez.jpg"
-
+import auth1 from "../../../public/Mock/imgMock/auth4s2.jpg";
+import auth2 from "../../../public/Mock/imgMock/authAlbum2.jpg";
+import auth4 from "../../../public/Mock/imgMock/authSSSS.jpg";
+import johnny from "../../../public/Mock/imgMock/Johnny.jpg";
+import nunez from "../../../public/Mock/imgMock/nunez.jpg";
 
 // utility
 import arrowLeftWhite from "../../../public/asset/swipeComponentsItems/arrowLeftWhite.svg";
@@ -23,11 +24,10 @@ import eyeIcon from "../../../public/asset/swipeComponentsItems/eyeIcon.svg";
 import heartLogo from "../../../public/asset/editModalItems/hearthLogo.svg";
 import xLogo from "../../../public/asset/editModalItems/xLogo.svg";
 
-
 const db = [
   {
     name: "Sek",
-    url: [sek_2, pSekWDog, pSekYoung, sekCute ],
+    url: [sek_2, pSekWDog, pSekYoung, sekCute],
     age: "48",
   },
   {
@@ -52,9 +52,32 @@ const Swipe = () => {
   const [lastDirection, setLastDirection] = useState();
   const [step, setStep] = useState(0);
   const [currenId, setCurrenId] = useState(0);
+  const [userData, setUserData] = useState({});
+  const [Images, setImages] = useState([]);
+  const [name, setName] = useState("");
+  const [age, setAge] = useState("");
 
   const currentIndexRef = useRef(currentIndex);
 
+//  ------------------------------------------------//
+  //   getdata
+  
+ const allUserData = async () => {
+    const result = await axios(
+        "http://localhost:4001/users"
+    );
+
+    setUserData(result.data.data[0])
+    setName(result.data.data.username)
+    setImages(result.data.data[0].profile_pics[0])
+    setAge(result.data.data.user_age)
+
+ };
+
+
+  //----------------------------------------------------------------//
+
+  // useMemo
   const childRefs = useMemo(
     () =>
       Array(db.length)
@@ -101,17 +124,8 @@ const Swipe = () => {
     await childRefs[newIndex].current.restoreCard();
   };
 
-  // const scrollEventHandler = function (e) {
-  //   window.scroll(0, window.pageYOffset);
-  //   window.scroll(0, window.pageXOffset);
-  //   e.preventDefault();
-  // };
-
-  // window.addEventListener("scroll", scrollEventHandler, false);
-
   const handleNext = (index) => {
-
-    console.log(db[index].url.length)
+    console.log(db[index].url.length);
 
     if (step !== db[index].url.length) {
       setStep(step + 1);
@@ -124,30 +138,26 @@ const Swipe = () => {
     }
   };
 
-  // console.log(db[0])
-//   console.log(step)
-  // console.log(currenId)
-  // console.log(db[index].url.length)
-
+  useEffect(() => {
+    allUserData();
+  }, []);
 
   return (
-
-    <div className="w-[100%] h-[46.9rem] bg-[#160404] flex justify-center items-start overflow-hidden overflow-x-hidden">
+    <div className="w-[100%] h-[46.9rem] bg-[#160404] flex justify-center items-start overflow-hidden overflow-x-hidden z-30">
       <div className="overflow-hidden">
         <div className="cardContainer text-[white] w-[25rem] h-[25rem] overflow-hidden mt-[30%]">
           {db.map((character, index) => (
-
             <TinderCard
               ref={childRefs[index]}
               className="swipe"
               key={character.name}
-              onSwipe={(dir) => swiped(dir, character.name, index) }
-              onCardLeftScreen={() => {outOfFrame(character.name, index)
-                setStep(0)
-                setCurrenId(index)
-            }}
+              onSwipe={(dir) => swiped(dir, character.name, index)}
+              onCardLeftScreen={() => {
+                outOfFrame(character.name, index);
+                setStep(0);
+                setCurrenId(index);
+              }}
             >
-
               <div
                 style={{ backgroundImage: "url(" + character.url[step] + ")" }}
                 className="card w-[28.75rem] h-[28.75rem] bg-cover bg-center rounded-[32px] overflow-hidden flex flex-row items-end relative z-0"
@@ -167,13 +177,17 @@ const Swipe = () => {
                 {/* left and right */}
                 <div className="buttons absolute right-[5%] space-x-6 bottom-[6%] z-40 ">
                   <button
-                    onClick={()=>{handleBack(currenId)}}
+                    onClick={() => {
+                      handleBack(currenId);
+                    }}
                   >
                     <img src={arrowLeftWhite} className="w-[1rem] h-[1rem]" />
                   </button>
 
                   <button
-                    onClick={()=>{handleNext(currenId)}} 
+                    onClick={() => {
+                      handleNext(currenId);
+                    }}
                   >
                     <img src={arrowRightWhite} className="w-[1rem] h-[1rem]" />
                   </button>
@@ -198,16 +212,6 @@ const Swipe = () => {
             </TinderCard>
           ))}
         </div>
-
-        {/* {lastDirection ? (
-          <h2 key={lastDirection} className="infoText">
-            You swiped {lastDirection}
-          </h2>
-        ) : (
-          <h2 className="infoText">
-            Swipe a card or press a button to get Restore Card button visible!
-          </h2>
-        )} */}
       </div>
     </div>
   );

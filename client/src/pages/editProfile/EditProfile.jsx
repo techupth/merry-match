@@ -102,6 +102,7 @@ const EditProfile = () => {
     // Photo
 
     const newItemImage = [];
+    
     if (result.data.data[0].profile_pics[0] !== undefined) {
       const Photo1 = result.data.data[0].profile_pics[0];
       newItemImage.push(Photo1);
