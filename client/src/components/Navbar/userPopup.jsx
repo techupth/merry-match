@@ -10,13 +10,10 @@ import { useAuth } from "../../contexts/authentication";
 
 // Using by redering to Nav page
 
-
-
 function UserPopup({ close }) {
+  const navigate = useNavigate();
 
-  const navigate = useNavigate()
-
-  const { logout } = useAuth()
+  const { logout } = useAuth();
 
   return (
     <div className="inline-block text-left z-50 h-[500px] absolute right-[3%] top-[80%]">
@@ -46,7 +43,13 @@ function UserPopup({ close }) {
           >
             <img src={profile} className="mr-2" />
             <span class="flex flex-col">
-              <span onClick={() => { navigate("/edit") }}>Profile</span>
+              <span
+                onClick={() => {
+                  navigate("/edit");
+                }}
+              >
+                Profile
+              </span>
             </span>
           </a>
           <a
@@ -56,7 +59,13 @@ function UserPopup({ close }) {
           >
             <img src={merryList} className="mr-2" />
             <span className="flex flex-col">
-              <span>Merry list</span>
+              <span
+                onClick={() => {
+                  navigate("/merrylist");
+                }}
+              >
+                Merry list
+              </span>
             </span>
           </a>
           <a

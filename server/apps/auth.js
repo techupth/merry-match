@@ -4,21 +4,19 @@ import jwt from "jsonwebtoken";
 import { pool } from "../utils/db.js";
 import multer from "multer";
 
-
 const authRouter = Router();
 
 const multerUpload = multer({ dest: "uploads/" });
 const avatarUpload = multerUpload.fields([{ name: "avatar", maxCount: 5 }]);
 
 authRouter.post("/register", avatarUpload, async (req, res) => {
-
   try {
     const newUserProfile = {
       ...req.body,
       created_at: new Date(),
       updated_at: new Date(),
     };
-    
+
     const salt = await bcrypt.genSalt(10);
     newUserProfile.password = await bcrypt.hash(newUserProfile.password, salt);
 
@@ -123,7 +121,7 @@ authRouter.post("/login", async (req, res) => {
 
   return res.json({
     message: "Logged in Successfully!",
-    token, 
+    token,
   });
 });
 
