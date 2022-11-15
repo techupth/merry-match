@@ -13,8 +13,7 @@ import jwtDecode from "jwt-decode";
 
 // Components
 import DeleteButton from "../../components/editPageComponents/DeleteButton";
-import NavbarAuthen from "../../components/Navbar/NavbarAuthen";
-import Footer from "../../components/editPageComponents/Footer";
+import Footer from "../../components/editPageComponents/EditPageFooter";
 
 // Modal
 import EditModal from "../../components/editPageComponents/EditModal";
