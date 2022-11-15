@@ -18,7 +18,7 @@ const Navbar = () => {
         />
       </button>
 
-      <div className="mr-[10%]  flex flex-row  items-center justify-between p-0 gap-8">
+      <div className="mr-[10%]  flex flex-row  items-center justify-between p-0 gap-8 ">
         <a href="#why-merry">
           <h2>Why Merry Match?</h2>
         </a>
@@ -26,7 +26,7 @@ const Navbar = () => {
           <h2>How to Merry</h2>
         </a>
         <button
-          className="button-nav bg-[#c70039] shadow-[2px_2px_12px_0_rgba(64, 50, 133, 0.16)] rounded-[99px] text-[#ffffff] h-[48px] w-[90px] font-[700]"
+          className="button-nav bg-[#c70039] shadow-[2px_2px_12px_0_rgba(64, 50, 133, 0.16)] rounded-[99px] text-[#ffffff] h-[48px] w-[90px] font-[700] hover:bg-[#FFE1EA] hover:text-[#95002B] "
           onClick={() => navigate("/login")}
         >
           Login

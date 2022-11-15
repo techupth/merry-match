@@ -2,6 +2,7 @@ import React from "react";
 import { useAuth } from "../../contexts/authentication";
 
 function DeleteButton({ close, userId }) {
+  console.log(userId)
   const { deleteuser} = useAuth()
   return (
     <div className="DeleteButton w-[33rem] h-[12.5rem] bg-white rounded-[24px] flex flex-col z-30 absolute mt-[80%]">
