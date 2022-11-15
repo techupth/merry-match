@@ -25,7 +25,6 @@ function Register() {
   const [emailError, setEmailError] = useState("* Required");
   const [passwordLengthError, setPasswordLengthError] = useState("* Required");
   const [passwordMatchError, setPasswordMatchError] = useState("* Required");
-  const [errorInputMsg, setErrorInputMsg] = useState(null);
 
   // states of form 1
   const [name, setName] = useState("");
@@ -40,13 +39,6 @@ function Register() {
 
   // date picker
   const [startDate, setStartDate] = useState(new Date());
-  const days = ["S", "M", "T", "W", "T", "F", "S"];
-  const locale = {
-    localize: {
-      day: (n) => days[n],
-    },
-    formatLong: {},
-  };
 
   //hobbies part
   const animatedComponents = makeAnimated();
@@ -80,10 +72,6 @@ function Register() {
     profile_pics: images,
     contact,
   };
-  // console.log(birthday);
-  console.log(userInfo);
-  // console.log(images);
-  console.log(startDate);
 
   const registerNewUser = async () => {
     await axios.post("http://localhost:4001/auth/register", userInfo, {
@@ -95,20 +83,16 @@ function Register() {
     const year = data.getFullYear();
     const month = data.getMonth() + 1;
     const day = data.getDate() + 1;
-
     const birthday = `${year}-${month}-${day}`;
-
     setBirthday(birthday);
-    console.log(birthday);
   };
 
   //GetAgeuser
   const userYear = startDate.getFullYear();
-  console.log(userYear);
+
   const now = new Date().getFullYear();
-  console.log(now);
+
   const Age = now - userYear;
-  console.log(Age);
 
   let maxDate = new Date();
   maxDate.setFullYear(maxDate.getFullYear() - 18);
@@ -198,19 +182,6 @@ function Register() {
       }
     }
   };
-  const handleInputChange = (event) => {
-    setText(event.target.value);
-  };
-
-  const deleteHobbies = (key, event) => {
-    event.preventDefault();
-
-    const temp = hobbies.filter((value, index) => {
-      return index !== key;
-    });
-
-    setHobbies(temp);
-  };
 
   const handleCountry = (e) => {
     const getCountryId = e.target.value;
@@ -227,8 +198,6 @@ function Register() {
   };
 
   const handleRemoveImage = (i) => {
- 
-
     const imageId = i;
 
     const imageDelete = images.filter((value, i) => {
@@ -252,7 +221,6 @@ function Register() {
     );
     myWidget.open();
   }
-
 
   const handleStateWidget = () => {
     handleOpenWidget();
@@ -441,7 +409,7 @@ function Register() {
                         dateFormat="dd/MM/yyyy"
                         onChange={(date) => {
                           setStartDate(date);
-                          handleBirtday(date)
+                          handleBirtday(date);
                         }}
                         showMonthDropdown
                         showYearDropdown

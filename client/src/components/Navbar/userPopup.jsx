@@ -42,7 +42,7 @@ function UserPopup({ close }) {
             role="menuitem"
           >
             <img src={profile} className="mr-2" />
-            <span class="flex flex-col">
+            <span className="flex flex-col">
               <span
                 onClick={() => {
                   navigate("/edit");
