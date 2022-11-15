@@ -293,14 +293,14 @@ const EditProfile = () => {
             {/* Page 1 */}
             {/* colomn 1 */}
 
-            <h4 className="basicInformation text-[#A62D82] mt-[80px] font-bold [text-[24px] z-0">
+            <h4 className="basicInformation text-[#A62D82] mt-[80px] font-bold text-[24px] z-0">
               Basic Information
             </h4>
             <div className="column1 flex z-0">
               <div className="flex flex-col mr-[12px] mt-[24px]">
                 <label htmlFor="name">Name</label>
                 <input
-                  className="w-[453px] rounded-lg "
+                  className="w-[453px] rounded-lg border-[#D6D9E4] border-[1px] "
                   type="text"
                   id="name"
                   name="firstname"
@@ -316,7 +316,7 @@ const EditProfile = () => {
               <div className="flex flex-col ml-[12px] mt-[24px] z-0">
                 <label htmlFor="birth">Date of birth</label>
                 <DatePicker
-                  className="w-[453px] rounded-lg focus:border-pink-300 focus:border-[2px]"
+                  className="w-[453px] rounded-lg focus:border-pink-300 focus:border-[2px] border-[#D6D9E4] border-[1px]"
                   dateFormat="dd/MM/yyyy"
                   selected={startDate}
                   showMonthDropdown
@@ -337,7 +337,7 @@ const EditProfile = () => {
               <div className="flex flex-col mr-[12px] mt-[40px]">
                 <label htmlFor="location">Location</label>
                 <select
-                  className="w-[453px] h-[48px] rounded-lg p-[12px]"
+                  className="w-[453px] h-[48px] rounded-lg p-[12px] border-[#D6D9E4] border-[1px]"
                   onChange={(e) => {
                     handleCountry(e.target.value);
                   }}
@@ -355,7 +355,7 @@ const EditProfile = () => {
               <div className="flex flex-col ml-[12px] mt-[40px]">
                 <label htmlFor="city">City</label>
                 <select
-                  className="w-[453px] h-[48px] rounded-lg p-[12px]"
+                  className="w-[453px] h-[48px] rounded-lg p-[12px] border-[#D6D9E4] border-[1px]"
                   onChange={(e) => {
                     handleNationState(e);
                   }}
@@ -375,7 +375,7 @@ const EditProfile = () => {
               <div className="flex flex-col mr-[12px] mt-[40px]">
                 <label htmlFor="username">Username</label>
                 <input
-                  className="w-[453px] rounded-lg text-[#9AA1B9]"
+                  className="w-[453px] rounded-lg text-[#9AA1B9] border-[#D6D9E4] border-[1px]"
                   type="text"
                   id="username"
                   name="username"
@@ -390,7 +390,7 @@ const EditProfile = () => {
               <div className="flex flex-col ml-[12px] mt-[40px]">
                 <label htmlFor="Email">Email</label>
                 <input
-                  className="w-[453px] rounded-lg text-[#9AA1B9]"
+                  className="w-[453px] rounded-lg text-[#9AA1B9] border-[#D6D9E4] border-[1px]"
                   type="email"
                   id="Email"
                   name="Email"
@@ -410,7 +410,7 @@ const EditProfile = () => {
               <div className="SexualIdentities flex flex-col mr-[12px] mt-[40px]">
                 <label htmlFor="SexualIdentities">Sexual identities</label>
                 <select
-                  className="w-[453px] rounded-lg h-[48px] p-[12px]"
+                  className="w-[453px] rounded-lg h-[48px] p-[12px] border-[#D6D9E4] border-[1px]"
                   id="SexualIdentities"
                   name="status"
                   value={sexIdentity}
@@ -426,7 +426,7 @@ const EditProfile = () => {
               <div className="SexualPreferences flex flex-col ml-[12px] mt-[40px]">
                 <label htmlFor="SexualPreferences">Sexual preferences</label>
                 <select
-                  className="w-[453px] rounded-lg h-[48px] p-[12px]"
+                  className="w-[453px] rounded-lg h-[48px] p-[12px] border-[#D6D9E4] border-[1px]"
                   id="SexualPreferences"
                   name="SexualPreferences"
                   value={sexPref}
@@ -445,7 +445,7 @@ const EditProfile = () => {
               <div className="RacialPreferences flex flex-col mr-[12px] mt-[40px] ">
                 <label htmlFor="RacialPreferences">Racial preferences</label>
                 <select
-                  className="w-[453px] rounded-lg h-[48px] p-[12px]"
+                  className="w-[453px] rounded-lg h-[48px] p-[12px] border-[#D6D9E4] border-[1px]"
                   id="RacialPreferences"
                   name="RacialPreferences"
                   value={racialPref}
@@ -461,7 +461,7 @@ const EditProfile = () => {
               <div className="MeetingInterests flex flex-col  ml-[12px] mt-[40px]">
                 <label htmlFor="MeetingInterests">Meeting interests</label>
                 <select
-                  className="w-[453px] h-[48px] rounded-lg p-[12px]"
+                  className="w-[453px] h-[48px] rounded-lg p-[12px] border-[#D6D9E4] border-[1px]"
                   id="MeetingInterests"
                   name="MeetingInterests"
                   value={meetingInt}
@@ -502,7 +502,7 @@ const EditProfile = () => {
                 name="AboutMe"
                 maxLength="150"
                 rows="1"
-                className="rounded-lg h-[127px] p-[12px]"
+                className="rounded-lg h-[127px] p-[12px] border-[#D6D9E4] border-[1px]"
                 value={aboutMe}
                 onChange={(event) => {
                   setAboutMe(event.target.value);
@@ -518,7 +518,7 @@ const EditProfile = () => {
                 id="Contact"
                 name="Contact"
                 maxLength="150"
-                value={contact === null ? "" : contact}
+                value={contact === null ? " " : contact}
                 rows="1"
                 className="rounded-lg h-[100px] p-[12px] border-[#D6D9E4]"
                 onChange={(event) => {
@@ -527,7 +527,7 @@ const EditProfile = () => {
               ></textarea>
             </div>
 
-            <h1 className="ProfilePictures text-[#A62D82] mt-[80px] text-[24px]">
+            <h1 className="ProfilePictures text-[#A62D82] mt-[80px] font-bold text-[24px] z-0">
               Profile pictures
             </h1>
             <p>Upload at least x photos</p>
@@ -693,7 +693,7 @@ const EditProfile = () => {
 
           {/* Delete button */}
           {deleteAccount && (
-            <DeleteButton close={setDeleteAccount} userId={userData.user_id} />
+            <DeleteButton close={setDeleteAccount} userId={getData.user_id} />
           )}
 
           <div className="delete-section flex flex-col justify-end items-end  h-[70px] w-full   ">

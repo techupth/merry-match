@@ -103,6 +103,7 @@ const editUserController = async (req, res) => {
 
 const deleteUserController = async (req, res) => {
   const userId = req.params.userId;
+  console.log(userId)
   await pool.query(
     `
    delete from users where user_id = $1
