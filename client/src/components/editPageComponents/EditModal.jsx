@@ -25,7 +25,7 @@ const EditModal = ({ close, data }) => {
       setStep(step + 1);
     }
   };
-  console.log(data);
+
 
   const handleBack = (e) => {
     e.preventDefault();
@@ -35,9 +35,11 @@ const EditModal = ({ close, data }) => {
   };
 
   const handdleAge = (data) => {
-    const year = data.getFullYear();
+    const year = data.split("-");
+
     const now = new Date().getFullYear();
-    const age = now - year;
+    const age = now - year[0];
+
     setAge(age);
   };
 
@@ -49,7 +51,7 @@ const EditModal = ({ close, data }) => {
     setHobbies(hobbies);
   };
 
-  console.log(hobbies);
+
   useEffect(() => {
     handdleAge(data.birthday);
     setImages(data.profile_pics);
