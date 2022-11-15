@@ -80,6 +80,10 @@ input[type="date"] {
   background-color: #fff;
 }
 
+/* Navbar Authen */
+.NavAuthen, .Navbar {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
 /* calendar box  */
 .react-datepicker__month-container {
   position: relative;
@@ -286,24 +290,9 @@ select:focus {
 }
 
 /* Swipe */
-.dashboard {
-  display: flex;
-  justify-content: space-between;
-}
 
 .swipe {
   position: absolute;
-}
-
-.dashboard .card-container {
-  width: 400px;
-  height: 650px;
-}
-
-.dashboard .swipe-info {
-  position: absolute;
-  bottom: 0;
-  padding: 10px;
 }
 
 .card {

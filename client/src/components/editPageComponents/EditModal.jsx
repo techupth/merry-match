@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useRef, useEffect } from "react";
 import useClickOutside from "../../utils/hooks/useClickOutside";
 
-// Mock pictures for example
+// assets
 import heartLogo from "../../../public/asset/editModalItems/hearthLogo.svg";
 import xLogo from "../../../public/asset/editModalItems/xLogo.svg";
 import awL from "../../../public/asset/editModalItems/awL.svg";

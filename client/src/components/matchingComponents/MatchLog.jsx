@@ -16,7 +16,7 @@ const MatchLog = () => {
   };
 
   return (
-    <div className="MatchLog w-[316px] mt-[5%] h-[46.9rem] px-[16px]">
+    <div className="MatchLog w-[316px] mt-[5%] h-[46.9rem] px-[16px] z-40 bg-[white]">
       <div className="flex justify-center">
         <div className="w-[17.625rem] h-[11.688rem] text-center bg-[#F6F7FC] rounded-xl mt-[36px] border-2 border-[#D6D9E4]">
           <img src={search_heart} className="inline-block mt-[33px]" alt="" />
