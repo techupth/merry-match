@@ -7,7 +7,7 @@ import Correct from "../../../public/asset/SubscriptionIcon/correct.png"
 
 const Subscribe = () => {
     return (
-        <div className='h-[991px]'>
+        <div className='h-[991px] bg-[#FCFCFE]'>
             <div className='text-[#DF89C6] h-[369px] w-full'>
                 <p className='pt-[195px] pl-[150px] text-[#7B4429]'>MERRY MEMBERSHIP</p>
                 <p className=' pl-[150px] text-[#A62D82] text-[48px] font-[800] leading-[125%]'>Be part of Merry Membership
@@ -26,7 +26,7 @@ const Subscribe = () => {
                     <div className="cardItem border-[1px] border-solid border-[#D6D9E4] item3 w-[357px] h-[438px]  bg-[#FFFFFF]  rounded-[40px] mx-[12px]">
                         <div className="frameIMG w-[60px] h-[60px] rounded-2xl bg-[#F6F7FC] relative m-auto mt-[40px] ml-[40px]">
                             <div className="imgItem w-[32.4px] h-[32.4px] mt-[1.81px] ml-[1.81px]">
-                                <img src={Star} alt="" />
+                                <img src={Heart} alt="" />
                             </div>
                         </div>
                         <div className=" w-[277px] mx-auto mt-[40px]">
@@ -60,7 +60,7 @@ const Subscribe = () => {
                     <div className="cardItem item3 w-[357px] h-[438px] border-[1px] border-solid border-[#D6D9E4]  bg-[#FFFFFF]  rounded-[40px] mx-[12px]">
                         <div className="frameIMG w-[60px] h-[60px] rounded-2xl bg-[#F6F7FC] relative m-auto mt-[40px] ml-[40px]">
                             <div className="imgItem w-[32.4px] h-[32.4px] mt-[1.81px] ml-[1.81px]">
-                                <img src={Star} alt="" />
+                                <img src={Star2} alt="" />
                             </div>
                         </div>
                         <div className=" w-[277px] mx-auto mt-[40px]">
