@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { useSwipe } from "../../contexts/swipeContext";
-import jwtDecode from "jwt-decode";
+// import jwtDecode from "jwt-decode";
 
 const MatchFilter = () => {
   const [ageRange, setAgeRange] = useState([20, 30]);
