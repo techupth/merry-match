@@ -16,18 +16,6 @@ userRouter.use(protect);
 
 userRouter.get("/", getAllUsers);
 
-// userRouter.get("/", async (req, res) => {
-//   try {
-//     const result = await pool.query(`select * from users`);
-
-//     return res.json({
-//       message: "Successful!",
-//       data: result.rows,
-//     });
-//   } catch (error) {
-//     console.log(error);
-//   }
-// });
 
 userRouter.get("/:userId", getUserById);
 

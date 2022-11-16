@@ -2,6 +2,7 @@ import { pool } from "../utils/db.js";
 
 const getAllUsers = async (req, res) => {
   const result = await pool.query(`select * from users`);
+  
 
   return res.json({
     message: "Successful!",
