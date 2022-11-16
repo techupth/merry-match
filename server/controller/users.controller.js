@@ -2,7 +2,6 @@ import { pool } from "../utils/db.js";
 
 const getAllUsers = async (req, res) => {
   const result = await pool.query(`select * from users`);
-  
 
   return res.json({
     message: "Successful!",
@@ -12,13 +11,12 @@ const getAllUsers = async (req, res) => {
 
 const getUserById = async (req, res) => {
   const userId = req.params.userId;
-  console.log(userId)
   const result = await pool.query(`select * from users where user_id=$1`, [
     userId,
   ]);
   return res.json({
     message: `User info at user id : ${userId} is found`,
-    data: result,
+    data: result.rows,
   });
 };
 
@@ -29,7 +27,6 @@ const postUser = async (req, res) => {
       created_at: new Date(),
       updated_at: new Date(),
     };
-    
 
     await pool.query(`SET datestyle = dmy`);
 
@@ -51,7 +48,7 @@ const postUser = async (req, res) => {
         newUserProfile.created_at,
         newUserProfile.updated_at,
         newUserProfile.profile_pics,
-        newUserProfile.contact
+        newUserProfile.contact,
       ]
     );
 
@@ -92,7 +89,7 @@ const editUserController = async (req, res) => {
       updatedUser.updated_at,
       updatedUser.profile_pics,
       userId,
-      updatedUser.contact
+      updatedUser.contact,
     ]
   );
   console.log(`UpDate ID :${userId} Successful!!`);
@@ -104,7 +101,7 @@ const editUserController = async (req, res) => {
 
 const deleteUserController = async (req, res) => {
   const userId = req.params.userId;
-  console.log(userId)
+  console.log(userId);
   await pool.query(
     `
    delete from users where user_id = $1

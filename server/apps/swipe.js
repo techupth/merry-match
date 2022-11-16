@@ -7,7 +7,7 @@ const swipeRouter = Router();
 // swipeRouter.use(protect());
 
 swipeRouter.get("/", async (req, res) => {
-  const swiperId = req.query.userId
+  const swiperId = req.query.userId;
   const swipeeList = await pool.query(
     `
     SELECT * FROM swipe
