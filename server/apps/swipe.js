@@ -7,7 +7,9 @@ const swipeRouter = Router();
 // swipeRouter.use(protect());
 
 swipeRouter.get("/", async (req, res) => {
-  const swiperId = req.body.user_id;
+  const swiperId = req.query.userId;
+  // const swiperId = req.query;
+  console.log(swiperId)
     const swipeeList = await pool.query(
     `
   SELECT * FROM swipe
@@ -19,7 +21,7 @@ where swiper = $1
   );
     
   return res.json({
-    data : swipeeList,
+    data : swipeeList.rows,
   })
   
 });
