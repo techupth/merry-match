@@ -8,6 +8,7 @@ import {
   RangeSliderTrack,
   RangeSliderFilledTrack,
   RangeSliderThumb,
+  RangeSliderMark,
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { useSwipe } from "../../contexts/swipeContext";
@@ -16,8 +17,14 @@ const MatchFilter = () => {
   const [ageRange, setAgeRange] = useState([]);
   const [meetingIntArr, setMeetingIntArr] = useState([]);
   const [userData, setUserData] = useState({});
-
   const { test } = useSwipe();
+
+  useEffect(() => {
+    setMeetingIntArr(meetingIntArr);
+    console.log(meetingIntArr);
+  }, [meetingIntArr]);
+
+  const handleAgeRange = () => {};
 
   return (
     <div className="w-[28%] h-[46.9rem] bg-white">
@@ -32,7 +39,15 @@ const MatchFilter = () => {
               value="Friend"
               onChange={(e) => {
                 console.log([e.target.value, e.target.checked]);
-                setMeetingIntArr([...meetingIntArr, e.target.value]);
+                if (e.target.checked) {
+                  meetingIntArr.push(e.target.value);
+                  console.log(meetingIntArr);
+                } else {
+                  const result = meetingIntArr.filter((interest) => {
+                    return interest !== e.target.value;
+                  });
+                  setMeetingIntArr(result);
+                }
                 console.log(meetingIntArr);
               }}
             >
@@ -43,7 +58,14 @@ const MatchFilter = () => {
               value="FWB"
               onChange={(e) => {
                 console.log([e.target.value, e.target.checked]);
-                setMeetingIntArr([...meetingIntArr, e.target.value]);
+                if (e.target.checked) {
+                  meetingIntArr.push(e.target.value);
+                } else {
+                  const result = meetingIntArr.filter((interest) => {
+                    return interest !== e.target.value;
+                  });
+                  setMeetingIntArr(result);
+                }
                 console.log(meetingIntArr);
               }}
             >
@@ -54,7 +76,14 @@ const MatchFilter = () => {
               value="ONS"
               onChange={(e) => {
                 console.log([e.target.value, e.target.checked]);
-                setMeetingIntArr([...meetingIntArr, e.target.value]);
+                if (e.target.checked) {
+                  meetingIntArr.push(e.target.value);
+                } else {
+                  const result = meetingIntArr.filter((interest) => {
+                    return interest !== e.target.value;
+                  });
+                  setMeetingIntArr(result);
+                }
                 console.log(meetingIntArr);
               }}
             >
@@ -65,7 +94,14 @@ const MatchFilter = () => {
               value="Long-term"
               onChange={(e) => {
                 console.log([e.target.value, e.target.checked]);
-                setMeetingIntArr([...meetingIntArr, e.target.value]);
+                if (e.target.checked) {
+                  meetingIntArr.push(e.target.value);
+                } else {
+                  const result = meetingIntArr.filter((interest) => {
+                    return interest !== e.target.value;
+                  });
+                  setMeetingIntArr(result);
+                }
                 console.log(meetingIntArr);
               }}
             >
@@ -76,7 +112,14 @@ const MatchFilter = () => {
               value="Short-term"
               onChange={(e) => {
                 console.log([e.target.value, e.target.checked]);
-                setMeetingIntArr([...meetingIntArr, e.target.value]);
+                if (e.target.checked) {
+                  meetingIntArr.push(e.target.value);
+                } else {
+                  const result = meetingIntArr.filter((interest) => {
+                    return interest !== e.target.value;
+                  });
+                  setMeetingIntArr(result);
+                }
                 console.log(meetingIntArr);
               }}
             >
@@ -85,7 +128,7 @@ const MatchFilter = () => {
           </Stack>
         </CheckboxGroup>
       </div>
-      <div className="age-range w-[85%] ml-5">
+      <div className="age-range w-[80%] ml-5">
         <Text fontWeight={700} color="#191C77" mb={3} mt={10}>
           Age Range
         </Text>
@@ -95,12 +138,40 @@ const MatchFilter = () => {
           min={18}
           max={60}
           step={1}
-          onChangeEnd={(val) => {
+          onChange={(val) => {
             console.log(val);
             setAgeRange(val);
           }}
-          // value={[ageRange[0], ageRange[1]]}
+          mt={7}
         >
+          <RangeSliderMark
+            defaultValue={22}
+            value={ageRange[0]}
+            borderRadius="18"
+            textAlign="center"
+            bg="#7d2262"
+            color="white"
+            mt="-10"
+            ml="-5"
+            w="10"
+            fontWeight="700"
+          >
+            {ageRange[0]}
+          </RangeSliderMark>
+          <RangeSliderMark
+            defaultValue={30}
+            value={ageRange[1]}
+            borderRadius="18"
+            textAlign="center"
+            bg="#7d2262"
+            color="white"
+            mt="-10"
+            ml="-5"
+            w="10"
+            fontWeight="700"
+          >
+            {ageRange[1]}
+          </RangeSliderMark>
           <RangeSliderTrack>
             <RangeSliderFilledTrack />
           </RangeSliderTrack>
