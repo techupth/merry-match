@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useRef, useContext, useEffect } from "react";
+import React, { useState, useMemo, useRef, useEffect } from "react";
 import TinderCard from "react-tinder-card";
 import { useSwipe } from "../../contexts/swipeContext";
 
@@ -14,8 +14,9 @@ const Swipe = () => {
   const [currentIndex, setCurrentIndex] = useState(users.length);
   const [lastDirection, setLastDirection] = useState();
   const [step, setStep] = useState(0);
-  const [currenId, setCurrenId] = useState(0);
+  const [currenId, setCurrenId] = useState([]);
 
+  // used for outOfFrame closure
   const currentIndexRef = useRef(currentIndex);
 
   // useMemo
@@ -32,14 +33,21 @@ const Swipe = () => {
     currentIndexRef.current = val;
   };
 
+  //   Set swipe index
+  const canGoBack = currentIndex < users.length - 1;
+  const canSwipe = currentIndex >= 0;
+
   // set last direction and decrease current index
   const swiped = (direction, nameToDelete, index) => {
     setLastDirection(direction);
     updateCurrentIndex(index - 1);
+    console.log(users[index -1 ].username)
+    console.log(users[index -1 ].profile_pics.length)
+    console.log(step)
   };
 
   const outOfFrame = (name, idx) => {
-    console.log(`${name} (${idx}) left the screen!`, currentIndexRef.current);
+    // console.log(`${name} (${idx}) left the screen!`, currentIndexRef.current);
     // handle the case in which go back is pressed before card goes outOfFrame
     currentIndexRef.current >= idx && childRefs[idx].current.restoreCard();
     // TODO: when quickly swipe and restore multiple times the same card,
@@ -47,28 +55,13 @@ const Swipe = () => {
     // during latest swipes. Only the last outOfFrame event should be considered valid
   };
 
-  const swipe = async (dir) => {
-    if (canSwipe && currentIndex < users.length) {
-      await childRefs[currentIndex].current.swipe(dir); // Swipe the card!
-    }
-  };
-
-  // increase current index and show card
-  const goBack = async () => {
-    if (!canGoBack) return;
-    const newIndex = currentIndex + 1;
-    updateCurrentIndex(newIndex);
-    await childRefs[newIndex].current.restoreCard();
-  };
-
   //   Handle pictures
-
   const handleNext = (index) => {
-    console.log(users[index].profile_pics.length);
-
-    if (step !== users[index].profile_pics.length) {
+    if (step !== users[index -1].profile_pics.length -1) {
       setStep(step + 1);
     }
+
+   
   };
 
   const handleBack = (index) => {
@@ -77,17 +70,26 @@ const Swipe = () => {
     }
   };
 
-  //   getdata
+  // Swipe 
+  const swipe = async (dir) => {
+    if (currentIndex < users.length) {
+      await childRefs[currentIndex].current.swipe(dir) // Swipe the card!
+    }
+    console.log(current)
+  }
 
+  // increase current index and show card
+  const goBack = async () => {
+    if (!canGoBack) return
+    const newIndex = currentIndex + 1
+    updateCurrentIndex(newIndex)
+    await childRefs[newIndex].current.restoreCard()
+  }
+
+  //   getdata
   useEffect(() => {
     getMeetingIntFilter();
   }, []);
-
-  //   Set swipe index
-
-  const canGoBack = currentIndex < users.length - 1;
-
-  const canSwipe = currentIndex >= 0;
 
   return (
     <div className="w-[100%] h-[46.9rem] bg-[#160404] flex justify-center items-start overflow-hidden overflow-x-hidden z-30">
@@ -124,7 +126,7 @@ const Swipe = () => {
                 </div>
 
                 {/* left and right */}
-                <div className="buttons absolute right-[5%] space-x-6 bottom-[6%] z-40 ">
+                <div className="arrow-buttons absolute right-[5%] space-x-6 bottom-[6%] z-40 ">
                   <button
                     onClick={() => {
                       handleBack(currenId);
@@ -143,20 +145,20 @@ const Swipe = () => {
                 </div>
               </div>
 
-              <div className="Button flex flex-row items-center justify-center space-x-3 overflow-hidden z-10 mt-[-25%]   ">
-                <a
+              <div className="button flex flex-row items-center justify-center space-x-3 overflow-hidden z-10 mt-[-25%]   ">
+                <button
                   className="XButton w-[4rem] h-[4rem] drop-shadow-2xl mt-[20%]  bg-white rounded-[30%] flex justify-center items-center hover:bg-[#2A2E3F] z-10"
                   onClick={() => swipe("left")}
                 >
                   <img src={xLogo} />
-                </a>
+                </button>
 
-                <a
+                <button
                   className="HeartButton w-[4rem] h-[4rem] drop-shadow-2xl mt-[20%]  bg-white rounded-[30%] flex justify-center items-center hover:bg-[#FFB1C8] z-10"
                   onClick={() => swipe("right")}
                 >
                   <img src={heartLogo} className="ml-1 mt-1" />
-                </a>
+                </button>
               </div>
             </TinderCard>
           ))}
