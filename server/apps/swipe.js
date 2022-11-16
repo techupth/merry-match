@@ -7,10 +7,12 @@ const swipeRouter = Router();
 // swipeRouter.use(protect());
 
 swipeRouter.get("/", async (req, res) => {
-  const swiperId = req.body.user_id;
+  const swiperId = req.query.userId;
+  // const swiperId = req.query;
+  console.log(swiperId);
   const swipeeList = await pool.query(
     `
-  SELECT * FROM swipe
+SELECT * FROM swipe
 INNER JOIN users
 ON swipee = user_id
 where swiper = $1
@@ -19,7 +21,7 @@ where swiper = $1
   );
 
   return res.json({
-    data: swipeeList,
+    data: swipeeList.rows,
   });
 });
 

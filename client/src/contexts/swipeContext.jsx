@@ -9,6 +9,7 @@ const SwipeProvider = (props) => {
   const [userData, setUserData] = useState({});
   const [filterData, setFilterData] = useState({});
   const [users, setUsers] = useState([]);
+  const [merryListUser, setMerryListUser] = useState([]);
 
   const decodeFromToken = () => {
     const token = localStorage.getItem("token");
@@ -30,6 +31,20 @@ const SwipeProvider = (props) => {
     // console.log(userData);
   };
 
+  const merryList = async () => {
+    const token = localStorage.getItem("token");
+    const userData = jwtDecode(token);
+    console.log(userData.user_id);
+    const result = await axios.get(
+      `http://localhost:4001/swipe/?userId=${userData.user_id}`,
+      {
+        params: userData,
+      }
+    );
+    console.log(result);
+    setMerryListUser(result.data.data);
+  };
+
   return (
     <SwipeContext.Provider
       value={{
@@ -37,6 +52,9 @@ const SwipeProvider = (props) => {
         getMeetingIntFilter,
         getDataByFilter,
         users,
+        merryList,
+        decodeFromToken,
+        merryListUser,
       }}
     >
       {props.children}
