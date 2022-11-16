@@ -4,9 +4,6 @@ import Home from "../landingPage/Home";
 import Login from "../loginPage/Login";
 import Register from "../registerPage/Register";
 
-// For dev import here
-import DeleteButton from "../../components/editPageComponents/DeleteButton";
-
 const Unauthenticated = () => {
   return (
     <>
