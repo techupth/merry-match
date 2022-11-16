@@ -7,16 +7,19 @@ const swipeRouter = Router();
 // swipeRouter.use(protect());
 
 swipeRouter.get("/", async (req, res) => {
-  const swiperId = req.body.user_id;
-  await pool.query(
+  const swipeeList = await pool.query(
     `
   SELECT * FROM swipe
-  Where swiper = $1
-    LEFT JOIN users
-    select * FROM swipeON swipe.swipee = user.user_id
+INNER JOIN users
+ON swipee = user_id
+where swiper = $1
   `,
     [swiperId]
   );
+
+  return res.json({
+    data: swipeeList,
+  });
 });
 
 const filterTheData =
