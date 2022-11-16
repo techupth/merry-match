@@ -10,10 +10,6 @@ import heart from "../../../public/asset/MerryList/heart.png";
 import NavbarAuthen from "../../components/Navbar/NavbarAuthen";
 import Footer from "../../components/editPageComponents/Footer";
 
-//
-import axios from "axios";
-
-
 import { useSwipe } from "../../contexts/swipeContext";
 
 
@@ -62,15 +58,15 @@ const data = [
 
 
 const MerryList = () => {
-
   useEffect(() => {
-    getMeetingIntFilter()
+  
+    merryList()
   },[]);
 
-  const {getMeetingIntFilter,users} = useSwipe()
+  const {merryList, merryListUser} = useSwipe()
 
-  console.log(users)
- 
+  
+ console.log(merryListUser)
 
 
   return (
@@ -88,7 +84,7 @@ const MerryList = () => {
 
           <div className="mt-[56px]">
             {/* เริ่ม return map ตั้งแต่ตรงนี้ */}
-            {users.map((user) => {
+            {merryListUser.map((user) => {
               return (
                 <div>
                   <div className="flex mt-[40px]">
@@ -105,7 +101,7 @@ const MerryList = () => {
                     <div className="w-2/3 ml-[40px] ">
                       <div className="flex items-baseline">
                         <p className="text-[24px] font-bold">{user.name}</p>
-                        <p className="text-[#646D89] text-[24px] ml-[8px] font-bold">{user.age}</p>
+                        <p className="text-[#646D89] text-[24px] ml-[8px] font-bold">{user.user_age}</p>
                         <div className="ml-[18px]">
                           <img src={location} alt="location" />
                         </div>
