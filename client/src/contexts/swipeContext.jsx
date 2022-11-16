@@ -18,15 +18,13 @@ const SwipeProvider = (props) => {
   };
 
   const getDataByFilter = async (data) => {
-    const filteredData = await axios.post("http://localhost:4001/users", data);
+    const filteredData = await axios.post("http://localhost:4001/swipe", data);
     console.log(filteredData);
     setFilterData(filteredData.data.data);
   };
 
   const getMeetingIntFilter = async () => {
-    const result = await axios.get("http://localhost:4001/users", {
-      params: userData,
-    });
+    const result = await axios.get("http://localhost:4001/swipe");
     //  console.log(result.data)
     setUsers(result.data.data);
     // console.log(userData);
