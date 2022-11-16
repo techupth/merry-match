@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { query, Router } from "express";
 import { protect } from "../middlewares/protect.js";
 import { pool } from "../utils/db.js";
 
@@ -7,21 +7,29 @@ const swipeRouter = Router();
 // swipeRouter.use(protect());
 
 swipeRouter.get("/", async (req, res) => {
-  const swiperId = req.body.user_id;
-    const swipeeList = await pool.query(
+  const swiperId = req.query.userId
+  const swipeeList = await pool.query(
     `
-  SELECT * FROM swipe
-INNER JOIN users
-ON swipee = user_id
-where swiper = $1
+    SELECT * FROM swipe
+    INNER JOIN users
+    ON swipee = user_id
+    where swiper = $1
   `,
     [swiperId]
   );
-    
+
+  const isMatch = await pool.query(
+    `
+    SELECT swiper FROM swipe
+    WHERE swipee = $1 AND swipe_type = $2
+    `,
+    [swiperId, true]
+  );
+
   return res.json({
-    data : swipeeList,
-  })
-  
+    data: swipeeList.rows,
+    isMatchId: isMatch.rows,
+  });
 });
 
 export default swipeRouter;
