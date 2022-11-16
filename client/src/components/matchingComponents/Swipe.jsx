@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useRef, useContext, useEffect } from "react";
 import TinderCard from "react-tinder-card";
-import { SwipeProvider, useSwipe } from "../../contexts/swipeContext";
+import { useSwipe } from "../../contexts/swipeContext";
 import axios from "axios";
 
 // Mock pictures for example
@@ -58,24 +58,6 @@ const Swipe = () => {
   const [age, setAge] = useState("");
 
   const currentIndexRef = useRef(currentIndex);
-
-//  ------------------------------------------------//
-  //   getdata
-  
- const allUserData = async () => {
-    const result = await axios(
-        "http://localhost:4001/users"
-    );
-
-    setUserData(result.data.data[0])
-    setName(result.data.data.username)
-    setImages(result.data.data[0].profile_pics[0])
-    setAge(result.data.data.user_age)
-
- };
-
-
-  //----------------------------------------------------------------//
 
   // useMemo
   const childRefs = useMemo(
@@ -138,36 +120,44 @@ const Swipe = () => {
     }
   };
 
+  //  ------------------------------------------------//
+  //   getdata
+
+  const { getMeetingIntFilter, users } = useSwipe();
+
+  console.log(users);
+
   useEffect(() => {
-    allUserData();
+    getMeetingIntFilter();
   }, []);
 
+  //----------------------------------------------------------------//
   return (
     <div className="w-[100%] h-[46.9rem] bg-[#160404] flex justify-center items-start overflow-hidden overflow-x-hidden z-30">
       <div className="overflow-hidden">
         <div className="cardContainer text-[white] w-[25rem] h-[25rem] overflow-hidden mt-[30%]">
-          {db.map((character, index) => (
+          {users.map((user, index) => (
             <TinderCard
               ref={childRefs[index]}
               className="swipe"
-              key={character.name}
-              onSwipe={(dir) => swiped(dir, character.name, index)}
+              key={user.username}
+              onSwipe={(dir) => swiped(dir, user.username, index)}
               onCardLeftScreen={() => {
-                outOfFrame(character.name, index);
+                outOfFrame(users.username, index);
                 setStep(0);
                 setCurrenId(index);
               }}
             >
               <div
-                style={{ backgroundImage: "url(" + character.url[step] + ")" }}
+                style={{ backgroundImage: "url(" + user.profile_pics[step] + ")" }}
                 className="card w-[28.75rem] h-[28.75rem] bg-cover bg-center rounded-[32px] overflow-hidden flex flex-row items-end relative z-0"
               >
                 <div className="flex flex-row z-40 w-full">
                   <h3 className="text-[white] text-[1.5rem] m-[5%] mr-[0] font-[700]">
-                    {character.name}
+                    {users.username}
                   </h3>
                   <h3 className="text-[white] text-[1.5rem] m-[5%] ml-[2%] mr-[1%] font-[700]">
-                    {character.age}
+                    {users.user_age}
                   </h3>
                   <button className="">
                     <img src={eyeIcon} />
