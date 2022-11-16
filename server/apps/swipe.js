@@ -7,28 +7,49 @@ const swipeRouter = Router();
 // swipeRouter.use(protect());
 
 swipeRouter.get("/", async (req, res) => {
-  const swiperId = req.query.userId;
-  const swipeeList = await pool.query(
-    `
+  if (req.query.userId) {
+    const swiperId = req.query.userId;
+    const swipeeList = await pool.query(
+      `
     SELECT * FROM swipe
     INNER JOIN users
     ON swipee = user_id
     where swiper = $1
   `,
-    [swiperId]
-  );
+      [swiperId]
+    );
 
-  const isMatch = await pool.query(
-    `
+    const isMatch = await pool.query(
+      `
     SELECT swiper FROM swipe
     WHERE swipee = $1 AND swipe_type = $2
     `,
-    [swiperId, true]
-  );
+      [swiperId, true]
+    );
 
+    return res.json({
+      data: swipeeList.rows,
+      isMatchId: isMatch.rows,
+    });
+  } else {
+    const allUsersDataResult = await pool.query(`select * from users`);
+    console.log(allUsersDataResult.rows);
+    return res.json({
+      data: allUsersDataResult.rows,
+    });
+  }
+});
+
+swipeRouter.get("/userId", async (req, res) => {
+  const userId = req.params.userId;
+  console.log(userId);
+  const eachUserData = await pool.query(
+    `select * from users where user_id=$1`,
+    [userId]
+  );
   return res.json({
-    data: swipeeList.rows,
-    isMatchId: isMatch.rows,
+    data: eachUserData.rows,
+    message: `${userId}`,
   });
 });
 

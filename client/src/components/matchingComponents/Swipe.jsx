@@ -11,7 +11,7 @@ import xLogo from "../../../public/asset/editModalItems/xLogo.svg";
 
 const Swipe = () => {
   // import filterData มาให้แล้ว แล้วต้องนำลงมา map ลงหน้าแผน swipe
-  const { getMeetingIntFilter, users, filterData } = useSwipe();
+  const { getAllUsers, users, filterData } = useSwipe();
   const [currentIndex, setCurrentIndex] = useState(users.length);
   const [lastDirection, setLastDirection] = useState();
   const [step, setStep] = useState(0);
@@ -87,7 +87,7 @@ const Swipe = () => {
 
   //   getdata
   useEffect(() => {
-    getMeetingIntFilter();
+    getAllUsers();
   }, []);
 
   return (
