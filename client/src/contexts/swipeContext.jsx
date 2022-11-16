@@ -7,6 +7,8 @@ export const SwipeContext = React.createContext();
 
 const SwipeProvider = (props) => {
   const [userData, setUserData] = useState({});
+  const [users, setUsers]= useState([]);
+
 
   const decodeFromToken = () => {
     const token = localStorage.getItem("token");
@@ -19,12 +21,18 @@ const SwipeProvider = (props) => {
     console.log("test");
   };
 
+
   const getMeetingIntFilter = async () => {
     const result = await axios.get("http://localhost:4001/users", {
       params: userData,
     });
-    console.log(userData);
+  //  console.log(result.data)
+    setUsers(result.data.data)
+    // console.log(userData);
   };
+
+  
+
 
   return (
     <SwipeContext.Provider
@@ -32,6 +40,7 @@ const SwipeProvider = (props) => {
         userData,
         getMeetingIntFilter,
         test,
+        users
       }}
     >
       {props.children}
