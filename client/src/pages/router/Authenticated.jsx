@@ -14,7 +14,6 @@ const Authenticated = () => {
         <Routes>
           <Route path="/" element={<HomepageAuth />} />
           <Route path="*" element={<HomepageAuth />} />
-          {/* <Route path="/dev" element={<Login />} /> */}
           <Route path="/edit" element={<EditProfile />} />
           <Route path="/merrylist" element={<MerryList />} />
           <Route path="/match" element={<MatchingPage />} />
