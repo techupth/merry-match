@@ -42,9 +42,9 @@ const Swipe = () => {
   const swiped = (direction, nameToDelete, index) => {
     setLastDirection(direction);
     updateCurrentIndex(index - 1);
-    console.log(users[index - 1].username);
-    console.log(users[index - 1].profile_pics.length);
-    console.log(step);
+    console.log(users[index - 1].username)
+    console.log(users[index - 1].profile_pics.length)
+    console.log(step)
   };
 
   const outOfFrame = (name, idx) => {
@@ -61,6 +61,8 @@ const Swipe = () => {
     if (step !== users[index - 1].profile_pics.length - 1) {
       setStep(step + 1);
     }
+
+
   };
 
   const handleBack = (index) => {
@@ -74,8 +76,8 @@ const Swipe = () => {
     if (currentIndex < users.length) {
       await childRefs[currentIndex].current.swipe(dir); // Swipe the card!
     }
-    console.log(current);
-  };
+
+  }
 
   // increase current index and show card
   const goBack = async () => {
@@ -144,23 +146,27 @@ const Swipe = () => {
                 </div>
               </div>
 
-              <div className="button flex flex-row items-center justify-center space-x-3 overflow-hidden z-10 mt-[-25%]   ">
-                <button
-                  className="XButton w-[4rem] h-[4rem] drop-shadow-2xl mt-[20%]  bg-white rounded-[30%] flex justify-center items-center hover:bg-[#2A2E3F] z-10"
-                  onClick={() => swipe("left")}
-                >
-                  <img src={xLogo} />
-                </button>
 
-                <button
-                  className="HeartButton w-[4rem] h-[4rem] drop-shadow-2xl mt-[20%]  bg-white rounded-[30%] flex justify-center items-center hover:bg-[#FFB1C8] z-10"
-                  onClick={() => swipe("right")}
-                >
-                  <img src={heartLogo} className="ml-1 mt-1" />
-                </button>
-              </div>
             </TinderCard>
+
           ))}
+
+        </div>
+        <div className="button flex flex-row items-center justify-center space-x-3 overflow-hidden z-10 mt-[-25%]   ">
+          <button
+            className="XButton w-[4rem] h-[4rem] drop-shadow-2xl mt-[20%]  bg-white rounded-[30%] flex justify-center items-center hover:bg-[#2A2E3F] z-10"
+            onClick={() => swipe("left")}
+          >
+
+            <img src={xLogo} />
+          </button>
+
+          <button
+            className="HeartButton w-[4rem] h-[4rem] drop-shadow-2xl mt-[20%]  bg-white rounded-[30%] flex justify-center items-center hover:bg-[#FFB1C8] z-10"
+            onClick={() => swipe("right")}
+          >
+            <img src={heartLogo} className="ml-1 mt-1" />
+          </button>
         </div>
       </div>
     </div>
