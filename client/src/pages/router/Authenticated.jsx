@@ -1,9 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 import HomepageAuth from "./AuthHomepage";
-// import EditProfile from "../editProfile/EditProfile";
-import EditProfile from "../editProfile/EditProfile";
-import MerryList from "../merryList/MerryList";
-import MatchingPage from "../mathcingPage/MatchingPage";
+import EditProfile from "../editProfilePage/EditProfile";
+import MerryList from "../merryListPage/MerryList";
+import MatchingPage from "../matchingPage/MatchingPage";
 import NavbarAuthen from "../../components/Navbar/NavbarAuthen";
 import { SwipeProvider } from "../../contexts/swipeContext";
 

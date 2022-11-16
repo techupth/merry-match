@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import Home from "../landingPage/Home";
-import Login from "../login/Login";
-import Register from "../register/Register";
+import Login from "../loginPage/Login";
+import Register from "../registerPage/Register";
 
 // For dev import here
 import DeleteButton from "../../components/editPageComponents/DeleteButton";
