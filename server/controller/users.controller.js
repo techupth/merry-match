@@ -80,7 +80,6 @@ const deleteUserController = async (req, res) => {
 export {
   getAllUsers,
   getUserById,
-  // postUser,
   editUserController,
   deleteUserController,
 };
