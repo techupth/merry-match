@@ -35,7 +35,6 @@ swipeRouter.get("/", async (req, res) => {
 swipeRouter.post("/",async (req, res) => {
     try {
       const filter = req.body;
-      console.log(filter);
       const result = await pool.query(
         `select * from users where meeting_int = $1 or meeting_int = $2 or meeting_int = $3 or meeting_int = $4 or meeting_int = $5 and user_age between $6 and $7`,
         [
