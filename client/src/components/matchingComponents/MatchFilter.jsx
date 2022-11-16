@@ -21,7 +21,6 @@ const MatchFilter = () => {
 
   useEffect(() => {
     setMeetingIntArr(meetingIntArr);
-    console.log(meetingIntArr);
   }, [meetingIntArr]);
 
   const handleAgeRange = () => {};

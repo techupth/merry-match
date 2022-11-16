@@ -1,21 +1,6 @@
 import React, { useState, useMemo, useRef, useContext, useEffect } from "react";
 import TinderCard from "react-tinder-card";
 import { useSwipe } from "../../contexts/swipeContext";
-import axios from "axios";
-
-// Mock pictures for example
-import sek_1 from "../../../public/Mock/imgMock/sek_1.jpg";
-import sek_2 from "../../../public/Mock/imgMock/sek_2.jpg";
-import sekCute from "../../../public/Mock/imgMock/sekCute.jpg";
-import pSekWDog from "../../../public/Mock/imgMock/pSekWDog.jpg";
-import pSekYoung from "../../../public/Mock/imgMock/pSekYoung.jpg";
-import chad1 from "../../../public/Mock/imgMock/Chad1.jpg";
-import chad2 from "../../../public/Mock/imgMock/Chad2.jpg";
-import auth1 from "../../../public/Mock/imgMock/auth4s2.jpg";
-import auth2 from "../../../public/Mock/imgMock/authAlbum2.jpg";
-import auth4 from "../../../public/Mock/imgMock/authSSSS.jpg";
-import johnny from "../../../public/Mock/imgMock/Johnny.jpg";
-import nunez from "../../../public/Mock/imgMock/nunez.jpg";
 
 // utility
 import arrowLeftWhite from "../../../public/asset/swipeComponentsItems/arrowLeftWhite.svg";
@@ -24,45 +9,19 @@ import eyeIcon from "../../../public/asset/swipeComponentsItems/eyeIcon.svg";
 import heartLogo from "../../../public/asset/editModalItems/hearthLogo.svg";
 import xLogo from "../../../public/asset/editModalItems/xLogo.svg";
 
-const db = [
-  {
-    name: "Sek",
-    url: [sek_2, pSekWDog, pSekYoung, sekCute],
-    age: "48",
-  },
-  {
-    name: "CHAD",
-    url: [chad1, chad2],
-    age: "55",
-  },
-  {
-    name: "Johnny",
-    url: [johnny, nunez],
-    age: "18",
-  },
-  {
-    name: "Auth",
-    url: [auth1, auth2, auth4],
-    age: "60",
-  },
-];
-
 const Swipe = () => {
-  const [currentIndex, setCurrentIndex] = useState(db.length - 1);
+  const { getMeetingIntFilter, users } = useSwipe();
+  const [currentIndex, setCurrentIndex] = useState(users.length);
   const [lastDirection, setLastDirection] = useState();
   const [step, setStep] = useState(0);
   const [currenId, setCurrenId] = useState(0);
-  const [userData, setUserData] = useState({});
-  const [Images, setImages] = useState([]);
-  const [name, setName] = useState("");
-  const [age, setAge] = useState("");
 
   const currentIndexRef = useRef(currentIndex);
 
   // useMemo
   const childRefs = useMemo(
     () =>
-      Array(db.length)
+      Array(users.length)
         .fill(0)
         .map((i) => React.createRef()),
     []
@@ -72,10 +31,6 @@ const Swipe = () => {
     setCurrentIndex(val);
     currentIndexRef.current = val;
   };
-
-  const canGoBack = currentIndex < db.length - 1;
-
-  const canSwipe = currentIndex >= 0;
 
   // set last direction and decrease current index
   const swiped = (direction, nameToDelete, index) => {
@@ -93,7 +48,7 @@ const Swipe = () => {
   };
 
   const swipe = async (dir) => {
-    if (canSwipe && currentIndex < db.length) {
+    if (canSwipe && currentIndex < users.length) {
       await childRefs[currentIndex].current.swipe(dir); // Swipe the card!
     }
   };
@@ -106,10 +61,12 @@ const Swipe = () => {
     await childRefs[newIndex].current.restoreCard();
   };
 
-  const handleNext = (index) => {
-    console.log(db[index].url.length);
+  //   Handle pictures
 
-    if (step !== db[index].url.length) {
+  const handleNext = (index) => {
+    console.log(users[index].profile_pics.length);
+
+    if (step !== users[index].profile_pics.length) {
       setStep(step + 1);
     }
   };
@@ -120,18 +77,18 @@ const Swipe = () => {
     }
   };
 
-  //  ------------------------------------------------//
   //   getdata
-
-  const { getMeetingIntFilter, users } = useSwipe();
-
-  console.log(users);
 
   useEffect(() => {
     getMeetingIntFilter();
   }, []);
 
-  //----------------------------------------------------------------//
+  //   Set swipe index
+
+  const canGoBack = currentIndex < users.length - 1;
+
+  const canSwipe = currentIndex >= 0;
+
   return (
     <div className="w-[100%] h-[46.9rem] bg-[#160404] flex justify-center items-start overflow-hidden overflow-x-hidden z-30">
       <div className="overflow-hidden">
@@ -149,15 +106,17 @@ const Swipe = () => {
               }}
             >
               <div
-                style={{ backgroundImage: "url(" + user.profile_pics[step] + ")" }}
+                style={{
+                  backgroundImage: "url(" + user.profile_pics[step] + ")",
+                }}
                 className="card w-[28.75rem] h-[28.75rem] bg-cover bg-center rounded-[32px] overflow-hidden flex flex-row items-end relative z-0"
               >
                 <div className="flex flex-row z-40 w-full">
                   <h3 className="text-[white] text-[1.5rem] m-[5%] mr-[0] font-[700]">
-                    {users.username}
+                    {user.username}
                   </h3>
                   <h3 className="text-[white] text-[1.5rem] m-[5%] ml-[2%] mr-[1%] font-[700]">
-                    {users.user_age}
+                    {user.user_age}
                   </h3>
                   <button className="">
                     <img src={eyeIcon} />
