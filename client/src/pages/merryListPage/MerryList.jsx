@@ -6,7 +6,6 @@ import twoheart from "../../../public/asset/MerryList/twoheart.png";
 import chat from "../../../public/asset/MerryList/chat.png";
 import view from "../../../public/asset/MerryList/view.png";
 import heart from "../../../public/asset/MerryList/heart.png";
-
 //components
 import NavbarAuthen from "../../components/Navbar/NavbarAuthen";
 import Footer from "../../components/editPageComponents/Footer";
@@ -54,7 +53,7 @@ const MerryList = () => {
     });
     setUserList(userList);
   };
-  console.log(userList)
+  console.log(userList);
 
   useEffect(() => {
     isData();
