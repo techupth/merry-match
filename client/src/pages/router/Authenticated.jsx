@@ -5,6 +5,8 @@ import MerryList from "../merryListPage/MerryList";
 import MatchingPage from "../matchingPage/MatchingPage";
 import NavbarAuthen from "../../components/Navbar/NavbarAuthen";
 import { SwipeProvider } from "../../contexts/swipeContext";
+import Subscribe from "../../components/subscriptionPage/Subscribe";
+import SubscriptionPage from "../subsciptionPage/SubscriptionPage";
 
 const Authenticated = () => {
   return (
@@ -17,6 +19,8 @@ const Authenticated = () => {
           <Route path="/edit" element={<EditProfile />} />
           <Route path="/merrylist" element={<MerryList />} />
           <Route path="/match" element={<MatchingPage />} />
+          <Route path="/sub" element={<SubscriptionPage />} />
+
         </Routes>
       </SwipeProvider>
     </>
