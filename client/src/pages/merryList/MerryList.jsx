@@ -1,5 +1,5 @@
 import React from "react";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 //icons
 import location from "../../../public/asset/MerryList/location.png";
 import twoheart from "../../../public/asset/MerryList/twoheart.png";
@@ -11,7 +11,6 @@ import NavbarAuthen from "../../components/Navbar/NavbarAuthen";
 import Footer from "../../components/editPageComponents/Footer";
 
 import { useSwipe } from "../../contexts/swipeContext";
-
 
 //mock data
 const data = [
@@ -47,7 +46,7 @@ const data = [
     age: 23,
     country: "Japan",
     city: "Kyoto",
-    img: 'https://images.unsplash.com/photo-1478359844494-1092259d93e4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzh8fG9jZWFufGVufDB8MnwwfHw%3D&auto=format&fit=crop&w=800&q=60',
+    img: "https://images.unsplash.com/photo-1478359844494-1092259d93e4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzh8fG9jZWFufGVufDB8MnwwfHw%3D&auto=format&fit=crop&w=800&q=60",
     SexualIdentities: "Male",
     SexualPreferences: "Female",
     RacialPreferences: "Indefinite",
@@ -56,18 +55,14 @@ const data = [
   },
 ];
 
-
 const MerryList = () => {
   useEffect(() => {
-  
-    merryList()
-  },[]);
+    merryList();
+  }, []);
 
-  const {merryList, merryListUser} = useSwipe()
+  const { merryList, merryListUser } = useSwipe();
 
-  
- console.log(merryListUser)
-
+  console.log(merryListUser);
 
   return (
     <>
@@ -91,7 +86,7 @@ const MerryList = () => {
                     {/* ซ้าย */}
                     <div className="w-1/3 flex justify-center ">
                       <img
-                        className="w-[187px] h-[187px] rounded-3xl"
+                        className="w-[187px] h-[187px] rounded-3xl object-cover"
                         src={user.profile_pics[0]}
                         alt=""
                       />
@@ -101,12 +96,16 @@ const MerryList = () => {
                     <div className="w-2/3 ml-[40px] ">
                       <div className="flex items-baseline">
                         <p className="text-[24px] font-bold">{user.name}</p>
-                        <p className="text-[#646D89] text-[24px] ml-[8px] font-bold">{user.user_age}</p>
+                        <p className="text-[#646D89] text-[24px] ml-[8px] font-bold">
+                          {user.user_age}
+                        </p>
                         <div className="ml-[18px]">
                           <img src={location} alt="location" />
                         </div>
                         <p className="text-[#646D89] ml-[8px]">{user.city},</p>
-                        <p className="text-[#646D89] ml-[2px]">{user.location} </p>
+                        <p className="text-[#646D89] ml-[2px]">
+                          {user.location}{" "}
+                        </p>
                       </div>
 
                       <div className="flex  ">
@@ -195,7 +194,6 @@ const MerryList = () => {
             })}
           </div>
         </div>
-
       </div>
       <Footer />
     </>

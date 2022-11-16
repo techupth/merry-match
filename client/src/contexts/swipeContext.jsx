@@ -7,10 +7,9 @@ export const SwipeContext = React.createContext();
 
 const SwipeProvider = (props) => {
   const [userData, setUserData] = useState({});
-  const [users, setUsers]= useState([]);
-  const [merryListUser, setMerryListUser]= useState([]);
- 
-
+  const [filterData, setFilterData] = useState({});
+  const [users, setUsers] = useState([]);
+  const [merryListUser, setMerryListUser] = useState([]);
 
   const decodeFromToken = () => {
     const token = localStorage.getItem("token");
@@ -19,28 +18,32 @@ const SwipeProvider = (props) => {
     setUserData(userData);
   };
 
+  const getDataByFilter = async (data) => {
+    const filteredData = await axios.post("http://localhost:4001/swipe", data);
+    console.log(filteredData);
+    setFilterData(filteredData.data.data);
+  };
+
   const getMeetingIntFilter = async () => {
-    const result = await axios.get("http://localhost:4001/users", {
-      params: userData,
-    });
-    setUsers(result.data.data)
+    const result = await axios.get("http://localhost:4001/swipe");
+    //  console.log(result.data)
+    setUsers(result.data.data);
+    // console.log(userData);
   };
 
   const merryList = async () => {
     const token = localStorage.getItem("token");
     const userData = jwtDecode(token);
-    console.log(userData.user_id)
-    const result = await axios.get(`http://localhost:4001/swipe/?userId=${userData.user_id}`, {
-      params: userData,
-    });
-    console.log(result)
-    setMerryListUser(result.data.data)
+    console.log(userData.user_id);
+    const result = await axios.get(
+      `http://localhost:4001/swipe/?userId=${userData.user_id}`,
+      {
+        params: userData,
+      }
+    );
+    console.log(result);
+    setMerryListUser(result.data.data);
   };
-
-  
-
-  
-
 
   return (
     <SwipeContext.Provider
@@ -48,8 +51,10 @@ const SwipeProvider = (props) => {
         decodeFromToken,
         userData,
         getMeetingIntFilter,
+        getDataByFilter,
         users,
         merryList,
+        decodeFromToken,
         merryListUser,
       }}
     >

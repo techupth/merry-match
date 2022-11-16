@@ -17,13 +17,35 @@ const MatchFilter = () => {
   const [ageRange, setAgeRange] = useState([]);
   const [meetingIntArr, setMeetingIntArr] = useState([]);
   const [userData, setUserData] = useState({});
-  const { test } = useSwipe();
+  const { getDataByFilter, users } = useSwipe();
+
+  const dataToFilter = {
+    meetingInt: meetingIntArr,
+    ageRange,
+  };
+
+  console.log(dataToFilter);
+
+  const defaultMeetingInt = () => {
+    console.log(users);
+    setMeetingIntArr([users.meetingInt]);
+  };
+
+  useEffect(() => {
+    defaultMeetingInt();
+  }, []);
 
   useEffect(() => {
     setMeetingIntArr(meetingIntArr);
-  }, [meetingIntArr]);
+    handleAgeRange(ageRange);
+    getDataByFilter();
+  }, [meetingIntArr, ageRange]);
 
-  const handleAgeRange = () => {};
+  const handleAgeRange = (val) => {
+    console.log(val);
+    setAgeRange(val);
+    console.log(ageRange);
+  };
 
   return (
     <div className="w-[28%] h-[46.9rem] bg-white z-40">
@@ -133,13 +155,12 @@ const MatchFilter = () => {
         </Text>
         <RangeSlider
           defaultValue={[22, 30]}
-          aria-label={["18", "55"]}
+          aria-label={["18", "60"]}
           min={18}
           max={60}
           step={1}
           onChange={(val) => {
-            console.log(val);
-            setAgeRange(val);
+            handleAgeRange(val);
           }}
           mt={7}
         >
