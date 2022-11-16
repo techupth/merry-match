@@ -8,7 +8,6 @@ import swipeRouter from "./apps/swipe.js";
 import cloudinary from "cloudinary";
 
 async function init() {
-  
   dotenv.config();
 
   cloudinary.config({
@@ -26,9 +25,8 @@ async function init() {
 
   app.use("/auth", authRouter);
   app.use("/users", userRouter);
-  app.use("/swipe",swipeRouter );
+  app.use("/swipe", swipeRouter);
 
-  
   app.get("/", (req, res) => {
     return res.json({
       message: "Merry Match!! ",

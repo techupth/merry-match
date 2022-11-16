@@ -6,10 +6,6 @@ import Register from "../register/Register";
 
 // For dev import here
 import DeleteButton from "../../components/editPageComponents/DeleteButton";
-import MatchingPage from "../mathcingPage/MatchingPage";
-
-
-
 
 const Unauthenticated = () => {
   return (
@@ -23,16 +19,11 @@ const Unauthenticated = () => {
         <Route path="/register" element={<Register />} />
         <Route path="*" element={<Home />} />
 
-
         {/* // For dev import element here */}
         {/* <Route path="/dev" element={<SwipeTest />} /> */}
-
-
-
-
       </Routes>
     </>
   );
-}
+};
 
 export default Unauthenticated;

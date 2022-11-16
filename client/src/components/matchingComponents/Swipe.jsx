@@ -10,7 +10,8 @@ import heartLogo from "../../../public/asset/editModalItems/hearthLogo.svg";
 import xLogo from "../../../public/asset/editModalItems/xLogo.svg";
 
 const Swipe = () => {
-  const { getMeetingIntFilter, users } = useSwipe();
+  // import filterData มาให้แล้ว แล้วต้องนำลงมา map ลงหน้าแผน swipe
+  const { getMeetingIntFilter, users, filterData } = useSwipe();
   const [currentIndex, setCurrentIndex] = useState(users.length);
   const [lastDirection, setLastDirection] = useState();
   const [step, setStep] = useState(0);
@@ -41,9 +42,9 @@ const Swipe = () => {
   const swiped = (direction, nameToDelete, index) => {
     setLastDirection(direction);
     updateCurrentIndex(index - 1);
-    console.log(users[index -1 ].username)
-    console.log(users[index -1 ].profile_pics.length)
-    console.log(step)
+    console.log(users[index - 1].username);
+    console.log(users[index - 1].profile_pics.length);
+    console.log(step);
   };
 
   const outOfFrame = (name, idx) => {
@@ -57,11 +58,9 @@ const Swipe = () => {
 
   //   Handle pictures
   const handleNext = (index) => {
-    if (step !== users[index -1].profile_pics.length -1) {
+    if (step !== users[index - 1].profile_pics.length - 1) {
       setStep(step + 1);
     }
-
-   
   };
 
   const handleBack = (index) => {
@@ -70,21 +69,21 @@ const Swipe = () => {
     }
   };
 
-  // Swipe 
+  // Swipe
   const swipe = async (dir) => {
     if (currentIndex < users.length) {
-      await childRefs[currentIndex].current.swipe(dir) // Swipe the card!
+      await childRefs[currentIndex].current.swipe(dir); // Swipe the card!
     }
-    console.log(current)
-  }
+    console.log(current);
+  };
 
   // increase current index and show card
   const goBack = async () => {
-    if (!canGoBack) return
-    const newIndex = currentIndex + 1
-    updateCurrentIndex(newIndex)
-    await childRefs[newIndex].current.restoreCard()
-  }
+    if (!canGoBack) return;
+    const newIndex = currentIndex + 1;
+    updateCurrentIndex(newIndex);
+    await childRefs[newIndex].current.restoreCard();
+  };
 
   //   getdata
   useEffect(() => {

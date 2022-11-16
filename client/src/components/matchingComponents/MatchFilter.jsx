@@ -12,34 +12,41 @@ import {
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { useSwipe } from "../../contexts/swipeContext";
+import jwtDecode from "jwt-decode";
 
 const MatchFilter = () => {
-  const [ageRange, setAgeRange] = useState([]);
+  const [ageRange, setAgeRange] = useState([20, 30]);
   const [meetingIntArr, setMeetingIntArr] = useState([]);
   const [userData, setUserData] = useState({});
-  const { getDataByFilter, users } = useSwipe();
+  const { getDataByFilter, users, decodeFromToken, merryListUser, merryList } =
+    useSwipe();
 
   const dataToFilter = {
     meetingInt: meetingIntArr,
     ageRange,
   };
 
-  console.log(dataToFilter);
+  console.log(merryListUser);
 
   const defaultMeetingInt = () => {
-    console.log(users);
-    setMeetingIntArr([users.meetingInt]);
+    console.log(merryListUser);
+    // const token = localStorage.getItem("token");
+    // const userData = jwtDecode(token);
+    // console.log(userData);
+    // setUserData(userData);
+
+    // setMeetingIntArr([users.meetingInt]);
   };
 
   useEffect(() => {
-    defaultMeetingInt();
+    merryList();
+    // defaultMeetingInt();
   }, []);
 
   useEffect(() => {
     setMeetingIntArr(meetingIntArr);
-    handleAgeRange(ageRange);
-    getDataByFilter();
-  }, [meetingIntArr, ageRange]);
+    console.log(dataToFilter);
+  }, [meetingIntArr]);
 
   const handleAgeRange = (val) => {
     console.log(val);
@@ -154,10 +161,10 @@ const MatchFilter = () => {
           Age Range
         </Text>
         <RangeSlider
-          defaultValue={[22, 30]}
-          aria-label={["18", "60"]}
+          defaultValue={[20, 30]}
+          aria-label={["18", "55"]}
           min={18}
-          max={60}
+          max={55}
           step={1}
           onChange={(val) => {
             handleAgeRange(val);
@@ -165,7 +172,7 @@ const MatchFilter = () => {
           mt={7}
         >
           <RangeSliderMark
-            defaultValue={22}
+            // defaultValue={22}
             value={ageRange[0]}
             borderRadius="18"
             textAlign="center"
@@ -179,7 +186,7 @@ const MatchFilter = () => {
             {ageRange[0]}
           </RangeSliderMark>
           <RangeSliderMark
-            defaultValue={30}
+            // defaultValue={30}
             value={ageRange[1]}
             borderRadius="18"
             textAlign="center"
@@ -226,7 +233,13 @@ const MatchFilter = () => {
         <button className="text-[#C70039] font-[700] w-[99px] h-[48px]">
           Clear
         </button>
-        <button className="bg-[#C70039] rounded-[99px] text-[white] font-[700] w-[99px] h-[48px]">
+        <button
+          className="bg-[#C70039] rounded-[99px] text-[white] font-[700] w-[99px] h-[48px]"
+          onClick={() => {
+            console.log(dataToFilter);
+            getDataByFilter(dataToFilter);
+          }}
+        >
           Search
         </button>
       </div>

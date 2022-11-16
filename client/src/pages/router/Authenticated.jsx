@@ -3,7 +3,7 @@ import HomepageAuth from "./AuthHomepage";
 // import EditProfile from "../editProfile/EditProfile";
 import EditProfile from "../editProfile/EditProfile";
 import MerryList from "../merryList/MerryList";
-import MatchingPage from "../mathcingPage/MatchingPage";
+import MatchingPage from "../matchingPage/MatchingPage";
 import NavbarAuthen from "../../components/Navbar/NavbarAuthen";
 import { SwipeProvider } from "../../contexts/swipeContext";
 

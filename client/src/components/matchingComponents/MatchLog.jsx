@@ -46,12 +46,16 @@ const MatchLog = () => {
         >
           {data.map((item) => (
             <div className="inline-block relative hover:scale-105 ease-in-out duration-300 cursor-pointer">
-              <img src={two_heart} className="inline-block absolute bottom-0 right-0" alt="" />
-            <img
-              className="w-[100px] h-[100px] inline-block p-2  rounded-3xl mt-[16px]"
-              src={item.img}
-              alt="/"
-            />  
+              <img
+                src={two_heart}
+                className="inline-block absolute bottom-0 right-0"
+                alt=""
+              />
+              <img
+                className="w-[100px] h-[100px] inline-block p-2  rounded-3xl mt-[16px]"
+                src={item.img}
+                alt="/"
+              />
             </div>
           ))}
         </div>
@@ -62,7 +66,6 @@ const MatchLog = () => {
           size={40}
         />
       </div>
-
     </div>
   );
 };

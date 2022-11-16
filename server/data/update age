@@ -1,7 +1,8 @@
 -- ALTER TABLE users ADD column user_age int 
 
-select * from users
+-- select * from users
 
--- UPDATE users SET user_age = ( EXTRACT(year FROM age(current_date,birthday)) :: int)
+-- อัพเดทอายุใช้อันนี้ ↓
+UPDATE users SET user_age = ( EXTRACT(year FROM age(current_date,birthday)) :: int)
 
 -- SELECT *, EXTRACT(year FROM age(current_date,birthday)) :: int FROM users

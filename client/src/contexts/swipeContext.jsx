@@ -19,14 +19,15 @@ const SwipeProvider = (props) => {
   };
 
   const getDataByFilter = async (data) => {
+    console.log(data);
     const filteredData = await axios.post("http://localhost:4001/swipe", data);
-    console.log(filteredData);
     setFilterData(filteredData.data.data);
+    console.log("Filter Success", filterData);
   };
 
   const getMeetingIntFilter = async () => {
     const result = await axios.get("http://localhost:4001/swipe");
-    //  console.log(result.data)
+    // console.log(result.data.data);
     setUsers(result.data.data);
     // console.log(userData);
   };
@@ -56,6 +57,7 @@ const SwipeProvider = (props) => {
         merryList,
         decodeFromToken,
         merryListUser,
+        filterData,
       }}
     >
       {props.children}
