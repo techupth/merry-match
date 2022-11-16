@@ -1,4 +1,5 @@
 import React from "react";
+import { useState,useEffect } from "react";
 //icons
 import location from "../../../public/asset/MerryList/location.png";
 import twoheart from "../../../public/asset/MerryList/twoheart.png";
@@ -8,6 +9,12 @@ import heart from "../../../public/asset/MerryList/heart.png";
 //components
 import NavbarAuthen from "../../components/Navbar/NavbarAuthen";
 import Footer from "../../components/editPageComponents/Footer";
+
+//
+import axios from "axios";
+
+
+import { useSwipe } from "../../contexts/swipeContext";
 
 
 //mock data
@@ -53,7 +60,19 @@ const data = [
   },
 ];
 
+
 const MerryList = () => {
+
+  useEffect(() => {
+    getMeetingIntFilter()
+  },[]);
+
+  const {getMeetingIntFilter,users} = useSwipe()
+
+  console.log(users)
+ 
+
+
   return (
     <>
       <div className="w-full flex  justify-center">
@@ -69,7 +88,7 @@ const MerryList = () => {
 
           <div className="mt-[56px]">
             {/* เริ่ม return map ตั้งแต่ตรงนี้ */}
-            {data.map((user) => {
+            {users.map((user) => {
               return (
                 <div>
                   <div className="flex mt-[40px]">
@@ -77,7 +96,7 @@ const MerryList = () => {
                     <div className="w-1/3 flex justify-center ">
                       <img
                         className="w-[187px] h-[187px] rounded-3xl"
-                        src={user.img}
+                        src={user.profile_pics[0]}
                         alt=""
                       />
                     </div>
@@ -91,7 +110,7 @@ const MerryList = () => {
                           <img src={location} alt="location" />
                         </div>
                         <p className="text-[#646D89] ml-[8px]">{user.city},</p>
-                        <p className="text-[#646D89] ml-[2px]">{user.country} </p>
+                        <p className="text-[#646D89] ml-[2px]">{user.location} </p>
                       </div>
 
                       <div className="flex  ">
@@ -111,16 +130,16 @@ const MerryList = () => {
                         </div>
                         <div className="w-[280px] mt-[28px]">
                           <p className="text-[#646D89] mb-[8px]">
-                            {user.SexualIdentities}
+                            {user.sex_identity}
                           </p>
                           <p className="text-[#646D89] mb-[8px]">
-                            {user.SexualPreferences}
+                            {user.sex_pref}
                           </p>
                           <p className="text-[#646D89] mb-[8px]">
-                            {user.RacialPreferences}
+                            {user.racial_pref}
                           </p>
                           <p className="text-[#646D89] mb-[8px]">
-                            {user.MeetingInterests}
+                            {user.meeting_int}
                           </p>
                         </div>
                       </div>
