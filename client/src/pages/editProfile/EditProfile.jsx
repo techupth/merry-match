@@ -58,12 +58,13 @@ const EditProfile = () => {
   const decodeFromToken = async () => {
     const token = localStorage.getItem("token");
     const userData = jwtDecode(token);
+    
     setIsLoading("loading");
     try {
       const result = await axios(
         `http://localhost:4001/users/${userData.user_id}`
       );
-
+      
       setGetData(result.data.data[0]);
       setName(result.data.data[0].name);
       setUsername(result.data.data[0].username);
