@@ -33,7 +33,7 @@ const SwipeProvider = (props) => {
     return users;
   };
 
-  const getEachUsers = async (userData) => {
+  const getEachUser = async (userData) => {
     const userId = userData.user_id;
     console.log(userId);
     const eachUserResult = await axios.get(
@@ -72,6 +72,7 @@ const SwipeProvider = (props) => {
         merryListUser,
         filterData,
         eachUser,
+        getEachUser,
       }}
     >
       {props.children}
