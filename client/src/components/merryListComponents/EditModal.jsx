@@ -27,7 +27,7 @@ const EditModal = ({ close, data }) => {
     }
   };
 
-  console.log(data.hobby);
+  // console.log(data.hobby);
 
   const handleBack = (e) => {
     e.preventDefault();
@@ -81,31 +81,31 @@ const EditModal = ({ close, data }) => {
           {step === 1 && (
             <img
               src={images[0]}
-              className="w-[478px] h-[478px] z-0 rounded-3xl"
+              className="w-[478px] h-[478px] z-0 rounded-3xl object-cover"
             />
           )}
           {step === 2 && (
             <img
               src={images[1]}
-              className="w-[478px] h-[478px] z-0 rounded-3xl"
+              className="w-[478px] h-[478px] z-0 rounded-3xl object-cover"
             />
           )}
           {step === 3 && (
             <img
               src={images[2]}
-              className="w-[478px] h-[478px] z-0 rounded-3xl"
+              className="w-[478px] h-[478px] z-0 rounded-3xl object-cover"
             />
           )}
           {step === 4 && (
             <img
               src={images[3]}
-              className="w-[478px] h-[478px] z-0 rounded-3xl"
+              className="w-[478px] h-[478px] z-0 rounded-3xl object-cover"
             />
           )}
           {step === 5 && (
             <img
               src={images[4]}
-              className="w-[478px] h-[478px] z-0 rounded-3xl"
+              className="w-[478px] h-[478px] z-0 rounded-3xl object-cover"
             />
           )}
         </div>

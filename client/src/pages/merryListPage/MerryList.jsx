@@ -12,7 +12,6 @@ import Footer from "../../components/editPageComponents/Footer";
 // Modal
 import EditModal from "../../components/merryListComponents/EditModal";
 
-
 import { useSwipe } from "../../contexts/swipeContext";
 
 const MerryList = () => {
@@ -32,7 +31,7 @@ const MerryList = () => {
       // console.log(data)
       setIsloading("NoUser");
       handleStatus(data.matchList, data.matchId);
-      console.log(data.matchId)
+      // console.log(data.matchId)
       if (data.matchList.length !== 0) {
         setIsloading("data");
       }
@@ -46,7 +45,7 @@ const MerryList = () => {
     const userList = [...data];
 
     swipeId.map((id) => {
-      // console.log(id)
+      console.log(id);
       for (let i = 0; i < data.length; i++) {
         if (data[i].user_id === id) {
           const user = {
@@ -54,13 +53,19 @@ const MerryList = () => {
             status: "match",
           };
           userList[i] = user;
-        }     
+        }
       }
     });
     setUserList(userList);
   };
   console.log(userList);
 
+  const handleUnmatch = (id) => {
+    const unmatch = [...userList]
+    delete unmatch[id].status
+    setUserList(unmatch)
+  };
+ 
   useEffect(() => {
     isData();
   }, []);
@@ -80,7 +85,12 @@ const MerryList = () => {
               with Merry!
             </h1>
             <div className="mt-[56px]">
-            {preview && (<EditModal close={() => setPreview(!preview)} data={userList[modalId]}/>)}
+              {preview && (
+                <EditModal
+                  close={() => setPreview(!preview)}
+                  data={userList[modalId]}
+                />
+              )}
               {/* เริ่ม return map ตั้งแต่ตรงนี้ */}
               {userList.map((user, index) => {
                 return (
@@ -170,15 +180,23 @@ const MerryList = () => {
                             {/*  */}
 
                             {/*  */}
-                            <button className="w-[48px] h-[48px] bg-white rounded-lg flex justify-center items-center drop-shadow-xl mr-[16px]" onClick={(event) => {
-                    event.preventDefault();
-                    setPreview(!preview);
-                    setModalId(index)
-                  }}>
+                            <button
+                              className="w-[48px] h-[48px] bg-white rounded-lg flex justify-center items-center drop-shadow-xl mr-[16px]"
+                              onClick={(event) => {
+                                event.preventDefault();
+                                setPreview(!preview);
+                                setModalId(index);
+                              }}
+                            >
                               {" "}
                               <img src={view} alt="" />
                             </button>
-                            <button className="w-[48px] h-[48px] bg-[#C70039] rounded-lg flex justify-center items-center drop-shadow-xl mr-[16px]">
+                            <button
+                              className="w-[48px] h-[48px] bg-[#C70039] rounded-lg flex justify-center items-center drop-shadow-xl mr-[16px]"
+                              onClick={() => {
+                                handleUnmatch(index);
+                              }}
+                            >
                               {" "}
                               <img src={heart} alt="" />
                             </button>
@@ -192,11 +210,14 @@ const MerryList = () => {
                             </p>
                           </div>
                           <div className="flex mt-[25px]">
-                            <button className="w-[48px] h-[48px] bg-white rounded-lg flex justify-center items-center drop-shadow-xl mr-[16px]" onClick={(event) => {
-                    event.preventDefault();
-                    setPreview(!preview);
-                    setModalId(index)
-                  }}>
+                            <button
+                              className="w-[48px] h-[48px] bg-white rounded-lg flex justify-center items-center drop-shadow-xl mr-[16px]"
+                              onClick={(event) => {
+                                event.preventDefault();
+                                setPreview(!preview);
+                                setModalId(index);
+                              }}
+                            >
                               {" "}
                               <img src={view} alt="" />
                             </button>
