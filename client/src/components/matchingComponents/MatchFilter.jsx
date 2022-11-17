@@ -21,26 +21,44 @@ const MatchFilter = () => {
   const [dataToFilter, setDataToFilter] = useState({
     meetingInt: [],
     ageRange: [],
+    sexIdentity: "",
   });
   const {
     getDataByFilter,
     users,
-    decodeFromToken,
+    // decodeFromToken,
     merryListUser,
     merryList,
     getAllUsers,
     filterData,
+    eachUser,
+    getEachUser,
   } = useSwipe();
 
   useEffect(() => {
     getAllUsers();
-    setMeetingIntArr(meetingIntArr);
-    setDataToFilter({ meetingInt: meetingIntArr, ageRange });
-    console.log(dataToFilter);
-  }, [meetingIntArr]);
+    getEachUser();
+  }, []);
 
-  console.log("all users", users);
-  console.log("filterData", filterData);
+  useEffect(() => {
+    setMeetingIntArr([...meetingIntArr, eachUser.meeting_int]);
+    setMeetingIntArr(meetingIntArr);
+    setDataToFilter({
+      meetingInt: [...meetingIntArr, eachUser.meeting_int],
+      ageRange,
+      sexIdentity: eachUser.sex_identity,
+    });
+    getDataByFilter(dataToFilter);
+  }, [eachUser]);
+
+  useEffect(() => {
+    getDataByFilter(dataToFilter);
+  }, [dataToFilter]);
+
+  // console.log("all users", users);
+  console.log(dataToFilter);
+  // console.log("filterData", filterData);
+  // console.log("each user", eachUser);
 
   const handleAgeRange = (val) => {
     console.log(val);
@@ -61,16 +79,22 @@ const MatchFilter = () => {
               value="Friend"
               onChange={(e) => {
                 console.log([e.target.value, e.target.checked]);
-                if (e.target.checked) {
-                  meetingIntArr.push(e.target.value);
-                  console.log(meetingIntArr);
-                } else {
-                  const result = meetingIntArr.filter((interest) => {
-                    return interest !== e.target.value;
+                if (!meetingIntArr.includes(e.target.value)) {
+                  if (e.target.checked) {
+                    meetingIntArr.push(e.target.value);
+                  } else {
+                    const result = meetingIntArr.filter((interest) => {
+                      return interest !== e.target.value;
+                    });
+                    setMeetingIntArr(result);
+                  }
+                  setDataToFilter({
+                    ...dataToFilter,
+                    meetingInt: meetingIntArr,
                   });
-                  setMeetingIntArr(result);
+                  console.log(meetingIntArr);
+                  console.log(dataToFilter);
                 }
-                console.log(meetingIntArr);
               }}
             >
               Friend
@@ -80,15 +104,22 @@ const MatchFilter = () => {
               value="FWB"
               onChange={(e) => {
                 console.log([e.target.value, e.target.checked]);
-                if (e.target.checked) {
-                  meetingIntArr.push(e.target.value);
-                } else {
-                  const result = meetingIntArr.filter((interest) => {
-                    return interest !== e.target.value;
+                if (!meetingIntArr.includes(e.target.value)) {
+                  if (e.target.checked) {
+                    meetingIntArr.push(e.target.value);
+                  } else {
+                    const result = meetingIntArr.filter((interest) => {
+                      return interest !== e.target.value;
+                    });
+                    setMeetingIntArr(result);
+                  }
+                  setDataToFilter({
+                    ...dataToFilter,
+                    meetingInt: meetingIntArr,
                   });
-                  setMeetingIntArr(result);
+                  console.log(meetingIntArr);
+                  console.log(dataToFilter);
                 }
-                console.log(meetingIntArr);
               }}
             >
               FWB
@@ -98,15 +129,22 @@ const MatchFilter = () => {
               value="ONS"
               onChange={(e) => {
                 console.log([e.target.value, e.target.checked]);
-                if (e.target.checked) {
-                  meetingIntArr.push(e.target.value);
-                } else {
-                  const result = meetingIntArr.filter((interest) => {
-                    return interest !== e.target.value;
+                if (!meetingIntArr.includes(e.target.value)) {
+                  if (e.target.checked) {
+                    meetingIntArr.push(e.target.value);
+                  } else {
+                    const result = meetingIntArr.filter((interest) => {
+                      return interest !== e.target.value;
+                    });
+                    setMeetingIntArr(result);
+                  }
+                  setDataToFilter({
+                    ...dataToFilter,
+                    meetingInt: meetingIntArr,
                   });
-                  setMeetingIntArr(result);
+                  console.log(meetingIntArr);
+                  console.log(dataToFilter);
                 }
-                console.log(meetingIntArr);
               }}
             >
               ONS
@@ -116,15 +154,22 @@ const MatchFilter = () => {
               value="Long-term"
               onChange={(e) => {
                 console.log([e.target.value, e.target.checked]);
-                if (e.target.checked) {
-                  meetingIntArr.push(e.target.value);
-                } else {
-                  const result = meetingIntArr.filter((interest) => {
-                    return interest !== e.target.value;
+                if (!meetingIntArr.includes(e.target.value)) {
+                  if (e.target.checked) {
+                    meetingIntArr.push(e.target.value);
+                  } else {
+                    const result = meetingIntArr.filter((interest) => {
+                      return interest !== e.target.value;
+                    });
+                    setMeetingIntArr(result);
+                  }
+                  setDataToFilter({
+                    ...dataToFilter,
+                    meetingInt: meetingIntArr,
                   });
-                  setMeetingIntArr(result);
+                  console.log(meetingIntArr);
+                  console.log(dataToFilter);
                 }
-                console.log(meetingIntArr);
               }}
             >
               Long-term Relationship
@@ -134,15 +179,22 @@ const MatchFilter = () => {
               value="Short-term"
               onChange={(e) => {
                 console.log([e.target.value, e.target.checked]);
-                if (e.target.checked) {
-                  meetingIntArr.push(e.target.value);
-                } else {
-                  const result = meetingIntArr.filter((interest) => {
-                    return interest !== e.target.value;
+                if (!meetingIntArr.includes(e.target.value)) {
+                  if (e.target.checked) {
+                    meetingIntArr.push(e.target.value);
+                  } else {
+                    const result = meetingIntArr.filter((interest) => {
+                      return interest !== e.target.value;
+                    });
+                    setMeetingIntArr(result);
+                  }
+                  setDataToFilter({
+                    ...dataToFilter,
+                    meetingInt: meetingIntArr,
                   });
-                  setMeetingIntArr(result);
+                  console.log(meetingIntArr);
+                  console.log(dataToFilter);
                 }
-                console.log(meetingIntArr);
               }}
             >
               Short-term Relationship
