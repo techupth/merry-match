@@ -24,11 +24,12 @@ const Swipe = () => {
   const childRefs = useMemo(
     () =>
       Array(users.length)
+
         .fill(0)
         .map((i) => React.createRef()),
     []
   );
-
+  console.log(Array(users.length))
   const updateCurrentIndex = (val) => {
     setCurrentIndex(val);
     currentIndexRef.current = val;
@@ -73,8 +74,11 @@ const Swipe = () => {
 
   // Swipe
   const swipe = async (dir) => {
+    console.log(dir)
     if (currentIndex < users.length) {
+      console.log(currentIndex)
       await childRefs[currentIndex].current.swipe(dir); // Swipe the card!
+      console.log(dir)
     }
 
   }
