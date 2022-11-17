@@ -33,7 +33,7 @@ const SwipeProvider = (props) => {
     console.log(userData.user_id);
 
     const eachUserResult = await axios.get(
-      `http://localhost:4001/swipe/${userData.user_id}`
+      `http://localhost:4001/filter/${userData.user_id}`
     );
     console.log(eachUserResult);
     console.log(eachUserResult.data.data[0], "get each user");
@@ -42,14 +42,14 @@ const SwipeProvider = (props) => {
     return eachUser;
   };
 
-  console.log(eachUser);
-  console.log(eachUser.meeting_int);
+  console.log("each User", eachUser);
 
   const getDataByFilter = async (data) => {
     console.log(data);
-    const filteredData = await axios.post("http://localhost:4001/swipe", data);
+    const filteredData = await axios.post("http://localhost:4001/filter", data);
     setFilterData(filteredData.data.data);
     console.log("Filter Success", filterData);
+    return filterData;
   };
 
   const merryList = async () => {

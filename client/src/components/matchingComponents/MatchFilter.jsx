@@ -21,7 +21,8 @@ const MatchFilter = () => {
   const [dataToFilter, setDataToFilter] = useState({
     meetingInt: [],
     ageRange: [],
-    sexIdentity: "",
+    sexPrference: "",
+    user_id: "",
   });
   const {
     getDataByFilter,
@@ -46,22 +47,24 @@ const MatchFilter = () => {
     setDataToFilter({
       meetingInt: [...meetingIntArr, eachUser.meeting_int],
       ageRange,
-      sexIdentity: eachUser.sex_identity,
+      sexPreference: eachUser.sex_pref,
+      user_id: eachUser.user_id,
     });
     getDataByFilter(dataToFilter);
   }, [eachUser]);
 
-  useEffect(() => {
-    getDataByFilter(dataToFilter);
-  }, [dataToFilter]);
+  // useEffect(() => {
+  //   getDataByFilter(dataToFilter);
+  //   console.log(dataToFilter);
+  // }, []);
 
   // console.log("all users", users);
-  console.log(dataToFilter);
+  console.log("dataToFilter", dataToFilter);
   // console.log("filterData", filterData);
   // console.log("each user", eachUser);
 
   const handleAgeRange = (val) => {
-    console.log(val);
+    // console.log(val);
     setAgeRange(val);
     console.log(ageRange);
   };
