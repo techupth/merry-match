@@ -78,6 +78,7 @@ const SwipeProvider = (props) => {
         eachUser,
         matchId,
         filterData,
+        getEachUser,
       }}
     >
       {props.children}

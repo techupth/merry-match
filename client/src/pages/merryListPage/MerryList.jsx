@@ -7,8 +7,11 @@ import chat from "../../../public/asset/MerryList/chat.png";
 import view from "../../../public/asset/MerryList/view.png";
 import heart from "../../../public/asset/MerryList/heart.png";
 //components
-import NavbarAuthen from "../../components/Navbar/NavbarAuthen";
 import Footer from "../../components/editPageComponents/Footer";
+
+// Modal
+import EditModal from "../../components/merryListComponents/EditModal";
+
 
 import { useSwipe } from "../../contexts/swipeContext";
 
@@ -17,7 +20,10 @@ const MerryList = () => {
 
   const [isLoading, setIsloading] = useState("NoUser");
   const [userList, setUserList] = useState([]);
+  const [modalId, setModalId] = useState(null);
   const [matchId, setMatchId] = useState([]);
+
+  const [preview, setPreview] = useState(false);
 
   const isData = async () => {
     try {
@@ -26,6 +32,7 @@ const MerryList = () => {
       // console.log(data)
       setIsloading("NoUser");
       handleStatus(data.matchList, data.matchId);
+      console.log(data.matchId)
       if (data.matchList.length !== 0) {
         setIsloading("data");
       }
@@ -46,9 +53,8 @@ const MerryList = () => {
             ...data[i],
             status: "match",
           };
-
           userList[i] = user;
-        }
+        }     
       }
     });
     setUserList(userList);
@@ -74,6 +80,7 @@ const MerryList = () => {
               with Merry!
             </h1>
             <div className="mt-[56px]">
+            {preview && (<EditModal close={() => setPreview(!preview)} data={userList[modalId]}/>)}
               {/* เริ่ม return map ตั้งแต่ตรงนี้ */}
               {userList.map((user, index) => {
                 return (
@@ -159,7 +166,15 @@ const MerryList = () => {
                               {" "}
                               <img src={chat} alt="" />
                             </button>
-                            <button className="w-[48px] h-[48px] bg-white rounded-lg flex justify-center items-center drop-shadow-xl mr-[16px]">
+
+                            {/*  */}
+
+                            {/*  */}
+                            <button className="w-[48px] h-[48px] bg-white rounded-lg flex justify-center items-center drop-shadow-xl mr-[16px]" onClick={(event) => {
+                    event.preventDefault();
+                    setPreview(!preview);
+                    setModalId(index)
+                  }}>
                               {" "}
                               <img src={view} alt="" />
                             </button>
@@ -177,7 +192,11 @@ const MerryList = () => {
                             </p>
                           </div>
                           <div className="flex mt-[25px]">
-                            <button className="w-[48px] h-[48px] bg-white rounded-lg flex justify-center items-center drop-shadow-xl mr-[16px]">
+                            <button className="w-[48px] h-[48px] bg-white rounded-lg flex justify-center items-center drop-shadow-xl mr-[16px]" onClick={(event) => {
+                    event.preventDefault();
+                    setPreview(!preview);
+                    setModalId(index)
+                  }}>
                               {" "}
                               <img src={view} alt="" />
                             </button>
