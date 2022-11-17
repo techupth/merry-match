@@ -74,14 +74,10 @@ const SwipeProvider = (props) => {
         getDataByFilter,
         users,
         merryList,
-        decodeFromToken,
         merryListUser,
         filterData,
         eachUser,
-        getEachUser,
         matchId,
-        filterData,
-        eachUser,
         getEachUser,
       }}
     >
