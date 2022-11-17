@@ -8,41 +8,44 @@ export const SwipeContext = React.createContext();
 const SwipeProvider = (props) => {
   const [userData, setUserData] = useState({});
   const [filterData, setFilterData] = useState({});
-  const [eachUser, setEachUser] = useState([]);
+  const [eachUser, setEachUser] = useState({});
   const [users, setUsers] = useState([]);
   const [merryListUser, setMerryListUser] = useState([]);
   const [matchId, setMatchId] = useState([]);
 
-  const decodeFromToken = () => {
+  // const decodeFromToken = () => {
+  //   const token = localStorage.getItem("token");
+  //   const userData = jwtDecode(token);
+  //   console.log(userData);
+  //   setUserData(userData);
+  // };
+
+  const getAllUsers = async () => {
+    const result = await axios.get("http://localhost:4001/swipe");
+    setUsers(result.data.data);
+    return users;
+  };
+
+  const getEachUser = async () => {
     const token = localStorage.getItem("token");
     const userData = jwtDecode(token);
-    console.log(userData);
-    setUserData(userData);
+    const eachUserResult = await axios.get(
+      `http://localhost:4001/swipe/${userData.user_id}`
+    );
+    console.log(eachUserResult.data.data[0], "get each user");
+    setEachUser(eachUserResult.data.data[0]);
+
+    return eachUser;
   };
+
+  console.log(eachUser);
+  console.log(eachUser.meeting_int);
 
   const getDataByFilter = async (data) => {
     console.log(data);
     const filteredData = await axios.post("http://localhost:4001/swipe", data);
     setFilterData(filteredData.data.data);
     console.log("Filter Success", filterData);
-  };
-
-  const getAllUsers = async () => {
-    const result = await axios.get("http://localhost:4001/swipe");
-    console.log(result.data.data, "get All user");
-    setUsers(result.data.data);
-    return users;
-  };
-
-  const getEachUser = async (userData) => {
-    const userId = userData.user_id;
-    console.log(userId);
-    const eachUserResult = await axios.get(
-      `http://localhost:4001/swipe/${userId}`
-    );
-    console.log(eachUserResult.data.data, "get each user");
-    setEachUser(eachUserResult.data.data);
-    return eachUser;
   };
 
   const merryList = async () => {
@@ -54,27 +57,24 @@ const SwipeProvider = (props) => {
         params: userData,
       }
     );
-    console.log("merryList success", result);
+    // console.log("merryList success", result);
     // console.log(result)
     setMatchId(result.data.isMatchId);
-    console.log("merryList success", result);
     setMerryListUser(result.data.data);
     const matchList = result.data.data;
     const matchId = result.data.isMatchId;
     return { matchList, matchId };
   };
-  console.log(merryListUser);
 
   return (
     <SwipeContext.Provider
       value={{
-        decodeFromToken,
+        // decodeFromToken,
         userData,
         getAllUsers,
         getDataByFilter,
         users,
         merryList,
-        decodeFromToken,
         merryListUser,
         filterData,
         eachUser,

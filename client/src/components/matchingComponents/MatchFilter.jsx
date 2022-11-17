@@ -19,28 +19,39 @@ const MatchFilter = () => {
   const [meetingIntArr, setMeetingIntArr] = useState([]);
   const [userData, setUserData] = useState({});
   const [dataToFilter, setDataToFilter] = useState({
-    meetingInt: [],
-    ageRange: [],
+    meeting_int: meetingIntArr,
+    ageRange,
   });
   const {
     getDataByFilter,
     users,
-    decodeFromToken,
     merryListUser,
     merryList,
     getAllUsers,
     filterData,
+    eachUser,
+    getEachUser,
   } = useSwipe();
 
   useEffect(() => {
     getAllUsers();
-    setMeetingIntArr(meetingIntArr);
-    setDataToFilter({ meetingInt: meetingIntArr, ageRange });
+    getEachUser();
+    console.log(eachUser);
+    setTimeout(() => {
+      setMeetingIntArr([eachUser.meeting_int]);
+    }, 1000);
+    console.log(meetingIntArr);
+    setDataToFilter({ ...dataToFilter, meeting_int: meetingIntArr });
     console.log(dataToFilter);
-  }, [meetingIntArr]);
+    getDataByFilter(dataToFilter);
+  }, []);
+
+  // useEffect(() => {}, []);
 
   console.log("all users", users);
+  console.log(dataToFilter);
   console.log("filterData", filterData);
+  console.log("each user", eachUser);
 
   const handleAgeRange = (val) => {
     console.log(val);
