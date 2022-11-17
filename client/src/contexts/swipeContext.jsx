@@ -70,7 +70,7 @@ const SwipeProvider = (props) => {
     const matchId = result.data.isMatchId;
     return { matchList, matchId };
   };
-  console.log(merryListUser);
+  // console.log(merryListUser);
 
   return (
     <SwipeContext.Provider
