@@ -18,6 +18,10 @@ const MatchFilter = () => {
   const [ageRange, setAgeRange] = useState([20, 30]);
   const [meetingIntArr, setMeetingIntArr] = useState([]);
   const [userData, setUserData] = useState({});
+  const [dataToFilter, setDataToFilter] = useState({
+    meetingInt: [],
+    ageRange: [],
+  });
   const {
     getDataByFilter,
     users,
@@ -25,33 +29,18 @@ const MatchFilter = () => {
     merryListUser,
     merryList,
     getAllUsers,
+    filterData,
   } = useSwipe();
 
-  const dataToFilter = {
-    meetingInt: meetingIntArr,
-    ageRange,
-  };
-
-  // const defaultMeetingInt = () => {
-  //   console.log(merryListUser);
-  // const token = localStorage.getItem("token");
-  // const userData = jwtDecode(token);
-  // console.log(userData);
-  // setUserData(userData);
-
-  // setMeetingIntArr([users.meetingInt]);
-  //};
-
   useEffect(() => {
-    // merryList();
     getAllUsers();
-
     setMeetingIntArr(meetingIntArr);
+    setDataToFilter({ meetingInt: meetingIntArr, ageRange });
     console.log(dataToFilter);
   }, [meetingIntArr]);
 
-  console.log(merryListUser);
-  console.log("users", users);
+  console.log("all users", users);
+  console.log("filterData", filterData);
 
   const handleAgeRange = (val) => {
     console.log(val);
@@ -237,7 +226,7 @@ const MatchFilter = () => {
         <button
           className="bg-[#C70039] rounded-[99px] text-[white] font-[700] w-[99px] h-[48px]"
           onClick={() => {
-            console.log(dataToFilter);
+            console.log("Filter data by", dataToFilter);
             getDataByFilter(dataToFilter);
           }}
         >

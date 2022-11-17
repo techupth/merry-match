@@ -29,7 +29,7 @@ const SwipeProvider = (props) => {
 
   const getAllUsers = async () => {
     const result = await axios.get("http://localhost:4001/swipe");
-    console.log(result.data, "get All user");
+    console.log(result.data.data, "get All user");
     setUsers(result.data.data);
     return users;
   };

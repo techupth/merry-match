@@ -57,7 +57,7 @@ swipeRouter.post("/", async (req, res) => {
   try {
     const filter = req.body;
     const result = await pool.query(
-      `select * from users where meeting_int = $1 or meeting_int = $2 or meeting_int = $3 or meeting_int = $4 or meeting_int = $5 and user_age between $6 and $7`,
+      `select * from users where (user_age between $6 and $7) and (meeting_int = $1 or meeting_int = $2 or meeting_int = $3 or meeting_int = $4 or meeting_int = $5) `,
       [
         filter.meetingInt[0],
         filter.meetingInt[1],
@@ -71,6 +71,7 @@ swipeRouter.post("/", async (req, res) => {
 
     return res.json({
       message: "Filtered users successfully!",
+      person: `${result.rowCount}`,
       data: result.rows,
     });
   } catch (err) {
