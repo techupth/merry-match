@@ -24,12 +24,10 @@ const Swipe = () => {
   const childRefs = useMemo(
     () =>
       Array(users.length)
-
         .fill(0)
         .map((i) => React.createRef()),
     []
   );
-  console.log(Array(users.length))
   const updateCurrentIndex = (val) => {
     setCurrentIndex(val);
     currentIndexRef.current = val;
@@ -40,12 +38,11 @@ const Swipe = () => {
   const canSwipe = currentIndex >= 0;
 
   // set last direction and decrease current index
-  const swiped = (direction, nameToDelete, index) => {
+  const swiped = (direction, index) => {
     setLastDirection(direction);
     updateCurrentIndex(index - 1);
-    console.log(users[index - 1].username)
-    console.log(users[index - 1].profile_pics.length)
-    console.log(step)
+    console.log(direction);
+    console.log(index);
   };
 
   const outOfFrame = (name, idx) => {
@@ -62,8 +59,6 @@ const Swipe = () => {
     if (step !== users[index - 1].profile_pics.length - 1) {
       setStep(step + 1);
     }
-
-
   };
 
   const handleBack = (index) => {
@@ -74,14 +69,12 @@ const Swipe = () => {
 
   // Swipe
   const swipe = async (dir) => {
-    console.log(dir)
     if (currentIndex < users.length) {
-      console.log(currentIndex)
       await childRefs[currentIndex].current.swipe(dir); // Swipe the card!
-      console.log(dir)
-    }
 
-  }
+      console.log(current);
+    }
+  };
 
   // increase current index and show card
   const goBack = async () => {
@@ -105,7 +98,7 @@ const Swipe = () => {
               ref={childRefs[index]}
               className="swipe"
               key={user.username}
-              onSwipe={(dir) => swiped(dir, user.username, index)}
+              onSwipe={(dir) => swiped(dir, index)}
               onCardLeftScreen={() => {
                 outOfFrame(users.username, index);
                 setStep(0);
@@ -130,7 +123,7 @@ const Swipe = () => {
                   </button>
                 </div>
 
-                {/* left and right */}
+                {/* slide pictures */}
                 <div className="arrow-buttons absolute right-[5%] space-x-6 bottom-[6%] z-40 ">
                   <button
                     onClick={() => {
@@ -150,27 +143,25 @@ const Swipe = () => {
                 </div>
               </div>
 
+              <div className="button flex flex-row items-center justify-center space-x-3 overflow-hidden z-10 mt-[-25%]   ">
+                <button
+                  className="XButton w-[4rem] h-[4rem] drop-shadow-2xl mt-[20%]  bg-white rounded-[30%] flex justify-center items-center hover:bg-[#2A2E3F] z-10"
+                  onClick={() => swiped("left", index)}
+                  onSwipe={() => swiped("left", index)}
+                >
+                  <img src={xLogo} />
+                </button>
 
+                <button
+                  className="HeartButton w-[4rem] h-[4rem] drop-shadow-2xl mt-[20%]  bg-white rounded-[30%] flex justify-center items-center hover:bg-[#FFB1C8] z-10"
+                  onClick={() => swiped("right", index)}
+                  onSwipe={() => swiped("right", index)}
+                >
+                  <img src={heartLogo} className="ml-1 mt-1" />
+                </button>
+              </div>
             </TinderCard>
-
           ))}
-
-        </div>
-        <div className="button flex flex-row items-center justify-center space-x-3 overflow-hidden z-10 mt-[-25%]   ">
-          <button
-            className="XButton w-[4rem] h-[4rem] drop-shadow-2xl mt-[20%]  bg-white rounded-[30%] flex justify-center items-center hover:bg-[#2A2E3F] z-10"
-            onClick={() => swipe("left")}
-          >
-
-            <img src={xLogo} />
-          </button>
-
-          <button
-            className="HeartButton w-[4rem] h-[4rem] drop-shadow-2xl mt-[20%]  bg-white rounded-[30%] flex justify-center items-center hover:bg-[#FFB1C8] z-10"
-            onClick={() => swipe("right")}
-          >
-            <img src={heartLogo} className="ml-1 mt-1" />
-          </button>
         </div>
       </div>
     </div>
