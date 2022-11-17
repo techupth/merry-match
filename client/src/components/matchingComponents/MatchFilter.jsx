@@ -36,11 +36,11 @@ const MatchFilter = () => {
     getAllUsers();
     setMeetingIntArr(meetingIntArr);
     setDataToFilter({ meetingInt: meetingIntArr, ageRange });
-    console.log(dataToFilter);
+    // console.log(dataToFilter);
   }, [meetingIntArr]);
 
-  console.log("all users", users);
-  console.log("filterData", filterData);
+  // console.log("all users", users);
+  // console.log("filterData", filterData);
 
   const handleAgeRange = (val) => {
     console.log(val);

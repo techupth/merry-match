@@ -44,8 +44,8 @@ const MatchLog = () => {
           id="slider"
           className="w-full h-full overflow-x-scroll scroll whitespace-nowrap scroll-smooth scrollbar-hide "
         >
-          {data.map((item) => (
-            <div className="inline-block relative hover:scale-105 ease-in-out duration-300 cursor-pointer">
+          {data.map((item,index) => (
+            <div key={index} className="inline-block relative hover:scale-105 ease-in-out duration-300 cursor-pointer">
               <img
                 src={two_heart}
                 className="inline-block absolute bottom-0 right-0"

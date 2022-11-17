@@ -29,9 +29,9 @@ const SwipeProvider = (props) => {
 
   const getAllUsers = async () => {
     const result = await axios.get("http://localhost:4001/swipe");
-    console.log(result.data.data, "get All user");
+    // console.log(result.data.data, "get All user");
     setUsers(result.data.data);
-    return users;
+    return result.data.data;
   };
 
   const getEachUser = async (userData) => {
@@ -63,7 +63,8 @@ const SwipeProvider = (props) => {
     const matchId = result.data.isMatchId;
     return { matchList, matchId };
   };
-  console.log(merryListUser);
+  // console.log(merryListUser);
+
 
   return (
     <SwipeContext.Provider

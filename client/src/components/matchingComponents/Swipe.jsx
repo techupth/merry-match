@@ -12,22 +12,23 @@ import xLogo from "../../../public/asset/editModalItems/xLogo.svg";
 const Swipe = () => {
   // import filterData มาให้แล้ว แล้วต้องนำลงมา map ลงหน้าแผน swipe
   const { getAllUsers, users, filterData } = useSwipe();
-  const [currentIndex, setCurrentIndex] = useState(users.length);
+  const [currentIndex, setCurrentIndex] = useState(users.length - 1);
   const [lastDirection, setLastDirection] = useState();
   const [step, setStep] = useState(0);
   const [currenId, setCurrenId] = useState([]);
 
   // used for outOfFrame closure
   const currentIndexRef = useRef(currentIndex);
-
+  // console.log(currentIndexRef)
   // useMemo
   const childRefs = useMemo(
     () =>
       Array(users.length)
         .fill(0)
         .map((i) => React.createRef()),
-    []
+    [users]
   );
+
   const updateCurrentIndex = (val) => {
     setCurrentIndex(val);
     currentIndexRef.current = val;
@@ -41,7 +42,6 @@ const Swipe = () => {
   const swiped = (direction, index) => {
     setLastDirection(direction);
     updateCurrentIndex(index - 1);
-    console.log(direction);
     console.log(index);
   };
 
@@ -67,26 +67,33 @@ const Swipe = () => {
     }
   };
 
+  console.log(currentIndex);
+  
   // Swipe
   const swipe = async (dir) => {
+    console.log(currentIndex);
     if (currentIndex < users.length) {
       await childRefs[currentIndex].current.swipe(dir); // Swipe the card!
-
-      console.log(current);
+      setCurrentIndex(currentIndex -1 )
     }
   };
 
   // increase current index and show card
-  const goBack = async () => {
-    if (!canGoBack) return;
-    const newIndex = currentIndex + 1;
-    updateCurrentIndex(newIndex);
-    await childRefs[newIndex].current.restoreCard();
+  // const goBack = async () => {
+  //   if (!canGoBack) return;
+  //   const newIndex = currentIndex + 1;
+  //   // updateCurrentIndex(newIndex);
+  //   await childRefs[newIndex].current.restoreCard();
+  // };
+
+  const handleUser = async () => {
+    const data = await getAllUsers();
+    setCurrentIndex(data.length - 1)
   };
 
   //   getdata
   useEffect(() => {
-    getAllUsers();
+    handleUser();
   }, []);
 
   return (
@@ -94,6 +101,7 @@ const Swipe = () => {
       <div className="overflow-hidden">
         <div className="cardContainer text-[white] w-[25rem] h-[25rem] overflow-hidden mt-[30%]">
           {users.map((user, index) => (
+            
             <TinderCard
               ref={childRefs[index]}
               className="swipe"
@@ -111,6 +119,7 @@ const Swipe = () => {
                 }}
                 className="card w-[28.75rem] h-[28.75rem] bg-cover bg-center rounded-[32px] overflow-hidden flex flex-row items-end relative z-0"
               >
+                <div className="text-[30px]">{currentIndex}</div>
                 <div className="flex flex-row z-40 w-full">
                   <h3 className="text-[white] text-[1.5rem] m-[5%] mr-[0] font-[700]">
                     {user.username}
@@ -146,16 +155,16 @@ const Swipe = () => {
               <div className="button flex flex-row items-center justify-center space-x-3 overflow-hidden z-10 mt-[-25%]   ">
                 <button
                   className="XButton w-[4rem] h-[4rem] drop-shadow-2xl mt-[20%]  bg-white rounded-[30%] flex justify-center items-center hover:bg-[#2A2E3F] z-10"
-                  onClick={() => swiped("left", index)}
-                  onSwipe={() => swiped("left", index)}
+                  onClick={() => swipe("left", index)}
                 >
                   <img src={xLogo} />
                 </button>
 
                 <button
                   className="HeartButton w-[4rem] h-[4rem] drop-shadow-2xl mt-[20%]  bg-white rounded-[30%] flex justify-center items-center hover:bg-[#FFB1C8] z-10"
-                  onClick={() => swiped("right", index)}
-                  onSwipe={() => swiped("right", index)}
+                  onClick={() => {
+                    swipe("right", index);
+                  }}
                 >
                   <img src={heartLogo} className="ml-1 mt-1" />
                 </button>

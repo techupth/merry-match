@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import userRouter from "./apps/users.js";
 import authRouter from "./apps/auth.js";
 import swipeRouter from "./apps/swipe.js";
+import filterRouter from "./apps/filter.js";
 import cloudinary from "cloudinary";
 
 async function init() {
@@ -26,6 +27,7 @@ async function init() {
   app.use("/auth", authRouter);
   app.use("/users", userRouter);
   app.use("/swipe", swipeRouter);
+  app.use("/filter", filterRouter );
 
   app.get("/", (req, res) => {
     return res.json({
