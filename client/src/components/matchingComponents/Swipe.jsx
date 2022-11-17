@@ -25,21 +25,7 @@ const Swipe = () => {
   const [currenId, setCurrenId] = useState([]);
   const [isLoading, setIsloading] = useState("NoUser");
 
-  const isData = (dataToFilter) => {
-    try {
-      setIsloading("loading");
-      console.log(dataToFilter);
-      const data = getDataByFilter(dataToFilter);
-      console.log(data);
-      setIsloading("NoUser");
-
-      if (data.length !== 0) {
-        setIsloading("data");
-      }
-    } catch (err) {
-      setIsloading("err");
-    }
-  };
+  console.log("filter Data at Swipe", filterData);
 
   // used for outOfFrame closure
   const currentIndexRef = useRef(currentIndex);
@@ -91,11 +77,8 @@ const Swipe = () => {
     }
   };
 
-  console.log(currentIndex);
-
   // Swipe
   const swipe = async (dir) => {
-    console.log(currentIndex);
     if (currentIndex < filterData.length) {
       await childRefs[currentIndex].current.swipe(dir); // Swipe the card!
       setCurrentIndex(currentIndex - 1);
@@ -114,96 +97,76 @@ const Swipe = () => {
     <div className="w-[100%] h-[46.9rem] bg-[#160404] flex justify-center items-start overflow-hidden overflow-x-hidden z-30">
       <div className="overflow-hidden">
         <div className="cardContainer text-[white] w-[25rem] h-[25rem] overflow-hidden mt-[30%]">
-          {isLoading === "loading" ? (
-            <div className=" text-[white] w-[25rem] h-[25rem] overflow-hidden mt-[50%] font-[700] text-[2.2rem]">
-              Loading...
-            </div>
-          ) : isLoading === "data" ? (
-            <div>
-              {data.map((user, index) => {
-                <TinderCard
-                  ref={childRefs[index]}
-                  className="swipe"
-                  key={user.username}
-                  onSwipe={(dir) => swiped(dir, index)}
-                  onCardLeftScreen={() => {
-                    outOfFrame(user.username, index);
-                    setStep(0);
-                    setCurrenId(index);
+          {filterData.map((user, index) => (
+            <TinderCard
+              ref={childRefs[index]}
+              className="swipe"
+              key={user.username}
+              onSwipe={(dir) => swiped(dir, index)}
+              onCardLeftScreen={() => {
+                outOfFrame(filterData.username, index);
+                setStep(0);
+                setCurrenId(index);
+              }}
+            >
+              <div
+                style={{
+                  backgroundImage: "url(" + user.profile_pics[step] + ")",
+                }}
+                className="card w-[28.75rem] h-[28.75rem] bg-cover bg-center rounded-[32px] overflow-hidden flex flex-row items-end relative z-0"
+              >
+                <div className="text-[30px]">{currentIndex}</div>
+                <div className="flex flex-row z-40 w-full">
+                  <h3 className="text-[white] text-[1.5rem] m-[5%] mr-[0] font-[700]">
+                    {user.username}
+                  </h3>
+                  <h3 className="text-[white] text-[1.5rem] m-[5%] ml-[2%] mr-[1%] font-[700]">
+                    {user.user_age}
+                  </h3>
+                  <button className="">
+                    <img src={eyeIcon} />
+                  </button>
+                </div>
+
+                {/* slide pictures */}
+                <div className="arrow-buttons absolute right-[5%] space-x-6 bottom-[6%] z-40 ">
+                  <button
+                    onClick={() => {
+                      handleBack(currenId);
+                    }}
+                  >
+                    <img src={arrowLeftWhite} className="w-[1rem] h-[1rem]" />
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      handleNext(currenId);
+                    }}
+                  >
+                    <img src={arrowRightWhite} className="w-[1rem] h-[1rem]" />
+                  </button>
+                </div>
+              </div>
+
+              <div className="button flex flex-row items-center justify-center space-x-3 overflow-hidden z-10 mt-[-25%]   ">
+                <button
+                  className="XButton w-[4rem] h-[4rem] drop-shadow-2xl mt-[20%]  bg-white rounded-[30%] flex justify-center items-center hover:bg-[#2A2E3F] z-10"
+                  onClick={() => swipe("left", index)}
+                >
+                  <img src={xLogo} />
+                </button>
+
+                <button
+                  className="HeartButton w-[4rem] h-[4rem] drop-shadow-2xl mt-[20%]  bg-white rounded-[30%] flex justify-center items-center hover:bg-[#FFB1C8] z-10"
+                  onClick={() => {
+                    swipe("right", index);
                   }}
                 >
-                  <div
-                    style={{
-                      backgroundImage: "url(" + user.profile_pics[step] + ")",
-                    }}
-                    className="card w-[28.75rem] h-[28.75rem] bg-cover bg-center rounded-[32px] overflow-hidden flex flex-row items-end relative z-0"
-                  >
-                    <div className="text-[30px]">{currentIndex}</div>
-                    <div className="flex flex-row z-40 w-full">
-                      <h3 className="text-[white] text-[1.5rem] m-[5%] mr-[0] font-[700]">
-                        {user.username}
-                      </h3>
-                      <h3 className="text-[white] text-[1.5rem] m-[5%] ml-[2%] mr-[1%] font-[700]">
-                        {user.user_age}
-                      </h3>
-                      <button className="">
-                        <img src={eyeIcon} />
-                      </button>
-                    </div>
-
-                    {/* slide pictures */}
-                    <div className="arrow-buttons absolute right-[5%] space-x-6 bottom-[6%] z-40 ">
-                      <button
-                        onClick={() => {
-                          handleBack(currenId);
-                        }}
-                      >
-                        <img
-                          src={arrowLeftWhite}
-                          className="w-[1rem] h-[1rem]"
-                        />
-                      </button>
-
-                      <button
-                        onClick={() => {
-                          handleNext(currenId);
-                        }}
-                      >
-                        <img
-                          src={arrowRightWhite}
-                          className="w-[1rem] h-[1rem]"
-                        />
-                      </button>
-                    </div>
-                  </div>
-
-                  <div className="button flex flex-row items-center justify-center space-x-3 overflow-hidden z-10 mt-[-25%]   ">
-                    <button
-                      className="XButton w-[4rem] h-[4rem] drop-shadow-2xl mt-[20%]  bg-white rounded-[30%] flex justify-center items-center hover:bg-[#2A2E3F] z-10"
-                      onClick={() => swipe("left", index)}
-                    >
-                      <img src={xLogo} />
-                    </button>
-
-                    <button
-                      className="HeartButton w-[4rem] h-[4rem] drop-shadow-2xl mt-[20%]  bg-white rounded-[30%] flex justify-center items-center hover:bg-[#FFB1C8] z-10"
-                      onClick={() => {
-                        swipe("right", index);
-                      }}
-                    >
-                      <img src={heartLogo} className="ml-1 mt-1" />
-                    </button>
-                  </div>
-                </TinderCard>;
-              })}{" "}
-            </div>
-          ) : isLoading === "NoUser" ? (
-            <div className="text-[white] w-[25rem] h-[25rem] overflow-hidden mt-[50%] font-[700] text-[2.2rem]">
-              {" "}
-              Sorry!
-              <br /> you have matched all!{" "}
-            </div>
-          ) : null}
+                  <img src={heartLogo} className="ml-1 mt-1" />
+                </button>
+              </div>
+            </TinderCard>
+          ))}
         </div>
       </div>
     </div>

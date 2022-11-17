@@ -10,7 +10,7 @@ import {
   RangeSliderThumb,
   RangeSliderMark,
 } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useSwipe } from "../../contexts/swipeContext";
 // import jwtDecode from "jwt-decode";
 
@@ -21,13 +21,19 @@ const MatchFilter = () => {
   const [dataToFilter, setDataToFilter] = useState({
     meetingInt: [],
     ageRange: [],
-    sexPrference: "",
+    sexPreference: "",
     user_id: "",
   });
+  const [defaultDataToFilter, setDefaultDataToFilter] = useState({
+    meetingInt: [],
+    ageRange: [],
+    sexPreference: "",
+    user_id: "",
+  });
+
   const {
     getDataByFilter,
     users,
-    // decodeFromToken,
     merryListUser,
     merryList,
     getAllUsers,
@@ -42,21 +48,33 @@ const MatchFilter = () => {
   }, []);
 
   useEffect(() => {
-    setMeetingIntArr([...meetingIntArr, eachUser.meeting_int]);
-    setMeetingIntArr(meetingIntArr);
+    setMeetingIntArr([eachUser.meeting_int]);
     setDataToFilter({
-      meetingInt: [...meetingIntArr, eachUser.meeting_int],
+      meetingInt: meetingIntArr,
       ageRange,
       sexPreference: eachUser.sex_pref,
       user_id: eachUser.user_id,
     });
-    getDataByFilter(dataToFilter);
   }, [eachUser]);
 
+  console.log(dataToFilter);
+  console.log(meetingIntArr);
+  // console.log(defaultDataToFilter);
+
+  useEffect(() => {
+    getDataByFilter(dataToFilter);
+  }, [dataToFilter]);
+
   // useEffect(() => {
-  //   getDataByFilter(dataToFilter);
-  //   console.log(dataToFilter);
-  // }, []);
+  //   // setMeetingIntArr([...meetingIntArr, eachUser.meeting_int]);
+  //   // setMeetingIntArr(meetingIntArr);
+  //   setDataToFilter({
+  //     meetingInt: [...meetingIntArr, eachUser.meeting_int],
+  //     ageRange,
+  //     sexPreference: eachUser.sex_pref,
+  //     user_id: eachUser.user_id,
+  //   });
+  // }, [eachUser]);
 
   // console.log("all users", users);
   console.log("dataToFilter", dataToFilter);
@@ -68,6 +86,14 @@ const MatchFilter = () => {
     setAgeRange(val);
     console.log(ageRange);
   };
+
+  const updateAgeRange = useMemo(() => {
+    handleAgeRange(ageRange);
+    setDataToFilter({
+      ...dataToFilter,
+      ageRange,
+    });
+  }, [ageRange]);
 
   return (
     <div className="w-[28%] h-[46.9rem] bg-white z-40">
@@ -215,7 +241,7 @@ const MatchFilter = () => {
           min={18}
           max={55}
           step={1}
-          onChange={(val) => {
+          onChangeEnd={(val) => {
             handleAgeRange(val);
           }}
           mt={7}
@@ -275,11 +301,22 @@ const MatchFilter = () => {
         </div>
       </div>
       <div className=" flex flex-row justify-center items-center">
-        <button className="text-[#C70039] font-[700] w-[99px] h-[48px]">
+        <button
+          className="text-[#C70039] font-[700] w-[99px] h-[48px] hover:text-[#FF1659]"
+          onClick={() => {
+            setMeetingIntArr([eachUser.meeting_int]);
+            setDataToFilter({
+              meetingInt: meetingIntArr,
+              ageRange,
+              sexPreference: eachUser.sex_pref,
+              user_id: eachUser.user_id,
+            });
+          }}
+        >
           Clear
         </button>
         <button
-          className="bg-[#C70039] rounded-[99px] text-[white] font-[700] w-[99px] h-[48px]"
+          className="bg-[#C70039] rounded-[99px] text-[white] font-[700] w-[99px] h-[48px] hover:bg-[#FF1659]"
           onClick={() => {
             console.log("Filter data by", dataToFilter);
             getDataByFilter(dataToFilter);
