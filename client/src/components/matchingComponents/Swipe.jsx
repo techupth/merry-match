@@ -105,10 +105,10 @@ const Swipe = () => {
             <TinderCard
               ref={childRefs[index]}
               className="swipe"
-              key={user.username}
+              key={user.name}
               onSwipe={(dir) => swiped(dir, index)}
               onCardLeftScreen={() => {
-                outOfFrame(users.username, index);
+                outOfFrame(users.name, index);
                 setStep(0);
                 setCurrenId(index);
               }}
@@ -122,7 +122,7 @@ const Swipe = () => {
                 <div className="text-[30px]">{currentIndex}</div>
                 <div className="flex flex-row z-40 w-full">
                   <h3 className="text-[white] text-[1.5rem] m-[5%] mr-[0] font-[700]">
-                    {user.username}
+                    {user.name}
                   </h3>
                   <h3 className="text-[white] text-[1.5rem] m-[5%] ml-[2%] mr-[1%] font-[700]">
                     {user.user_age}
