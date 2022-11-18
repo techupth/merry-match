@@ -56,11 +56,9 @@ const EditProfile = () => {
   const navigate = useNavigate();
 
   const decodeFromToken = async () => {
-    
     const token = localStorage.getItem("token");
     const userData = jwtDecode(token);
 
-    
     setIsLoading("loading");
     try {
       const result = await axios.get(
@@ -421,6 +419,7 @@ const EditProfile = () => {
                 >
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
+                  <option value="Intersex">Intersex</option>
                 </select>
               </div>
 
@@ -437,6 +436,7 @@ const EditProfile = () => {
                 >
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
+                  <option value="Intersex">Intersex</option>
                 </select>
               </div>
             </div>
