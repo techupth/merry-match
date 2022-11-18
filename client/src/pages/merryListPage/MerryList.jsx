@@ -5,7 +5,9 @@ import location from "../../../public/asset/MerryList/location.png";
 import twoheart from "../../../public/asset/MerryList/twoheart.png";
 import chat from "../../../public/asset/MerryList/chat.png";
 import view from "../../../public/asset/MerryList/view.png";
-import heart from "../../../public/asset/MerryList/heart.png";
+import heartWhite from "../../../public/asset/MerryList/heartWhite.png";
+import heartRed from "../../../public/asset/MerryList/heartRed.png";
+
 //components
 import Footer from "../../components/editPageComponents/Footer";
 
@@ -20,6 +22,7 @@ const MerryList = () => {
   const [isLoading, setIsloading] = useState("NoUser");
   const [userList, setUserList] = useState([]);
   const [modalId, setModalId] = useState(null);
+  
   const [matchId, setMatchId] = useState([]);
 
   const [preview, setPreview] = useState(false);
@@ -58,14 +61,30 @@ const MerryList = () => {
     });
     setUserList(userList);
   };
-  console.log(userList);
+  // console.log(userList);
 
   const handleUnmatch = (id) => {
-    const unmatch = [...userList]
-    delete unmatch[id].status
-    setUserList(unmatch)
+    const unmatch = [...userList];
+    // delete unmatch[id].status
+    setUserList(unmatch);
   };
- 
+
+  const handleLike = (id) => {
+    const unSwipeType = [...userList];
+    unSwipeType[id].swipe_type = false
+    setUserList(unSwipeType);
+  };
+
+  const handleUnLike  = (id) => {
+    const unSwipeType = [...userList];
+    unSwipeType[id].swipe_type = true
+    setUserList(unSwipeType);
+  };
+
+  console.log(userList)
+
+
+
   useEffect(() => {
     isData();
   }, []);
@@ -160,8 +179,8 @@ const MerryList = () => {
 
                       {/* ขวา */}
 
-                      {user.status === "match" ? (
-                        <div className="w-1/3 flex flex-col items-end ">
+                      <div className="w-1/3 flex flex-col items-end ">
+                        {user.status === "match" ? (
                           <div className="w-[160px] h-[32px] flex border border-[#C70039] rounded-2xl justify-center items-center mr-[16px]">
                             <img
                               className="w-[20px] h-[12px]"
@@ -170,64 +189,53 @@ const MerryList = () => {
                             />
                             <p className="ml-[12px]">Merry Match!</p>
                           </div>
-
-                          <div className="flex mt-[25px]">
-                            <button className="w-[48px] h-[48px] bg-white rounded-lg flex justify-center items-center drop-shadow-xl mr-[16px]">
-                              {" "}
-                              <img src={chat} alt="" />
-                            </button>
-
-                            {/*  */}
-
-                            {/*  */}
-                            <button
-                              className="w-[48px] h-[48px] bg-white rounded-lg flex justify-center items-center drop-shadow-xl mr-[16px]"
-                              onClick={(event) => {
-                                event.preventDefault();
-                                setPreview(!preview);
-                                setModalId(index);
-                              }}
-                            >
-                              {" "}
-                              <img src={view} alt="" />
-                            </button>
-                            <button
-                              className="w-[48px] h-[48px] bg-[#C70039] rounded-lg flex justify-center items-center drop-shadow-xl mr-[16px]"
-                              onClick={() => {
-                                handleUnmatch(index);
-                              }}
-                            >
-                              {" "}
-                              <img src={heart} alt="" />
-                            </button>
-                          </div>
-                        </div>
-                      ) : (
-                        <div className="w-1/3 flex flex-col items-end ">
+                        ) : (
                           <div className="w-[160px] h-[32px] flex border border-[#646D89] rounded-2xl justify-center items-center mr-[16px]">
                             <p className="ml-[12px] text-[#646D89]">
-                              Not Match yet
+                              {" "}
+                              Not Match yet{" "}
                             </p>
                           </div>
-                          <div className="flex mt-[25px]">
-                            <button
-                              className="w-[48px] h-[48px] bg-white rounded-lg flex justify-center items-center drop-shadow-xl mr-[16px]"
-                              onClick={(event) => {
-                                event.preventDefault();
-                                setPreview(!preview);
-                                setModalId(index);
+                        )}
+                        <div className="flex mt-[25px]">
+                          <button className="w-[48px] h-[48px] bg-white rounded-lg flex justify-center items-center drop-shadow-xl mr-[16px]">
+                            {" "}
+                            <img src={chat} alt="" />
+                          </button>
+                          <button
+                            className="w-[48px] h-[48px] bg-white rounded-lg flex justify-center items-center drop-shadow-xl mr-[16px]"
+                            onClick={(event) => {
+                              event.preventDefault();
+                              setPreview(!preview);
+                              setModalId(index);
+                            }}
+                          >
+                            {" "}
+                            <img src={view} alt="" />
+                          </button>
+                          {user.swipe_type === true ? (
+                              <button
+                              className="w-[48px] h-[48px] bg-[#C70039] rounded-lg flex justify-center items-center drop-shadow-xl mr-[16px]"
+                              onClick={() => {
+                                handleLike(index)
                               }}
                             >
                               {" "}
-                              <img src={view} alt="" />
+                              <img src={heartWhite} className="ml-[5px]" alt="" />
                             </button>
-                            <button className="w-[48px] h-[48px] bg-[#C70039] rounded-lg flex justify-center items-center drop-shadow-xl mr-[16px]">
-                              {" "}
-                              <img src={heart} alt="" />
-                            </button>
-                          </div>
+                          ):(
+                            <button className="w-[48px] h-[48px] bg-white  rounded-lg flex justify-center items-center drop-shadow-xl mr-[16px]"
+                            onClick={() => {
+                              handleUnLike(index)
+                            }}>
+                            {" "}
+                            <img src={heartRed} className="ml-[5px]" alt="" />
+                          </button>
+                          )}
+                        
+
                         </div>
-                      )}
+                      </div>
                     </div>
                     <div className="w-full bg-[#D6D9E4] h-[1px] mt-[38px]">
                       {" "}
