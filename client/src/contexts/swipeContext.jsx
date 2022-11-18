@@ -7,25 +7,11 @@ export const SwipeContext = React.createContext();
 
 const SwipeProvider = (props) => {
   const [userData, setUserData] = useState({});
-  const [filterData, setFilterData] = useState({});
-  const [eachUser, setEachUser] = useState([]);
+  const [filterData, setFilterData] = useState([]);
+  const [eachUser, setEachUser] = useState({});
   const [users, setUsers] = useState([]);
   const [merryListUser, setMerryListUser] = useState([]);
   const [matchId, setMatchId] = useState([]);
-
-  const decodeFromToken = () => {
-    const token = localStorage.getItem("token");
-    const userData = jwtDecode(token);
-    console.log(userData);
-    setUserData(userData);
-  };
-
-  const getDataByFilter = async (data) => {
-    console.log(data);
-    const filteredData = await axios.post("http://localhost:4001/swipe", data);
-    setFilterData(filteredData.data.data);
-    console.log("Filter Success", filterData);
-  };
 
   const getAllUsers = async () => {
     const result = await axios.get("http://localhost:4001/swipe");
@@ -34,16 +20,28 @@ const SwipeProvider = (props) => {
     return result.data.data;
   };
 
-  const getEachUser = async (userData) => {
-    const userId = userData.user_id;
-    console.log(userId);
+  const getEachUser = async () => {
+    const token = localStorage.getItem("token");
+    const userData = jwtDecode(token);
+    console.log(userData.user_id);
+
     const eachUserResult = await axios.get(
-      `http://localhost:4001/swipe/${userId}`
+      `http://localhost:4001/filter/${userData.user_id}`
     );
-    console.log(eachUserResult.data.data, "get each user");
-    setEachUser(eachUserResult.data.data);
+    console.log(eachUserResult.data.data[0], "get each user");
+    setEachUser(eachUserResult.data.data[0]);
     return eachUser;
   };
+  console.log("each User", eachUser);
+
+  const getDataByFilter = async (data) => {
+    // console.log(data);
+    const filteredData = await axios.post("http://localhost:4001/filter", data);
+    console.log("filter data", filteredData.data.data);
+    setFilterData(filteredData.data.data);
+    // return filterData;
+  };
+  console.log("Filter Success", filterData);
 
   const merryList = async () => {
     const token = localStorage.getItem("token");
@@ -65,11 +63,9 @@ const SwipeProvider = (props) => {
   };
   // console.log(merryListUser);
 
-
   return (
     <SwipeContext.Provider
       value={{
-        decodeFromToken,
         userData,
         getAllUsers,
         getDataByFilter,

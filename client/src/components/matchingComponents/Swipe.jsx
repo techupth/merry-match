@@ -11,11 +11,21 @@ import xLogo from "../../../public/asset/editModalItems/xLogo.svg";
 
 const Swipe = () => {
   // import filterData มาให้แล้ว แล้วต้องนำลงมา map ลงหน้าแผน swipe
-  const { getAllUsers, users, filterData } = useSwipe();
-  const [currentIndex, setCurrentIndex] = useState(users.length - 1);
+  const {
+    getAllUsers,
+    users,
+    filterData,
+    getDataByFilter,
+    getEachUser,
+    eachUser,
+  } = useSwipe();
+  const [currentIndex, setCurrentIndex] = useState(filterData.length - 1);
   const [lastDirection, setLastDirection] = useState();
   const [step, setStep] = useState(0);
   const [currenId, setCurrenId] = useState([]);
+  const [isLoading, setIsloading] = useState("NoUser");
+
+  console.log("filter Data at Swipe", filterData);
 
   // used for outOfFrame closure
   const currentIndexRef = useRef(currentIndex);
@@ -23,10 +33,10 @@ const Swipe = () => {
   // useMemo
   const childRefs = useMemo(
     () =>
-      Array(users.length)
+      Array(filterData.length)
         .fill(0)
         .map((i) => React.createRef()),
-    [users]
+    [filterData]
   );
 
   const updateCurrentIndex = (val) => {
@@ -35,7 +45,7 @@ const Swipe = () => {
   };
 
   //   Set swipe index
-  const canGoBack = currentIndex < users.length - 1;
+  const canGoBack = currentIndex < filterData.length - 1;
   const canSwipe = currentIndex >= 0;
 
   // set last direction and decrease current index
@@ -56,7 +66,7 @@ const Swipe = () => {
 
   //   Handle pictures
   const handleNext = (index) => {
-    if (step !== users[index - 1].profile_pics.length - 1) {
+    if (step !== filterData[index - 1].profile_pics.length - 1) {
       setStep(step + 1);
     }
   };
@@ -71,10 +81,9 @@ const Swipe = () => {
   
   // Swipe
   const swipe = async (dir) => {
-    console.log(currentIndex);
-    if (currentIndex < users.length) {
+    if (currentIndex < filterData.length) {
       await childRefs[currentIndex].current.swipe(dir); // Swipe the card!
-      setCurrentIndex(currentIndex -1 )
+      setCurrentIndex(currentIndex - 1);
     }
   };
 
@@ -86,29 +95,18 @@ const Swipe = () => {
   //   await childRefs[newIndex].current.restoreCard();
   // };
 
-  const handleUser = async () => {
-    const data = await getAllUsers();
-    setCurrentIndex(data.length - 1)
-  };
-
-  //   getdata
-  useEffect(() => {
-    handleUser();
-  }, []);
-
   return (
     <div className="w-[100%] h-[46.9rem] bg-[#160404] flex justify-center items-start overflow-hidden overflow-x-hidden z-30">
       <div className="overflow-hidden">
         <div className="cardContainer text-[white] w-[25rem] h-[25rem] overflow-hidden mt-[30%]">
-          {users.map((user, index) => (
-            
+          {filterData.map((user, index) => (
             <TinderCard
               ref={childRefs[index]}
               className="swipe"
               key={user.name}
               onSwipe={(dir) => swiped(dir, index)}
               onCardLeftScreen={() => {
-                outOfFrame(users.name, index);
+                outOfFrame(filterData.name, index);
                 setStep(0);
                 setCurrenId(index);
               }}

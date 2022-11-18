@@ -10,7 +10,7 @@ import {
   RangeSliderThumb,
   RangeSliderMark,
 } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useSwipe } from "../../contexts/swipeContext";
 // import jwtDecode from "jwt-decode";
 
@@ -21,32 +21,79 @@ const MatchFilter = () => {
   const [dataToFilter, setDataToFilter] = useState({
     meetingInt: [],
     ageRange: [],
+    sexPreference: "",
+    user_id: "",
   });
+  const [defaultDataToFilter, setDefaultDataToFilter] = useState({
+    meetingInt: [],
+    ageRange: [],
+    sexPreference: "",
+    user_id: "",
+  });
+
   const {
     getDataByFilter,
     users,
-    decodeFromToken,
     merryListUser,
     merryList,
     getAllUsers,
     filterData,
+    eachUser,
+    getEachUser,
   } = useSwipe();
 
   useEffect(() => {
     getAllUsers();
-    setMeetingIntArr(meetingIntArr);
-    setDataToFilter({ meetingInt: meetingIntArr, ageRange });
-    // console.log(dataToFilter);
-  }, [meetingIntArr]);
+    getEachUser();
+  }, []);
+
+  useEffect(() => {
+    setMeetingIntArr([eachUser.meeting_int]);
+    setDataToFilter({
+      meetingInt: meetingIntArr,
+      ageRange,
+      sexPreference: eachUser.sex_pref,
+      user_id: eachUser.user_id,
+    });
+  }, [eachUser]);
+
+  console.log(dataToFilter);
+  console.log(meetingIntArr);
+  // console.log(defaultDataToFilter);
+
+  useEffect(() => {
+    getDataByFilter(dataToFilter);
+  }, [dataToFilter]);
+
+  // useEffect(() => {
+  //   // setMeetingIntArr([...meetingIntArr, eachUser.meeting_int]);
+  //   // setMeetingIntArr(meetingIntArr);
+  //   setDataToFilter({
+  //     meetingInt: [...meetingIntArr, eachUser.meeting_int],
+  //     ageRange,
+  //     sexPreference: eachUser.sex_pref,
+  //     user_id: eachUser.user_id,
+  //   });
+  // }, [eachUser]);
 
   // console.log("all users", users);
+  console.log("dataToFilter", dataToFilter);
   // console.log("filterData", filterData);
+  // console.log("each user", eachUser);
 
   const handleAgeRange = (val) => {
-    console.log(val);
+    // console.log(val);
     setAgeRange(val);
     console.log(ageRange);
   };
+
+  const updateAgeRange = useMemo(() => {
+    handleAgeRange(ageRange);
+    setDataToFilter({
+      ...dataToFilter,
+      ageRange,
+    });
+  }, [ageRange]);
 
   return (
     <div className="w-[28%] h-[46.9rem] bg-white z-40">
@@ -61,16 +108,22 @@ const MatchFilter = () => {
               value="Friend"
               onChange={(e) => {
                 console.log([e.target.value, e.target.checked]);
-                if (e.target.checked) {
-                  meetingIntArr.push(e.target.value);
-                  console.log(meetingIntArr);
-                } else {
-                  const result = meetingIntArr.filter((interest) => {
-                    return interest !== e.target.value;
+                if (!meetingIntArr.includes(e.target.value)) {
+                  if (e.target.checked) {
+                    meetingIntArr.push(e.target.value);
+                  } else {
+                    const result = meetingIntArr.filter((interest) => {
+                      return interest !== e.target.value;
+                    });
+                    setMeetingIntArr(result);
+                  }
+                  setDataToFilter({
+                    ...dataToFilter,
+                    meetingInt: meetingIntArr,
                   });
-                  setMeetingIntArr(result);
+                  console.log(meetingIntArr);
+                  console.log(dataToFilter);
                 }
-                console.log(meetingIntArr);
               }}
             >
               Friend
@@ -80,15 +133,22 @@ const MatchFilter = () => {
               value="FWB"
               onChange={(e) => {
                 console.log([e.target.value, e.target.checked]);
-                if (e.target.checked) {
-                  meetingIntArr.push(e.target.value);
-                } else {
-                  const result = meetingIntArr.filter((interest) => {
-                    return interest !== e.target.value;
+                if (!meetingIntArr.includes(e.target.value)) {
+                  if (e.target.checked) {
+                    meetingIntArr.push(e.target.value);
+                  } else {
+                    const result = meetingIntArr.filter((interest) => {
+                      return interest !== e.target.value;
+                    });
+                    setMeetingIntArr(result);
+                  }
+                  setDataToFilter({
+                    ...dataToFilter,
+                    meetingInt: meetingIntArr,
                   });
-                  setMeetingIntArr(result);
+                  console.log(meetingIntArr);
+                  console.log(dataToFilter);
                 }
-                console.log(meetingIntArr);
               }}
             >
               FWB
@@ -98,15 +158,22 @@ const MatchFilter = () => {
               value="ONS"
               onChange={(e) => {
                 console.log([e.target.value, e.target.checked]);
-                if (e.target.checked) {
-                  meetingIntArr.push(e.target.value);
-                } else {
-                  const result = meetingIntArr.filter((interest) => {
-                    return interest !== e.target.value;
+                if (!meetingIntArr.includes(e.target.value)) {
+                  if (e.target.checked) {
+                    meetingIntArr.push(e.target.value);
+                  } else {
+                    const result = meetingIntArr.filter((interest) => {
+                      return interest !== e.target.value;
+                    });
+                    setMeetingIntArr(result);
+                  }
+                  setDataToFilter({
+                    ...dataToFilter,
+                    meetingInt: meetingIntArr,
                   });
-                  setMeetingIntArr(result);
+                  console.log(meetingIntArr);
+                  console.log(dataToFilter);
                 }
-                console.log(meetingIntArr);
               }}
             >
               ONS
@@ -116,15 +183,22 @@ const MatchFilter = () => {
               value="Long-term"
               onChange={(e) => {
                 console.log([e.target.value, e.target.checked]);
-                if (e.target.checked) {
-                  meetingIntArr.push(e.target.value);
-                } else {
-                  const result = meetingIntArr.filter((interest) => {
-                    return interest !== e.target.value;
+                if (!meetingIntArr.includes(e.target.value)) {
+                  if (e.target.checked) {
+                    meetingIntArr.push(e.target.value);
+                  } else {
+                    const result = meetingIntArr.filter((interest) => {
+                      return interest !== e.target.value;
+                    });
+                    setMeetingIntArr(result);
+                  }
+                  setDataToFilter({
+                    ...dataToFilter,
+                    meetingInt: meetingIntArr,
                   });
-                  setMeetingIntArr(result);
+                  console.log(meetingIntArr);
+                  console.log(dataToFilter);
                 }
-                console.log(meetingIntArr);
               }}
             >
               Long-term Relationship
@@ -134,15 +208,22 @@ const MatchFilter = () => {
               value="Short-term"
               onChange={(e) => {
                 console.log([e.target.value, e.target.checked]);
-                if (e.target.checked) {
-                  meetingIntArr.push(e.target.value);
-                } else {
-                  const result = meetingIntArr.filter((interest) => {
-                    return interest !== e.target.value;
+                if (!meetingIntArr.includes(e.target.value)) {
+                  if (e.target.checked) {
+                    meetingIntArr.push(e.target.value);
+                  } else {
+                    const result = meetingIntArr.filter((interest) => {
+                      return interest !== e.target.value;
+                    });
+                    setMeetingIntArr(result);
+                  }
+                  setDataToFilter({
+                    ...dataToFilter,
+                    meetingInt: meetingIntArr,
                   });
-                  setMeetingIntArr(result);
+                  console.log(meetingIntArr);
+                  console.log(dataToFilter);
                 }
-                console.log(meetingIntArr);
               }}
             >
               Short-term Relationship
@@ -160,7 +241,7 @@ const MatchFilter = () => {
           min={18}
           max={55}
           step={1}
-          onChange={(val) => {
+          onChangeEnd={(val) => {
             handleAgeRange(val);
           }}
           mt={7}
@@ -220,11 +301,22 @@ const MatchFilter = () => {
         </div>
       </div>
       <div className=" flex flex-row justify-center items-center">
-        <button className="text-[#C70039] font-[700] w-[99px] h-[48px]">
+        <button
+          className="text-[#C70039] font-[700] w-[99px] h-[48px] hover:text-[#FF1659]"
+          onClick={() => {
+            setMeetingIntArr([eachUser.meeting_int]);
+            setDataToFilter({
+              meetingInt: meetingIntArr,
+              ageRange,
+              sexPreference: eachUser.sex_pref,
+              user_id: eachUser.user_id,
+            });
+          }}
+        >
           Clear
         </button>
         <button
-          className="bg-[#C70039] rounded-[99px] text-[white] font-[700] w-[99px] h-[48px]"
+          className="bg-[#C70039] rounded-[99px] text-[white] font-[700] w-[99px] h-[48px] hover:bg-[#FF1659]"
           onClick={() => {
             console.log("Filter data by", dataToFilter);
             getDataByFilter(dataToFilter);
