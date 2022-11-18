@@ -22,7 +22,7 @@ const MerryList = () => {
   const [isLoading, setIsloading] = useState("NoUser");
   const [userList, setUserList] = useState([]);
   const [modalId, setModalId] = useState(null);
-  
+
   const [matchId, setMatchId] = useState([]);
 
   const [preview, setPreview] = useState(false);
@@ -71,19 +71,17 @@ const MerryList = () => {
 
   const handleLike = (id) => {
     const unSwipeType = [...userList];
-    unSwipeType[id].swipe_type = false
+    unSwipeType[id].swipe_type = false;
     setUserList(unSwipeType);
   };
 
-  const handleUnLike  = (id) => {
+  const handleUnLike = (id) => {
     const unSwipeType = [...userList];
-    unSwipeType[id].swipe_type = true
+    unSwipeType[id].swipe_type = true;
     setUserList(unSwipeType);
   };
 
-  console.log(userList)
-
-
+  console.log(userList);
 
   useEffect(() => {
     isData();
@@ -198,10 +196,12 @@ const MerryList = () => {
                           </div>
                         )}
                         <div className="flex mt-[25px]">
-                          <button className="w-[48px] h-[48px] bg-white rounded-lg flex justify-center items-center drop-shadow-xl mr-[16px]">
-                            {" "}
-                            <img src={chat} alt="" />
-                          </button>
+                          {user.status === "match" ? (
+                            <button className="w-[48px] h-[48px] bg-white rounded-lg flex justify-center items-center drop-shadow-xl mr-[16px]">
+                              {" "}
+                              <img src={chat} alt="" />
+                            </button>
+                          ) : null}
                           <button
                             className="w-[48px] h-[48px] bg-white rounded-lg flex justify-center items-center drop-shadow-xl mr-[16px]"
                             onClick={(event) => {
@@ -214,26 +214,30 @@ const MerryList = () => {
                             <img src={view} alt="" />
                           </button>
                           {user.swipe_type === true ? (
-                              <button
+                            <button
                               className="w-[48px] h-[48px] bg-[#C70039] rounded-lg flex justify-center items-center drop-shadow-xl mr-[16px]"
                               onClick={() => {
-                                handleLike(index)
+                                handleLike(index);
                               }}
                             >
                               {" "}
-                              <img src={heartWhite} className="ml-[5px]" alt="" />
+                              <img
+                                src={heartWhite}
+                                className="ml-[5px] mt-[5px]"
+                                alt=""
+                              />
                             </button>
-                          ):(
-                            <button className="w-[48px] h-[48px] bg-white  rounded-lg flex justify-center items-center drop-shadow-xl mr-[16px]"
-                            onClick={() => {
-                              handleUnLike(index)
-                            }}>
-                            {" "}
-                            <img src={heartRed} className="ml-[5px]" alt="" />
-                          </button>
+                          ) : (
+                            <button
+                              className="w-[48px] h-[48px] bg-white  rounded-lg flex justify-center items-center drop-shadow-xl mr-[16px]"
+                              onClick={() => {
+                                handleUnLike(index);
+                              }}
+                            >
+                              {" "}
+                              <img src={heartRed} className="ml-[5px] mt-[5px]" alt="" />
+                            </button>
                           )}
-                        
-
                         </div>
                       </div>
                     </div>
