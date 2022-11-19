@@ -15,55 +15,61 @@ import { useSwipe } from "../../contexts/swipeContext";
 // import jwtDecode from "jwt-decode";
 
 const MatchFilter = () => {
-  const [ageRange, setAgeRange] = useState([20, 30]);
-  const [meetingIntArr, setMeetingIntArr] = useState([]);
-  const [userData, setUserData] = useState({});
-  const [dataToFilter, setDataToFilter] = useState({
-    meetingInt: [],
-    ageRange: [],
-    sexPreference: "",
-    user_id: "",
-  });
-  const [defaultDataToFilter, setDefaultDataToFilter] = useState({
-    meetingInt: [],
-    ageRange: [],
-    sexPreference: "",
-    user_id: "",
-  });
 
   const {
     getDataByFilter,
     users,
-    merryListUser,
-    merryList,
     getAllUsers,
     filterData,
     eachUser,
     getEachUser,
   } = useSwipe();
 
-  useEffect(() => {
-    getAllUsers();
-    getEachUser();
-  }, []);
+  // console.log(eachUser)
 
-  useEffect(() => {
-    setMeetingIntArr([eachUser.meeting_int]);
-    setDataToFilter({
-      meetingInt: meetingIntArr,
-      ageRange,
-      sexPreference: eachUser.sex_pref,
-      user_id: eachUser.user_id,
-    });
-  }, [eachUser]);
 
-  console.log(dataToFilter);
-  console.log(meetingIntArr);
+
+  // console.log("Match Fileter rendered!")
+  const [ageRange, setAgeRange] = useState([18, eachUser.user_age + 10]);
+  const [meetingIntArr, setMeetingIntArr] = useState([]);
+  const [userData, setUserData] = useState({});
+  const [defaultMeet, setDefaultMeet] = useState("")
+  const [dataToFilter, setDataToFilter] = useState({
+    meetingInt: [eachUser.meeting_int],
+    ageRange: [eachUser.user_age - 10 , eachUser.user_age + 10 ],
+    sexPreference: eachUser.sex_pref,
+    user_id: eachUser.user_id,
+  });
+  // console.log(dataToFilter)
+  // useEffect(() => {
+  //   getAllUsers();
+  //   getEachUser();
+  // }, []);
+  
+
+
+  // console.log(ageRange)
+  // useEffect(() => {
+  //   setMeetingIntArr([eachUser.meeting_int]);
+  //   setDataToFilter({
+  //     meetingInt: meetingIntArr,
+  //     ageRange,
+  //     sexPreference: eachUser.sex_pref,
+  //     user_id: eachUser.user_id,
+  //   });
+  // }, [eachUser]);
+
+
+  // console.log([eachUser.meeting_int])
+  // console.log(meetingIntArr);
   // console.log(defaultDataToFilter);
 
-  useEffect(() => {
-    getDataByFilter(dataToFilter);
-  }, [dataToFilter]);
+  // useEffect(() => {
+ 
+  //   // console.log(dataToFilter);
+  //   getDataByFilter(dataToFilter);
+  //   setDefaultMeet(eachUser.meeting_int)
+  // }, [dataToFilter, defaultMeet]);
 
   // useEffect(() => {
   //   // setMeetingIntArr([...meetingIntArr, eachUser.meeting_int]);
@@ -77,14 +83,14 @@ const MatchFilter = () => {
   // }, [eachUser]);
 
   // console.log("all users", users);
-  console.log("dataToFilter", dataToFilter);
+  // console.log("dataToFilter", dataToFilter);
   // console.log("filterData", filterData);
   // console.log("each user", eachUser);
+  // console.log(defaultMeet)
 
   const handleAgeRange = (val) => {
-    // console.log(val);
     setAgeRange(val);
-    console.log(ageRange);
+    // console.log(ageRange);
   };
 
   const updateAgeRange = useMemo(() => {
@@ -95,10 +101,17 @@ const MatchFilter = () => {
     });
   }, [ageRange]);
 
+ 
+
+  useEffect(()=>{
+    setUserData(eachUser)
+
+  },[dataToFilter])
+
   return (
-    <div className="w-[28%] h-[46.9rem] bg-white z-40">
+    <div className="w-[400px] h-full bg-white z-40">
       <div className="meeting-interest mt-[140px] ml-[18px] h-[80uh] w-[80%]">
-        <CheckboxGroup colorScheme="green">
+        <CheckboxGroup colorScheme="green" defaultValue={[eachUser.meeting_int]}>
           <Text fontWeight={700} color="#191C77" mb={3}>
             Meeting Interests
           </Text>
@@ -236,7 +249,7 @@ const MatchFilter = () => {
           Age Range
         </Text>
         <RangeSlider
-          defaultValue={[20, 30]}
+          defaultValue={[18, eachUser.user_age + 10]}
           aria-label={["18", "55"]}
           min={18}
           max={55}
@@ -247,7 +260,7 @@ const MatchFilter = () => {
           mt={7}
         >
           <RangeSliderMark
-            defaultValue={20}
+            defaultValue={18  }
             value={ageRange[0]}
             borderRadius="18"
             textAlign="center"
@@ -261,7 +274,7 @@ const MatchFilter = () => {
             {ageRange[0]}
           </RangeSliderMark>
           <RangeSliderMark
-            defaultValue={30}
+            defaultValue={eachUser.user_age + 10}
             value={ageRange[1]}
             borderRadius="18"
             textAlign="center"

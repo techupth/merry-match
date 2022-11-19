@@ -11,6 +11,7 @@ import xLogo from "../../../public/asset/editModalItems/xLogo.svg";
 
 const Swipe = () => {
   // import filterData มาให้แล้ว แล้วต้องนำลงมา map ลงหน้าแผน swipe
+  // console.log("swipe compoenent rendered!!")
   const {
     getAllUsers,
     users,
@@ -18,27 +19,32 @@ const Swipe = () => {
     getDataByFilter,
     getEachUser,
     eachUser,
+    indexUsers,
   } = useSwipe();
-  const [currentIndex, setCurrentIndex] = useState(filterData.length - 1);
+
+  // console.log(indexUsers, "from swipe");
+  const [currentIndex, setCurrentIndex] = useState(filterData.data.length - 1 );
   const [lastDirection, setLastDirection] = useState();
   const [step, setStep] = useState(0);
   const [currenId, setCurrenId] = useState([]);
   const [isLoading, setIsloading] = useState("NoUser");
 
-  console.log("filter Data at Swipe", filterData);
-
+  // console.log("filter Data at Swipe", filterData);
+  // console.log(users)
+  // console.log("current",currentIndex);
   // used for outOfFrame closure
   const currentIndexRef = useRef(currentIndex);
   // console.log(currentIndexRef)
   // useMemo
   const childRefs = useMemo(
     () =>
-      Array(filterData.length)
+      Array(filterData.data.length)
         .fill(0)
         .map((i) => React.createRef()),
     [filterData]
   );
-
+    
+  // console.log(childRefs)
   const updateCurrentIndex = (val) => {
     setCurrentIndex(val);
     currentIndexRef.current = val;
@@ -52,7 +58,7 @@ const Swipe = () => {
   const swiped = (direction, index) => {
     setLastDirection(direction);
     updateCurrentIndex(index - 1);
-    console.log(index);
+    // console.log(index);
   };
 
   const outOfFrame = (name, idx) => {
@@ -66,24 +72,24 @@ const Swipe = () => {
 
   //   Handle pictures
   const handleNext = (index) => {
-    if (step !== filterData[index - 1].profile_pics.length - 1) {
+    if (step !== filterData.data[index].profile_pics.length - 1) {
+      console.log(step)
       setStep(step + 1);
     }
   };
 
   const handleBack = (index) => {
     if (step !== 0) {
+      console.log(step)
       setStep(step - 1);
     }
   };
 
-  console.log(currentIndex);
-  
   // Swipe
   const swipe = async (dir) => {
-    if (currentIndex < filterData.length) {
+    if (currentIndex < filterData.data.length) {
       await childRefs[currentIndex].current.swipe(dir); // Swipe the card!
-      setCurrentIndex(currentIndex - 1);
+      setCurrentIndex(currentIndex - 1)
     }
   };
 
@@ -96,13 +102,13 @@ const Swipe = () => {
   // };
 
   return (
-    <div className="w-[100%] h-[46.9rem] bg-[#160404] flex justify-center items-start overflow-hidden overflow-x-hidden z-30">
+    <div className="w-full h-full bg-[#160404] flex justify-center items-start overflow-hidden overflow-x-hidden">
       <div className="overflow-hidden">
-        <div className="cardContainer text-[white] w-[25rem] h-[25rem] overflow-hidden mt-[30%]">
-          {filterData.map((user, index) => (
+        <div className="cardContainer text-[white] w-[25rem] h-[25rem] overflow-hidden mt-[30%] ">
+          {filterData.data.map((user, index) => (
             <TinderCard
               ref={childRefs[index]}
-              className="swipe"
+              className="swipe absolute top-[140px] left-[32%]"
               key={user.name}
               onSwipe={(dir) => swiped(dir, index)}
               onCardLeftScreen={() => {
@@ -110,12 +116,16 @@ const Swipe = () => {
                 setStep(0);
                 setCurrenId(index);
               }}
+              swipeRequirementType="position"
+              swipeThreshold={100}
+              children ={4}
+              
             >
               <div
                 style={{
                   backgroundImage: "url(" + user.profile_pics[step] + ")",
                 }}
-                className="card w-[28.75rem] h-[28.75rem] bg-cover bg-center rounded-[32px] overflow-hidden flex flex-row items-end relative z-0"
+                className="card w-[46rem] h-[46rem] bg-cover bg-center rounded-[32px] overflow-hidden  items-end flex flex-row z-0"
               >
                 <div className="text-[30px]">{currentIndex}</div>
                 <div className="flex flex-row z-40 w-full">
@@ -134,7 +144,7 @@ const Swipe = () => {
                 <div className="arrow-buttons absolute right-[5%] space-x-6 bottom-[6%] z-40 ">
                   <button
                     onClick={() => {
-                      handleBack(currenId);
+                      handleBack(index);
                     }}
                   >
                     <img src={arrowLeftWhite} className="w-[1rem] h-[1rem]" />
@@ -142,7 +152,7 @@ const Swipe = () => {
 
                   <button
                     onClick={() => {
-                      handleNext(currenId);
+                      handleNext(index);
                     }}
                   >
                     <img src={arrowRightWhite} className="w-[1rem] h-[1rem]" />

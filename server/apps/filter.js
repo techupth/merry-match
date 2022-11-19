@@ -9,7 +9,7 @@ filterRouter.get("/:userId", async (req, res) => {
   console.log(req);
   console.log(userId);
   const eachUserData = await pool.query(
-    `select user_id,name,meeting_int,sex_pref from users where user_id=$1`,
+    `select user_id,name,meeting_int,sex_pref,user_age from users where user_id=$1`,
     [userId]
   );
   return res.json({

@@ -48,7 +48,7 @@ const MerryList = () => {
     const userList = [...data];
 
     swipeId.map((id) => {
-      console.log(id);
+      // console.log(id);
       for (let i = 0; i < data.length; i++) {
         if (data[i].user_id === id) {
           const user = {

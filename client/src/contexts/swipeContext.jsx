@@ -7,11 +7,16 @@ export const SwipeContext = React.createContext();
 
 const SwipeProvider = (props) => {
   const [userData, setUserData] = useState({});
-  const [filterData, setFilterData] = useState([]);
+  const [filterData, setFilterData] = useState({
+    loading : null,
+    data : [],
+    err : null
+  });
   const [eachUser, setEachUser] = useState({});
   const [users, setUsers] = useState([]);
   const [merryListUser, setMerryListUser] = useState([]);
   const [matchId, setMatchId] = useState([]);
+  const [indexUsers, setIndexUsers] = useState(0);
 
   const getAllUsers = async () => {
     const result = await axios.get("http://localhost:4001/swipe");
@@ -23,25 +28,45 @@ const SwipeProvider = (props) => {
   const getEachUser = async () => {
     const token = localStorage.getItem("token");
     const userData = jwtDecode(token);
-    console.log(userData.user_id);
+    // console.log(userData.user_id);
 
     const eachUserResult = await axios.get(
       `http://localhost:4001/filter/${userData.user_id}`
     );
-    console.log(eachUserResult.data.data[0], "get each user");
+    // console.log(eachUserResult.data.data[0], "get each user");
     setEachUser(eachUserResult.data.data[0]);
-    return eachUser;
+    // console.log(
+    //   eachUserResult.data.data[0].user_age - 10,
+    //   eachUserResult.data.data[0].user_age + 10
+    // );
+    getDataByFilter({
+      ageRange: [
+        eachUserResult.data.data[0].user_age - 10,
+        eachUserResult.data.data[0].user_age + 10,
+      ],
+      meetingInt: [eachUserResult.data.data[0].meeting_int],
+      sexPreference: eachUserResult.data.data[0].sex_pref,
+      user_id: eachUserResult.data.data[0].user_id,
+    });
+    return eachUserResult.data.data[0];
   };
-  console.log("each User", eachUser);
+  // console.log("each User", eachUser);
 
   const getDataByFilter = async (data) => {
-    // console.log(data);
-    const filteredData = await axios.post("http://localhost:4001/filter", data);
-    console.log("filter data", filteredData.data.data);
-    setFilterData(filteredData.data.data);
-    // return filterData;
+    try {
+      console.log(data);
+      setFilterData({...filterData, loading : true});
+      const filteredData = await axios.post("http://localhost:4001/filter", data);
+      // console.log("filter data", filteredData.data.data);
+      // setIndexUsers(filteredData.data.data.length)
+      setFilterData({...filterData, data : filteredData.data.data, loading : null });
+      // console.log(filteredData.data.data)
+    } catch (err) {
+      setFilterData({...filterData, err : true});
+      console.log(err);
+    }
   };
-  console.log("Filter Success", filterData);
+  // console.log("Filter Success", filterData);
 
   const merryList = async () => {
     const token = localStorage.getItem("token");
@@ -52,10 +77,10 @@ const SwipeProvider = (props) => {
         params: userData,
       }
     );
-    console.log("merryList success", result);
+    // console.log("merryList success", result);
     // console.log(result)
     setMatchId(result.data.isMatchId);
-    console.log("merryList success", result);
+    // console.log("merryList success", result);
     setMerryListUser(result.data.data);
     const matchList = result.data.data;
     const matchId = result.data.isMatchId;
@@ -76,6 +101,7 @@ const SwipeProvider = (props) => {
         matchId,
         filterData,
         getEachUser,
+        indexUsers,
       }}
     >
       {props.children}
