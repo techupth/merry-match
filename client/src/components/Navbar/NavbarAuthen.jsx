@@ -31,7 +31,7 @@ const NavbarAuthen = () => {
   return (
     <div
       ref={ref}
-      className="NavAuthen bg-white absolute flex flex-row items-center justify-between w-full h-[88px] text-[16px] font-bold z-50  shadow-[2px_2px_12px_0_rgba(64,50,133,0.12)]"
+      className="NavAuthen bg-white absolute flex flex-row items-center justify-between w-full h-[120px] text-[16px] font-bold z-50  shadow-[2px_2px_12px_0_rgba(64,50,133,0.12)]"
     >
       <button
         onClick={() => {

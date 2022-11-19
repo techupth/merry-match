@@ -23,7 +23,7 @@ const Swipe = () => {
   } = useSwipe();
 
   // console.log(indexUsers, "from swipe");
-  const [currentIndex, setCurrentIndex] = useState(filterData.data.length - 1 );
+  const [currentIndex, setCurrentIndex] = useState(filterData.data.length - 1);
   const [lastDirection, setLastDirection] = useState();
   const [step, setStep] = useState(0);
   const [currenId, setCurrenId] = useState([]);
@@ -43,7 +43,7 @@ const Swipe = () => {
         .map((i) => React.createRef()),
     [filterData]
   );
-    
+
   // console.log(childRefs)
   const updateCurrentIndex = (val) => {
     setCurrentIndex(val);
@@ -73,14 +73,14 @@ const Swipe = () => {
   //   Handle pictures
   const handleNext = (index) => {
     if (step !== filterData.data[index].profile_pics.length - 1) {
-      console.log(step)
+      console.log(step);
       setStep(step + 1);
     }
   };
 
   const handleBack = (index) => {
     if (step !== 0) {
-      console.log(step)
+      console.log(step);
       setStep(step - 1);
     }
   };
@@ -89,7 +89,7 @@ const Swipe = () => {
   const swipe = async (dir) => {
     if (currentIndex < filterData.data.length) {
       await childRefs[currentIndex].current.swipe(dir); // Swipe the card!
-      setCurrentIndex(currentIndex - 1)
+      setCurrentIndex(currentIndex - 1);
     }
   };
 
@@ -118,8 +118,7 @@ const Swipe = () => {
               }}
               swipeRequirementType="position"
               swipeThreshold={100}
-              children ={4}
-              
+              children={4}
             >
               <div
                 style={{
@@ -128,7 +127,7 @@ const Swipe = () => {
                 className="card w-[46rem] h-[46rem] bg-cover bg-center rounded-[32px] overflow-hidden  items-end flex flex-row z-0"
               >
                 <div className="text-[30px]">{currentIndex}</div>
-                <div className="flex flex-row z-40 w-full">
+                <div className="flex flex-row z-[0] w-full">
                   <h3 className="text-[white] text-[1.5rem] m-[5%] mr-[0] font-[700]">
                     {user.name}
                   </h3>
@@ -160,18 +159,21 @@ const Swipe = () => {
                 </div>
               </div>
 
-              <div className="button flex flex-row items-center justify-center space-x-3 overflow-hidden z-10 mt-[-25%]   ">
+              <div className="button flex flex-row items-center justify-center space-x-3 overflow-hidden  top-[90%] right-[35%] z-60 absolute   ">
                 <button
-                  className="XButton w-[4rem] h-[4rem] drop-shadow-2xl mt-[20%]  bg-white rounded-[30%] flex justify-center items-center hover:bg-[#2A2E3F] z-10"
+                  className="XButton w-[80px] h-[80px] drop-shadow-2xl mr-[10px] mt-[20%]  bg-white rounded-[30%] flex justify-center items-center hover:bg-[#2A2E3F] z-70"
                   onClick={() => swipe("left", index)}
                 >
                   <img src={xLogo} />
                 </button>
 
                 <button
-                  className="HeartButton w-[4rem] h-[4rem] drop-shadow-2xl mt-[20%]  bg-white rounded-[30%] flex justify-center items-center hover:bg-[#FFB1C8] z-10"
+                  className="HeartButton w-[80px] h-[80px] drop-shadow-2xl mt-[20%]  bg-white rounded-[30%] flex justify-center items-center hover:bg-[#FFB1C8] z-70"
                   onClick={() => {
-                    swipe("right", index);
+                    // swipe("right", index);
+                    setTimeout(() => {
+                      swipe("right", index);
+                    }, 1000);
                   }}
                 >
                   <img src={heartLogo} className="ml-1 mt-1" />

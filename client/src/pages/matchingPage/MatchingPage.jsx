@@ -26,8 +26,8 @@ const MatchingPage = () => {
 
   return (
     <RemoveScroll>
-      <div className="w-[100%] h-[1000px] overflow-hidden flex flex-row-reverse justify-end items-start">
-        {isLoading === true ? <div>Loading</div> : isLoading === "data" ?<><MatchFilter /></>:null}
+      <div className="w-[100%] h-[1000px] overflow-hidden flex flex-row-reverse justify-center items-center">
+        {isLoading === true ? null : isLoading === "data" ?<><MatchFilter /></>:null}
         
         {filterData.loading === true ? (
           
