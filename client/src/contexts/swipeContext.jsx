@@ -54,7 +54,6 @@ const SwipeProvider = (props) => {
 
   const getDataByFilter = async (data) => {
     try {
-      console.log(data);
       setFilterData({...filterData, loading : true});
       const filteredData = await axios.post("http://localhost:4001/filter", data);
       // console.log("filter data", filteredData.data.data);
@@ -86,7 +85,18 @@ const SwipeProvider = (props) => {
     const matchId = result.data.isMatchId;
     return { matchList, matchId };
   };
-  // console.log(merryListUser);
+
+  const postSwipe = async(index,type) =>{
+    const userId = eachUser.user_id
+    const swipeData = {
+      swiper : userId,
+      swipe_type : type,
+      swipee : filterData.data[index].user_id
+    }
+    console.log(swipeData)
+    const respone = await axios.post(`http://localhost:4001/swipe/`,swipeData)
+    console.log(respone.data.message)
+  }
 
   return (
     <SwipeContext.Provider
@@ -102,6 +112,7 @@ const SwipeProvider = (props) => {
         filterData,
         getEachUser,
         indexUsers,
+        postSwipe,
       }}
     >
       {props.children}

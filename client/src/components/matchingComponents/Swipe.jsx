@@ -20,6 +20,7 @@ const Swipe = () => {
     getEachUser,
     eachUser,
     indexUsers,
+    postSwipe,
   } = useSwipe();
 
   // console.log(indexUsers, "from swipe");
@@ -162,7 +163,10 @@ const Swipe = () => {
               <div className="button flex flex-row items-center justify-center space-x-3 overflow-hidden  top-[90%] right-[35%] z-60 absolute   ">
                 <button
                   className="XButton w-[80px] h-[80px] drop-shadow-2xl mr-[10px] mt-[20%]  bg-white rounded-[30%] flex justify-center items-center hover:bg-[#2A2E3F] z-70"
-                  onClick={() => swipe("left", index)}
+                  onClick={() =>{ 
+                    swipe("left", index)
+                    postSwipe(index, false)
+                }}
                 >
                   <img src={xLogo} />
                 </button>
@@ -173,6 +177,7 @@ const Swipe = () => {
                     // swipe("right", index);
                     setTimeout(() => {
                       swipe("right", index);
+                      postSwipe(index, true);
                     }, 1000);
                   }}
                 >

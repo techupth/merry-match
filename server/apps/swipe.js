@@ -40,4 +40,31 @@ swipeRouter.get("/", async (req, res) => {
   }
 });
 
+swipeRouter.post("/", async (req, res) => {
+  const swiperId = req.body.swiper;
+  const swipeData = {
+    ...req.body,
+    swipe_at: new Date(),
+  };
+
+  console.log(swipeData);
+
+  await pool.query(
+    `
+  insert into swipe (swiper,swipe_type, swipee ,swipe_at)
+  values ($1,$2, $3,$4)
+  `,
+    [
+      swipeData.swiper,
+      swipeData.swipe_type,
+      swipeData.swipee,
+      swipeData.swipe_at,
+    ]
+  );
+
+  return res.json({
+    message: `User Id : ${swiperId} has swipe Id : ${swipeData.swipee} Sucessful!!`,
+  });
+});
+
 export default swipeRouter;
