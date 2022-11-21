@@ -67,13 +67,30 @@ swipeRouter.post("/", async (req, res) => {
   });
 });
 
+swipeRouter.delete("/", async (req, res) => {
+  try {
+    const arr = req.query.request;
+    if (arr !== "") {
+      const spiltArr = req.query.request.split(",");
 
-swipeRouter.delete("/",async(req,res)=>{
-    console.log(req.query.request)
-    
+      for (let i = 0; i < spiltArr.length; i++) {
+        // console.log(arr[i])
+        await pool.query(
+          `
+      DELETE FROM swipe
+      WHERE swipe_id IN ($1)
+      `,
+          [spiltArr[i]]
+        );
+      }
+    }
+
     return res.json({
-      message : "Delete UnMath successful!! "
-    })
-})
+      message: "Delete UnMath successful!! ",
+    });
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 export default swipeRouter;

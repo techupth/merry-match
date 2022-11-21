@@ -7,12 +7,13 @@ import logouticon from "../../../public/asset/NavBarIcon/logout.svg";
 import compliant from "../../../public/asset/NavBarIcon/compliant.svg";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/authentication";
+import { useSwipe } from "../../contexts/swipeContext";
 
 // Using by redering to Nav page
 
 function UserPopup({ close }) {
   const navigate = useNavigate();
-
+  const { deleteMatch, unMatch} = useSwipe()
   const { logout } = useAuth();
 
   return (
@@ -61,7 +62,9 @@ function UserPopup({ close }) {
             <span className="flex flex-col">
               <span
                 onClick={() => {
-                  navigate("/merrylist");
+                  navigate("/merrylist")
+                  deleteMatch(unMatch)
+                  
                 }}
               >
                 Merry list
