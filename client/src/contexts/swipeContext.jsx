@@ -125,8 +125,10 @@ const SwipeProvider = (props) => {
     console.log(response.data.message);
   };
 
+  console.log(unMatch);
+
   const deleteMatch = async (arr) => {
-    const request = [...arr];
+    const request = arr;
     console.log(request);
     const response = await axios.delete(
       `http://localhost:4001/swipe/?request=${request}`
