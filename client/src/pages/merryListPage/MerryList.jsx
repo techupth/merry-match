@@ -17,7 +17,7 @@ import EditModal from "../../components/merryListComponents/EditModal";
 import { useSwipe } from "../../contexts/swipeContext";
 
 const MerryList = () => {
-  const { merryList, merryListUser } = useSwipe();
+  const { merryList, merryListUser,deleteMatch, setUnMatch } = useSwipe();
 
   const [isLoading, setIsloading] = useState("NoUser");
   const [userList, setUserList] = useState([]);
@@ -26,6 +26,8 @@ const MerryList = () => {
   const [matchId, setMatchId] = useState([]);
 
   const [preview, setPreview] = useState(false);
+
+  const [deleteId, setDeleteId] = useState([]);
 
   const isData = async () => {
     try {
@@ -81,11 +83,31 @@ const MerryList = () => {
     setUserList(unSwipeType);
   };
 
-  console.log(userList);
+  const handlePushUpMatchId = (index) => {
+    setDeleteId([...deleteId, userList[index].swipe_id])
+  };
 
+  const handlepulloutMatchId = (index) =>{
+    const arr = [...deleteId]
+    const newarr = arr.filter((value) => value !== userList[index].swipe_id)
+    setDeleteId(newarr)
+  }
+
+ const handleDeleteSwipe = () =>{
+  const unLikeList = [...deleteId]
+  setUnMatch(unLikeList)
+ } 
+
+
+ 
   useEffect(() => {
     isData();
+    
   }, []);
+
+  useEffect(()=>{
+    handleDeleteSwipe()
+  }, [deleteId])
 
   return (
     <>
@@ -218,6 +240,7 @@ const MerryList = () => {
                               className="w-[48px] h-[48px] bg-[#C70039] rounded-lg flex justify-center items-center drop-shadow-xl mr-[16px]"
                               onClick={() => {
                                 handleLike(index);
+                                handlePushUpMatchId(index);
                               }}
                             >
                               {" "}
@@ -232,10 +255,15 @@ const MerryList = () => {
                               className="w-[48px] h-[48px] bg-white  rounded-lg flex justify-center items-center drop-shadow-xl mr-[16px]"
                               onClick={() => {
                                 handleUnLike(index);
+                                handlepulloutMatchId(index)
                               }}
                             >
                               {" "}
-                              <img src={heartRed} className="ml-[5px] mt-[5px]" alt="" />
+                              <img
+                                src={heartRed}
+                                className="ml-[5px] mt-[5px]"
+                                alt=""
+                              />
                             </button>
                           )}
                         </div>

@@ -17,6 +17,7 @@ const SwipeProvider = (props) => {
   const [merryListUser, setMerryListUser] = useState([]);
   const [matchId, setMatchId] = useState([]);
   const [indexUsers, setIndexUsers] = useState(0);
+  const [unMatch, setUnMatch] = useState([]);
 
   const getAllUsers = async () => {
     const result = await axios.get("http://localhost:4001/swipe");
@@ -82,7 +83,7 @@ const SwipeProvider = (props) => {
       });
       console.log(filteredData.data.data);
     } catch (err) {
-      // setFilterData({ ...filterData, err: true });
+      setFilterData({ ...filterData, err: true });
       console.log(err);
     }
   };
@@ -104,6 +105,7 @@ const SwipeProvider = (props) => {
     setMerryListUser(result.data.data);
     const matchList = result.data.data;
     const matchId = result.data.isMatchId;
+
     return { matchList, matchId };
   };
 
@@ -115,8 +117,20 @@ const SwipeProvider = (props) => {
       swipee: filterData.data[index].user_id,
     };
     console.log(swipeData);
-    const respone = await axios.post(`http://localhost:4001/swipe/`, swipeData);
-    console.log(respone.data.message);
+    const response = await axios.post(
+      `http://localhost:4001/swipe/`,
+      swipeData
+    );
+    console.log(response.data.message);
+  };
+
+  const deleteMatch = async (arr) => {
+    const request = [...arr];
+    console.log(request);
+    const response = await axios.delete(
+      `http://localhost:4001/swipe/?request=${request}`
+    );
+    console.log(response.data.message);
   };
 
   return (
@@ -134,6 +148,9 @@ const SwipeProvider = (props) => {
         getEachUser,
         indexUsers,
         postSwipe,
+        deleteMatch,
+        setUnMatch,
+        unMatch,
       }}
     >
       {props.children}
