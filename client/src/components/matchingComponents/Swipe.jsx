@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useRef, useEffect } from "react";
 import TinderCard from "react-tinder-card";
 import { useSwipe } from "../../contexts/swipeContext";
+import SwipeModal from "./swipeModal";
 
 // utility
 import arrowLeftWhite from "../../../public/asset/swipeComponentsItems/arrowLeftWhite.svg";
@@ -24,6 +25,9 @@ const Swipe = () => {
   const [step, setStep] = useState(0);
   const [currenId, setCurrenId] = useState([]);
   const [isLoading, setIsloading] = useState("NoUser");
+  // Modal
+  const [modalId, setModalId] = useState(null);
+  const [preview, setPreview] = useState(false);
 
 
 
@@ -98,6 +102,12 @@ const Swipe = () => {
 
   return (
     <div className="w-full h-full bg-[#160404] flex justify-center items-start overflow-hidden overflow-x-hidden">
+       {preview && (
+                <SwipeModal
+                  close={() => setPreview(!preview)}
+                  data={filterData.data[modalId]}
+                />
+              )}
       <div className="overflow-hidden">
         <div className="cardContainer text-[white] w-[25rem] h-[25rem] overflow-hidden mt-[30%] ">
           {filterData.data.map((user, index) => (
@@ -113,7 +123,7 @@ const Swipe = () => {
               }}
               swipeRequirementType="position"
               swipeThreshold={100}
-              children={4}
+             
             >
               <div
                 style={{
@@ -128,7 +138,11 @@ const Swipe = () => {
                   <h3 className="text-[white] text-[1.5rem] m-[5%] ml-[2%] mr-[1%] font-[700]">
                     {user.user_age}
                   </h3>
-                  <button className="">
+                  <button className="" onClick={(event)=>{
+                     event.preventDefault();
+                     setPreview(!preview);
+                     setModalId(index);
+                    }}>
                     <img src={eyeIcon} />
                   </button>
                 </div>
