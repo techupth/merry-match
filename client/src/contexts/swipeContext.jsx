@@ -8,15 +8,16 @@ export const SwipeContext = React.createContext();
 const SwipeProvider = (props) => {
   const [userData, setUserData] = useState({});
   const [filterData, setFilterData] = useState({
-    loading : null,
-    data : [],
-    err : null
+    loading: null,
+    data: [],
+    err: null,
   });
   const [eachUser, setEachUser] = useState({});
   const [users, setUsers] = useState([]);
   const [merryListUser, setMerryListUser] = useState([]);
   const [matchId, setMatchId] = useState([]);
   const [indexUsers, setIndexUsers] = useState(0);
+  const [unMatch, setUnMatch] = useState([]);
 
   const getAllUsers = async () => {
     const result = await axios.get("http://localhost:4001/swipe");
@@ -54,14 +55,21 @@ const SwipeProvider = (props) => {
 
   const getDataByFilter = async (data) => {
     try {
-      setFilterData({...filterData, loading : true});
-      const filteredData = await axios.post("http://localhost:4001/filter", data);
+      setFilterData({ ...filterData, loading: true });
+      const filteredData = await axios.post(
+        "http://localhost:4001/filter",
+        data
+      );
       // console.log("filter data", filteredData.data.data);
       // setIndexUsers(filteredData.data.data.length)
-      setFilterData({...filterData, data : filteredData.data.data, loading : null });
+      setFilterData({
+        ...filterData,
+        data: filteredData.data.data,
+        loading: null,
+      });
       // console.log(filteredData.data.data)
     } catch (err) {
-      setFilterData({...filterData, err : true});
+      setFilterData({ ...filterData, err: true });
       console.log(err);
     }
   };
@@ -83,20 +91,33 @@ const SwipeProvider = (props) => {
     setMerryListUser(result.data.data);
     const matchList = result.data.data;
     const matchId = result.data.isMatchId;
+
     return { matchList, matchId };
   };
 
-  const postSwipe = async(index,type) =>{
-    const userId = eachUser.user_id
+  const postSwipe = async (index, type) => {
+    const userId = eachUser.user_id;
     const swipeData = {
-      swiper : userId,
-      swipe_type : type,
-      swipee : filterData.data[index].user_id
-    }
-    console.log(swipeData)
-    const respone = await axios.post(`http://localhost:4001/swipe/`,swipeData)
-    console.log(respone.data.message)
-  }
+      swiper: userId,
+      swipe_type: type,
+      swipee: filterData.data[index].user_id,
+    };
+    console.log(swipeData);
+    const response = await axios.post(
+      `http://localhost:4001/swipe/`,
+      swipeData
+    );
+    console.log(response.data.message);
+  };
+
+  const deleteMatch = async (arr) => {
+    const request = [...arr];
+    console.log(request)
+    const response = await axios.delete(
+      `http://localhost:4001/swipe/?request=${request}`
+    );
+    console.log(response.data.message);
+  };
 
   return (
     <SwipeContext.Provider
@@ -113,6 +134,9 @@ const SwipeProvider = (props) => {
         getEachUser,
         indexUsers,
         postSwipe,
+        deleteMatch,
+        setUnMatch,
+        unMatch,
       }}
     >
       {props.children}

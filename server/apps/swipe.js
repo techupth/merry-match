@@ -33,7 +33,7 @@ swipeRouter.get("/", async (req, res) => {
     });
   } else {
     const allUsersDataResult = await pool.query(`select * from users`);
-    console.log(allUsersDataResult.rows);
+    // console.log(allUsersDataResult.rows);
     return res.json({
       data: allUsersDataResult.rows,
     });
@@ -47,7 +47,7 @@ swipeRouter.post("/", async (req, res) => {
     swipe_at: new Date(),
   };
 
-  console.log(swipeData);
+  // console.log(swipeData);
 
   await pool.query(
     `
@@ -66,5 +66,14 @@ swipeRouter.post("/", async (req, res) => {
     message: `User Id : ${swiperId} has swipe Id : ${swipeData.swipee} Sucessful!!`,
   });
 });
+
+
+swipeRouter.delete("/",async(req,res)=>{
+    console.log(req.query.request)
+    
+    return res.json({
+      message : "Delete UnMath successful!! "
+    })
+})
 
 export default swipeRouter;

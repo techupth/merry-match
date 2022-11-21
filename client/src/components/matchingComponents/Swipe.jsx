@@ -13,7 +13,7 @@ import xLogo from "../../../public/asset/editModalItems/xLogo.svg";
 const Swipe = () => {
   // import filterData มาให้แล้ว แล้วต้องนำลงมา map ลงหน้าแผน swipe
   // import MerryList from './../../pages/merryListPage/MerryList';
-  console.log("swipe compoenent rendered!!");
+  // console.log("swipe compoenent rendered!!");
   const { filterData, postSwipe, merryList } = useSwipe();
 
   // console.log(indexUsers, "from swipe");
@@ -30,8 +30,8 @@ const Swipe = () => {
   const [isMatch, setIsMatch] = useState(false);
   const [isIndex, setIsIndex] = useState(null);
 
-  console.log(isMatch);
-  console.log(matchingId);
+  // console.log(isMatch);
+  // console.log(matchingId);
   // used for outOfFrame closure
   const currentIndexRef = useRef(currentIndex);
   // console.log(currentIndexRef)

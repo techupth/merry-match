@@ -11,8 +11,8 @@ import SubscriptionPage from "../subsciptionPage/SubscriptionPage";
 const Authenticated = () => {
   return (
     <>
-      <NavbarAuthen />
       <SwipeProvider>
+        <NavbarAuthen />
         <Routes>
           <Route path="/" element={<HomepageAuth />} />
           <Route path="*" element={<HomepageAuth />} />
@@ -20,7 +20,6 @@ const Authenticated = () => {
           <Route path="/merrylist" element={<MerryList />} />
           <Route path="/match" element={<MatchingPage />} />
           <Route path="/sub" element={<SubscriptionPage />} />
-
         </Routes>
       </SwipeProvider>
     </>
