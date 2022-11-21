@@ -17,7 +17,7 @@ import EditModal from "../../components/merryListComponents/EditModal";
 import { useSwipe } from "../../contexts/swipeContext";
 
 const MerryList = () => {
-  const { merryList, merryListUser,deleteMatch, setUnMatch } = useSwipe();
+  const { merryList, setUnMatch,deleteMatch, unMatch} = useSwipe();
 
   const [isLoading, setIsloading] = useState("NoUser");
   const [userList, setUserList] = useState([]);
@@ -65,11 +65,11 @@ const MerryList = () => {
   };
   // console.log(userList);
 
-  const handleUnmatch = (id) => {
-    const unmatch = [...userList];
-    // delete unmatch[id].status
-    setUserList(unmatch);
-  };
+  // const handleUnmatch = (id) => {
+  //   const unmatch = [...userList];
+  //   // delete unmatch[id].status
+  //   setUserList(unmatch);
+  // };
 
   const handleLike = (id) => {
     const unSwipeType = [...userList];
@@ -84,30 +84,30 @@ const MerryList = () => {
   };
 
   const handlePushUpMatchId = (index) => {
-    setDeleteId([...deleteId, userList[index].swipe_id])
+    setDeleteId([...deleteId, userList[index].swipe_id]);
   };
 
-  const handlepulloutMatchId = (index) =>{
-    const arr = [...deleteId]
-    const newarr = arr.filter((value) => value !== userList[index].swipe_id)
-    setDeleteId(newarr)
-  }
+  const handlepulloutMatchId = (index) => {
+    const arr = [...deleteId];
+    const newarr = arr.filter((value) => value !== userList[index].swipe_id);
+    setDeleteId(newarr);
+  };
 
- const handleDeleteSwipe = () =>{
-  const unLikeList = [...deleteId]
-  setUnMatch(unLikeList)
- } 
+  const handleDeleteSwipe = () => {
+    const unLikeList = [...deleteId];
+    setUnMatch(unLikeList);
+  };
 
 
- 
+
   useEffect(() => {
     isData();
     
   }, []);
 
-  useEffect(()=>{
-    handleDeleteSwipe()
-  }, [deleteId])
+  useEffect(() => {
+    handleDeleteSwipe();
+  }, [deleteId]);
 
   return (
     <>
@@ -255,7 +255,7 @@ const MerryList = () => {
                               className="w-[48px] h-[48px] bg-white  rounded-lg flex justify-center items-center drop-shadow-xl mr-[16px]"
                               onClick={() => {
                                 handleUnLike(index);
-                                handlepulloutMatchId(index)
+                                handlepulloutMatchId(index);
                               }}
                             >
                               {" "}

@@ -17,7 +17,8 @@ const SwipeProvider = (props) => {
   const [merryListUser, setMerryListUser] = useState([]);
   const [matchId, setMatchId] = useState([]);
   const [indexUsers, setIndexUsers] = useState(0);
-  const [unMatch, setUnMatch] = useState([]);
+  const [unMatch, setUnMatch] = useState([1]);
+  
 
   const getAllUsers = async () => {
     const result = await axios.get("http://localhost:4001/swipe");
@@ -109,9 +110,12 @@ const SwipeProvider = (props) => {
     );
     console.log(response.data.message);
   };
+  
+  console.log(unMatch)
 
   const deleteMatch = async (arr) => {
-    const request = [...arr];
+    
+    const request = arr;
     console.log(request)
     const response = await axios.delete(
       `http://localhost:4001/swipe/?request=${request}`
