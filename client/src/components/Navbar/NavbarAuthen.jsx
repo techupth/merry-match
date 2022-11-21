@@ -3,13 +3,13 @@ import { useState, useRef, useEffect } from "react";
 import UserPopup from "./userPopup";
 import jwtDecode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
-
+import { useSwipe } from "../../contexts/swipeContext";
 
 // Hooks
 import useClickOutside from "../../utils/hooks/useClickOutside";
 
 const NavbarAuthen = () => {
-
+  const { deleteMatch, unMatch } = useSwipe();
 
   const [images, setImage] = useState("");
   const [callPop, setCallPop] = useState(false);
@@ -27,8 +27,14 @@ const NavbarAuthen = () => {
   const ref = useRef(null);
   useClickOutside(ref, () => setCallPop(false));
 
+  const handleUnmatch = () => {
+    deleteMatch(unMatch);
+  };
+
   useEffect(() => {
     decodeFromToken();
+    console.log("Exucute func!!");
+    handleUnmatch();
   }, []);
 
   return (
