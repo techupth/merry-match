@@ -6,7 +6,6 @@ const filterRouter = Router();
 
 filterRouter.get("/:userId", async (req, res) => {
   const userId = req.params.userId;
-  console.log(req);
   console.log(userId);
   const eachUserData = await pool.query(
     `select user_id,name,meeting_int,sex_pref,user_age from users where user_id=$1`,
@@ -23,7 +22,7 @@ filterRouter.post("/", async (req, res) => {
     const filter = req.body;
     console.log("filter", filter);
     const result = await pool.query(
-      `select * from users where (user_age between $1 and $2) and (meeting_int = $3 or meeting_int = $4 or meeting_int = $5 or meeting_int = $6 or meeting_int = $7) and (sex_identity = $8) and (user_id != $9) `,
+      `SELECT * FROM users AS u INNER JOIN swipe as swp ON swp.swiper = u.user_id INNER JOIN swipe as swp2 on swp2.swipee = u.user_id where (u.user_age between $1 and $2) and (u.meeting_int = $3 or u.meeting_int = $4 or u.meeting_int = $5 or u.meeting_int = $6 or u.meeting_int = $7) and (u.sex_identity = $8) and (u.user_id != $9) `,
       [
         filter.ageRange[0],
         filter.ageRange[1],
@@ -36,7 +35,7 @@ filterRouter.post("/", async (req, res) => {
         filter.user_id,
       ]
     );
-
+    console.log(result.rows);
     return res.json({
       message: "Filtered users successfully!",
       person: `${result.rowCount}`,

@@ -8,9 +8,9 @@ export const SwipeContext = React.createContext();
 const SwipeProvider = (props) => {
   const [userData, setUserData] = useState({});
   const [filterData, setFilterData] = useState({
-    loading : null,
-    data : [],
-    err : null
+    loading: null,
+    data: [],
+    err: null,
   });
   const [eachUser, setEachUser] = useState({});
   const [users, setUsers] = useState([]);
@@ -26,6 +26,7 @@ const SwipeProvider = (props) => {
   };
 
   const getEachUser = async () => {
+    let defaultDataToFilter = {};
     const token = localStorage.getItem("token");
     const userData = jwtDecode(token);
     // console.log(userData.user_id);
@@ -33,39 +34,59 @@ const SwipeProvider = (props) => {
     const eachUserResult = await axios.get(
       `http://localhost:4001/filter/${userData.user_id}`
     );
-    // console.log(eachUserResult.data.data[0], "get each user");
+    console.log(eachUserResult.data.data[0], "get each user");
     setEachUser(eachUserResult.data.data[0]);
     // console.log(
     //   eachUserResult.data.data[0].user_age - 10,
     //   eachUserResult.data.data[0].user_age + 10
     // );
-    getDataByFilter({
-      ageRange: [
-        eachUserResult.data.data[0].user_age - 10,
-        eachUserResult.data.data[0].user_age + 10,
-      ],
-      meetingInt: [eachUserResult.data.data[0].meeting_int],
-      sexPreference: eachUserResult.data.data[0].sex_pref,
-      user_id: eachUserResult.data.data[0].user_id,
-    });
+
+    if (eachUserResult.data.data[0].user_age <= 18) {
+      defaultDataToFilter = {
+        ageRange: [18, eachUserResult.data.data[0].user_age + 10],
+        meetingInt: [eachUserResult.data.data[0].meeting_int],
+        sexPreference: eachUserResult.data.data[0].sex_pref,
+        user_id: eachUserResult.data.data[0].user_id,
+      };
+    } else {
+      defaultDataToFilter = {
+        ageRange: [
+          eachUserResult.data.data[0].user_age - 10,
+          eachUserResult.data.data[0].user_age + 10,
+        ],
+        meetingInt: [eachUserResult.data.data[0].meeting_int],
+        sexPreference: eachUserResult.data.data[0].sex_pref,
+        user_id: eachUserResult.data.data[0].user_id,
+      };
+    }
+
+    getDataByFilter(defaultDataToFilter);
     return eachUserResult.data.data[0];
   };
   // console.log("each User", eachUser);
 
   const getDataByFilter = async (data) => {
+    console.log(data);
     try {
-      setFilterData({...filterData, loading : true});
-      const filteredData = await axios.post("http://localhost:4001/filter", data);
-      // console.log("filter data", filteredData.data.data);
+      setFilterData({ ...filterData, loading: true });
+      const filteredData = await axios.post(
+        "http://localhost:4001/filter",
+        data
+      );
+      console.log("filter data", filteredData.data.data);
       // setIndexUsers(filteredData.data.data.length)
-      setFilterData({...filterData, data : filteredData.data.data, loading : null });
-      // console.log(filteredData.data.data)
+      setFilterData({
+        ...filterData,
+        data: filteredData.data.data,
+        loading: null,
+      });
+      // console.log(filteredData.data.data);
     } catch (err) {
-      setFilterData({...filterData, err : true});
+      setFilterData({ ...filterData, err: true });
       console.log(err);
     }
   };
-  // console.log("Filter Success", filterData);
+  console.log("Filter Success", filterData);
 
   const merryList = async () => {
     const token = localStorage.getItem("token");
@@ -86,17 +107,17 @@ const SwipeProvider = (props) => {
     return { matchList, matchId };
   };
 
-  const postSwipe = async(index,type) =>{
-    const userId = eachUser.user_id
+  const postSwipe = async (index, type) => {
+    const userId = eachUser.user_id;
     const swipeData = {
-      swiper : userId,
-      swipe_type : type,
-      swipee : filterData.data[index].user_id
-    }
-    console.log(swipeData)
-    const respone = await axios.post(`http://localhost:4001/swipe/`,swipeData)
-    console.log(respone.data.message)
-  }
+      swiper: userId,
+      swipe_type: type,
+      swipee: filterData.data[index].user_id,
+    };
+    console.log(swipeData);
+    const respone = await axios.post(`http://localhost:4001/swipe/`, swipeData);
+    console.log(respone.data.message);
+  };
 
   return (
     <SwipeContext.Provider
