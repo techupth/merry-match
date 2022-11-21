@@ -3,6 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import UserPopup from "./userPopup";
 import jwtDecode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
+import { useSwipe } from "../../contexts/swipeContext";
 
 // Hooks
 import useClickOutside from "../../utils/hooks/useClickOutside";

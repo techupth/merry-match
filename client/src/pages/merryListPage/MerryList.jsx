@@ -104,6 +104,17 @@ const MerryList = () => {
     window.onload = deleteMatch(unMatch);
   }, 2500);
 
+  const handlepulloutMatchId = (index) => {
+    const arr = [...deleteId];
+    const newarr = arr.filter((value) => value !== userList[index].swipe_id);
+    setDeleteId(newarr);
+  };
+
+  const handleDeleteSwipe = () => {
+    const unLikeList = [...deleteId];
+    setUnMatch(unLikeList);
+  };
+
   useEffect(() => {
     isData();
   }, []);
