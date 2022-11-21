@@ -13,14 +13,9 @@ const Swipe = () => {
   // import filterData มาให้แล้ว แล้วต้องนำลงมา map ลงหน้าแผน swipe
   // console.log("swipe compoenent rendered!!")
   const {
-    getAllUsers,
-    users,
     filterData,
-    getDataByFilter,
-    getEachUser,
-    eachUser,
-    indexUsers,
     postSwipe,
+    merryList,
   } = useSwipe();
 
   // console.log(indexUsers, "from swipe");
@@ -30,9 +25,8 @@ const Swipe = () => {
   const [currenId, setCurrenId] = useState([]);
   const [isLoading, setIsloading] = useState("NoUser");
 
-  // console.log("filter Data at Swipe", filterData);
-  // console.log(users)
-  // console.log("current",currentIndex);
+
+
   // used for outOfFrame closure
   const currentIndexRef = useRef(currentIndex);
   // console.log(currentIndexRef)
@@ -127,7 +121,6 @@ const Swipe = () => {
                 }}
                 className="card w-[46rem] h-[46rem] bg-cover bg-center rounded-[32px] overflow-hidden  items-end flex flex-row z-0"
               >
-                <div className="text-[30px]">{currentIndex}</div>
                 <div className="flex flex-row z-[0] w-full">
                   <h3 className="text-[white] text-[1.5rem] m-[5%] mr-[0] font-[700]">
                     {user.name}
@@ -163,10 +156,10 @@ const Swipe = () => {
               <div className="button flex flex-row items-center justify-center space-x-3 overflow-hidden  top-[90%] right-[35%] z-60 absolute   ">
                 <button
                   className="XButton w-[80px] h-[80px] drop-shadow-2xl mr-[10px] mt-[20%]  bg-white rounded-[30%] flex justify-center items-center hover:bg-[#2A2E3F] z-70"
-                  onClick={() =>{ 
-                    swipe("left", index)
-                    postSwipe(index, false)
-                }}
+                  onClick={() => {
+                    swipe("left", index);
+                    postSwipe(index, false);
+                  }}
                 >
                   <img src={xLogo} />
                 </button>

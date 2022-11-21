@@ -6,7 +6,7 @@ import { RemoveScroll } from "react-remove-scroll";
 import { useSwipe } from "../../contexts/swipeContext";
 
 const MatchingPage = () => {
-  const { getEachUser, filterData } = useSwipe();
+  const { getEachUser, filterData, merryList} = useSwipe();
   const [isLoading, setIsloading] = useState(null);
 
   const handleDefualt = async() =>{
@@ -22,6 +22,7 @@ const MatchingPage = () => {
   // console.log(filterData);
   useEffect(() => {
    handleDefualt()
+   merryList()
   }, []);
 
   return (
