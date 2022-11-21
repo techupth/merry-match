@@ -7,7 +7,7 @@ import Correct from "../../../public/asset/SubscriptionIcon/correct.png"
 
 const Subscribe = () => {
     return (
-        <div className='h-[991px] bg-[#FCFCFE]'>
+        <div className='h-[991px] w-full bg-[#FCFCFE]'>
             <div className='text-[#DF89C6] h-[369px] w-full'>
                 <p className='pt-[195px] pl-[150px] text-[#7B4429]'>MERRY MEMBERSHIP</p>
                 <p className=' pl-[150px] text-[#A62D82] text-[48px] font-[800] leading-[125%]'>Be part of Merry Membership
@@ -31,10 +31,10 @@ const Subscribe = () => {
                         </div>
                         <div className=" w-[277px] mx-auto mt-[40px]">
                             <p className="text-[32px] text-[#411032] font-[700] leading-10  self-start">
-                                Premium
+                                Basic
                             </p>
                             <p className="text-[16px] font-[600] text-[#2A2E3F] leading-[150%]">
-                                THB 149.00 <span className='text-[#9AA1B9] font-[400] leading-7'>/Month</span>
+                                THB 59.00 <span className='text-[#9AA1B9] font-[400] leading-7'>/Month</span>
                             </p>
                         </div>
 
@@ -43,7 +43,7 @@ const Subscribe = () => {
                                 <img src={Correct} alt="" className='inline mr-3' />‘Merry’ more than a daily limited
                             </p>
                             <p className="text-[16px] font-[400] text-[#424C6B] leading-10  self-start pb-7">
-                                <img src={Correct} alt="" className='inline mr-3' />Up to 70 Merry per day
+                                <img src={Correct} alt="" className='inline mr-3' />Up to 25 Merry per day
                             </p>
                         </div>
                         <button className='bg-[#FFE1EA] w-[277px] h-[48px] ml-[40px] rounded-[99px] mt-[20px] content-center'>
@@ -65,10 +65,10 @@ const Subscribe = () => {
                         </div>
                         <div className=" w-[277px] mx-auto mt-[40px]">
                             <p className="text-[32px] text-[#411032] font-[700] leading-10  self-start">
-                                Premium
+                                Platinum
                             </p>
                             <p className="text-[16px] font-[600] text-[#2A2E3F] leading-[150%]">
-                                THB 149.00 <span className='text-[#9AA1B9] font-[400] leading-7'>/Month</span>
+                                THB 99.00 <span className='text-[#9AA1B9] font-[400] leading-7'>/Month</span>
                             </p>
                         </div>
 
@@ -77,7 +77,7 @@ const Subscribe = () => {
                                 <img src={Correct} alt="" className='inline mr-3' />‘Merry’ more than a daily limited
                             </p>
                             <p className="text-[16px] font-[400] text-[#424C6B] leading-10  self-start pb-7">
-                                <img src={Correct} alt="" className='inline mr-3' />Up to 70 Merry per day
+                                <img src={Correct} alt="" className='inline mr-3' />Up to 45 Merry per day
                             </p>
                         </div>
                         <button className='bg-[#FFE1EA] w-[277px] h-[48px] ml-[40px] rounded-[99px] mt-[20px] content-center'>
