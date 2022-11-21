@@ -27,7 +27,7 @@ const SwipeProvider = (props) => {
   };
 
   const getEachUser = async () => {
-    // let defaultDataToFilter = {};
+    let defaultDataToFilter = {};
     const token = localStorage.getItem("token");
     const userData = jwtDecode(token);
     // console.log(userData.user_id);
