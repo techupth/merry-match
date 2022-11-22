@@ -7,6 +7,7 @@ import chat from "../../../public/asset/MerryList/chat.png";
 import view from "../../../public/asset/MerryList/view.png";
 import heartWhite from "../../../public/asset/MerryList/heartWhite.png";
 import heartRed from "../../../public/asset/MerryList/heartRed.png";
+import { Progress,Spinner} from "@chakra-ui/react";
 
 //components
 import Footer from "../../components/editPageComponents/Footer";
@@ -17,7 +18,7 @@ import EditModal from "../../components/merryListComponents/EditModal";
 import { useSwipe } from "../../contexts/swipeContext";
 
 const MerryList = () => {
-  const { merryList, setUnMatch,deleteMatch, unMatch} = useSwipe();
+  const { merryList, setUnMatch, deleteMatch, unMatch } = useSwipe();
 
   const [isLoading, setIsloading] = useState("NoUser");
   const [userList, setUserList] = useState([]);
@@ -98,11 +99,12 @@ const MerryList = () => {
     setUnMatch(unLikeList);
   };
 
-
+  setTimeout(() => {
+    window.onload = deleteMatch(unMatch);
+  }, 2500);
 
   useEffect(() => {
     isData();
-    
   }, []);
 
   useEffect(() => {
@@ -113,9 +115,18 @@ const MerryList = () => {
     <>
       <div className="w-full flex  justify-center">
         {isLoading === "loading" ? (
-          <div>Loading...</div>
+          <div className="w-full h-[1000px] flex flex-col justify-center items-center">
+            <Spinner
+              thickness="7px"
+              speed="0.65s"
+              emptyColor="gray.200"
+              color="pink"
+              size="xl"
+            />
+            Loading...
+          </div>
         ) : isLoading === "data" ? (
-          <div className="w-[933px] mt-[240px]">
+          <div className="w-[933px] mt-[200px]">
             <h4 className="text-[14px] text-[#7B4429]">MERRY LIST</h4>
             <h1 className="text-[#A62D82] font-extrabold text-[46px]">
               Let’s know each other
@@ -238,7 +249,8 @@ const MerryList = () => {
                           {user.swipe_type === true ? (
                             <button
                               className="w-[48px] h-[48px] bg-[#C70039] rounded-lg flex justify-center items-center drop-shadow-xl mr-[16px]"
-                              onClick={() => {
+                              onClick={(e) => {
+                                e.preventDefault();
                                 handleLike(index);
                                 handlePushUpMatchId(index);
                               }}
@@ -253,7 +265,8 @@ const MerryList = () => {
                           ) : (
                             <button
                               className="w-[48px] h-[48px] bg-white  rounded-lg flex justify-center items-center drop-shadow-xl mr-[16px]"
-                              onClick={() => {
+                              onClick={(e) => {
+                                e.preventDefault();
                                 handleUnLike(index);
                                 handlepulloutMatchId(index);
                               }}

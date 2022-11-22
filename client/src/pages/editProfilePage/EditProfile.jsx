@@ -234,10 +234,10 @@ const EditProfile = () => {
       {isLoading === "loading" ? (
         <div className="flex items-center justify-center mt-[500px] text-[100px]">
           <Spinner
-            thickness="4px"
+            thickness="7px"
             speed="0.65s"
             emptyColor="gray.200"
-            color="pink.500"
+            color="pink"
             size="xl"
           />
         </div>
