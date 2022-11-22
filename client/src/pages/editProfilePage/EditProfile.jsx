@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import CountryData from "../../utils/mock-city/Countrydata.json";
 import axios from "axios";
 import makeAnimated from "react-select/animated";
@@ -52,6 +52,10 @@ const EditProfile = () => {
 
   // Preview modal
   const [preview, setPreview] = useState(false);
+
+  const handleClick = () => {
+    ref.current?.scrollIntoView({behavior: 'smooth'});
+  };
 
   const navigate = useNavigate();
 
@@ -219,6 +223,8 @@ const EditProfile = () => {
     setBirthday(birthday);
   };
 
+  const executeScroll = () => ref.current.scrollIntoView()    
+
   useEffect(() => {
     decodeFromToken();
 
@@ -231,6 +237,13 @@ const EditProfile = () => {
 
   return (
     <div className="w-full bg-[#FCFCFE] flex flex-col">
+       {/* show preview modal */}
+       {preview && (
+            <EditModal
+              close={() => setPreview(!preview)}
+              data={updateUserData}
+            />
+          )}
       {isLoading === "loading" ? (
         <div className="flex items-center justify-center mt-[500px] text-[100px]">
           <Spinner
@@ -243,14 +256,6 @@ const EditProfile = () => {
         </div>
       ) : isLoading === "data" ? (
         <div className="informationContainer flex flex-col items-center justify-start">
-          {/* show preview modal */}
-          {preview && (
-            <EditModal
-              close={() => setPreview(!preview)}
-              data={updateUserData}
-            />
-          )}
-
           <form>
             {/* start Header */}
             <div className="flex mt-[150px]">
@@ -269,8 +274,10 @@ const EditProfile = () => {
                   onClick={(event) => {
                     event.preventDefault();
                     setPreview(!preview);
+                    executeScroll();
                   }}
                   className="w-[162px] h-[48px] bg-[#FFE1EA] rounded-full text-[#95002B] font-[700]"
+                  href='#prevModal'
                 >
                   Preview Profile
                 </button>
@@ -405,7 +412,7 @@ const EditProfile = () => {
               Identities and Interests
             </h1>
             {/* colomn1 */}
-            <div className="column1 flex">
+            <div className="column1 flex" >
               <div className="SexualIdentities flex flex-col mr-[12px] mt-[40px]">
                 <label htmlFor="SexualIdentities">Sexual identities</label>
                 <select
