@@ -18,6 +18,7 @@ const SwipeProvider = (props) => {
   const [matchId, setMatchId] = useState([]);
   const [indexUsers, setIndexUsers] = useState(0);
   const [unMatch, setUnMatch] = useState([1]);
+  const [defaultDataToFilter, setDefaultDataToFilter] = useState({});
 
   const getAllUsers = async () => {
     const result = await axios.get("http://localhost:4001/swipe");
@@ -27,7 +28,7 @@ const SwipeProvider = (props) => {
   };
 
   const getEachUser = async () => {
-    let defaultDataToFilter = {};
+    // let defaultDataToFilter = {};
     const token = localStorage.getItem("token");
     const userData = jwtDecode(token);
     // console.log(userData.user_id);
@@ -125,7 +126,7 @@ const SwipeProvider = (props) => {
     console.log(response.data.message);
   };
 
-  console.log(unMatch);
+  // console.log(unMatch);
 
   const deleteMatch = async (arr) => {
     const request = arr;
