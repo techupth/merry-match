@@ -8,6 +8,7 @@ import { useSwipe } from "../../contexts/swipeContext";
 const MatchingPage = () => {
   const { getEachUser, filterData, merryList} = useSwipe();
   const [isLoading, setIsloading] = useState(null);
+  const [clickCountinue, setClickCountinue] = useState(0);
 
   const handleDefualt = async() =>{
     setIsloading(true)
@@ -38,8 +39,8 @@ const MatchingPage = () => {
           <>
             {" "}
             
-            <Swipe />
-            <MatchLog />
+            <Swipe clickCountinue={clickCountinue} setClickCountinue={setClickCountinue}/>
+            <MatchLog clickCountinue={clickCountinue}/>
           </>
         ) : null}
       </div>

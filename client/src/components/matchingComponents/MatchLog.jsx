@@ -5,13 +5,15 @@ import { data } from "../../utils/mock-photo/data";
 import search_heart from "../../../public/asset/merryMatchIMG/search_heart.png";
 import two_heart from "../../../public/asset/merryMatchIMG/two_heart.png";
 
+
 import { useSwipe } from "../../contexts/swipeContext";
 
-const MatchLog = () => {
+const MatchLog = (props) => {
   const { merryList } = useSwipe();
   const [isLoading, setIsloading] = useState("NoUser");
   const [userList, setUserList] = useState([]);
-
+ 
+  
   const isData = async () => {
     try {
       setIsloading("loading");
@@ -42,14 +44,18 @@ const MatchLog = () => {
       }
     });
     setUserList(userList);
-  };
+   
 
-  useEffect(() => {
-    isData();
-  }, []);
+  };
+  
+useEffect(() => {
+    isData()
+  }, [props.clickCountinue])
+
+  console.log(props.clickCountinue)
 
   console.log(userList);
-
+  
   return (
     <div className="MatchLog w-[316px] mt-[240px] h-full px-[16px] z-40 bg-[white]">
       <div className="flex justify-center">
@@ -68,7 +74,6 @@ const MatchLog = () => {
       <h1 className="text-[#2A2E3F] text-[24px] font-bold mt-[24px]">
         Merry Match!
       </h1>
-
       {isLoading === "loading" ? (
         <div>Loading...</div>
       ) : isLoading === "data" ? (
@@ -104,8 +109,10 @@ const MatchLog = () => {
           )}
         </div>
       ) : null}
+      
     </div>
   );
+ 
 };
 
 export default MatchLog;

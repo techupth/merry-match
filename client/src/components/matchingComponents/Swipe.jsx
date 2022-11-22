@@ -3,6 +3,7 @@ import TinderCard from "react-tinder-card";
 import { useSwipe } from "../../contexts/swipeContext";
 import SwipeModal from "./swipeModal";
 
+
 // utility
 import arrowLeftWhite from "../../../public/asset/swipeComponentsItems/arrowLeftWhite.svg";
 import arrowRightWhite from "../../../public/asset/swipeComponentsItems/arrowRightWhite.svg";
@@ -10,7 +11,7 @@ import eyeIcon from "../../../public/asset/swipeComponentsItems/eyeIcon.svg";
 import heartLogo from "../../../public/asset/editModalItems/hearthLogo.svg";
 import xLogo from "../../../public/asset/editModalItems/xLogo.svg";
 
-const Swipe = () => {
+const Swipe = (props) => {
   // import filterData มาให้แล้ว แล้วต้องนำลงมา map ลงหน้าแผน swipe
   // import MerryList from './../../pages/merryListPage/MerryList';
   // console.log("swipe compoenent rendered!!");
@@ -29,6 +30,8 @@ const Swipe = () => {
   const [matchingId, setMatchingId] = useState([]);
   const [isMatch, setIsMatch] = useState(false);
   const [isIndex, setIsIndex] = useState(null);
+
+ 
 
   // console.log(isMatch);
   // console.log(matchingId);
@@ -100,6 +103,11 @@ const Swipe = () => {
     setMatchingId(matchId);
   };
 
+  const clickCountinueCount = () => {  
+    props.setClickCountinue(props.clickCountinue+1); 
+   }; 
+   console.log(props)
+
   useEffect(() => {
     handleMatchingId();
   }, []);
@@ -152,7 +160,7 @@ const Swipe = () => {
                     <img src={eyeIcon} />
                   </button>
                 </div>
-
+                <button  onClick={()=>{ clickCountinueCount();}}>ทดสอบ</button>
                 {/* slide pictures */}
                 <div className="arrow-buttons absolute right-[5%] space-x-6 bottom-[6%] z-40 ">
                   <button
@@ -203,6 +211,7 @@ const Swipe = () => {
                         <button
                           onClick={() => {
                             swipe("right", index);
+                            clickCountinueCount();
                           }}
                         >
                           countinue
