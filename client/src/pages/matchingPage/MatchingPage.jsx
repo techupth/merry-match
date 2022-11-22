@@ -9,6 +9,7 @@ import { Progress, Spinner } from "@chakra-ui/react";
 const MatchingPage = () => {
   const { getEachUser, filterData, merryList } = useSwipe();
   const [isLoading, setIsloading] = useState(null);
+  const [clickCountinue, setClickCountinue] = useState(0);
 
   const handleDefualt = async () => {
     setIsloading(true);
@@ -48,8 +49,9 @@ const MatchingPage = () => {
         ) : filterData.data ? (
           <>
             {" "}
-            <Swipe />
-            <MatchLog />
+            
+            <Swipe clickCountinue={clickCountinue} setClickCountinue={setClickCountinue}/>
+            <MatchLog clickCountinue={clickCountinue}/>
           </>
         ) : null}
       </div>
