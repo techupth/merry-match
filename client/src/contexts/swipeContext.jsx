@@ -80,9 +80,9 @@ const SwipeProvider = (props) => {
         data: filteredData.data.data,
         loading: null,
       });
-      // console.log(filteredData.data.data);
+      console.log(filteredData.data.data);
     } catch (err) {
-      setFilterData({ ...filterData, err: true });
+      // setFilterData({ ...filterData, err: true });
       console.log(err);
     }
   };

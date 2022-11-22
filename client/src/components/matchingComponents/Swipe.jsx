@@ -11,9 +11,8 @@ import heartLogo from "../../../public/asset/editModalItems/hearthLogo.svg";
 import xLogo from "../../../public/asset/editModalItems/xLogo.svg";
 
 const Swipe = () => {
-  // import filterData มาให้แล้ว แล้วต้องนำลงมา map ลงหน้าแผน swipe
   // import MerryList from './../../pages/merryListPage/MerryList';
-  console.log("swipe compoenent rendered!!");
+  // console.log("swipe compoenent rendered!!");
   const { filterData, postSwipe, merryList } = useSwipe();
 
   // console.log(indexUsers, "from swipe");
@@ -30,8 +29,8 @@ const Swipe = () => {
   const [isMatch, setIsMatch] = useState(false);
   const [isIndex, setIsIndex] = useState(null);
 
-  console.log(isMatch);
-  console.log(matchingId);
+  // console.log(isMatch);
+  // console.log(matchingId);
   // used for outOfFrame closure
   const currentIndexRef = useRef(currentIndex);
   // console.log(currentIndexRef)
@@ -118,7 +117,7 @@ const Swipe = () => {
             <TinderCard
               ref={childRefs[index]}
               className="swipe absolute top-[140px] left-[32%]"
-              key={user.name}
+              key={index}
               onSwipe={(dir) => swiped(dir, index)}
               onCardLeftScreen={() => {
                 outOfFrame(filterData.name, index);
@@ -233,14 +232,14 @@ const Swipe = () => {
                       if (id === user.user_id) {
                         setIsMatch(true);
                         setIsIndex(index);
-                        postSwipe(index, true)
+                        postSwipe(index, true);
                         isMatch = true;
                       }
                     });
 
                     if (isMatch === false) {
                       swipe("right", index);
-                      postSwipe(index, true)
+                      postSwipe(index, true);
                     }
                   }}
                 >

@@ -15,7 +15,6 @@ import { useSwipe } from "../../contexts/swipeContext";
 // import jwtDecode from "jwt-decode";
 
 const MatchFilter = () => {
-
   const {
     getDataByFilter,
     users,
@@ -27,16 +26,14 @@ const MatchFilter = () => {
 
   // console.log(eachUser)
 
-
-
   // console.log("Match Fileter rendered!")
   const [ageRange, setAgeRange] = useState([18, eachUser.user_age + 10]);
   const [meetingIntArr, setMeetingIntArr] = useState([]);
   const [userData, setUserData] = useState({});
-  const [defaultMeet, setDefaultMeet] = useState("")
+  const [defaultMeet, setDefaultMeet] = useState("");
   const [dataToFilter, setDataToFilter] = useState({
     meetingInt: [eachUser.meeting_int],
-    ageRange: [eachUser.user_age - 10 , eachUser.user_age + 10 ],
+    ageRange: [eachUser.user_age - 18, eachUser.user_age + 10],
     sexPreference: eachUser.sex_pref,
     user_id: eachUser.user_id,
   });
@@ -45,8 +42,6 @@ const MatchFilter = () => {
   //   getAllUsers();
   //   getEachUser();
   // }, []);
-  
-
 
   // console.log(ageRange)
   // useEffect(() => {
@@ -59,13 +54,12 @@ const MatchFilter = () => {
   //   });
   // }, [eachUser]);
 
-
   // console.log([eachUser.meeting_int])
   // console.log(meetingIntArr);
   // console.log(defaultDataToFilter);
 
   // useEffect(() => {
- 
+
   //   // console.log(dataToFilter);
   //   getDataByFilter(dataToFilter);
   //   setDefaultMeet(eachUser.meeting_int)
@@ -101,17 +95,17 @@ const MatchFilter = () => {
     });
   }, [ageRange]);
 
- 
-
-  useEffect(()=>{
-    setUserData(eachUser)
-
-  },[dataToFilter])
+  useEffect(() => {
+    setUserData(eachUser);
+  }, [dataToFilter]);
 
   return (
-    <div className="w-[400px] h-full bg-white z-40">
+    <div className="w-[410px] h-full bg-white z-40">
       <div className="meeting-interest mt-[140px] ml-[18px] h-[80uh] w-[80%]">
-        <CheckboxGroup colorScheme="green" defaultValue={[eachUser.meeting_int]}>
+        <CheckboxGroup
+          colorScheme="green"
+          defaultValue={[eachUser.meeting_int]}
+        >
           <Text fontWeight={700} color="#191C77" mb={3}>
             Meeting Interests
           </Text>
@@ -244,7 +238,7 @@ const MatchFilter = () => {
           </Stack>
         </CheckboxGroup>
       </div>
-      <div className="age-range w-[80%] ml-5">
+      <div className="age-range w-[80%] ml-7">
         <Text fontWeight={700} color="#191C77" mb={3} mt={10}>
           Age Range
         </Text>
@@ -260,7 +254,7 @@ const MatchFilter = () => {
           mt={7}
         >
           <RangeSliderMark
-            defaultValue={18  }
+            defaultValue={18}
             value={ageRange[0]}
             borderRadius="18"
             textAlign="center"

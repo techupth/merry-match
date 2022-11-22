@@ -48,7 +48,7 @@ const MatchLog = () => {
     isData();
   }, []);
 
-  console.log(userList);
+  // console.log(userList);
 
   return (
     <div className="MatchLog w-[316px] mt-[240px] h-full px-[16px] z-40 bg-[white]">
@@ -97,7 +97,9 @@ const MatchLog = () => {
                 <div className="flex flex-col justify-center ml-[5px]">
                   <p className="name font-bold">{item.name}</p>
                   <p className="age text-[#646D89]">{item.user_age}</p>
-                  <p className="meeting_int text-[#646D89]">{item.meeting_int}</p>
+                  <p className="meeting_int text-[#646D89]">
+                    {item.meeting_int}
+                  </p>
                 </div>
               </div>
             ) : null
