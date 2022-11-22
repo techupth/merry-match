@@ -4,6 +4,7 @@ import Swipe from "../../components/matchingComponents/Swipe";
 import MatchLog from "../../components/matchingComponents/MatchLog";
 import { RemoveScroll } from "react-remove-scroll";
 import { useSwipe } from "../../contexts/swipeContext";
+import { Progress, Spinner } from "@chakra-ui/react";
 
 const MatchingPage = () => {
   const { getEachUser, filterData, merryList } = useSwipe();
@@ -35,15 +36,14 @@ const MatchingPage = () => {
         ) : null}
 
         {filterData.loading === true ? (
-          <div className="bg-black w-[2000px] h-[1000px] flex justify-center items-center text-gray-100 text-[50px] ">
-            <MatchLog />
-            <img
-              src="../../../public/asset/merryMatchIMG/merryMatchWhenMatch.svg"
-              alt=""
+          <div className="bg-[#160404] w-[2000px] h-[1000px] text-gray-100 text-[50px] flex justify-center items-center">
+            <Spinner
+              thickness="7px"
+              speed="0.65s"
+              emptyColor="gray.200"
+              color="pink"
+              size="xl"
             />
-            <div className="w-[70vw] flex flex-col items-center justify-center text-gray-100 text-[50px] z-20">
-              Loading...
-            </div>
           </div>
         ) : filterData.data ? (
           <>
