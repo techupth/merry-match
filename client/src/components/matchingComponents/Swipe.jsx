@@ -10,21 +10,21 @@ import eyeIcon from "../../../public/asset/swipeComponentsItems/eyeIcon.svg";
 import heartLogo from "../../../public/asset/editModalItems/hearthLogo.svg";
 import xLogo from "../../../public/asset/editModalItems/xLogo.svg";
 
+const alreadyRemoved = [];
+
 const Swipe = () => {
-  // import filterData มาให้แล้ว แล้วต้องนำลงมา map ลงหน้าแผน swipe
-  // console.log("swipe compoenent rendered!!")
   const {
     filterData,
     postSwipe,
     merryList,
   } = useSwipe();
 
-  // console.log(indexUsers, "from swipe");
   const [currentIndex, setCurrentIndex] = useState(filterData.data.length - 1);
   const [lastDirection, setLastDirection] = useState();
   const [step, setStep] = useState(0);
   const [currenId, setCurrenId] = useState([]);
   const [isLoading, setIsloading] = useState("NoUser");
+  
   // Modal
   const [modalId, setModalId] = useState(null);
   const [preview, setPreview] = useState(false);
@@ -33,7 +33,7 @@ const Swipe = () => {
 
   // used for outOfFrame closure
   const currentIndexRef = useRef(currentIndex);
-  // console.log(currentIndexRef)
+
   // useMemo
   const childRefs = useMemo(
     () =>
@@ -43,7 +43,7 @@ const Swipe = () => {
     [filterData]
   );
 
-  // console.log(childRefs)
+
   const updateCurrentIndex = (val) => {
     setCurrentIndex(val);
     currentIndexRef.current = val;
@@ -54,19 +54,16 @@ const Swipe = () => {
   const canSwipe = currentIndex >= 0;
 
   // set last direction and decrease current index
+  const alreadyRemoved = [];
+
   const swiped = (direction, index) => {
     setLastDirection(direction);
     updateCurrentIndex(index - 1);
-    // console.log(index);
+    alreadyRemoved.push(index);
   };
 
   const outOfFrame = (name, idx) => {
-    // console.log(`${name} (${idx}) left the screen!`, currentIndexRef.current);
-    // handle the case in which go back is pressed before card goes outOfFrame
     currentIndexRef.current >= idx && childRefs[idx].current.restoreCard();
-    // TODO: when quickly swipe and restore multiple times the same card,
-    // it happens multiple outOfFrame events are queued and the card disappear
-    // during latest swipes. Only the last outOfFrame event should be considered valid
   };
 
   //   Handle pictures
@@ -87,18 +84,10 @@ const Swipe = () => {
   // Swipe
   const swipe = async (dir) => {
     if (currentIndex < filterData.data.length) {
-      await childRefs[currentIndex].current.swipe(dir); // Swipe the card!
+      await childRefs[currentIndex].current.swipe(dir); 
       setCurrentIndex(currentIndex - 1);
     }
   };
-
-  // increase current index and show card
-  // const goBack = async () => {
-  //   if (!canGoBack) return;
-  //   const newIndex = currentIndex + 1;
-  //   // updateCurrentIndex(newIndex);
-  //   await childRefs[newIndex].current.restoreCard();
-  // };
 
   return (
     <div className="w-full h-full bg-[#160404] flex justify-center items-start overflow-hidden overflow-x-hidden">
@@ -109,7 +98,7 @@ const Swipe = () => {
                 />
               )}
       <div className="overflow-hidden">
-        <div className="cardContainer text-[white] w-[25rem] h-[25rem] overflow-hidden mt-[30%] ">
+        <div className="cardContainer text-[white] w-[10rem] h-[10rem] overflow-hidden mt-[30%] ">
           {filterData.data.map((user, index) => (
             <TinderCard
               ref={childRefs[index]}
@@ -129,7 +118,7 @@ const Swipe = () => {
                 style={{
                   backgroundImage: "url(" + user.profile_pics[step] + ")",
                 }}
-                className="card w-[46rem] h-[46rem] bg-cover bg-center rounded-[32px] overflow-hidden  items-end flex flex-row z-0"
+                className="card w-[30rem] h-[30rem] bg-cover bg-center rounded-[32px] overflow-hidden  items-end flex flex-row z-0"
               >
                 <div className="flex flex-row z-[0] w-full">
                   <h3 className="text-[white] text-[1.5rem] m-[5%] mr-[0] font-[700]">
@@ -181,7 +170,6 @@ const Swipe = () => {
                 <button
                   className="HeartButton w-[80px] h-[80px] drop-shadow-2xl mt-[20%]  bg-white rounded-[30%] flex justify-center items-center hover:bg-[#FFB1C8] z-70"
                   onClick={() => {
-                    // swipe("right", index);
                     setTimeout(() => {
                       swipe("right", index);
                       postSwipe(index, true);
