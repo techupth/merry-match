@@ -7,7 +7,7 @@ import chat from "../../../public/asset/MerryList/chat.png";
 import view from "../../../public/asset/MerryList/view.png";
 import heartWhite from "../../../public/asset/MerryList/heartWhite.png";
 import heartRed from "../../../public/asset/MerryList/heartRed.png";
-import { Progress,Spinner} from "@chakra-ui/react";
+import { Progress, Spinner } from "@chakra-ui/react";
 
 //components
 import Footer from "../../components/editPageComponents/Footer";
@@ -64,13 +64,6 @@ const MerryList = () => {
     });
     setUserList(userList);
   };
-  // console.log(userList);
-
-  // const handleUnmatch = (id) => {
-  //   const unmatch = [...userList];
-  //   // delete unmatch[id].status
-  //   setUserList(unmatch);
-  // };
 
   const handleLike = (id) => {
     const unSwipeType = [...userList];
@@ -112,8 +105,14 @@ const MerryList = () => {
   }, [deleteId]);
 
   return (
-    <>
-      <div className="w-full flex  justify-center">
+    <div className="flex items-center flex-col h-[900px] overflow-scroll border-3 border-black">
+      {preview && (
+        <EditModal
+          close={() => setPreview(!preview)}
+          data={userList[modalId]}
+        />
+      )}
+      <div className="w-full flex  justify-center z-0 relative">
         {isLoading === "loading" ? (
           <div className="w-full h-[1000px] flex flex-col justify-center items-center">
             <Spinner
@@ -128,19 +127,13 @@ const MerryList = () => {
         ) : isLoading === "data" ? (
           <div className="w-[933px] mt-[200px]">
             <h4 className="text-[14px] text-[#7B4429]">MERRY LIST</h4>
-            <h1 className="text-[#A62D82] font-extrabold text-[46px]">
+            <h1 className="text-[#A62D82] font-extrabold text-[46px] sticky">
               Let’s know each other
             </h1>
             <h1 className="text-[#A62D82] font-extrabold text-[46px]">
               with Merry!
             </h1>
             <div className="mt-[56px]">
-              {preview && (
-                <EditModal
-                  close={() => setPreview(!preview)}
-                  data={userList[modalId]}
-                />
-              )}
               {/* เริ่ม return map ตั้งแต่ตรงนี้ */}
               {userList.map((user, index) => {
                 return (
@@ -244,7 +237,7 @@ const MerryList = () => {
                             }}
                           >
                             {" "}
-                            <img src={view} alt="" />
+                            <img src={view} alt=" " />
                           </button>
                           {user.swipe_type === true ? (
                             <button
@@ -310,7 +303,7 @@ const MerryList = () => {
         ) : null}
       </div>
       <Footer />
-    </>
+    </div>
   );
 };
 

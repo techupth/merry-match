@@ -262,7 +262,7 @@ select:focus {
 /* Scroll bar */
 
 *::-webkit-scrollbar {
-  width: 0.25em;
+  width: 0.45em;
 }
 
 *::-webkit-scrollbar-track {
