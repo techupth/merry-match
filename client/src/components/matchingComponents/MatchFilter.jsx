@@ -22,13 +22,16 @@ const MatchFilter = () => {
     filterData,
     eachUser,
     getEachUser,
+    defaultDataToFilter,
   } = useSwipe();
 
   // console.log(eachUser)
 
   // console.log("Match Fileter rendered!")
   const [ageRange, setAgeRange] = useState([18, eachUser.user_age + 10]);
-  const [meetingIntArr, setMeetingIntArr] = useState([]);
+  const [meetingIntArr, setMeetingIntArr] = useState(
+    defaultDataToFilter.meetingInt
+  );
   const [userData, setUserData] = useState({});
   const [defaultMeet, setDefaultMeet] = useState("");
   const [dataToFilter, setDataToFilter] = useState({
@@ -204,7 +207,7 @@ const MatchFilter = () => {
                     meetingInt: meetingIntArr,
                   });
                   console.log(meetingIntArr);
-                  console.log(dataToFilter);
+                  console.log("data to filter", dataToFilter);
                 }
               }}
             >
@@ -228,8 +231,8 @@ const MatchFilter = () => {
                     ...dataToFilter,
                     meetingInt: meetingIntArr,
                   });
-                  console.log(meetingIntArr);
-                  console.log(dataToFilter);
+                  // console.log(meetingIntArr);
+                  // console.log(dataToFilter);
                 }
               }}
             >

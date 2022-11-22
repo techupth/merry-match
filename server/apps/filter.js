@@ -22,7 +22,7 @@ filterRouter.post("/", async (req, res) => {
     const filter = req.body;
     // console.log("filter", filter);
     const result = await pool.query(
-      `select * from users where (user_age between $1 and $2) and (meeting_int = $3 or meeting_int = $4 or meeting_int = $5 or meeting_int = $6 or meeting_int = $7) and (sex_identity = $8) and (user_id != $9) limit 30 `,
+      `select * FROM users AS u left JOIN swipe as swp ON swp.swiper = u.user_id inner JOIN swipe as swp2 on swp2.swipee = u.user_id where (user_age between $1 and $2) and (meeting_int = $3 or meeting_int = $4 or meeting_int = $5 or meeting_int = $6 or meeting_int = $7) and (sex_identity = $8) and (user_id != $9) and (swp2.swipe_type != false) and (swp2.swipee !=$9) limit 30 `,
       [
         filter.ageRange[0],
         filter.ageRange[1],

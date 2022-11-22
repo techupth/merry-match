@@ -35,9 +35,15 @@ const MatchingPage = () => {
         ) : null}
 
         {filterData.loading === true ? (
-          <div className="bg-black w-[2000px] h-[1000px] text-gray-100 text-[50px] flex justify-center items-center">
+          <div className="bg-black w-[2000px] h-[1000px] flex justify-center items-center text-gray-100 text-[50px] ">
             <MatchLog />
-            Loading
+            <img
+              src="../../../public/asset/merryMatchIMG/merryMatchWhenMatch.svg"
+              alt=""
+            />
+            <div className="w-[70vw] flex flex-col items-center justify-center text-gray-100 text-[50px] z-20">
+              Loading...
+            </div>
           </div>
         ) : filterData.data ? (
           <>
