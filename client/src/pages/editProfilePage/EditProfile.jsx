@@ -223,7 +223,12 @@ const EditProfile = () => {
     setBirthday(birthday);
   };
 
-  const executeScroll = () => ref.current.scrollIntoView()    
+  const handleClickScroll = () => {
+    const element = document.getElementById('prev');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }; 
 
   useEffect(() => {
     decodeFromToken();
@@ -274,10 +279,9 @@ const EditProfile = () => {
                   onClick={(event) => {
                     event.preventDefault();
                     setPreview(!preview);
-                    executeScroll();
+                    handleClickScroll();
                   }}
                   className="w-[162px] h-[48px] bg-[#FFE1EA] rounded-full text-[#95002B] font-[700]"
-                  href='#prevModal'
                 >
                   Preview Profile
                 </button>
@@ -358,7 +362,7 @@ const EditProfile = () => {
                 </select>
               </div>
 
-              <div className="flex flex-col ml-[12px] mt-[40px]">
+              <div className="flex flex-col ml-[12px] mt-[40px]" id="prev">
                 <label htmlFor="city">City</label>
                 <select
                   className="w-[453px] h-[48px] rounded-lg p-[12px] border-[#D6D9E4] border-[1px]"
