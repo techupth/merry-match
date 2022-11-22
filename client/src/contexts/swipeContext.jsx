@@ -84,7 +84,7 @@ const SwipeProvider = (props) => {
       });
       console.log("latest filtered data", filteredData.data.data);
     } catch (err) {
-      setFilterData({ ...filterData, err: true });
+      // setFilterData({ ...filterData, err: true });
       console.log(err);
     }
   };
