@@ -55,7 +55,7 @@ const EditModal = ({ close, data }) => {
     setImages(data.profile_pics);
     handdleHobbies(data.hobby);
   }, []);
-  console.log(data);
+
   return (
     <div className="bg-[rgba(49,49,49,0.8);] z-30 absolute w-full h-[2400px] flex justify-center">
       <div

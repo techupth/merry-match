@@ -170,13 +170,13 @@ const MerryList = () => {
                         </div>
 
                         <div className="flex  ">
-                          <div className="w-[167px] mt-[28px]">
+                          <div className="w-[200px] mt-[28px] h-[full] text-[1rem]">
                             <p className="text-[#2A2E3F] mb-[8px]">
                               Sexual identities
                             </p>
-                            <p className="text-[#2A2E3F] mb-[8px]">
+                            <span className="text-[#2A2E3F] mb-[8px]">
                               Sexual preferences
-                            </p>
+                            </span>
                             <p className="text-[#2A2E3F] mb-[8px]">
                               Racial preferences
                             </p>
@@ -184,7 +184,7 @@ const MerryList = () => {
                               Meeting interests
                             </p>
                           </div>
-                          <div className="w-[280px] mt-[28px]">
+                          <div className="w-[280px] mt-[28px] h-[full] text-[1rem]">
                             <p className="text-[#646D89] mb-[8px]">
                               {user.sex_identity}
                             </p>
