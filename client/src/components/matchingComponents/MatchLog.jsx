@@ -5,15 +5,13 @@ import { data } from "../../utils/mock-photo/data";
 import search_heart from "../../../public/asset/merryMatchIMG/search_heart.png";
 import two_heart from "../../../public/asset/merryMatchIMG/two_heart.png";
 
-
 import { useSwipe } from "../../contexts/swipeContext";
 
 const MatchLog = (props) => {
   const { merryList } = useSwipe();
   const [isLoading, setIsloading] = useState("NoUser");
   const [userList, setUserList] = useState([]);
- 
-  
+
   const isData = async () => {
     try {
       setIsloading("loading");
@@ -44,18 +42,16 @@ const MatchLog = (props) => {
       }
     });
     setUserList(userList);
-   
-
   };
-  
-useEffect(() => {
-    isData()
-  }, [props.clickCountinue])
 
-  console.log(props.clickCountinue)
+  useEffect(() => {
+    isData();
+  }, [props.clickCountinue]);
+
+  console.log(props.clickCountinue);
 
   console.log(userList);
-  
+
   return (
     <div className="MatchLog w-[316px] mt-[240px] h-full px-[16px] z-40 bg-[white]">
       <div className="flex justify-center">
@@ -102,17 +98,17 @@ useEffect(() => {
                 <div className="flex flex-col justify-center ml-[5px]">
                   <p className="name font-bold">{item.name}</p>
                   <p className="age text-[#646D89]">{item.user_age}</p>
-                  <p className="meeting_int text-[#646D89]">{item.meeting_int}</p>
+                  <p className="meeting_int text-[#646D89]">
+                    {item.meeting_int}
+                  </p>
                 </div>
               </div>
             ) : null
           )}
         </div>
       ) : null}
-      
     </div>
   );
- 
 };
 
 export default MatchLog;

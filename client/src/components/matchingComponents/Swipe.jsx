@@ -155,18 +155,18 @@ const Swipe = (props) => {
                   <h3 className="text-[white] text-[1.5rem] m-[5%] mr-[0] font-[700]">
                     {user.name}
                   </h3>
-                  <h3 className="text-[white] text-[1.5rem] m-[5%] ml-[2%] mr-[1%] font-[700]">
+                  <h3 className="text-[#afb4c5] text-[1.5rem] m-[5%] ml-[2%] mr-[1%] font-[700]">
                     {user.user_age}
                   </h3>
                   <button
-                    className=""
+                    className="w-[5rem] h-[auto]"
                     onClick={(event) => {
                       event.preventDefault();
                       setPreview(!preview);
                       setModalId(index);
                     }}
                   >
-                    <img src={eyeIcon} />
+                    <img className="" src={eyeIcon} />
                   </button>
                 </div>
                 <button
