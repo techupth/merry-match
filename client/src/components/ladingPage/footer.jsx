@@ -31,7 +31,7 @@ const Footer = () => {
             <p className="bg-transparent font-[700] leading-[125%]">
               and matching someone new
             </p>
-            <button onClick={() => { navigate("/login") }} className="button-footer bg-[#FFE1EA] text-[#95002B] p-4 rounded-full mt-[50px] text-[16px] w-[160px] shadow-xl font-[700] hover:bg-pink-300">
+            <button onClick={() => { navigate("/login") }} className="button-footer bg-[#FFE1EA] text-[#95002B] p-4 rounded-full mt-[50px] text-[16px] w-[160px] shadow-xl font-[700] hover:-translate-y-1 hover:scale-110 hover:bg-pink-300 duration-300">
               Start Matching!
             </button>
             <div className="absolute right-0 bottom-6">

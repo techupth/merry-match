@@ -7,6 +7,7 @@ import NavbarAuthen from "../../components/Navbar/NavbarAuthen";
 import { SwipeProvider } from "../../contexts/swipeContext";
 import Subscribe from "../../components/subscriptionPage/Subscribe";
 import SubscriptionPage from "../subsciptionPage/SubscriptionPage";
+import CreditCardPage from "../creditCardPage/creditCardPage";
 
 const Authenticated = () => {
   return (
@@ -20,7 +21,7 @@ const Authenticated = () => {
           <Route path="/merrylist" element={<MerryList />} />
           <Route path="/match" element={<MatchingPage />} />
           <Route path="/sub" element={<SubscriptionPage />} />
-          {/* <Route path="/pay" element={<CreditCardPage />} /> */}
+          <Route path="/pay" element={<CreditCardPage />} />
 
         </Routes>
       </SwipeProvider>

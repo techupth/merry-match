@@ -152,10 +152,10 @@ const Swipe = (props) => {
                 >
 
                   <div className="flex flex-row z-[0] w-full">
-                    <h3 className="text-[white] text-[1.5rem] m-[5%] mr-[0] font-[700]">
+                    <h3 className="text-[white] text-[2rem] m-[5%] mr-[0] font-[700]">
                       {user.name}
                     </h3>
-                    <h3 className="text-[#afb4c5] text-[1.5rem] m-[5%] ml-[2%] mr-[1%] font-[700]">
+                    <h3 className="text-[#afb4c5] text-[2rem] m-[5%] ml-[2%] mr-[1%] font-[700]">
                       {user.user_age}
                     </h3>
                     <button
@@ -166,7 +166,7 @@ const Swipe = (props) => {
                         setModalId(index);
                       }}
                     >
-                      <img className="" src={eyeIcon} />
+                      <img className=" w-[65px] h-[65px]" src={eyeIcon} />
                     </button>
                   </div>
                   <button

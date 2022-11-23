@@ -14,7 +14,7 @@ const ThirdPart = () => {
       </h2>
       <div className="card flex mt-[48px] justify-center mb-82 ">
         {/* item1 */}
-        <div className="cardItem item1 w-[300px] h-[400px] bg-[#2A0B21] text-center rounded-[40px] mx-[12px] mb-[500px]">
+        <div className="cardItem item1 w-[300px] h-[350px] bg-[#2A0B21] text-center rounded-[40px] mx-[12px] mb-[500px]">
           <div className="frameIMG w-[120px] h-[120px] rounded-full bg-[#411032] relative m-auto mt-[32px]">
             <div className="imgItem w-[50px] h-[50px] ">
               <img src={emoji_img1} alt="" />
@@ -32,7 +32,7 @@ const ThirdPart = () => {
         {/* End Item1 */}
 
         {/* item2 */}
-        <div className="cardItem item2 w-[300px] h-[400px] bg-[#2A0B21] text-center rounded-[40px] mx-[12px]">
+        <div className="cardItem item2 w-[300px] h-[350px] bg-[#2A0B21] text-center rounded-[40px] mx-[12px]">
           <div className="frameIMG w-[120px] h-[120px] rounded-full bg-[#411032] relative m-auto mt-[32px]">
             <div className="imgItem w-[50px] h-[50px] ">
               <img src={emoji_img2} alt="" />
@@ -50,7 +50,7 @@ const ThirdPart = () => {
         {/* End Item2 */}
 
         {/* item3 */}
-        <div className="cardItem item3 w-[300px] h-[400px] bg-[#2A0B21] text-center rounded-[40px] mx-[12px]">
+        <div className="cardItem item3 w-[300px] h-[350px] bg-[#2A0B21] text-center rounded-[40px] mx-[12px]">
           <div className="frameIMG w-[120px] h-[120px] rounded-full bg-[#411032] relative m-auto mt-[32px]">
             <div className="imgItem w-[50px] h-[50px] ">
               <img src={emoji_img3} alt="" />
@@ -68,7 +68,7 @@ const ThirdPart = () => {
         {/* End Item3 */}
 
         {/* item4 */}
-        <div className="cardItem item4 w-[300px] h-[400px] bg-[#2A0B21] text-center rounded-[40px] mx-[12px]">
+        <div className="cardItem item4 w-[300px] h-[350px] bg-[#2A0B21] text-center rounded-[40px] mx-[12px]">
           <div className="frameIMG w-[120px] h-[120px] rounded-full bg-[#411032] relative m-auto mt-[32px]">
             <div className="imgItem w-[50px] h-[50px] ">
               <img src={emoji_img4} alt="" />

@@ -4,9 +4,7 @@ import PaymentForm from "../../components/creditCardComponents/CreditCard";
 const CreditCardPage = () => {
     return (
         <div>
-
             <PaymentForm />
-
         </div>
     );
 }

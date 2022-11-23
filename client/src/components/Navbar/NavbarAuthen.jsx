@@ -52,14 +52,15 @@ const NavbarAuthen = () => {
         {/* <h2>{userData.name}</h2> */}
 
         <button
-          className="text-[#191C77]"
+          className="text-[#191C77] text-[1rem]"
           onClick={() => {
             navigate("/match");
           }}
         >
           Start Matching!
         </button>
-        <button className="text-[#191C77]">Merry Membership</button>
+
+        <button className="text-[#191C77] text-[1rem]">Merry Membership</button>
 
         <button
           type="button"
