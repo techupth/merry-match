@@ -3,6 +3,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import Home from "../landingPage/Home";
 import Login from "../loginPage/Login";
 import Register from "../registerPage/Register";
+import SwipeComponent from "../../components/swipe/swipe";
 
 const Unauthenticated = () => {
   return (
@@ -17,7 +18,7 @@ const Unauthenticated = () => {
         <Route path="*" element={<Home />} />
 
         {/* // For dev import element here */}
-        {/* <Route path="/dev" element={<SwipeTest />} /> */}
+        <Route path="/dev" element={<SwipeComponent />} />
       </Routes>
     </>
   );
