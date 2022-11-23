@@ -14,7 +14,7 @@ const Swipe = () => {
   // import MerryList from './../../pages/merryListPage/MerryList';
   // console.log("swipe compoenent rendered!!");
   const { filterData, postSwipe, merryList } = useSwipe();
-
+  console.log("filterData at swipe", filterData);
   // console.log(indexUsers, "from swipe");
   const [currentIndex, setCurrentIndex] = useState(filterData.data.length - 1);
   const [lastDirection, setLastDirection] = useState();
@@ -96,7 +96,7 @@ const Swipe = () => {
     const data = await merryList();
 
     const matchId = data.matchId.map((value) => value.swiper);
-    console.log(matchId);
+    // console.log(matchId);
     setMatchingId(matchId);
   };
 
@@ -216,8 +216,7 @@ const Swipe = () => {
                       </div>
                       <div className="absolute top-52 ">
                         <button
-                        
-                        className="bg-[#FFE1EA] py-[12px] px-[24px] rounded-[99px] w-[188px] text-[20px] text-[#95002B] font-bold"
+                          className="bg-[#FFE1EA] py-[12px] px-[24px] rounded-[99px] w-[188px] text-[20px] text-[#95002B] font-bold"
                           onClick={() => {
                             swipe("right", index);
                           }}

@@ -28,7 +28,7 @@ const SwipeProvider = (props) => {
   };
 
   const getEachUser = async () => {
-    // let defaultDataToFilter = {};
+    let initialDataToFilter = {};
     const token = localStorage.getItem("token");
     const userData = jwtDecode(token);
     // console.log(userData.user_id);
@@ -38,20 +38,23 @@ const SwipeProvider = (props) => {
     );
     console.log("get each user", eachUserResult.data.data[0]);
     setEachUser(eachUserResult.data.data[0]);
-    // console.log(
-    //   eachUserResult.data.data[0].user_age - 10,
-    //   eachUserResult.data.data[0].user_age + 10
-    // );
 
     if (eachUserResult.data.data[0].user_age <= 28) {
-      setDefaultDataToFilter({
+      initialDataToFilter = {
         ageRange: [18, eachUserResult.data.data[0].user_age + 10],
         meetingInt: [eachUserResult.data.data[0].meeting_int],
         sexIdentity: eachUserResult.data.data[0].sex_pref,
         user_id: eachUserResult.data.data[0].user_id,
-      });
+      };
+    } else if (eachUserResult.data.data[0].user_age >= 45) {
+      initialDataToFilter = {
+        ageRange: [eachUserResult.data.data[0].user_age - 10, 55],
+        meetingInt: [eachUserResult.data.data[0].meeting_int],
+        sexIdentity: eachUserResult.data.data[0].sex_pref,
+        user_id: eachUserResult.data.data[0].user_id,
+      };
     } else {
-      setDefaultDataToFilter({
+      initialDataToFilter = {
         ageRange: [
           eachUserResult.data.data[0].user_age - 10,
           eachUserResult.data.data[0].user_age + 10,
@@ -59,13 +62,14 @@ const SwipeProvider = (props) => {
         meetingInt: [eachUserResult.data.data[0].meeting_int],
         sexIdentity: eachUserResult.data.data[0].sex_pref,
         user_id: eachUserResult.data.data[0].user_id,
-      });
+      };
     }
-    console.log("default data to filter", defaultDataToFilter);
-    getDataByFilter(defaultDataToFilter);
-    return eachUserResult.data.data[0];
+    console.log("default data to filter", initialDataToFilter);
+    console.log("ฟิลเตอร์แล้วจ้า", getDataByFilter(initialDataToFilter));
+    setDefaultDataToFilter(initialDataToFilter);
+    // return eachUserResult.data.data[0];
   };
-  // console.log("each User", eachUser);
+  console.log("each User", eachUser);
   console.log("default data to filter", defaultDataToFilter);
 
   const getDataByFilter = async (data) => {
@@ -76,7 +80,6 @@ const SwipeProvider = (props) => {
         "http://localhost:4001/filter",
         data
       );
-      // console.log("filter data", filteredData.data.data);
       // setIndexUsers(filteredData.data.data.length)
       setFilterData({
         ...filterData,
@@ -84,12 +87,13 @@ const SwipeProvider = (props) => {
         loading: null,
       });
       console.log("latest filtered data", filteredData.data.data);
+      // console.log("Filter Success", filterData);
     } catch (err) {
       setFilterData({ ...filterData, err: true });
       console.log(err);
     }
   };
-  console.log("Filter Success", filterData);
+  // console.log("Filter Success", filterData);
 
   const merryList = async () => {
     const token = localStorage.getItem("token");
@@ -134,7 +138,7 @@ const SwipeProvider = (props) => {
     const response = await axios.delete(
       `http://localhost:4001/swipe/?request=${request}`
     );
-    console.log(response.data.message);
+    // console.log(response.data.message);
   };
 
   return (

@@ -28,7 +28,10 @@ const MatchFilter = () => {
   // console.log(eachUser)
 
   // console.log("Match Fileter rendered!")
-  const [ageRange, setAgeRange] = useState([18, eachUser.user_age + 10]);
+  const [ageRange, setAgeRange] = useState([
+    defaultDataToFilter.ageRange[0],
+    eachUser.user_age + 10,
+  ]);
   const [meetingIntArr, setMeetingIntArr] = useState(
     defaultDataToFilter.meetingInt
   );
@@ -231,8 +234,8 @@ const MatchFilter = () => {
                     ...dataToFilter,
                     meetingInt: meetingIntArr,
                   });
-                  // console.log(meetingIntArr);
-                  // console.log(dataToFilter);
+                  console.log(meetingIntArr);
+                  console.log(dataToFilter);
                 }
               }}
             >
@@ -246,7 +249,10 @@ const MatchFilter = () => {
           Age Range
         </Text>
         <RangeSlider
-          defaultValue={[18, eachUser.user_age + 10]}
+          defaultValue={[
+            defaultDataToFilter.ageRange[0],
+            defaultDataToFilter.ageRange[1],
+          ]}
           aria-label={["18", "55"]}
           min={18}
           max={55}
@@ -257,7 +263,7 @@ const MatchFilter = () => {
           mt={7}
         >
           <RangeSliderMark
-            defaultValue={18}
+            defaultValue={defaultDataToFilter.ageRange[0]}
             value={ageRange[0]}
             borderRadius="18"
             textAlign="center"
@@ -271,7 +277,7 @@ const MatchFilter = () => {
             {ageRange[0]}
           </RangeSliderMark>
           <RangeSliderMark
-            defaultValue={eachUser.user_age + 10}
+            defaultValue={defaultDataToFilter.ageRange[1]}
             value={ageRange[1]}
             borderRadius="18"
             textAlign="center"
@@ -321,6 +327,7 @@ const MatchFilter = () => {
               sexPreference: eachUser.sex_pref,
               user_id: eachUser.user_id,
             });
+            console.log("data to filter after clear", dataToFilter);
           }}
         >
           Clear
