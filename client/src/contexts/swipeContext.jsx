@@ -43,14 +43,14 @@ const SwipeProvider = (props) => {
       initialDataToFilter = {
         ageRange: [18, eachUserResult.data.data[0].user_age + 10],
         meetingInt: [eachUserResult.data.data[0].meeting_int],
-        sexIdentity: eachUserResult.data.data[0].sex_pref,
+        sexPreference: eachUserResult.data.data[0].sex_pref,
         user_id: eachUserResult.data.data[0].user_id,
       };
     } else if (eachUserResult.data.data[0].user_age >= 45) {
       initialDataToFilter = {
         ageRange: [eachUserResult.data.data[0].user_age - 10, 55],
         meetingInt: [eachUserResult.data.data[0].meeting_int],
-        sexIdentity: eachUserResult.data.data[0].sex_pref,
+        sexPreference: eachUserResult.data.data[0].sex_pref,
         user_id: eachUserResult.data.data[0].user_id,
       };
     } else {
@@ -60,16 +60,16 @@ const SwipeProvider = (props) => {
           eachUserResult.data.data[0].user_age + 10,
         ],
         meetingInt: [eachUserResult.data.data[0].meeting_int],
-        sexIdentity: eachUserResult.data.data[0].sex_pref,
+        sexPreference: eachUserResult.data.data[0].sex_pref,
         user_id: eachUserResult.data.data[0].user_id,
       };
     }
     console.log("default data to filter", initialDataToFilter);
     console.log("ฟิลเตอร์แล้วจ้า", getDataByFilter(initialDataToFilter));
     setDefaultDataToFilter(initialDataToFilter);
-    // return eachUserResult.data.data[0];
+    return eachUserResult.data.data[0];
   };
-  console.log("each User", eachUser);
+  // console.log("each User", eachUser);
   console.log("default data to filter", defaultDataToFilter);
 
   const getDataByFilter = async (data) => {

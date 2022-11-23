@@ -32,9 +32,7 @@ const MatchFilter = () => {
     defaultDataToFilter.ageRange[0],
     eachUser.user_age + 10,
   ]);
-  const [meetingIntArr, setMeetingIntArr] = useState(
-    defaultDataToFilter.meetingInt
-  );
+  const [meetingIntArr, setMeetingIntArr] = useState([eachUser.meeting_int]);
   const [userData, setUserData] = useState({});
   const [defaultMeet, setDefaultMeet] = useState("");
   const [dataToFilter, setDataToFilter] = useState({
@@ -43,50 +41,9 @@ const MatchFilter = () => {
     sexPreference: eachUser.sex_pref,
     user_id: eachUser.user_id,
   });
-  // console.log(dataToFilter)
-  // useEffect(() => {
-  //   getAllUsers();
-  //   getEachUser();
-  // }, []);
+  const [defaultCheck, setDefaultCheck] = useState([eachUser.meeting_int]);
 
-  // console.log(ageRange)
-  // useEffect(() => {
-  //   setMeetingIntArr([eachUser.meeting_int]);
-  //   setDataToFilter({
-  //     meetingInt: meetingIntArr,
-  //     ageRange,
-  //     sexPreference: eachUser.sex_pref,
-  //     user_id: eachUser.user_id,
-  //   });
-  // }, [eachUser]);
-
-  // console.log([eachUser.meeting_int])
-  // console.log(meetingIntArr);
-  // console.log(defaultDataToFilter);
-
-  // useEffect(() => {
-
-  //   // console.log(dataToFilter);
-  //   getDataByFilter(dataToFilter);
-  //   setDefaultMeet(eachUser.meeting_int)
-  // }, [dataToFilter, defaultMeet]);
-
-  // useEffect(() => {
-  //   // setMeetingIntArr([...meetingIntArr, eachUser.meeting_int]);
-  //   // setMeetingIntArr(meetingIntArr);
-  //   setDataToFilter({
-  //     meetingInt: [...meetingIntArr, eachUser.meeting_int],
-  //     ageRange,
-  //     sexPreference: eachUser.sex_pref,
-  //     user_id: eachUser.user_id,
-  //   });
-  // }, [eachUser]);
-
-  // console.log("all users", users);
-  // console.log("dataToFilter", dataToFilter);
-  // console.log("filterData", filterData);
-  // console.log("each user", eachUser);
-  // console.log(defaultMeet)
+  console.log(meetingIntArr);
 
   const handleAgeRange = (val) => {
     setAgeRange(val);
@@ -105,13 +62,12 @@ const MatchFilter = () => {
     setUserData(eachUser);
   }, [dataToFilter]);
 
+  useEffect(() => {}, [defaultCheck]);
+
   return (
     <div className="w-[410px] h-full bg-white z-40">
       <div className="meeting-interest mt-[140px] ml-[18px] h-[80uh] w-[80%]">
-        <CheckboxGroup
-          colorScheme="green"
-          defaultValue={[eachUser.meeting_int]}
-        >
+        <CheckboxGroup colorScheme="green" defaultValue={defaultCheck}>
           <Text fontWeight={700} color="#191C77" mb={3}>
             Meeting Interests
           </Text>
@@ -121,10 +77,13 @@ const MatchFilter = () => {
               value="Friend"
               onChange={(e) => {
                 console.log([e.target.value, e.target.checked]);
+                // ถ้าไม่มี อยู่แล้ว
                 if (!meetingIntArr.includes(e.target.value)) {
-                  if (e.target.checked) {
+                  // ถ้าเป็น true ให้พุช
+                  if (e.target.checked === true) {
                     meetingIntArr.push(e.target.value);
-                  } else {
+                    // ถ้าเป็น false ให้้ filter ออก
+                  } else if (e.target.checked === false) {
                     const result = meetingIntArr.filter((interest) => {
                       return interest !== e.target.value;
                     });
@@ -134,9 +93,14 @@ const MatchFilter = () => {
                     ...dataToFilter,
                     meetingInt: meetingIntArr,
                   });
-                  console.log(meetingIntArr);
-                  console.log(dataToFilter);
+                } else {
+                  const result = meetingIntArr.filter((interest) => {
+                    return interest !== e.target.value;
+                  });
+                  setMeetingIntArr(result);
                 }
+                console.log(meetingIntArr);
+                console.log("data to filter", dataToFilter);
               }}
             >
               Friend
@@ -146,10 +110,13 @@ const MatchFilter = () => {
               value="FWB"
               onChange={(e) => {
                 console.log([e.target.value, e.target.checked]);
+                // ถ้าไม่มี อยู่แล้ว
                 if (!meetingIntArr.includes(e.target.value)) {
-                  if (e.target.checked) {
+                  // ถ้าเป็น true ให้พุช
+                  if (e.target.checked === true) {
                     meetingIntArr.push(e.target.value);
-                  } else {
+                    // ถ้าเป็น false ให้้ filter ออก
+                  } else if (e.target.checked === false) {
                     const result = meetingIntArr.filter((interest) => {
                       return interest !== e.target.value;
                     });
@@ -159,9 +126,14 @@ const MatchFilter = () => {
                     ...dataToFilter,
                     meetingInt: meetingIntArr,
                   });
-                  console.log(meetingIntArr);
-                  console.log(dataToFilter);
+                } else {
+                  const result = meetingIntArr.filter((interest) => {
+                    return interest !== e.target.value;
+                  });
+                  setMeetingIntArr(result);
                 }
+                console.log(meetingIntArr);
+                console.log("data to filter", dataToFilter);
               }}
             >
               FWB
@@ -171,10 +143,13 @@ const MatchFilter = () => {
               value="ONS"
               onChange={(e) => {
                 console.log([e.target.value, e.target.checked]);
+                // ถ้าไม่มี อยู่แล้ว
                 if (!meetingIntArr.includes(e.target.value)) {
-                  if (e.target.checked) {
+                  // ถ้าเป็น true ให้พุช
+                  if (e.target.checked === true) {
                     meetingIntArr.push(e.target.value);
-                  } else {
+                    // ถ้าเป็น false ให้้ filter ออก
+                  } else if (e.target.checked === false) {
                     const result = meetingIntArr.filter((interest) => {
                       return interest !== e.target.value;
                     });
@@ -184,9 +159,15 @@ const MatchFilter = () => {
                     ...dataToFilter,
                     meetingInt: meetingIntArr,
                   });
+                } else {
                   console.log(meetingIntArr);
-                  console.log(dataToFilter);
+                  const result = meetingIntArr.filter((interest) => {
+                    return interest !== e.target.value;
+                  });
+                  setMeetingIntArr(result);
                 }
+                console.log(meetingIntArr);
+                console.log("data to filter", dataToFilter);
               }}
             >
               ONS
@@ -196,10 +177,13 @@ const MatchFilter = () => {
               value="Long-term"
               onChange={(e) => {
                 console.log([e.target.value, e.target.checked]);
+                // ถ้าไม่มี อยู่แล้ว
                 if (!meetingIntArr.includes(e.target.value)) {
-                  if (e.target.checked) {
+                  // ถ้าเป็น true ให้พุช
+                  if (e.target.checked === true) {
                     meetingIntArr.push(e.target.value);
-                  } else {
+                    // ถ้าเป็น false ให้้ filter ออก
+                  } else if (e.target.checked === false) {
                     const result = meetingIntArr.filter((interest) => {
                       return interest !== e.target.value;
                     });
@@ -209,9 +193,14 @@ const MatchFilter = () => {
                     ...dataToFilter,
                     meetingInt: meetingIntArr,
                   });
-                  console.log(meetingIntArr);
-                  console.log("data to filter", dataToFilter);
+                } else {
+                  const result = meetingIntArr.filter((interest) => {
+                    return interest !== e.target.value;
+                  });
+                  setMeetingIntArr(result);
                 }
+                console.log(meetingIntArr);
+                console.log("data to filter", dataToFilter);
               }}
             >
               Long-term Relationship
@@ -221,10 +210,13 @@ const MatchFilter = () => {
               value="Short-term"
               onChange={(e) => {
                 console.log([e.target.value, e.target.checked]);
+                // ถ้าไม่มี อยู่แล้ว
                 if (!meetingIntArr.includes(e.target.value)) {
-                  if (e.target.checked) {
+                  // ถ้าเป็น true ให้พุช
+                  if (e.target.checked === true) {
                     meetingIntArr.push(e.target.value);
-                  } else {
+                    // ถ้าเป็น false ให้้ filter ออก
+                  } else if (e.target.checked === false) {
                     const result = meetingIntArr.filter((interest) => {
                       return interest !== e.target.value;
                     });
@@ -234,9 +226,14 @@ const MatchFilter = () => {
                     ...dataToFilter,
                     meetingInt: meetingIntArr,
                   });
-                  console.log(meetingIntArr);
-                  console.log(dataToFilter);
+                } else {
+                  const result = meetingIntArr.filter((interest) => {
+                    return interest !== e.target.value;
+                  });
+                  setMeetingIntArr(result);
                 }
+                console.log(meetingIntArr);
+                console.log("data to filter", dataToFilter);
               }}
             >
               Short-term Relationship
@@ -318,25 +315,24 @@ const MatchFilter = () => {
       </div>
       <div className=" flex flex-row justify-center items-center">
         <button
-          className="text-[#C70039] font-[700] w-[99px] h-[48px] hover:text-[#FF1659]"
+          className="text-[#C70039] font-[700] w-[99px] h-[48px] hover:text-[#FF1659] active:text-[#A62D82]"
           onClick={() => {
-            setMeetingIntArr([eachUser.meeting_int]);
-            setDataToFilter({
-              meetingInt: meetingIntArr,
-              ageRange,
-              sexPreference: eachUser.sex_pref,
-              user_id: eachUser.user_id,
-            });
+            setMeetingIntArr(defaultDataToFilter.meetingInt);
+            console.log(defaultDataToFilter.meetingInt);
+            console.log(meetingIntArr);
+            setAgeRange(defaultDataToFilter.ageRange);
+            setDataToFilter(defaultDataToFilter);
+            setDefaultCheck(meetingIntArr);
             console.log("data to filter after clear", dataToFilter);
           }}
         >
           Clear
         </button>
         <button
-          className="bg-[#C70039] rounded-[99px] text-[white] font-[700] w-[99px] h-[48px] hover:bg-[#FF1659]"
+          className="bg-[#C70039] rounded-[99px] text-[white] font-[700] w-[99px] h-[48px] hover:bg-[#FF1659] active:text-[#A62D82]"
           onClick={() => {
-            console.log("Filter data by", dataToFilter);
             getDataByFilter(dataToFilter);
+            console.log("Filter data by", dataToFilter);
           }}
         >
           Search

@@ -15,11 +15,11 @@ const MatchingPage = () => {
     getDataByFilter,
   } = useSwipe();
   const [isLoading, setIsloading] = useState(null);
+  const [dataForMap, setDataForMap] = useState({});
 
   const handleDefualt = async () => {
     setIsloading(true);
     const defualt = await getEachUser();
-    // getDataByFilter(defaultDataToFilter);
 
     console.log(defualt);
 
@@ -29,11 +29,13 @@ const MatchingPage = () => {
     }
   };
 
-  console.log(filterData);
+  // console.log(filterData);
+  // console.log(defaultDataToFilter);
 
   useEffect(() => {
     getDataByFilter(defaultDataToFilter);
-  }, [defaultDataToFilter]);
+    console.log("did");
+  }, []);
 
   useEffect(() => {
     handleDefualt();
