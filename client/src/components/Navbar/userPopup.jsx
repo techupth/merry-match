@@ -29,7 +29,7 @@ function UserPopup({ close }) {
         >
           <a
             href="#"
-            className="block px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600 ml-3 mr-3 mt-3 border-3 bg-gradient-to-r from-[#742138] to-[#9E66A4] rounded-full flex flex-row"
+            className="block px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-black dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600 ml-3 mr-3 mt-3 border-3 bg-gradient-to-r from-[#742138] to-[#9E66A4] rounded-full flex flex-row"
             role="menuitem"
           >
             <img src={starts} className="mr-2" />
@@ -39,9 +39,9 @@ function UserPopup({ close }) {
           </a>
           <a
             href="#"
-            className="block px-4 py-2 text-md mt-3 text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600 flex flex-row"
+            className="block px-4 py-2 text-md mt-3 text-gray-700 hover:bg-gray-100 hover:text-black hover:text-[1rem] dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600 flex flex-row "
             role="menuitem"
-          >
+            >
             <img src={profile} className="mr-2" />
             <span className="flex flex-col">
               <span
@@ -55,7 +55,7 @@ function UserPopup({ close }) {
           </a>
           <a
             href="#"
-            className="block px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600 flex flex-row"
+            className="block px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-black hover:text-[1rem]  dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600 flex flex-row"
             role="menuitem"
           >
             <img src={merryList} className="mr-2" />
@@ -73,8 +73,9 @@ function UserPopup({ close }) {
           </a>
           <a
             href="#"
-            className=" block px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600 flex flex-row"
+            className=" block px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-black hover:text-[1rem]  dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600 flex flex-row hover:opacity-0"
             role="menuitem"
+            disabled={true}
           >
             <img src={member} className="mr-2" />
             <span className="flex flex-col">
@@ -83,7 +84,7 @@ function UserPopup({ close }) {
           </a>
           <a
             href="#"
-            className="block px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600 flex flex-row"
+            className="block px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-black hover:text-[1rem]  dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600 flex flex-row"
             role="menuitem"
           >
             <img src={compliant} className="mr-2" />
@@ -93,12 +94,12 @@ function UserPopup({ close }) {
           </a>
           <a
             href="#"
-            className="block px-4 py-2 text-md text-gray-700 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600 flex flex-row border-t-2"
+            className="block px-4 py-2 text-md text-gray-700 dark:text-gray-100 dark:hover:text-white hover:text-[1rem]  dark:hover:bg-gray-600 flex flex-row border-t-2 hover:gray-700"
             role="menuitem"
           >
-            <img src={logouticon} className="mr-2" />
-            <span className="flex flex-col">
-              <span onClick={() => logout()}>Log out</span>
+            <img src={logouticon} className="mr-2 hover:gray-700" />
+            <span className="flex flex-col hover:gray-700">
+              <span className="hover:gray-700"  onClick={() => logout()}>Log out</span>
             </span>
           </a>
         </div>
