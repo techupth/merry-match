@@ -36,7 +36,7 @@ const MatchFilter = () => {
   const [defaultMeet, setDefaultMeet] = useState("")
   const [dataToFilter, setDataToFilter] = useState({
     meetingInt: [eachUser.meeting_int],
-    ageRange: [eachUser.user_age - 10 , eachUser.user_age + 10 ],
+    ageRange: [eachUser.user_age - 10, eachUser.user_age + 10],
     sexPreference: eachUser.sex_pref,
     user_id: eachUser.user_id,
   });
@@ -45,7 +45,7 @@ const MatchFilter = () => {
   //   getAllUsers();
   //   getEachUser();
   // }, []);
-  
+
 
 
   // console.log(ageRange)
@@ -65,7 +65,7 @@ const MatchFilter = () => {
   // console.log(defaultDataToFilter);
 
   // useEffect(() => {
- 
+
   //   // console.log(dataToFilter);
   //   getDataByFilter(dataToFilter);
   //   setDefaultMeet(eachUser.meeting_int)
@@ -101,15 +101,15 @@ const MatchFilter = () => {
     });
   }, [ageRange]);
 
- 
 
-  useEffect(()=>{
+
+  useEffect(() => {
     setUserData(eachUser)
 
-  },[dataToFilter])
+  }, [dataToFilter])
 
   return (
-    <div className="w-[400px] h-full bg-white z-40">
+    <div className="w-[250px] h-full bg-white z-40 xl:w-[400px]">
       <div className="meeting-interest mt-[140px] ml-[18px] h-[80uh] w-[80%]">
         <CheckboxGroup colorScheme="green" defaultValue={[eachUser.meeting_int]}>
           <Text fontWeight={700} color="#191C77" mb={3}>
@@ -244,7 +244,7 @@ const MatchFilter = () => {
           </Stack>
         </CheckboxGroup>
       </div>
-      <div className="age-range w-[80%] ml-5">
+      <div className="age-range w-[78%] ml-6 2xl:w-[80%] 2xl:ml-5">
         <Text fontWeight={700} color="#191C77" mb={3} mt={10}>
           Age Range
         </Text>
@@ -253,6 +253,7 @@ const MatchFilter = () => {
           aria-label={["18", "55"]}
           min={18}
           max={55}
+          className="w-[78%]"
           step={1}
           onChangeEnd={(val) => {
             handleAgeRange(val);
@@ -260,7 +261,7 @@ const MatchFilter = () => {
           mt={7}
         >
           <RangeSliderMark
-            defaultValue={18  }
+            defaultValue={18}
             value={ageRange[0]}
             borderRadius="18"
             textAlign="center"
