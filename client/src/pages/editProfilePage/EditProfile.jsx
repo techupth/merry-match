@@ -249,6 +249,7 @@ const EditProfile = () => {
               data={updateUserData}
             />
           )}
+<<<<<<< HEAD
       {isLoading === "loading" ? (
         <div className="flex items-center justify-center mt-[500px] text-[100px]">
           <Spinner
@@ -262,6 +263,10 @@ const EditProfile = () => {
       ) : isLoading === "data" ? (
         <div className="informationContainer flex flex-col items-center justify-start">
           <form>
+=======
+
+          <form className=" w-[640px]   md:w-[800px]  lg:w-[930px]">
+>>>>>>> aafe9fad (fix:responsive v2)
             {/* start Header */}
             <div className="flex mt-[150px]">
               <div className="">

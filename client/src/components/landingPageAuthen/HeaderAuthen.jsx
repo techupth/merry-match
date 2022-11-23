@@ -5,10 +5,10 @@ function HeaderAuthen() {
   const navigate = useNavigate();
   return (
     <div className="z-0">
-      <div className="w-[100%] h-[100vh] bg-[url('../../../public/asset/header/hero-section-crop.svg')] bg-no-repeat bg-cover z-0 overflow-auto ">
-        <div className="h-[100%]w-[100%] flex flex-col items-center justify-center ">
-          <div className="flex flex-col items-center justify-start h-[100%]">
-            <h3 className="text-[400%] text-[#FFFFFF] font-[900] leading-[115%] mt-[70%] ">
+      <div className="w-[100%] h-[100vh] bg-[#160404] bg-no-repeat bg-cover z-0 overflow-auto xl:bg-[url('../../../public/asset/header/hero-section-crop.svg')]">
+        <div className="h-[100%] w-[100%] flex flex-col items-center justify-center   ">
+          <div className="flex flex-col items-center justify-start h-[60%] xl:h-[100%]">
+            <h3 className="text-[400%] text-[#FFFFFF] font-[900] leading-[115%] mt-[70%] pl-[20%]">
               Make the
             </h3>
             <h3 className="text-[400%] text-[#FFFFFF] font-[900]">

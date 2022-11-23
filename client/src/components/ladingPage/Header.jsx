@@ -21,9 +21,9 @@ function Header() {
         </div>
       </nav> */}
 
-      <div className="w-[100%] h-[100vh] bg-[url('../../../public/asset/header/hero-section-crop.svg')] bg-no-repeat bg-cover z-0 overflow-auto ">
-        <div className="h-[100%]w-[100%] flex flex-col items-center justify-center ">
-          <div className="flex flex-col items-center justify-start h-[100%]">
+      <div className="w-[100%] h-[100vh] bg-[#160404] bg-no-repeat bg-cover z-0 overflow-auto xl:bg-[url('../../../public/asset/header/hero-section-crop.svg')]">
+        <div className="h-[100%] w-[100%] flex flex-col items-center justify-center ">
+          <div className="flex flex-col items-center justify-start h-[60%] xl:h-[100%]">
             <h3 className="text-[400%] text-[#FFFFFF] font-[900] leading-[115%] mt-[70%] ">
               Make the
             </h3>
@@ -38,7 +38,7 @@ function Header() {
           </div>
 
           <button
-            className="button-header bg-[#c70039] shadow-[2px_2px_12px_0_rgba(64, 50, 133, 0.16)] rounded-[99px] text-[#ffffff] h-[48px] w-[163px] mt-[5%] font-[700]"
+            className="button-header bg-[#c70039] shadow-[2px_2px_12px_0_rgba(64, 50, 133, 0.16)] rounded-[99px] text-[#ffffff] h-[48px] w-[163px]  font-[700] xl:mt-[5%]"
             onClick={() => {
               navigate("/login");
             }}
