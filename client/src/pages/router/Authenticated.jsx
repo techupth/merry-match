@@ -20,6 +20,7 @@ const Authenticated = () => {
           <Route path="/merrylist" element={<MerryList />} />
           <Route path="/match" element={<MatchingPage />} />
           <Route path="/sub" element={<SubscriptionPage />} />
+          {/* <Route path="/pay" element={<CreditCardPage />} /> */}
 
         </Routes>
       </SwipeProvider>

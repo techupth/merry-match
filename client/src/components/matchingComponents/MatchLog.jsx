@@ -70,25 +70,13 @@ const MatchLog = (props) => {
       <h1 className="text-[#2A2E3F] text-[24px] font-bold mt-[24px]">
         Merry Match!
       </h1>
-<<<<<<< HEAD
       {isLoading === "loading" ? (
         <div>Loading...</div>
       ) : isLoading === "data" ? (
-=======
-
-      <div className="relative flex items-center ">
-        <MdChevronLeft
-          className="opacity-50 cursor-pointer hover:opacity-100"
-          onClick={slideLeft}
-          size={40}
-
-        />
->>>>>>> 1ccfa67a (fix:responsive)
         <div
           id="slider"
           className="w-full h-[400px] overflow-x-scroll scroll whitespace-nowrap scroll-smooth mt-[30px] "
         >
-<<<<<<< HEAD
           {userList.map((item, index) =>
             item.status === "match" ? (
               <div
@@ -107,9 +95,9 @@ const MatchLog = (props) => {
                     alt="/"
                   />
                 </div>
-                <div className="flex flex-col justify-center ml-[5px]">
-                  <p className="name font-bold">{item.name}</p>
-                  <p className="age text-[#646D89]">{item.user_age}</p>
+                <div className="flex flex-col justify-center ml-[5px]  overflow-x-scroll">
+                  <p className="name font-bold text-[1.20rem] ">{item.name}</p>
+                  <p className="age text-[#646D89]">Age {item.user_age}</p>
                   <p className="meeting_int text-[#646D89]">
                     {item.meeting_int}
                   </p>
@@ -117,22 +105,6 @@ const MatchLog = (props) => {
               </div>
             ) : null
           )}
-=======
-          {data.map((item, index) => (
-            <div key={index} className="inline-block relative hover:scale-105 ease-in-out duration-300 cursor-pointer">
-              <img
-                src={two_heart}
-                className="inline-block absolute bottom-0 right-0"
-                alt=""
-              />
-              <img
-                className="w-[100px] h-[100px] inline-block p-2  rounded-3xl mt-[16px]"
-                src={item.img}
-                alt="/"
-              />
-            </div>
-          ))}
->>>>>>> 1ccfa67a (fix:responsive)
         </div>
       ) : null}
     </div>

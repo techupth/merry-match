@@ -49,9 +49,9 @@ const MatchingPage = () => {
         ) : filterData.data ? (
           <>
             {" "}
-            
-            <Swipe clickCountinue={clickCountinue} setClickCountinue={setClickCountinue}/>
-            <MatchLog clickCountinue={clickCountinue}/>
+
+            <Swipe clickCountinue={clickCountinue} setClickCountinue={setClickCountinue} />
+            <MatchLog clickCountinue={clickCountinue} />
           </>
         ) : null}
       </div>
