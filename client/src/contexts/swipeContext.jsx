@@ -103,7 +103,7 @@ const SwipeProvider = (props) => {
       swipe_type: type,
       swipee: filterData.data[index].user_id,
     };
-    console.log(swipeData);
+    // console.log(swipeData);
     const response = await axios.post(
       `http://localhost:4001/swipe/`,
       swipeData
@@ -111,7 +111,7 @@ const SwipeProvider = (props) => {
     console.log(response.data.message);
   };
   
-  console.log(unMatch)
+  // console.log(unMatch)
 
   const deleteMatch = async (arr) => {
     

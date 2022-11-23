@@ -48,9 +48,9 @@ const MatchLog = (props) => {
     isData();
   }, [props.clickCountinue]);
 
-  console.log(props.clickCountinue);
+  // console.log(props.clickCountinue);
 
-  console.log(userList);
+  // console.log(userList);
 
   return (
     <div className="MatchLog w-[250px] mt-[240px] h-full px-[16px] z-40 bg-[white] xl:w-[316px]">

@@ -1,6 +1,6 @@
 import matchedLogo from "../../../public/asset/merryMatchIMG/matchedLogo.png";
 
-const MatchedLogo = () => {
+const MatchedLogo = ({swipe ,index,clickCountinueCount}) => {
   return (
     <div className=" absolute flex flex-col items-center">
       <img className="hover:opacity-50" src={matchedLogo}></img>
