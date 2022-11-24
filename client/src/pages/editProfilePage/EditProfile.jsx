@@ -152,6 +152,7 @@ const EditProfile = () => {
     contact: contact,
   };
 
+  console.log(updateUserData);
   const updateUserProfile = async (updateUserData) => {
     try {
       await axios.put(
@@ -530,7 +531,7 @@ const EditProfile = () => {
                 id="Contact"
                 name="Contact"
                 maxLength="150"
-                value={contact === null ? " " : contact}
+                value={contact}
                 rows="1"
                 className="rounded-lg h-[100px] p-[12px] border-[#D6D9E4]"
                 onChange={(event) => {

@@ -350,6 +350,10 @@ select:focus {
   border: 1px solid #a62db2;
 }
 
+.chakra-checkbox__control.css-exc098:hover {
+  border: 1.5px solid #a62db2;
+}
+
 /* Age Range */
 .chakra-slider__thumb,
 .css-pa3zzn {

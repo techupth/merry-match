@@ -18,7 +18,8 @@ import EditModal from "../../components/merryListComponents/EditModal";
 import { useSwipe } from "../../contexts/swipeContext";
 
 const MerryList = () => {
-  const { merryList, setUnMatch, deleteMatch, unMatch } = useSwipe();
+  const { merryList, merryListUser, setUnMatch, deleteMatch, unMatch } =
+    useSwipe();
 
   const [isLoading, setIsloading] = useState("NoUser");
   const [userList, setUserList] = useState([]);

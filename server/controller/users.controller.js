@@ -11,6 +11,7 @@ const getAllUsers = async (req, res) => {
 
 const getUserById = async (req, res) => {
   const userId = req.params.userId;
+  console.log(userId);
   const result = await pool.query(`select * from users where user_id=$1`, [
     userId,
   ]);
@@ -77,9 +78,4 @@ const deleteUserController = async (req, res) => {
   });
 };
 
-export {
-  getAllUsers,
-  getUserById,
-  editUserController,
-  deleteUserController,
-};
+export { getAllUsers, getUserById, editUserController, deleteUserController };

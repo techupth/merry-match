@@ -1,7 +1,5 @@
 import React from "react";
-import hero from '../../../public/asset/header/New Tab_files/headerSection.svg'
-
-
+import hero from "../../../public/asset/header/New Tab_files/headerSection.svg";
 
 const Header = () => {
   return (
@@ -45,6 +43,6 @@ const Header = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Header;

@@ -7,21 +7,37 @@ import { useSwipe } from "../../contexts/swipeContext";
 import { Progress, Spinner } from "@chakra-ui/react";
 
 const MatchingPage = () => {
-  const { getEachUser, filterData, merryList } = useSwipe();
+  const {
+    getEachUser,
+    filterData,
+    merryList,
+    defaultDataToFilter,
+    getDataByFilter,
+  } = useSwipe();
   const [isLoading, setIsloading] = useState(null);
+  const [dataForMap, setDataForMap] = useState({});
   const [clickCountinue, setClickCountinue] = useState(0);
 
   const handleDefualt = async () => {
     setIsloading(true);
     const defualt = await getEachUser();
 
+    console.log(defualt);
+
     if (defualt) {
-      // console.log(defualt)
+      console.log("each user", defualt);
       setIsloading("data");
     }
   };
 
   // console.log(filterData);
+  // console.log(defaultDataToFilter);
+
+  useEffect(() => {
+    getDataByFilter(defaultDataToFilter);
+    console.log("did");
+  }, []);
+
   useEffect(() => {
     handleDefualt();
     merryList();
@@ -41,7 +57,7 @@ const MatchingPage = () => {
             <Spinner
               thickness="7px"
               speed="0.65s"
-              emptyColor="gray.200"
+              emptyColor="white"
               color="pink"
               size="xl"
             />

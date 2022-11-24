@@ -1,0 +1,10 @@
+-- SELECT user_id,name,user_age,sex_identity,sex_pref,swp.swipe_type,swp.swipee FROM users AS u LEFT JOIN swipe as swp ON swp.swiper = u.user_id LEFT JOIN swipe as swp2 on swp2.swipee = u.user_id where (u.user_age between 18 and 60) and (u.meeting_int = 'FWB') and (u.sex_identity = 'Male') and (u.user_id != 106 ) and (swp2.swipe_type != false) and (swp2.swipee !=106)
+
+
+-- SELECT user_id,username,name,sex_identity,sex_pref,swipe_type,swipee FROM users AS u Left JOIN swipe as swp ON swp.swiper = u.user_id where name='taylorswift'
+
+
+
+-- SELECT user_id,username,name,sex_identity,sex_pref FROM users AS u where name='taylorswift'
+
+select * from users where username ='taylorswift'

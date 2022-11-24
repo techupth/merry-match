@@ -18,7 +18,7 @@ const SwipeProvider = (props) => {
   const [matchId, setMatchId] = useState([]);
   const [indexUsers, setIndexUsers] = useState(0);
   const [unMatch, setUnMatch] = useState([1]);
-  
+  const [defaultDataToFilter, setDefaultDataToFilter] = useState({});
 
   const getAllUsers = async () => {
     const result = await axios.get("http://localhost:4001/swipe");
@@ -28,6 +28,7 @@ const SwipeProvider = (props) => {
   };
 
   const getEachUser = async () => {
+    let initialDataToFilter = {};
     const token = localStorage.getItem("token");
     const userData = jwtDecode(token);
     // console.log(userData.user_id);
@@ -35,33 +36,50 @@ const SwipeProvider = (props) => {
     const eachUserResult = await axios.get(
       `http://localhost:4001/filter/${userData.user_id}`
     );
-    // console.log(eachUserResult.data.data[0], "get each user");
+    console.log("get each user", eachUserResult.data.data[0]);
     setEachUser(eachUserResult.data.data[0]);
-    // console.log(
-    //   eachUserResult.data.data[0].user_age - 10,
-    //   eachUserResult.data.data[0].user_age + 10
-    // );
-    getDataByFilter({
-      ageRange: [
-        eachUserResult.data.data[0].user_age - 10,
-        eachUserResult.data.data[0].user_age + 10,
-      ],
-      meetingInt: [eachUserResult.data.data[0].meeting_int],
-      sexPreference: eachUserResult.data.data[0].sex_pref,
-      user_id: eachUserResult.data.data[0].user_id,
-    });
+
+    if (eachUserResult.data.data[0].user_age <= 28) {
+      initialDataToFilter = {
+        ageRange: [18, eachUserResult.data.data[0].user_age + 10],
+        meetingInt: [eachUserResult.data.data[0].meeting_int],
+        sexPreference: eachUserResult.data.data[0].sex_pref,
+        user_id: eachUserResult.data.data[0].user_id,
+      };
+    } else if (eachUserResult.data.data[0].user_age >= 45) {
+      initialDataToFilter = {
+        ageRange: [eachUserResult.data.data[0].user_age - 10, 55],
+        meetingInt: [eachUserResult.data.data[0].meeting_int],
+        sexPreference: eachUserResult.data.data[0].sex_pref,
+        user_id: eachUserResult.data.data[0].user_id,
+      };
+    } else {
+      initialDataToFilter = {
+        ageRange: [
+          eachUserResult.data.data[0].user_age - 10,
+          eachUserResult.data.data[0].user_age + 10,
+        ],
+        meetingInt: [eachUserResult.data.data[0].meeting_int],
+        sexPreference: eachUserResult.data.data[0].sex_pref,
+        user_id: eachUserResult.data.data[0].user_id,
+      };
+    }
+    console.log("default data to filter", initialDataToFilter);
+    console.log("ฟิลเตอร์แล้วจ้า", getDataByFilter(initialDataToFilter));
+    setDefaultDataToFilter(initialDataToFilter);
     return eachUserResult.data.data[0];
   };
   // console.log("each User", eachUser);
+  console.log("default data to filter", defaultDataToFilter);
 
   const getDataByFilter = async (data) => {
+    console.log(data);
     try {
       setFilterData({ ...filterData, loading: true });
       const filteredData = await axios.post(
         "http://localhost:4001/filter",
         data
       );
-      // console.log("filter data", filteredData.data.data);
       // setIndexUsers(filteredData.data.data.length)
       setFilterData({
         ...filterData,
@@ -103,7 +121,7 @@ const SwipeProvider = (props) => {
       swipe_type: type,
       swipee: filterData.data[index].user_id,
     };
-    // console.log(swipeData);
+    console.log(swipeData);
     const response = await axios.post(
       `http://localhost:4001/swipe/`,
       swipeData
@@ -141,6 +159,7 @@ const SwipeProvider = (props) => {
         deleteMatch,
         setUnMatch,
         unMatch,
+        defaultDataToFilter,
       }}
     >
       {props.children}

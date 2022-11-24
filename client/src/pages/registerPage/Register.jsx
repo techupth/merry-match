@@ -13,7 +13,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import { registerLocale, setDefaultLocale } from "react-datepicker";
 import enUS from "date-fns/locale/en-US";
 
-
 const Register = () => {
   const navigate = useNavigate();
   const { register, checkRegister, msg } = useAuth();
@@ -73,6 +72,7 @@ const Register = () => {
     profile_pics: images,
     contact,
   };
+  console.log(userInfo);
 
   const registerNewUser = async () => {
     await axios.post("http://localhost:4001/auth/register", userInfo, {
@@ -128,9 +128,10 @@ const Register = () => {
       sexualIdentities == "" ||
       sexualPreferences == "" ||
       racialPreferences == "" ||
-      meetingInterests == ""
+      meetingInterests == "" ||
+      contact == ""
     ) {
-      // alert("Please complete all answers!");
+      alert("Please complete all answers!");
       setStep(1);
       return false;
     }
@@ -153,13 +154,13 @@ const Register = () => {
     }
   };
 
-  const validatePasswordLength = () => {
+  const validatePasswordLength = (e) => {
     if (password.length < 7) {
       setPasswordLengthError("* Password must be at least 8 characters");
     } else {
       setPasswordLengthError("");
     }
-    preventDefault;
+    e.preventDefault();
   };
 
   const validatePasswordMatch = () => {
@@ -417,9 +418,9 @@ const Register = () => {
                         dropdownMode="select"
                         maxDate={maxDate}
                         minDate={minDate}
-                      // locale={en - Us}
-                      // weekDayFormat="narrow"
-                      // defaultWidth="narrow"
+                        // locale={en - Us}
+                        // weekDayFormat="narrow"
+                        // defaultWidth="narrow"
                       />
 
                       {/* .............. */}
@@ -552,7 +553,7 @@ const Register = () => {
                         value={userInfo.password}
                         onChange={(event) => {
                           setPassword(event.target.value);
-                          validatePasswordLength();
+                          validatePasswordLength(event);
                         }}
                         placeholder="At least 8 characters"
                         required
@@ -983,6 +984,6 @@ const Register = () => {
       </form>
     </div>
   );
-}
+};
 
 export default Register;

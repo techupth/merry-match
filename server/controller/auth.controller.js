@@ -19,7 +19,7 @@ const registerController = async (req, res) => {
     newUserProfile.password = await bcrypt.hash(newUserProfile.password, salt);
 
     await pool.query(
-      `insert into users(name,birthday,location,city,username,email,password,sex_identity,sex_pref,racial_pref,meeting_int,hobby,created_at,updated_at,profile_pics,user_age) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16)`,
+      `insert into users(name,birthday,location,city,username,email,password,sex_identity,sex_pref,racial_pref,meeting_int,hobby,created_at,updated_at,profile_pics,user_age,contact) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17)`,
       [
         newUserProfile.name,
         newUserProfile.birthday,
@@ -37,6 +37,7 @@ const registerController = async (req, res) => {
         newUserProfile.updated_at,
         newUserProfile.profile_pics,
         yearNow - userBirthYear,
+        newUserProfile.contact
       ]
     );
     return res.json({
