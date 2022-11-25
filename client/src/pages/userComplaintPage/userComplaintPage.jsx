@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import Banner from "../../../public/asset/Login/bannerLogin.png";
 
-const userComplaintPage = () => {
+const UserComplaintPage = () => {
   return (
-    <div>userComplaintPage</div>
-  )
-}
+    <div className="w-[full] h-[80.25rem] bg-[white]">
+      <img src={Banner} alt="banner" />
+    </div>
+  );
+};
 
-export default userComplaintPage
+export default UserComplaintPage;
