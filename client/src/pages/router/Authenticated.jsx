@@ -7,7 +7,7 @@ import NavbarAuthen from "../../components/Navbar/NavbarAuthen";
 import { SwipeProvider } from "../../contexts/swipeContext";
 import SubscriptionPage from "../subsciptionPage/SubscriptionPage";
 import CreditCardPage from "../creditCardPage/creditCardPage";
-import userComplaintPage from "../userComplaintPage/userComplaintPage";
+import UserComplaintPage from "../userComplaintPage/userComplaintPage";
 
 const Authenticated = () => {
   return (
@@ -22,8 +22,7 @@ const Authenticated = () => {
           <Route path="/match" element={<MatchingPage />} />
           <Route path="/sub" element={<SubscriptionPage />} />
           <Route path="/pay" element={<CreditCardPage />} />
-          <Route path="/complaint" element={<userComplaintPage />} />
-
+          <Route path="/complaint" element={<UserComplaintPage />} />
         </Routes>
       </SwipeProvider>
     </>

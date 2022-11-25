@@ -9,16 +9,11 @@ const Unauthenticated = () => {
   return (
     <>
       <Navbar />
-      {/* <Navbar /> */}
-
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="*" element={<Home />} />
-
-        {/* // For dev import element here */}
-        <Route path="/dev" element={<SwipeModal />} />
       </Routes>
     </>
   );
