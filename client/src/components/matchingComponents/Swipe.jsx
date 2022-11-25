@@ -133,12 +133,12 @@ const Swipe = (props) => {
         />
       )}
       <div className="overflow-hidden">
-        <div className="cardContainer text-[white] w-[25rem] h-[25rem] overflow-hidden mt-[30%] ">
+        <div className="cardContainer text-[white] w-[20rem] h-[25rem] overflow-hidden mt-[25%] ">
           {filterData.data.map((user, index) => (
             <TinderCard
               ref={childRefs[index]}
               // className="swipe  absolute top-[140px] left-[30%] xl:left-[30.5%] 2xl:left-[32%]"
-              className="swipe ml-[-2.5%] xl:mt-[2%] xl:ml-[-8%]  2xl:mt-[3.5%] 2xl:ml-[-9.5%]"
+              className="swipe ml-[-6%] xl:mt-[2%] xl:ml-[-10.5%]  2xl:mt-[3.5%] 2xl:ml-[-9.5%]"
               key={user.name}
               onSwipe={(dir) => swiped(dir, index)}
               onCardLeftScreen={() => {
@@ -162,7 +162,7 @@ const Swipe = (props) => {
                     style={{
                       backgroundImage: "url(" + user.profile_pics[step] + ")",
                     }}
-                    className="card relative w-[30rem] h-[30rem] bg-cover bg-center rounded-[32px] overflow-hidden  items-end flex flex-row z-0 xl:w-[40rem] xl:h-[40rem] 2xl:w-[46em] 2xl:h-[46em]"
+                    className="card relative w-[30rem] h-[30rem] bg-cover bg-center rounded-[32px] overflow-hidden  items-end flex flex-row z-0 xl:w-[40rem] xl:h-[40rem] 2xl:w-[44rem] 2xl:h-[46rem]"
                   >
                     <div className="flex flex-row z-[0] w-full">
                       <h3 className="text-[white] text-[2rem] m-[5%] mr-[0] font-[700]">
@@ -216,16 +216,16 @@ const Swipe = (props) => {
                   </div>
                 ) : null}
 
-                {index === currentIndex ? <div className="button flex flex-row items-center justify-center space-x-3 overflow-hidden  top-[90%] right-[35%] z-60 absolute   ">
+                {index === currentIndex ? <div className="button flex flex-row items-center justify-center space-x-3   top-[90%] right-[35%] z-60 absolute   ">
                   <button
-                    className="XButton w-[60px] h-[60px] drop-shadow-2xl mr-[10px] mt-[20%]  bg-white rounded-[30%] flex justify-center items-center hover:bg-[#2A2E3F] z-70 xl:w-[70px] xl:h-[70px] 2xl:w-[76px] 2xl:h-[76px]"
+                    className="XButton w-[60px] h-[60px] drop-shadow-2xl mr-[10px] mt-[-7.5%]  bg-white rounded-[30%] flex justify-center items-center hover:bg-[#2A2E3F] z-70 xl:w-[70px] xl:h-[70px] 2xl:w-[76px] 2xl:h-[76px]"
                     onClick={() => swipe("left", index)}
                   >
                     <img src={xLogo} />
                   </button>
 
                   <button
-                    className="HeartButton w-[60px] h-[60px] drop-shadow-2xl mt-[20%]  bg-white rounded-[30%] flex justify-center items-center hover:bg-[#FFB1C8] z-70 xl:w-[70px] xl:h-[70px] 2xl:w-[76px] 2xl:h-[76px]"
+                    className="HeartButton w-[60px] h-[60px] drop-shadow-2xl mt-[-7.5%]  bg-white rounded-[30%] flex justify-center items-center hover:bg-[#FFB1C8] z-70 xl:w-[70px] xl:h-[70px] 2xl:w-[76px] 2xl:h-[76px]"
                     onClick={() => {
                       // swipe("right", index);
                       let isMatch = false;
