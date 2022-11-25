@@ -138,7 +138,7 @@ const Swipe = (props) => {
             <TinderCard
               ref={childRefs[index]}
               // className="swipe  absolute top-[140px] left-[30%] xl:left-[30.5%] 2xl:left-[32%]"
-              className="swipe ml-[-6%] xl:mt-[2%] xl:ml-[-10.5%]  2xl:mt-[3.5%] 2xl:ml-[-9.5%]"
+              className="swipe ml-[-5.5%] xl:mt-[2%] xl:ml-[-10.5%]  2xl:mt-[3.5%] 2xl:ml-[-9.5%]"
               key={user.name}
               onSwipe={(dir) => swiped(dir, index)}
               onCardLeftScreen={() => {
