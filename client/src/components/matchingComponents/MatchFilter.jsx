@@ -94,25 +94,6 @@ const MatchFilter = () => {
   };
   console.log("datofilter out fx", dataToFilter);
 
-  const handleArrowKeyPress = (e) => {
-    console.log(e);
-    if (e.keyCode == 38) {
-      if (e.target.value < 56) {
-        let newNumMin = Number(e.target.value) + Number(1);
-        e.target.value = newNumMin;
-      } else {
-        e.target.value = 55;
-      }
-    } else if (e.keyCode == 40) {
-      if (e.target.value > 18) {
-        let newNumMax = Number(e.target.value) - Number(1);
-        e.target.value = newNumMax;
-      } else {
-        e.target.value = 18;
-      }
-    }
-  };
-
   // ---------- useEffect ---------
 
   // useEffect(() => {
@@ -242,9 +223,6 @@ const MatchFilter = () => {
             min={18}
             max={55}
             value={ageRange[0]}
-            // onKeyDown={(e) => {
-            //   handleArrowKeyPress(e);
-            // }}
             onChange={(e) => {
               if (e.target.value < 18) {
                 // alert("Minimum age is 18 years old");
@@ -264,7 +242,6 @@ const MatchFilter = () => {
             max={55}
             value={ageRange[1]}
             onChange={(e) => {
-              // handleArrowKeyPress(e);
               if (e.target.value > 55) {
                 // alert("Maximum age is 55 years old");
                 setAgeRange([ageRange[0], 55]);
