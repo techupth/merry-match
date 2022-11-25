@@ -24,10 +24,6 @@ const MatchFilter = () => {
     getEachUser,
     defaultDataToFilter,
   } = useSwipe();
-
-  // console.log(eachUser)
-
-  // console.log("Match Fileter rendered!")
   const [ageRange, setAgeRange] = useState([
     defaultDataToFilter.ageRange[0],
     eachUser.user_age + 10,
@@ -37,19 +33,16 @@ const MatchFilter = () => {
   const [defaultMeet, setDefaultMeet] = useState("");
   const [dataToFilter, setDataToFilter] = useState({
     meetingInt: [eachUser.meeting_int],
-    ageRange: [eachUser.user_age - 18, eachUser.user_age + 10],
+    ageRange,
     sexPreference: eachUser.sex_pref,
     user_id: eachUser.user_id,
   });
   const [defaultCheck, setDefaultCheck] = useState([eachUser.meeting_int]);
 
-  console.log(meetingIntArr);
-
   // ------- function ---------
 
   const handleAgeRange = (val) => {
     setAgeRange(val);
-    // console.log(ageRange);
   };
 
   const updateAgeRange = useMemo(() => {
@@ -59,6 +52,14 @@ const MatchFilter = () => {
       ageRange,
     });
   }, [ageRange]);
+
+  const updateMeetingInterest = useMemo(() => {
+    setMeetingIntArr(meetingIntArr);
+    setDataToFilter({
+      ...dataToFilter,
+      meetingInt: meetingIntArr,
+    });
+  }, [meetingIntArr]);
 
   const updateDefaultCheck = () => {
     setDefaultCheck(meetingIntArr);
@@ -78,29 +79,23 @@ const MatchFilter = () => {
         setMeetingIntArr(newMeetingIntArr);
       }
     }
-    setDataToFilter({
-      ...dataToFilter,
-      meetingInt: meetingIntArr,
-    });
     console.log("datofilter in fx", dataToFilter);
   };
-  console.log("datofilter out fx", dataToFilter);
 
   // ---------- useEffect ---------
 
-  // useEffect(() => {
-  //   setUserData(eachUser);
-  // }, [dataToFilter]);
-
   useEffect(() => {
     updateDefaultCheck();
-    
   }, [meetingIntArr]);
 
   return (
     <div className="w-[410px] h-full bg-white z-40">
       <div className="meeting-interest mt-[140px] ml-[18px] h-[80uh] w-[80%]">
-        <CheckboxGroup colorScheme="green" defaultValue={defaultCheck}>
+        <CheckboxGroup
+          colorScheme="green"
+          defaultValue={defaultCheck}
+          // isChecked={meetingIntArr}
+        >
           <Text fontWeight={700} color="#191C77" mb={3}>
             Meeting Interests
           </Text>
@@ -167,10 +162,11 @@ const MatchFilter = () => {
           max={55}
           className="w-[78%]"
           step={1}
-          onChangeEnd={(val) => {
+          onChange={(val) => {
             handleAgeRange(val);
           }}
           mt={7}
+          value={ageRange}
         >
           <RangeSliderMark
             defaultValue={defaultDataToFilter.ageRange[0]}
@@ -183,6 +179,7 @@ const MatchFilter = () => {
             ml="-5"
             w="10"
             fontWeight="700"
+            hidden={ageRange[0] < 18}
           >
             {ageRange[0]}
           </RangeSliderMark>
@@ -197,6 +194,7 @@ const MatchFilter = () => {
             ml="-5"
             w="10"
             fontWeight="700"
+            hidden={ageRange[1] < 18}
           >
             {ageRange[1]}
           </RangeSliderMark>
@@ -208,20 +206,36 @@ const MatchFilter = () => {
         </RangeSlider>
         <div className="flex flex-crow justify-center items-center mt-5 border-b border-[#E4E6ED] pb-[60px] mb-[15px] ml-[10%] xl:ml-[5%] 2xl:ml-[0%]">
           <input
-            className="min-age border-[#D6D9E4] text-[#9AA1B9] text-[16px] rounded-[8px] w-[85.5px] h-[48px] "
-            type="text"
+            className="min-age border-[#D6D9E4] text-[#9AA1B9] text-[16px] rounded-[8px] w-[85.5px] h-[48px]"
+            type="number"
+            min={18}
+            max={55}
             value={ageRange[0]}
-            onChange={(event) => {
-              setAgeRange([event.target.value, ageRange[1]]);
+            onChange={(e) => {
+              if (e.target.value < 18) {
+                setAgeRange([18, ageRange[1]]);
+              } else if (e.target.value > ageRange[1]) {
+                e.target.value = ageRange[1] - Number(1);
+              } else {
+                setAgeRange([e.target.value, ageRange[1]]);
+              }
             }}
           />
           <span className="ml-3 mr-3 font-[400] text-1"> - </span>
           <input
             className="max-age border-[#D6D9E4] text-[#9AA1B9] text-[16px] rounded-[8px] w-[85.5px] h-[48px]"
-            type="text"
+            type="number"
+            min={18}
+            max={55}
             value={ageRange[1]}
-            onChange={(event) => {
-              setAgeRange([ageRange[0], event.target.value]);
+            onChange={(e) => {
+              if (e.target.value > 55) {
+                setAgeRange([ageRange[0], 55]);
+              } else if (e.target.value < ageRange[0]) {
+                e.target.value = ageRange[0] + Number(1);
+              } else {
+                setAgeRange([ageRange[0], e.target.value]);
+              }
             }}
           />
         </div>
@@ -230,20 +244,10 @@ const MatchFilter = () => {
         <button
           className="text-[#C70039] font-[700] w-[99px] h-[48px] hover:text-[#FF1659] active:text-[#A62D82]"
           onClick={() => {
-            setMeetingIntArr(defaultDataToFilter.meetingInt);
-            console.log(defaultDataToFilter.meetingInt);
-
-            setAgeRange(defaultDataToFilter.ageRange);
-            setDataToFilter(defaultDataToFilter);
-            setDefaultCheck(meetingIntArr);
-            console.log(meetingIntArr);
-            console.log("data to filter after clear", dataToFilter);
+            window.location.reload();
           }}
         >
           Clear
-          {/* {setDefaultCheck(meetingIntArr)}
-          {console.log(meetingIntArr)}
-          {console.log("data to filter after clear", dataToFilter)} */}
         </button>
         <button
           className="bg-[#C70039] rounded-[99px] text-[white] font-[700] w-[99px] h-[48px] hover:bg-[#FF1659] active:text-[#A62D82]"
