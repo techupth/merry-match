@@ -43,7 +43,7 @@ const MatchFilter = () => {
   });
   const [defaultCheck, setDefaultCheck] = useState([eachUser.meeting_int]);
 
-  console.log(meetingIntArr);
+  // console.log(meetingIntArr);
 
   // ------- function ---------
 
@@ -64,7 +64,7 @@ const MatchFilter = () => {
     setMeetingIntArr(meetingIntArr);
     setDataToFilter({
       ...dataToFilter,
-      meetingIntArr,
+      meetingInt: meetingIntArr,
     });
   }, [meetingIntArr]);
 
@@ -86,13 +86,13 @@ const MatchFilter = () => {
         setMeetingIntArr(newMeetingIntArr);
       }
     }
-    setDataToFilter({
-      ...dataToFilter,
-      meetingInt: meetingIntArr,
-    });
+    // setDataToFilter({
+    //   ...dataToFilter,
+    //   meetingInt: meetingIntArr,
+    // });
     console.log("datofilter in fx", dataToFilter);
   };
-  console.log("datofilter out fx", dataToFilter);
+  // console.log("datofilter out fx", dataToFilter);
 
   // ---------- useEffect ---------
 
@@ -222,6 +222,9 @@ const MatchFilter = () => {
             type="number"
             min={18}
             max={55}
+            // onClick={() => {
+            //   this.value = "";
+            // }}
             value={ageRange[0]}
             onChange={(e) => {
               if (e.target.value < 18) {
