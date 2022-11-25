@@ -6,7 +6,9 @@ import userRouter from "./apps/users.js";
 import authRouter from "./apps/auth.js";
 import swipeRouter from "./apps/swipe.js";
 import filterRouter from "./apps/filter.js";
+import complaintsRouter from "./apps/complaints.js";
 import cloudinary from "cloudinary";
+
 
 async function init() {
   dotenv.config();
@@ -28,6 +30,7 @@ async function init() {
   app.use("/users", userRouter);
   app.use("/swipe", swipeRouter);
   app.use("/filter", filterRouter );
+  app.use("/complaints", complaintsRouter);
 
   app.get("/", (req, res) => {
     return res.json({
