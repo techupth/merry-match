@@ -244,7 +244,7 @@ const MatchFilter = () => {
           </Stack>
         </CheckboxGroup>
       </div>
-      <div className="age-range w-[78%] ml-6 2xl:w-[80%] 2xl:ml-5">
+      <div className="age-range w-[78%] pl-[22.5%] xl:pl-[15%] 2xl:pl-[5%] 2xl:w-[80%] 2xl:ml-5">
         <Text fontWeight={700} color="#191C77" mb={3} mt={10}>
           Age Range
         </Text>
@@ -294,9 +294,9 @@ const MatchFilter = () => {
           <RangeSliderThumb index={0} />
           <RangeSliderThumb index={1} />
         </RangeSlider>
-        <div className="flex flex-crow justify-center items-center mt-5 border-b border-[#E4E6ED] pb-[60px] mb-[15px]">
+        <div className="flex flex-crow justify-center items-center mt-5 border-b border-[#E4E6ED] pb-[60px] mb-[15px] ml-[10%] xl:ml-[5%] 2xl:ml-[0%]">
           <input
-            className="min-age border-[#D6D9E4] text-[#9AA1B9] text-[16px] rounded-[8px] w-[85.5px] h-[48px]"
+            className="min-age border-[#D6D9E4] text-[#9AA1B9] text-[16px] rounded-[8px] w-[85.5px] h-[48px] "
             type="text"
             value={ageRange[0]}
             onChange={(event) => {
