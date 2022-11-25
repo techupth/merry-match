@@ -13,7 +13,7 @@ import { useSwipe } from "../../contexts/swipeContext";
 
 function UserPopup({ close }) {
   const navigate = useNavigate();
-  const { deleteMatch, unMatch} = useSwipe()
+  const { deleteMatch, unMatch } = useSwipe();
   const { logout } = useAuth();
 
   return (
@@ -41,7 +41,7 @@ function UserPopup({ close }) {
             href="#"
             className="block px-4 py-2 text-md mt-3 text-gray-700 hover:bg-gray-100 hover:text-black hover:text-[1rem] dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600 flex flex-row "
             role="menuitem"
-            >
+          >
             <img src={profile} className="mr-2" />
             <span className="flex flex-col">
               <span
@@ -62,9 +62,8 @@ function UserPopup({ close }) {
             <span className="flex flex-col">
               <span
                 onClick={() => {
-                  navigate("/merrylist")
-                  deleteMatch(unMatch)
-                  
+                  navigate("/merrylist");
+                  deleteMatch(unMatch);
                 }}
               >
                 Merry list
@@ -89,7 +88,13 @@ function UserPopup({ close }) {
           >
             <img src={compliant} className="mr-2" />
             <span className="flex flex-col">
-              <span>Compliant</span>
+              <span
+                onClick={() => {
+                  navigate("/complaint");
+                }}
+              >
+                Compliant
+              </span>
             </span>
           </a>
           <a
@@ -99,7 +104,9 @@ function UserPopup({ close }) {
           >
             <img src={logouticon} className="mr-2 hover:gray-700" />
             <span className="flex flex-col hover:gray-700">
-              <span className="hover:gray-700"  onClick={() => logout()}>Log out</span>
+              <span className="hover:gray-700" onClick={() => logout()}>
+                Log out
+              </span>
             </span>
           </a>
         </div>
