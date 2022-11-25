@@ -60,6 +60,14 @@ const MatchFilter = () => {
     });
   }, [ageRange]);
 
+  const updateMeetingInterest = useMemo(() => {
+    setMeetingIntArr(meetingIntArr);
+    setDataToFilter({
+      ...dataToFilter,
+      meetingIntArr,
+    });
+  }, [meetingIntArr]);
+
   const updateDefaultCheck = () => {
     setDefaultCheck(meetingIntArr);
   };
@@ -94,7 +102,6 @@ const MatchFilter = () => {
 
   useEffect(() => {
     updateDefaultCheck();
-    
   }, [meetingIntArr]);
 
   return (
@@ -167,10 +174,11 @@ const MatchFilter = () => {
           max={55}
           className="w-[78%]"
           step={1}
-          onChangeEnd={(val) => {
+          onChange={(val) => {
             handleAgeRange(val);
           }}
           mt={7}
+          value={ageRange}
         >
           <RangeSliderMark
             defaultValue={defaultDataToFilter.ageRange[0]}
@@ -183,6 +191,7 @@ const MatchFilter = () => {
             ml="-5"
             w="10"
             fontWeight="700"
+            hidden={ageRange[0] < 18}
           >
             {ageRange[0]}
           </RangeSliderMark>
@@ -209,7 +218,7 @@ const MatchFilter = () => {
         <div className="flex flex-crow justify-center items-center mt-5 border-b border-[#E4E6ED] pb-[60px] mb-[15px]">
           <input
             className="min-age border-[#D6D9E4] text-[#9AA1B9] text-[16px] rounded-[8px] w-[85.5px] h-[48px]"
-            type="text"
+            type="number"
             value={ageRange[0]}
             onChange={(event) => {
               setAgeRange([event.target.value, ageRange[1]]);
@@ -218,10 +227,17 @@ const MatchFilter = () => {
           <span className="ml-3 mr-3 font-[400] text-1"> - </span>
           <input
             className="max-age border-[#D6D9E4] text-[#9AA1B9] text-[16px] rounded-[8px] w-[85.5px] h-[48px]"
-            type="text"
+            type="number"
+            min={18}
+            max={55}
             value={ageRange[1]}
-            onChange={(event) => {
-              setAgeRange([ageRange[0], event.target.value]);
+            onChange={(e) => {
+              if (e.target.value > 55) {
+                alert("Maximum age is 55 years old");
+                setAgeRange(ageRange[0], 55);
+              } else {
+                setAgeRange([ageRange[0], e.target.value]);
+              }
             }}
           />
         </div>
