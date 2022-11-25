@@ -152,6 +152,7 @@ const EditProfile = () => {
   };
 
   console.log(updateUserData);
+  
   const updateUserProfile = async (updateUserData) => {
     try {
       await axios.put(
