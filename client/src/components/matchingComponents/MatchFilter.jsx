@@ -94,6 +94,25 @@ const MatchFilter = () => {
   };
   console.log("datofilter out fx", dataToFilter);
 
+  const handleArrowKeyPress = (e) => {
+    console.log(e);
+    if (e.keyCode == 38) {
+      if (e.target.value < 56) {
+        let newNumMin = Number(e.target.value) + Number(1);
+        e.target.value = newNumMin;
+      } else {
+        e.target.value = 55;
+      }
+    } else if (e.keyCode == 40) {
+      if (e.target.value > 18) {
+        let newNumMax = Number(e.target.value) - Number(1);
+        e.target.value = newNumMax;
+      } else {
+        e.target.value = 18;
+      }
+    }
+  };
+
   // ---------- useEffect ---------
 
   // useEffect(() => {
@@ -206,6 +225,7 @@ const MatchFilter = () => {
             ml="-5"
             w="10"
             fontWeight="700"
+            hidden={ageRange[1] < 18}
           >
             {ageRange[1]}
           </RangeSliderMark>
@@ -219,9 +239,21 @@ const MatchFilter = () => {
           <input
             className="min-age border-[#D6D9E4] text-[#9AA1B9] text-[16px] rounded-[8px] w-[85.5px] h-[48px]"
             type="number"
+            min={18}
+            max={55}
             value={ageRange[0]}
-            onChange={(event) => {
-              setAgeRange([event.target.value, ageRange[1]]);
+            // onKeyDown={(e) => {
+            //   handleArrowKeyPress(e);
+            // }}
+            onChange={(e) => {
+              if (e.target.value < 18) {
+                // alert("Minimum age is 18 years old");
+                setAgeRange([18, ageRange[1]]);
+              } else if (e.target.value > ageRange[1]) {
+                e.target.value = ageRange[1] - Number(1);
+              } else {
+                setAgeRange([e.target.value, ageRange[1]]);
+              }
             }}
           />
           <span className="ml-3 mr-3 font-[400] text-1"> - </span>
@@ -232,9 +264,12 @@ const MatchFilter = () => {
             max={55}
             value={ageRange[1]}
             onChange={(e) => {
+              // handleArrowKeyPress(e);
               if (e.target.value > 55) {
-                alert("Maximum age is 55 years old");
-                setAgeRange(ageRange[0], 55);
+                // alert("Maximum age is 55 years old");
+                setAgeRange([ageRange[0], 55]);
+              } else if (e.target.value < ageRange[0]) {
+                e.target.value = ageRange[0] + Number(1);
               } else {
                 setAgeRange([ageRange[0], e.target.value]);
               }
