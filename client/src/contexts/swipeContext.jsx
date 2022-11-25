@@ -12,6 +12,7 @@ const SwipeProvider = (props) => {
     data: [],
     err: null,
   });
+
   const [eachUser, setEachUser] = useState({});
   const [users, setUsers] = useState([]);
   const [merryListUser, setMerryListUser] = useState([]);

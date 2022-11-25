@@ -1,1 +1,1 @@
-SELECT * FROM users AS u INNER JOIN swipe as swp ON swp.swiper = u.user_id INNER JOIN swipe as swp2 on swp2.swipee = u.user_id where (u.user_age between 18 and 60) and (u.meeting_int = 'ONS' or u.meeting_int = 'Friend'or u.meeting_int = 'FWB' or u.meeting_int = 'Long-term' or u.meeting_int = 'Short-term') and (u.sex_identity = 'Female') and (u.user_id != 94 ) and (swp.swipee = 94) and (swp2.swipe_type != false)
+SELECT * FROM complaints

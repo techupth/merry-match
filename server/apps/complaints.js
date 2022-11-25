@@ -33,6 +33,8 @@ complaintsRouter.post("/", async (req, res) => {
     ...req.body,
     created_at: new Date(),
   };
+  
+  console.log(newComplaint)
 
   await pool.query(
     `INSERT INTO complaints (user_id, issue,description,created_at,complaint_status)

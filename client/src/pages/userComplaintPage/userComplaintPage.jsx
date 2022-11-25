@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useSwipe } from "../../contexts/swipeContext";
+import jwtDecode from "jwt-decode";
 
 // utility
 import DatePicker from "react-datepicker";
@@ -8,34 +10,54 @@ import Banner from "../../../public/asset/Login/bannerLogin.png";
 import Footer from "../../components/editPageComponents/Footer";
 
 const UserComplaintPage = () => {
+  const { eachUser, getEachUser } = useSwipe();
   const [startDate, setStartDate] = useState(new Date());
-  const [currentDate, setCurrentDate] = useState("")
+  const [currentDate, setCurrentDate] = useState("");
   const [issue, setIssue] = useState("");
   const [desc, setDesc] = useState("");
+  const [userId, setUserId] = useState("");
+
+
 
   const complaintForm = {
     issue: issue,
-    desc: desc,
+    description: desc,
     date: currentDate,
+    user_id:userId,
   };
 
   const handleBirtday = (data) => {
     const year = data.getFullYear();
-    const month = data.getMonth()+1;
+    const month = data.getMonth() + 1;
     const day = data.getDate();
     const birthday = `${year}-${month}-${day}`;
-    setStartDate(data)
+    setStartDate(data);
     setCurrentDate(birthday);
   };
 
   const handleSubmit = async (complaintForm) => {
-    console.log(complaintForm);
     try {
-      await axios.post(`http://localhost:4001/complaints`, complaintForm);
+      console.log(complaintForm);
+      const res = await axios.post(
+        `http://localhost:4001/complaints`,
+        complaintForm
+      );
+      console.log(res);
     } catch (err) {
       console.log(err);
     }
   };
+
+  const handleUserId = async () =>{
+    const token = localStorage.getItem("token");
+    const userData = jwtDecode(token);
+    setUserId(userData.user_id)
+  }
+
+  useEffect(() => {
+    handleUserId()
+    handleBirtday(new Date())
+  }, []);
 
   return (
     <div className="w-[full] h-[70.25rem] bg-[white] flex flex-col">
@@ -89,7 +111,6 @@ const UserComplaintPage = () => {
                 showMonthDropdown
                 showYearDropdown
                 onChange={(date) => {
-                  console.log(date);
                   handleBirtday(date);
                 }}
                 className="border border-1 border-[#D6D9E4] rounded-[8px] w-[120px] h-[48px] text-black mb-[5%] focus:border-pink-300 focus:border-[2px] text-center"
