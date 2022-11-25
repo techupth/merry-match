@@ -164,15 +164,10 @@ const Swipe = (props) => {
                     }}
                     className="card relative w-[30rem] h-[30rem] bg-cover bg-center rounded-[32px] overflow-hidden  items-end flex flex-row z-0 xl:w-[40rem] xl:h-[40rem] 2xl:w-[44rem] 2xl:h-[46rem]"
                   >
-                    <div className="flex flex-row z-[0] w-full">
-                      <h3 className="text-[white] text-[2rem] m-[5%] mr-[0] font-[700]">
-                        {user.name}
-                      </h3>
-                      <h3 className="text-[#afb4c5] text-[2rem] m-[5%] ml-[2%] mr-[1%] font-[700]">
-                        {user.user_age}
-                      </h3>
-                      <button
-                        className="w-[5rem] h-[auto]"
+                    <div className="flex flex-col z-[0] w-full ml-[2%]">
+                      {/* eye icon */}
+                    <button
+                        className="w-[5rem] h-[auto] mb-[-2%]"
                         onClick={(event) => {
                           event.preventDefault();
                           setPreview(!preview);
@@ -181,6 +176,16 @@ const Swipe = (props) => {
                       >
                         <img className=" w-[65px] h-[65px]" src={eyeIcon} />
                       </button>
+                      {/* name & age */}
+                      <div className="flex flex-row mb-[5%]">
+                      <h3 className="text-[white] text-[2rem] m-[0%] mr-[0] font-[700]">
+                        {user.name}
+                      </h3>
+                      <h3 className="text-[#afb4c5] text-[2rem] m-[0%] ml-[1.5%] mr-[1%] font-[700]">
+                        {user.user_age}
+                      </h3>
+                      </div>
+                      
                     </div>
                     <button
                       onClick={() => {
