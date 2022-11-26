@@ -6,7 +6,7 @@ function AdminSideBar() {
       <div className="w-[100%] h-[100%] bg-[#ffffff] z-20  border-r-2 ">
         <div className="flex flex-col items-center justify-center">
           <img
-            className="mt-[8rem] h-[full] w-[80%]"
+            className="mt-[1rem] h-[full] w-[80%]"
             src="/public/asset/header/header-merrymatch-logo.svg"
             alt="Merry Match logo"
           />
