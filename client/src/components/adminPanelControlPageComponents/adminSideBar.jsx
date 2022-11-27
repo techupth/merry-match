@@ -21,11 +21,11 @@ function AdminSideBar() {
             >
               {" "}
               <img
-                className=""
+                className="h-7"
                 src="../../../public/asset/adminPanelControl/Vector.svg"
                 alt="caution symbol"
               />{" "}
-              <p className="ml-3 text-[1.2em]">Complaint</p>
+              <p className="ml-3 text-[1.8em]">Complaint</p>
             </button>
           </div>
 
@@ -36,11 +36,11 @@ function AdminSideBar() {
             >
               {" "}
               <img
-                className=""
+                className="h-7"
                 src="../../../public/asset/adminPanelControl/logout-btn.svg"
                 alt="caution symbol"
               />{" "}
-              <p className="ml-3 text-[1.2em]">Log out</p>
+              <p className="ml-3 text-[1.8em]">Log out</p>
             </button>
           </div>
         </div>
