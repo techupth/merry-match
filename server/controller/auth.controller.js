@@ -37,7 +37,7 @@ const registerController = async (req, res) => {
         newUserProfile.updated_at,
         newUserProfile.profile_pics,
         yearNow - userBirthYear,
-        newUserProfile.contact
+        newUserProfile.contact,
       ]
     );
     return res.json({
@@ -51,17 +51,66 @@ const registerController = async (req, res) => {
 const loginController = async (req, res) => {
   const loginKey = req.body.username;
   const password = req.body.password;
+  const nowDate = new Date();
+
+  const isAdmin = await pool.query(
+    `
+  SELECT * FROM admins 
+  WHERE  username = $1
+  `,
+    [loginKey]
+  );
+
+  if (isAdmin.rows[0] !==  undefined) {
+    let isValidPassword = false;
+    if (isAdmin.rows[0].password === password) {
+      isValidPassword = true;
+      await pool.query(
+        `
+      UPDATE admins
+      SET last_logged_in = $1 
+      WHERE admin_id = $2
+      `,
+        [nowDate, isAdmin.rows[0].admin_id]
+      );
+    } else {
+      return res.json({
+        message: "*password Admin is Invalid!!",
+      });
+    }
+
+    const token = jwt.sign(
+      {
+        admin_id: isAdmin.rows[0].admin_id,
+        username: isAdmin.rows[0].username,
+        isAdmin: true,
+      },
+      process.env.SECRET_KEY,
+      {
+        expiresIn: "900000",
+      }
+    );
+
+    return res.json({
+      message: `Admin ${
+        isAdmin.rows[0].username
+      } logged in successful!! at ${new Date()}`,
+      token,
+    });
+  }
 
   const result = await pool.query(
     `select user_id,name,username,password,email,profile_pics from users where username = $1 or email = $1`,
     [loginKey]
   );
 
+  
   if (!result.rows[0]) {
     return res.json({
       message: "*Username or Email not found",
     });
   }
+
   const isValidPassword = await bcrypt.compare(
     password,
     result.rows[0].password

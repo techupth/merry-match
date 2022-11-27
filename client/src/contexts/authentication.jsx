@@ -13,6 +13,7 @@ const AuthProvider = (props) => {
   const [loginMsg, setLoginMsg] = useState({ loginKey: "", passwordKey: "" });
   const [errorInputMsg, setErrorInputMsg] = useState(null);
   const [msg, setMsg] = useState({ username: "", email: "" });
+  const [isAdmin, setIsAdmin] = useState(false)
 
   const navigate = useNavigate();
 
@@ -56,6 +57,8 @@ const AuthProvider = (props) => {
         const token = result.data.token;
         localStorage.setItem("token", token);
         const userData = jwtDecode(token);
+        console.log(userData.isAdmin)
+        setIsAdmin(userData.isAdmin)
         setUserData({ ...userData, user: userData });
         navigate("/");
         return result.data.message;
@@ -82,12 +85,13 @@ const AuthProvider = (props) => {
     try{
     localStorage.removeItem("token");
     setUserData({ ...userData, user: null });
-    const result = await axios.delete(`http://localhost:4001/users/${userId}`)
+    await axios.delete(`http://localhost:4001/users/${userId}`)
     }catch(err){
       console.log(err)
     }
   };
 
+  const isAdminAuthenticated = isAdmin
   const isAuthenticated = Boolean(localStorage.getItem("token"));
 
   return (
@@ -100,6 +104,7 @@ const AuthProvider = (props) => {
         msg,
         checkRegister,
         isAuthenticated,
+        isAdminAuthenticated,
         deleteuser
       }}
     >
