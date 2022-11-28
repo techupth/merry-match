@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import UserPopup from "./userPopup";
 import jwtDecode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
-import { useSwipe } from "../../contexts/swipeContext";
+
 
 
 // Hooks
@@ -13,6 +13,7 @@ const NavbarAuthen = () => {
 
   const [images, setImage] = useState("");
   const [callPop, setCallPop] = useState(false);
+  const [userName, setUserName] = useState("")
 
   const navigate = useNavigate();
 
@@ -20,8 +21,13 @@ const NavbarAuthen = () => {
     const token = localStorage.getItem("token");
 
     const userData = jwtDecode(token);
+
     const pic = userData.profile_pics[0];
     setImage(pic);
+
+    const name = userData.name;
+    setUserName(name)
+
   };
 
   const ref = useRef(null);
@@ -48,7 +54,7 @@ const NavbarAuthen = () => {
         <img
           src="/asset/header/header-merrymatch-logo.svg"
           alt="merry match logo"
-          className="ml-[170px]"
+          className="ml-[11.25rem] "
         />
       </button>
 
@@ -56,7 +62,7 @@ const NavbarAuthen = () => {
         {/* <h2>{userData.name}</h2> */}
 
         <button
-          className="text-[#191C77] text-[1rem]"
+          className="text-[#191C77] text-[1rem] hover:text-[black] flex justify-center"
           onClick={() => {
             navigate("/match");
           }}
@@ -64,7 +70,7 @@ const NavbarAuthen = () => {
           Start Matching!
         </button>
 
-        <button className="text-[#191C77] text-[1rem]">Merry Membership</button>
+        <a className="text-[#191C77] text-[1rem]">Hi, {userName}</a>
 
         <button
           type="button"
@@ -73,7 +79,7 @@ const NavbarAuthen = () => {
         >
           <img
             src={images}
-            className="w-[4rem] h-[4rem] rounded-full object-cover"
+            className="w-[5rem] h-[5rem] rounded-full object-cover"
           />
         </button>
 
