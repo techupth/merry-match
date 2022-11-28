@@ -5,7 +5,7 @@ import { mockComplaints } from "./mockcomplaintdata";
 const ComplaintList = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState('')
-  const [status, setStatus] = useState('All status')
+  const [status, setStatus] = useState('')
 
   // function statusValue(e) {
   //   console.log(e.target.value)
@@ -61,8 +61,9 @@ const ComplaintList = () => {
               className="ml-3 w-[15rem] h-[80%] text-[#9AA1B9] bg-gray-50 border border-gray-300 rounded-[10px] focus:ring-[#AF2758] focus:border-[#AF2758] focus:border-2 text-[16px] font-[400] px-4 py-2.5 text-center inline-flex items-center justify-between "
               type="select"
               onChange={(e) => setStatus(e.target.value)}
+            // value={status}
             >
-              All Status{" "}
+
               <img
                 className="h-1.5 ml-1"
                 src="../../../public/asset/adminPanelControl/dropdown.svg"
@@ -148,12 +149,16 @@ const ComplaintList = () => {
 
           {mockComplaints.filter((complaint) => {
 
-            if (search.toLowerCase() === '') {
-              return complaint
-            } else if (search.toLowerCase() !== '') {
-              return complaint.name.toLowerCase().includes(search) || complaint.issue.toLowerCase().includes(search)
+            if (status !== '' && search.toLowerCase() !== '') {
+              return complaint.complaint_status.includes(status) && complaint.name.toLowerCase().includes(search) || complaint.issue.toLowerCase().includes(search)
             } else if (status !== '') {
               return complaint.complaint_status.includes(status)
+            } else if (search.toLowerCase() !== '') {
+              return complaint.name.toLowerCase().includes(search) || complaint.issue.toLowerCase().includes(search)
+            }
+
+            else if (search.toLowerCase() === '') {
+              return complaint
             }
 
           })
