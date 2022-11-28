@@ -2,7 +2,7 @@
   "sqltools.connections": [
     {
       "pgOptions": {
-        "max": 500
+        "max": 1000
       },
       "previewLimit": 50,
       "server": "satao.db.elephantsql.com",
