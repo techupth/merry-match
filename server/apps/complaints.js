@@ -18,7 +18,7 @@ complaintsRouter.get("/", async (req, res) => {
 });
 
 complaintsRouter.get("/:id", async (req, res) => {
-  const complaintId = req.query.id;
+  const complaintId = req.params.id;
   const result = await pool.query(
     `select * from complaints where complaint_id = $1`,
     [complaintId]
