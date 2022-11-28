@@ -5,11 +5,12 @@ const complaintsRouter = Router();
 
 complaintsRouter.get("/", async (req, res) => {
   const result = await pool.query(
-    `SELECT complaints.complaint_id, complaints.user_id, issue, description,created_at,complaint_status,users.name
+    `SELECT complaints.*
     FROM complaints
     INNER JOIN users
-    on complaints.user_id = users.user_id`,
-    []
+    on complaints.user_id = users.user_id order by CASE WHEN complaint_status = $1 THEN  0  WHEN complaint_status = $2  THEN 1 WHEN  complaint_status = $3 then 2 ELSE 3 END,
+    complaint_status`,
+    ["New", "Pending", "Canceled"]
   );
 
   return res.json({

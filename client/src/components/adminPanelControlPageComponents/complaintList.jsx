@@ -1,18 +1,34 @@
+import axios from "axios";
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { mockComplaints } from "./mockcomplaintdata";
 import { useNavigate } from "react-router-dom";
 
 const ComplaintList = () => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
+  const [complaints, setComplaints] = useState([]);
 
   const handleDropDown = () => {
     setIsOpen(!isOpen);
   };
 
+  useEffect(() => {
+    getAllComplaints();
+  }, []);
+
+  const getAllComplaints = async () => {
+    try {
+      const result = await axios.get("http://localhost:4001/complaints");
+      console.log(result.data.data);
+
+      setComplaints(result.data.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
-  
     <div className="w-[100%] h-[100vh] flex flex-col items-start justify-center">
       <div className=" nav-bar w-[80vw] h-[12%] bg-white border-b-2 flex flex-row items-center justify-between">
         <div className="ml-[4rem] text-[2.5em] font-[700] h-fit ">
@@ -135,7 +151,7 @@ const ComplaintList = () => {
           </div>
 
           {/* complaints */}
-          {mockComplaints.map((complaint) => {
+          {complaints.map((complaint) => {
             return (
               <div
                 key={complaint.complaint_id}
@@ -156,7 +172,7 @@ const ComplaintList = () => {
                   <span>{complaint.description}</span>
                 </div>
                 <div href="" className="w-[10%] text-left text-[0.8em]">
-                  <span>{complaint.date_submitted}</span>
+                  <span>{complaint.date_submitted.substr(0, 10)}</span>
                 </div>
                 {complaint.complaint_status === "New" ? (
                   <a href="" className="mr-[3.5%] w-[7%]">
