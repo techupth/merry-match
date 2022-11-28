@@ -17,8 +17,6 @@ const UserComplaintPage = () => {
   const [desc, setDesc] = useState("");
   const [userId, setUserId] = useState("");
 
-
-
   const complaintForm = {
     issue: issue,
     description: desc,

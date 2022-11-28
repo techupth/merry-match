@@ -31,8 +31,6 @@ const NavbarAuthen = () => {
 
   useEffect(() => {
     decodeFromToken();
-    console.log("Exucute func!!");
-  
   }, []);
 
   return (

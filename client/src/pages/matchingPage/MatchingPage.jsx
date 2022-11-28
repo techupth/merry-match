@@ -22,20 +22,14 @@ const MatchingPage = () => {
     setIsloading(true);
     const defualt = await getEachUser();
 
-    console.log(defualt);
-
     if (defualt) {
-      console.log("each user", defualt);
       setIsloading("data");
     }
   };
 
-  // console.log(filterData);
-  // console.log(defaultDataToFilter);
 
   useEffect(() => {
     getDataByFilter(defaultDataToFilter);
-    console.log("did");
   }, []);
 
   useEffect(() => {

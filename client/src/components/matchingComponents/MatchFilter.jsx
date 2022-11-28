@@ -12,7 +12,6 @@ import {
 } from "@chakra-ui/react";
 import { useState, useEffect, useMemo } from "react";
 import { useSwipe } from "../../contexts/swipeContext";
-// import jwtDecode from "jwt-decode";
 
 const MatchFilter = () => {
   const {
@@ -66,7 +65,6 @@ const MatchFilter = () => {
   };
 
   const handleCheckbox = (e) => {
-    console.log([e.target.value, e.target.checked]);
     if (!meetingIntArr.includes(e.target.value)) {
       if (e.target.checked) {
         setMeetingIntArr([...meetingIntArr, e.target.value]);
@@ -79,7 +77,6 @@ const MatchFilter = () => {
         setMeetingIntArr(newMeetingIntArr);
       }
     }
-    console.log("datofilter in fx", dataToFilter);
   };
 
   // ---------- useEffect ---------
@@ -89,7 +86,7 @@ const MatchFilter = () => {
   }, [meetingIntArr]);
 
   return (
-    <div className="w-[410px] h-full bg-white z-40">
+    <div className="w-[410px] h-full bg-white z-40 flex flex-col items-center">
       <div className="meeting-interest mt-[140px] ml-[18px] h-[80uh] w-[80%]">
         <CheckboxGroup
           colorScheme="green"
@@ -252,7 +249,6 @@ const MatchFilter = () => {
         <button
           className="bg-[#C70039] rounded-[99px] text-[white] font-[700] w-[99px] h-[48px] hover:bg-[#FF1659] active:text-[#A62D82]"
           onClick={() => {
-            console.log("Filter data by", dataToFilter);
             getDataByFilter(dataToFilter);
           }}
         >

@@ -10,14 +10,11 @@ import eyeIcon from "../../../public/asset/swipeComponentsItems/eyeIcon.svg";
 import heartLogo from "../../../public/asset/editModalItems/hearthLogo.svg";
 import xLogo from "../../../public/asset/editModalItems/xLogo.svg";
 import MatchedLogo from "../../components/matchingComponents/MatchedLogo";
+import PopupWhenSwipe from "../../components/matchingComponents/PopupWhenSwipe";
 
 const Swipe = (props) => {
-  // import filterData มาให้แล้ว แล้วต้องนำลงมา map ลงหน้าแผน swipe
-  // import MerryList from './../../pages/merryListPage/MerryList';
-  // console.log("swipe compoenent rendered!!");
   const { filterData, postSwipe, merryList } = useSwipe();
 
-  // console.log(indexUsers, "from swipe");
   const [currentIndex, setCurrentIndex] = useState(filterData.data.length - 1);
   const [lastDirection, setLastDirection] = useState();
   const [step, setStep] = useState(0);
@@ -26,18 +23,15 @@ const Swipe = (props) => {
   // Modal
   const [modalId, setModalId] = useState(null);
   const [preview, setPreview] = useState(false);
+  const [justSwipe, setJustSwipe] = useState(false);
 
   const [matchingId, setMatchingId] = useState([]);
   const [isMatch, setIsMatch] = useState(false);
   const [isIndex, setIsIndex] = useState(null);
 
-  // console.log("step", step);
-  console.log("current", currentIndex);
-  // console.log(isMatch);
-  // console.log(matchingId);
   // used for outOfFrame closure
   const currentIndexRef = useRef(currentIndex);
-  // console.log(currentIndexRef)
+
   // useMemo
   const childRefs = useMemo(
     () =>
@@ -47,7 +41,7 @@ const Swipe = (props) => {
     [filterData]
   );
 
-  // console.log(childRefs)
+
   const updateCurrentIndex = (val) => {
     setCurrentIndex(val);
     currentIndexRef.current = val;
@@ -65,17 +59,11 @@ const Swipe = (props) => {
     }
     setLastDirection(direction);
     updateCurrentIndex(index - 1);
-    // console.log(index);
   };
 
   const outOfFrame = (name, idx) => {
-
-    // console.log(`${name} (${idx}) left the screen!`, currentIndexRef.current);
-    // handle the case in which go back is pressed before card goes outOfFrame
     currentIndexRef.current >= idx && childRefs[idx].current.restoreCard();
     // TODO: when quickly swipe and restore multiple times the same card,
-    // it happens multiple outOfFrame events are queued and the card disappear
-    // during latest swipes. Only the last outOfFrame event should be considered valid
   };
 
   //   Handle pictures
@@ -94,7 +82,6 @@ const Swipe = (props) => {
     if (step !== 0 && index === currentIndex) {
       setStep(step - 1);
     } else {
-      console.log(filterData.data[index].profile_pics.length - 1)
       setStep(filterData.data[index].profile_pics.length - 1)
     }
   };
@@ -111,14 +98,12 @@ const Swipe = (props) => {
     const data = await merryList();
 
     const matchId = data.matchId.map((value) => value.swiper);
-    // console.log(matchId);
     setMatchingId(matchId);
   };
 
   const clickCountinueCount = () => {
     props.setClickCountinue(props.clickCountinue + 1);
   };
-  // console.log(props);
 
   useEffect(() => {
     handleMatchingId();
@@ -126,6 +111,7 @@ const Swipe = (props) => {
 
   return (
     <div className="w-full h-[54rem]  bg-[url('../../../public/asset/header/hero-swipe.png')] flex justify-center items-start overflow-hidden overflow-x-hidden xl:h-full">
+      {}
       {preview && (
         <SwipeModal
           close={() => setPreview(!preview)}
@@ -137,19 +123,18 @@ const Swipe = (props) => {
           {filterData.data.map((user, index) => (
             <TinderCard
               ref={childRefs[index]}
-              // className="swipe  absolute top-[140px] left-[30%] xl:left-[30.5%] 2xl:left-[32%]"
               className="swipe ml-[-5.5%] xl:mt-[2%] xl:ml-[-10.5%]  2xl:mt-[3.5%] 2xl:ml-[-9.5%]"
               key={user.name}
               onSwipe={(dir) => swiped(dir, index)}
               onCardLeftScreen={() => {
                 outOfFrame(filterData.name, index);
-                // setStep(0);
                 setCurrenId(index);
               }}
               swipeRequirementType="position"
               swipeThreshold={100}
             >
               <div className="flex justify-center items-center">
+
                 {/* Matched logo */}
                 {isMatch === true && isIndex === index ? (
                   <div className="z-30 absolute inset-0 top-[40%] flex flex-col items-center">
@@ -165,6 +150,7 @@ const Swipe = (props) => {
                     className="card relative w-[30rem] h-[30rem] bg-cover bg-center rounded-[32px] overflow-hidden  items-end flex flex-row z-0 xl:w-[40rem] xl:h-[40rem] 2xl:w-[44rem] 2xl:h-[46rem]"
                   >
                     <div className="flex flex-col z-[0] w-full ml-[2%]">
+
                       {/* eye icon */}
                     <button
                         className="w-[5rem] h-[auto] mb-[-2%]"
@@ -176,6 +162,7 @@ const Swipe = (props) => {
                       >
                         <img className=" w-[65px] h-[65px]" src={eyeIcon} />
                       </button>
+
                       {/* name & age */}
                       <div className="flex flex-row mb-[5%]">
                       <h3 className="text-[white] text-[2rem] m-[0%] mr-[0] font-[700]">
@@ -192,11 +179,11 @@ const Swipe = (props) => {
                         clickCountinueCount();
                       }}
                     ></button>
+
                     {/* slide pictures */}
                     <div className="arrow-buttons absolute right-[5%] space-x-6 bottom-[6%] z-40 ">
                       <button
                         onClick={() => {
-                          console.log(index);
                           handleBack(index);
                         }}
                       >
@@ -208,7 +195,6 @@ const Swipe = (props) => {
 
                       <button
                         onClick={() => {
-                          console.log(index);
                           handleNext(index);
                         }}
                       >
@@ -235,6 +221,9 @@ const Swipe = (props) => {
                       // swipe("right", index);
                       let isMatch = false;
 
+                      setJustSwipe(true)
+                      console.log(justSwipe)
+
                       matchingId.map((id) => {
                         if (id === user.user_id) {
                           setIsMatch(true);
@@ -246,7 +235,6 @@ const Swipe = (props) => {
 
                       if (isMatch === false) {
                         swipe("right", index);
-                        console.log("like", index);
                         postSwipe(index, true);
                       }
                     }}
