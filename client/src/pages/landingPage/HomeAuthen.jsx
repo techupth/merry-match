@@ -3,7 +3,7 @@ import ThirdPartAuthen from "../../components/landingPageAuthen/ThirdPartAuthen"
 import HeaderAuthen from "../../components/landingPageAuthen/HeaderAuthen";
 import SecondPartAuthen from "../../components/landingPageAuthen/SecondPartAuthen";
 import FooterAuthen from "../../components/landingPageAuthen/FooterAuthen";
-import Navbar from "../../components/Navbar/Navbar";
+import Navbar from "../../components/navbarComponents/Navbar";
 function HomeAuthen() {
   return (
     <div className="bg-[#160404]">

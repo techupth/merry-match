@@ -392,7 +392,7 @@ const Register = () => {
                         id="name"
                         value={name}
                         name="firstname"
-                        placeholder="John Snow"
+                        placeholder="John"
                         required
                         onChange={(event) => {
                           setName(event.target.value);
@@ -418,9 +418,9 @@ const Register = () => {
                         dropdownMode="select"
                         maxDate={maxDate}
                         minDate={minDate}
-                        // locale={en - Us}
-                        // weekDayFormat="narrow"
-                        // defaultWidth="narrow"
+                      // locale={en - Us}
+                      // weekDayFormat="narrow"
+                      // defaultWidth="narrow"
                       />
 
                       {/* .............. */}
