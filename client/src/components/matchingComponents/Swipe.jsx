@@ -41,7 +41,6 @@ const Swipe = (props) => {
     [filterData]
   );
 
-
   const updateCurrentIndex = (val) => {
     setCurrentIndex(val);
     currentIndexRef.current = val;
@@ -55,7 +54,7 @@ const Swipe = (props) => {
   // set last direction and decrease current index
   const swiped = (direction, index) => {
     if (step > filterData.data[index - 1].profile_pics.length - 1) {
-      setStep(0)
+      setStep(0);
     }
     setLastDirection(direction);
     updateCurrentIndex(index - 1);
@@ -74,7 +73,7 @@ const Swipe = (props) => {
     ) {
       setStep(step + 1);
     } else {
-      setStep(0)
+      setStep(0);
     }
   };
 
@@ -82,7 +81,7 @@ const Swipe = (props) => {
     if (step !== 0 && index === currentIndex) {
       setStep(step - 1);
     } else {
-      setStep(filterData.data[index].profile_pics.length - 1)
+      setStep(filterData.data[index].profile_pics.length - 1);
     }
   };
 
@@ -105,17 +104,25 @@ const Swipe = (props) => {
     props.setClickCountinue(props.clickCountinue + 1);
   };
 
+
+  const handleJustSwiped = () => {
+    setJustSwipe(true)
+  };
+
+  const setHandleJustSwiped = () => setTimeout(handleJustSwipedClose, 500)
+
+  const handleJustSwipedClose = () => {
+    setJustSwipe(false)
+  };
+
   useEffect(() => {
     handleMatchingId();
   }, []);
 
+
   return (
     <div className="w-full h-[54rem]  bg-[url('../../../public/asset/header/hero-swipe.png')] flex justify-center items-start overflow-hidden overflow-x-hidden xl:h-full">
-      {justSwipe && (
-        <PopupWhenSwipe
-          close={() => setJustSwipe(!justSwipe)}
-        />
-      )}
+      {isMatch === false && justSwipe && <PopupWhenSwipe close={() => setJustSwipe(!justSwipe)} />}
       {preview && (
         <SwipeModal
           close={() => setPreview(!preview)}
@@ -138,11 +145,14 @@ const Swipe = (props) => {
               swipeThreshold={100}
             >
               <div className="flex justify-center items-center">
-
                 {/* Matched logo */}
                 {isMatch === true && isIndex === index ? (
                   <div className="z-30 absolute inset-0 top-[40%] flex flex-col items-center">
-                    <MatchedLogo swipe={swipe} index={index} clickCountinueCount={clickCountinueCount} />
+                    <MatchedLogo
+                      swipe={swipe}
+                      index={index}
+                      clickCountinueCount={clickCountinueCount}
+                    />
                   </div>
                 ) : null}
 
@@ -154,9 +164,8 @@ const Swipe = (props) => {
                     className="card relative w-[30rem] h-[30rem] bg-cover bg-center rounded-[32px] overflow-hidden  items-end flex flex-row z-0 xl:w-[40rem] xl:h-[40rem] 2xl:w-[44rem] 2xl:h-[46rem]"
                   >
                     <div className="flex flex-col z-[0] w-full ml-[2%]">
-
                       {/* eye icon */}
-                    <button
+                      <button
                         className="w-[5rem] h-[auto] mb-[-2%]"
                         onClick={(event) => {
                           event.preventDefault();
@@ -169,14 +178,13 @@ const Swipe = (props) => {
 
                       {/* name & age */}
                       <div className="flex flex-row mb-[5%]">
-                      <h3 className="text-[white] text-[2rem] m-[0%] mr-[0] font-[700]">
-                        {user.name}
-                      </h3>
-                      <h3 className="text-[#afb4c5] text-[2rem] m-[0%] ml-[1.5%] mr-[1%] font-[700]">
-                        {user.user_age}
-                      </h3>
+                        <h3 className="text-[white] text-[2rem] m-[0%] mr-[0] font-[700]">
+                          {user.name}
+                        </h3>
+                        <h3 className="text-[#afb4c5] text-[2rem] m-[0%] ml-[1.5%] mr-[1%] font-[700]">
+                          {user.user_age}
+                        </h3>
                       </div>
-                      
                     </div>
                     <button
                       onClick={() => {
@@ -211,41 +219,42 @@ const Swipe = (props) => {
                   </div>
                 ) : null}
 
-                {index === currentIndex ? <div className="button flex flex-row items-center justify-center space-x-3   top-[90%] right-[35%] z-60 absolute   ">
-                  <button
-                    className="XButton w-[60px] h-[60px] drop-shadow-2xl mr-[10px] mt-[-7.5%]  bg-white rounded-[30%] flex justify-center items-center hover:bg-[#2A2E3F] z-70 xl:w-[70px] xl:h-[70px] 2xl:w-[76px] 2xl:h-[76px]"
-                    onClick={() => swipe("left", index)}
-                  >
-                    <img src={xLogo} />
-                  </button>
+                {index === currentIndex ? (
+                  <div className="button flex flex-row items-center justify-center space-x-3   top-[90%] right-[35%] z-60 absolute   ">
+                    <button
+                      className="XButton w-[60px] h-[60px] drop-shadow-2xl mr-[10px] mt-[-7.5%]  bg-white rounded-[30%] flex justify-center items-center hover:bg-[#2A2E3F] z-70 xl:w-[70px] xl:h-[70px] 2xl:w-[76px] 2xl:h-[76px]"
+                      onClick={() => swipe("left", index)}
+                    >
+                      <img src={xLogo} />
+                    </button>
 
-                  <button
-                    className="HeartButton w-[60px] h-[60px] drop-shadow-2xl mt-[-7.5%]  bg-white rounded-[30%] flex justify-center items-center hover:bg-[#FFB1C8] z-70 xl:w-[70px] xl:h-[70px] 2xl:w-[76px] 2xl:h-[76px]"
-                    onClick={() => {
-                      let isMatch = false;
+                    <button
+                      className="HeartButton w-[60px] h-[60px] drop-shadow-2xl mt-[-7.5%]  bg-white rounded-[30%] flex justify-center items-center hover:bg-[#FFB1C8] z-70 xl:w-[70px] xl:h-[70px] 2xl:w-[76px] 2xl:h-[76px]"
+                      onClick={() => {
+                        let isMatch = false;
 
-                      setJustSwipe(true);
+                        handleJustSwiped()
+                        setHandleJustSwiped()
 
-                      matchingId.map((id) => {
-                        if (id === user.user_id) {
-                          setIsMatch(true);
-                          setIsIndex(index);
+                        matchingId.map((id) => {
+                          if (id === user.user_id) {
+                            setIsMatch(true);
+                            setIsIndex(index);
+                            postSwipe(index, true);
+                            isMatch = true;
+                          }
+                        });
+
+                        if (isMatch === false) {
+                          swipe("right", index);
                           postSwipe(index, true);
-                          isMatch = true;
                         }
-                      });
-
-                      if (isMatch === false) {
-                        swipe("right", index);
-                        postSwipe(index, true);
-                      }
-                    }}
-                  >
-                    <img src={heartLogo} className="ml-1 mt-1" />
-                  </button>
-                </div> : null}
-
-
+                      }}
+                    >
+                      <img src={heartLogo} className="ml-1 mt-1" />
+                    </button>
+                  </div>
+                ) : null}
               </div>
             </TinderCard>
           ))}
