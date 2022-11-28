@@ -151,7 +151,7 @@ const ComplaintList = () => {
           {mockComplaints.filter((complaint) => {
 
             if (status !== 'All Status' && search.toLowerCase() !== '') {
-              return complaint.complaint_status.includes(status) && complaint.name.toLowerCase().includes(search) || complaint.issue.toLowerCase().includes(search)
+              return complaint.complaint_status.includes(status) && complaint.name.toLowerCase().includes(search) || complaint.complaint_status.includes(status) && complaint.issue.toLowerCase().includes(search)
             } else if (status !== 'All Status') {
               return complaint.complaint_status.includes(status)
             } else if (search.toLowerCase() !== '') {
