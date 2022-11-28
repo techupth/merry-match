@@ -38,7 +38,12 @@ const Complaint = () => {
           flex-row
           items-center"
           >
-            <button className="back-button" onClick={()=>{navigate("/admin")}}>
+            <button
+              className="back-button"
+              onClick={() => {
+                navigate("/admin");
+              }}
+            >
               <svg
                 className="w-6 h-6 mr-4"
                 fill="none"
@@ -92,7 +97,8 @@ const Complaint = () => {
             </div>
           </div>
 
-          {complaint.complaint_status === "New" || complaint.complaint_status === "Pending" ? (
+          {complaint.complaint_status === "New" ||
+          complaint.complaint_status === "Pending" ? (
             <div className="w-[400px] mr-10 flex flex-row justify-between items-center">
               <button
                 className="text-[#C70039] font-[700] text-[1em] w-[200px] h-[50px] hover:text-[#FF1659] active:text-[#A62D82]"

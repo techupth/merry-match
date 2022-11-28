@@ -155,10 +155,13 @@ const ComplaintList = () => {
             return (
               <div
                 key={complaint.complaint_id}
-                className="bg-[#ffffff] h-[100px] w-[95%] flex flex-row items-center justify-between font-[500] text-[22px] border-b-2 ml-[3%]"
+                className="bg-[#ffffff] h-[100px] w-[95%] flex flex-row items-center justify-between font-[500] text-[22px] border-b-2 ml-[3%] hover:cursor-pointer hover:bg-[#F1F2F6]"
+                onClick={() => {
+                  navigate(`/admin/view/${complaint.complaint_id}`);
+                }}
               >
                 <div
-                  className="ml-[3%] w-[90px] truncate text-[0.8em]"
+                  className="ml-[3%] w-[90px] truncate text-[0.8em] hover:cursor-pointer hover:bg-[#F1F2F6]"
                   onClick={() => {
                     navigate(`/admin/view/${complaint.complaint_id}`);
                   }}
