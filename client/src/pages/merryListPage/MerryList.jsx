@@ -30,6 +30,7 @@ const MerryList = () => {
   const [preview, setPreview] = useState(false);
 
   const [deleteId, setDeleteId] = useState([]);
+  console.log(deleteId)
 
   const isData = async () => {
     try {

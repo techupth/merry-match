@@ -7,6 +7,7 @@ const AdminAuthenticated = () => {
     <>
       <SwipeProvider>
         <Routes>
+          <Route path="/admin" element={<AdminPanelControlPage />} />
           <Route path="*" element={<AdminPanelControlPage />} />
         </Routes>
       </SwipeProvider>

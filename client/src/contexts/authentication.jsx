@@ -52,7 +52,7 @@ const AuthProvider = (props) => {
   const login = async (data) => {
     try {
       const result = await axios.post("http://localhost:4001/auth/login", data);
-
+      console.log(result)
       if (result.data.token) {
         const token = result.data.token;
         localStorage.setItem("token", token);
@@ -62,7 +62,11 @@ const AuthProvider = (props) => {
         setUserData({ ...userData, user: userData });
         navigate("/");
         return result.data.message;
-      } else {
+      }else if(result.data.adminToken){
+        const adminToken = result.data.adminToken
+        localStorage.setItem("adminToken", adminToken);
+        navigate("/admin")
+      }else {
         if (result.data.message.match("Username")) {
           setMsg({ ...loginMsg, loginKey: result.data.message });
         } else if (result.data.message.match("Password")) {
@@ -78,6 +82,7 @@ const AuthProvider = (props) => {
 
   const logout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("adminToken");
     setUserData({ ...userData, user: null });
   };
 
@@ -90,8 +95,8 @@ const AuthProvider = (props) => {
       console.log(err)
     }
   };
-
-  const isAdminAuthenticated = isAdmin
+  console.log(isAdmin)
+  const isAdminAuthenticated = Boolean(localStorage.getItem("adminToken"))
   const isAuthenticated = Boolean(localStorage.getItem("token"));
 
   return (

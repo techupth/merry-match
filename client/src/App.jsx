@@ -6,13 +6,13 @@ import AdminAuthenticated from "./pages/router/AdminAuthenticated";
 const App = () => {
   const auth = useAuth();
 
-  return auth.isAdminAuthenticated === true ? (
+  return (auth.isAdminAuthenticated ? (
     <AdminAuthenticated />
   ) : auth.isAuthenticated ? (
     <Authenticated />
   ) : (
     <Unauthenticated />
-  );
+  ));
 };
 
 export default App;

@@ -79,7 +79,7 @@ const loginController = async (req, res) => {
       });
     }
 
-    const token = jwt.sign(
+    const adminToken = jwt.sign(
       {
         admin_id: isAdmin.rows[0].admin_id,
         username: isAdmin.rows[0].username,
@@ -95,7 +95,7 @@ const loginController = async (req, res) => {
       message: `Admin ${
         isAdmin.rows[0].username
       } logged in successful!! at ${new Date()}`,
-      token,
+      adminToken,
     });
   }
 
