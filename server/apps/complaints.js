@@ -29,6 +29,7 @@ complaintsRouter.get("/:id", async (req, res) => {
 });
 
 complaintsRouter.post("/", async (req, res) => {
+  console.log(req.body)
   const newComplaint = {
     ...req.body,
     created_at: new Date(),
