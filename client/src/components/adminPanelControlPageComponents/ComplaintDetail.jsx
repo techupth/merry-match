@@ -9,13 +9,16 @@ const Complaint = () => {
   const params = useParams();
   console.log(params.complaintID);
   const [complaint, setComplaint] = useState({});
+  const [dateSubmit, setDateSubmit]= useState("");
 
   const getComplaint = async () => {
     const results = await axios(
       `http://localhost:4001/complaints/${params.complaintID}`
     );
-    setComplaint(results.data.data[0]);
+    setComplaint(results.data.data[0]); 
+    setDateSubmit(results.data.data[0].date_submitted.substr(0, 10))
   };
+
 
   console.log(complaint)
   useEffect(() => {
@@ -25,7 +28,7 @@ const Complaint = () => {
   return (
     <div className="flex flex-row">   
        <AdminSideBar/>
-    <div className="w-[100%] h-[100vh] flex flex-col items-start justify-start bg-[#F6F7FC]">
+    <div className="w-[100%] h-[140vh] flex flex-col items-start justify-start bg-[#F6F7FC]">
       <div className=" nav-bar w-[80vw] h-[13vh] bg-white border-b-2 flex flex-row items-center justify-between">
         <div
           className="ml-[4rem] text-[2.5em] font-[700]
@@ -133,8 +136,17 @@ const Complaint = () => {
               </p>
               <p className=" text-black text-[1.5em] ml-20 pb-20">
                 {" "}
-                {complaint.date_submitted}
+                {dateSubmit}
               </p>
+
+              <p className="text-[600] font-[#646D89] text-[24px] mt-16 ml-20">
+               Date of Issue
+              </p>
+              <p className=" text-black text-[1.5em] ml-20 pb-20">
+                {" "}
+                {dateSubmit}
+              </p>
+              
             </div>
           </div>
   
