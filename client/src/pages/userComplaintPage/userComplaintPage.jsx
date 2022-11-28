@@ -17,13 +17,11 @@ const UserComplaintPage = () => {
   const [desc, setDesc] = useState("");
   const [userId, setUserId] = useState("");
 
-
-
   const complaintForm = {
     issue: issue,
     description: desc,
     date: currentDate,
-    user_id:userId,
+    user_id: userId,
   };
 
   const handleBirtday = (data) => {
@@ -48,15 +46,15 @@ const UserComplaintPage = () => {
     }
   };
 
-  const handleUserId = async () =>{
+  const handleUserId = async () => {
     const token = localStorage.getItem("token");
     const userData = jwtDecode(token);
-    setUserId(userData.user_id)
-  }
+    setUserId(userData.user_id);
+  };
 
   useEffect(() => {
-    handleUserId()
-    handleBirtday(new Date())
+    handleUserId();
+    handleBirtday(new Date());
   }, []);
 
   return (
@@ -103,18 +101,43 @@ const UserComplaintPage = () => {
 
               <label>Date Submitted</label>
               <br />
-              <DatePicker
-                required
-                dateFormat="dd/MM/yyyy"
-                dropdownMode="select"
-                selected={startDate}
-                showMonthDropdown
-                showYearDropdown
-                onChange={(date) => {
-                  handleBirtday(date);
-                }}
-                className="border border-1 border-[#D6D9E4] rounded-[8px] w-[120px] h-[48px] text-black mb-[5%] focus:border-pink-300 focus:border-[2px] text-center"
-              />
+              <div class="relative">
+                <div class="flex absolute inset-y-0 left-[280px] bottom-8 items-center pl-3 pointer-events-none z-10">
+                  <svg
+                    aria-hidden="true"
+                    class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                </div>
+                <DatePicker
+                  required
+                  dateFormat="dd/MM/yyyy"
+                  dropdownMode="select"
+                  placeholder={startDate}
+                  selected={startDate}
+                  disabled="true"
+                  showMonthDropdown
+                  showYearDropdown
+                  onChange={(date) => {
+                    handleBirtday(date);
+                  }}
+                  className="border border-1 border-[#D6D9E4] rounded-[8px]  h-[48px] text-black mb-[5%] w-[60%] focus:border-pink-300 focus:border-[2px] text-left block bg-gray-50 "
+                />
+                {/* <input
+                  datepicker
+                  type="text"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Select date"
+                /> */}
+              </div>
 
               <br />
 
