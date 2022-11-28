@@ -64,7 +64,9 @@ const Complaint = () => {
               key={complaint.complaint_id}
               className="w-[1000px] flex flex-row items-center justify-start"
             >
-              <span className="w-[60%] ml-5 truncate">{complaint.issue}</span>
+              <span className="ml-5 mr-5 truncate text-3xl">
+                {complaint.issue}
+              </span>
               {complaint.complaint_status === "New" ? (
                 <span className="w-[60%]">
                   <span className="w-[100px] p-1 px-2 font-[500] text-[0.8em] bg-[#FAF1ED] rounded-[8px] text-[#7B4429]">
@@ -74,7 +76,7 @@ const Complaint = () => {
                 </span>
               ) : complaint.complaint_status === "Pending" ? (
                 <span className="w-[60%]">
-                  <p className="w-fit p-1 px-2 font-[500] text-[o.8em] bg-[#FFF6D5] rounded-[8px] text-[#393735]">
+                  <p className="w-fit p-1 px-2 font-[500] text-[0.8em] bg-[#FFF6D5] rounded-[8px] text-[#393735]">
                     {" "}
                     Pending
                   </p>
