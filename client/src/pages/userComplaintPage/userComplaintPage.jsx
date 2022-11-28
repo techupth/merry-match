@@ -110,7 +110,7 @@ const UserComplaintPage = () => {
               />
               <br />
 
-              <label>Date Submitted</label>
+              <label>Date of Issue</label>
               <br />
               <div className="relative">
                 <div className="flex absolute inset-y-0 left-[280px] bottom-8 items-center pl-3 pointer-events-none z-10">
