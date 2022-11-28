@@ -5,7 +5,7 @@ import { mockComplaints } from "./mockcomplaintdata";
 const ComplaintList = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState('')
-  const [status, setStatus] = useState('')
+  const [status, setStatus] = useState('All Status')
 
   // function statusValue(e) {
   //   console.log(e.target.value)
@@ -69,9 +69,10 @@ const ComplaintList = () => {
                 src="../../../public/asset/adminPanelControl/dropdown.svg"
                 alt="dropdown button"
               />
+              <option value="All Status" className="w-fit p-1 px-2 font-[500] text-[1em] bg-[#FAF1ED] rounded-[8px] text-[#7B4429]">All Status</option>
               <option value="New" className="w-fit p-1 px-2 font-[500] text-[1em] bg-[#FAF1ED] rounded-[8px] text-[#7B4429]">New</option>
               <option value="Resolved" className="w-fit p-1 px-2 font-[500] text-[1em] bg-[#E7FFE7] rounded-[8px]  text-[#197418] ">Resolved</option>
-              <option value="Pending" className="w-fit p-1 px-2 font-[500] text-[1em] bg-[#FAF1ED] rounded-[8px] text-[#7B4429]">Pending</option>
+              <option value="Pending" className="w-fit p-1 px-2 font-[500] text-[1em] bg-[#FFF6D5] rounded-[8px] text-[#393735]">Pending</option>
               <option value="Canceled" className="w-fit p-1 px-2 font-[500] text-[1em] bg-[#FAF1ED] rounded-[8px] text-[#7B4429]">Canceled</option>
             </select>
 
@@ -149,14 +150,15 @@ const ComplaintList = () => {
 
           {mockComplaints.filter((complaint) => {
 
-            if (status !== '' && search.toLowerCase() !== '') {
+            if (status !== 'All Status' && search.toLowerCase() !== '') {
               return complaint.complaint_status.includes(status) && complaint.name.toLowerCase().includes(search) || complaint.issue.toLowerCase().includes(search)
-            } else if (status !== '') {
+            } else if (status !== 'All Status') {
               return complaint.complaint_status.includes(status)
             } else if (search.toLowerCase() !== '') {
               return complaint.name.toLowerCase().includes(search) || complaint.issue.toLowerCase().includes(search)
+            } else if (status === 'All Status') {
+              return complaint
             }
-
             else if (search.toLowerCase() === '') {
               return complaint
             }
