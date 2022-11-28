@@ -8,6 +8,7 @@ const ComplaintList = () => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [complaints, setComplaints] = useState([]);
+  console.log(complaints);
 
   const handleDropDown = () => {
     setIsOpen(!isOpen);
@@ -25,6 +26,22 @@ const ComplaintList = () => {
       setComplaints(result.data.data);
     } catch (e) {
       console.log(e);
+    }
+  };
+
+  const handleStatus = async (data) => {
+    console.log(data);
+    const complaintId = data.complaint_id;
+    const newData = {
+      ...data,
+      complaint_status: "Pending",
+    };
+    console.log(newData);
+    if (data.complaint_status === "New") {
+      await axios.put(
+        `http://localhost:4001/complaints/${complaintId}`,
+        newData
+      );
     }
   };
 
@@ -157,6 +174,8 @@ const ComplaintList = () => {
                 key={complaint.complaint_id}
                 className="bg-[#ffffff] h-[100px] w-[95%] flex flex-row items-center justify-between font-[500] text-[22px] border-b-2 ml-[3%] hover:cursor-pointer hover:bg-[#F1F2F6]"
                 onClick={() => {
+                  handleStatus(complaint);
+                  console.log(complaint);
                   navigate(`/admin/view/${complaint.complaint_id}`);
                 }}
               >
