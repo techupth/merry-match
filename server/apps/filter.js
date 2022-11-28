@@ -50,7 +50,6 @@ filterRouter.post("/", async (req, res) => {
         filter.user_id,
       ]
     );
-    // console.log("filter result", result.rows);
 
     const filterMatched = result.rows.filter((value) => {
       return !userMatched.includes(value.user_id)

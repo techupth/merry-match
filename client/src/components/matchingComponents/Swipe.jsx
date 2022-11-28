@@ -111,7 +111,11 @@ const Swipe = (props) => {
 
   return (
     <div className="w-full h-[54rem]  bg-[url('../../../public/asset/header/hero-swipe.png')] flex justify-center items-start overflow-hidden overflow-x-hidden xl:h-full">
-      {}
+      {justSwipe && (
+        <PopupWhenSwipe
+          close={() => setJustSwipe(!justSwipe)}
+        />
+      )}
       {preview && (
         <SwipeModal
           close={() => setPreview(!preview)}
@@ -218,11 +222,9 @@ const Swipe = (props) => {
                   <button
                     className="HeartButton w-[60px] h-[60px] drop-shadow-2xl mt-[-7.5%]  bg-white rounded-[30%] flex justify-center items-center hover:bg-[#FFB1C8] z-70 xl:w-[70px] xl:h-[70px] 2xl:w-[76px] 2xl:h-[76px]"
                     onClick={() => {
-                      // swipe("right", index);
                       let isMatch = false;
 
-                      setJustSwipe(true)
-                      console.log(justSwipe)
+                      setJustSwipe(true);
 
                       matchingId.map((id) => {
                         if (id === user.user_id) {
