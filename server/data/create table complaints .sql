@@ -13,3 +13,10 @@
 -- select * from complaints
 
 -- drop table complaints cascade
+
+-- select * from complaints
+
+-- drop table complaints cascade
+
+-- ALTER TABLE complaints
+-- ALTER COLUMN resolved_by drop not null;

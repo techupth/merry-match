@@ -18,7 +18,7 @@ complaintsRouter.get("/", async (req, res) => {
 });
 
 complaintsRouter.get("/:id", async (req, res) => {
-  const complaintId = req.query.id;
+  const complaintId = req.params.id;
   const result = await pool.query(
     `select * from complaints where complaint_id = $1`,
     [complaintId]
@@ -32,19 +32,21 @@ complaintsRouter.post("/", async (req, res) => {
   console.log(req.body)
   const newComplaint = {
     ...req.body,
-    created_at: new Date(),
   };
 
   console.log(newComplaint);
 
   await pool.query(
-    `INSERT INTO complaints (user_id, issue,description,created_at,date,complaint_status) values($1, $2, $3, $4, $5,'New')`,
+    `INSERT INTO complaints (name,issue,description,user_id,date_submitted,complaint_status,updated_at,resolved_by) values($1, $2, $3, $4, $5,$6,$7,$8)`,
     [
-      newComplaint.user_id,
+      newComplaint.name,
       newComplaint.issue,
       newComplaint.description,
-      newComplaint.created_at,
-      newComplaint.date,
+      newComplaint.user_id,
+      newComplaint.date_submitted,
+      newComplaint.complaint_status,
+      newComplaint.updated_at,
+      newComplaint.resolved_by,
     ]
   );
 
