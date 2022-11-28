@@ -15,8 +15,6 @@ const Unauthenticated = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="*" element={<Home />} />
-        {/* อย่าลืมลบ ↓ */}
-        <Route path="/dev" element={<AdminPanelControlPage />} />
       </Routes>
     </>
   );

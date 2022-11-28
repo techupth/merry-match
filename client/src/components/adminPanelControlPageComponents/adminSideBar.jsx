@@ -1,6 +1,10 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/authentication";
 
 function AdminSideBar() {
+  const { logout } = useAuth();
+  const navigate = useNavigate();
   return (
     <div className="h-[100vh] w-[25%]">
       <div className="w-[100%] h-[100%] bg-[#ffffff] z-20  border-r-2 ">
@@ -25,7 +29,7 @@ function AdminSideBar() {
                 src="../../../public/asset/adminPanelControl/Vector.svg"
                 alt="caution symbol"
               />{" "}
-              <p className="ml-3 text-[1.8em]">Complaint</p>
+              <p className="ml-3 text-[1em]">Complaint</p>
             </button>
           </div>
 
@@ -33,6 +37,10 @@ function AdminSideBar() {
             <button
               className=" flex flex-row items-center
            text-[#424C6B] font-[800] ml-[50px]"
+              onClick={() => {
+                logout();
+                window.location.reload();
+              }}
             >
               {" "}
               <img
@@ -40,7 +48,7 @@ function AdminSideBar() {
                 src="../../../public/asset/adminPanelControl/logout-btn.svg"
                 alt="caution symbol"
               />{" "}
-              <p className="ml-3 text-[1.8em]">Log out</p>
+              <p className="ml-3 text-[1]">Log out</p>
             </button>
           </div>
         </div>
