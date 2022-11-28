@@ -1,9 +1,31 @@
 import React from "react";
 import { mockEachComplaint } from "./mockcomplaintdata";
+import { useNavigate, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import AdminSideBar from "./AdminSideBar";
 
 const Complaint = () => {
+  const params = useParams();
+  console.log(params.complaintID);
+  const [complaint, setComplaint] = useState({});
+
+  const getComplaint = async () => {
+    const results = await axios(
+      `http://localhost:4001/complaints/${params.complaintID}`
+    );
+    setComplaint(results.data.data[0]);
+  };
+
+  console.log(complaint)
+  useEffect(() => {
+    getComplaint();
+  }, []);
+
   return (
-    <div className="w-[100%] h-[100%] flex flex-col items-start justify-start bg-[#F6F7FC]">
+    <div className="flex flex-row">   
+       <AdminSideBar/>
+    <div className="w-[100%] h-[100vh] flex flex-col items-start justify-start bg-[#F6F7FC]">
       <div className=" nav-bar w-[80vw] h-[13vh] bg-white border-b-2 flex flex-row items-center justify-between">
         <div
           className="ml-[4rem] text-[2.5em] font-[700]
@@ -27,8 +49,7 @@ const Complaint = () => {
               ></path>
             </svg>
           </button>
-          {mockEachComplaint.map((complaint) => {
-            return (
+        
               <div
                 key={complaint.complaint_id}
                 className="w-[1000px] flex flex-row items-center justify-start"
@@ -64,8 +85,7 @@ const Complaint = () => {
                   </span>
                 ) : null}
               </div>
-            );
-          })}
+  
         </div>
 
         <div className="w-[400px] mr-10 flex flex-row justify-between items-center">
@@ -84,8 +104,7 @@ const Complaint = () => {
         </div>
       </div>
       {/* each complaint */}
-      {mockEachComplaint.map((complaint) => {
-        return (
+    
           <div className="h-full w-full mt-16 flex flex-row items-start justify-center">
             <div className="rounded-[30px] bg-white w-[90%] h-fit flex flex-col items-start justify-start">
               <div className="border-b-2 w-[90%] ml-20 h-[160px] flex flex-row items-center justify-start">
@@ -110,7 +129,7 @@ const Complaint = () => {
                 {complaint.description}
               </p>
               <p className="text-[600] font-[#646D89] text-[24px] mt-16 ml-20">
-                Date Submitted
+               Date of Issue
               </p>
               <p className=" text-black text-[1.5em] ml-20 pb-20">
                 {" "}
@@ -118,8 +137,8 @@ const Complaint = () => {
               </p>
             </div>
           </div>
-        );
-      })}
+  
+    </div>
     </div>
   );
 };

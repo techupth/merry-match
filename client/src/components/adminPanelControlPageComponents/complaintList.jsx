@@ -1,8 +1,10 @@
 import React from "react";
 import { useState } from "react";
 import { mockComplaints } from "./mockcomplaintdata";
+import { useNavigate } from "react-router-dom";
 
 const ComplaintList = () => {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
   const handleDropDown = () => {
@@ -10,6 +12,7 @@ const ComplaintList = () => {
   };
 
   return (
+  
     <div className="w-[100%] h-[100vh] flex flex-col items-start justify-center">
       <div className=" nav-bar w-[80vw] h-[12%] bg-white border-b-2 flex flex-row items-center justify-between">
         <div className="ml-[4rem] text-[2.5em] font-[700] h-fit ">
@@ -138,18 +141,23 @@ const ComplaintList = () => {
                 key={complaint.complaint_id}
                 className="bg-[#ffffff] h-[100px] w-[95%] flex flex-row items-center justify-between font-[500] text-[22px] border-b-2 ml-[3%]"
               >
-                <a href="" className="ml-[3%] w-[90px] truncate text-[0.8em]">
-                  <span>{complaint.name}</span>
-                </a>
-                <a href="" className="w-[12%] truncate text-[0.8em]">
+                <div
+                  className="ml-[3%] w-[90px] truncate text-[0.8em]"
+                  onClick={() => {
+                    navigate(`/admin/view/${complaint.complaint_id}`);
+                  }}
+                >
+                  <p>{complaint.name}</p>
+                </div>
+                <div href="" className="w-[12%] truncate text-[0.8em]">
                   <span>{complaint.issue}</span>
-                </a>
-                <a href="" className="w-[32%] truncate text-[0.8em]">
+                </div>
+                <div href="" className="w-[32%] truncate text-[0.8em]">
                   <span>{complaint.description}</span>
-                </a>
-                <a href="" className="w-[10%] text-left text-[0.8em]">
+                </div>
+                <div href="" className="w-[10%] text-left text-[0.8em]">
                   <span>{complaint.date_submitted}</span>
-                </a>
+                </div>
                 {complaint.complaint_status === "New" ? (
                   <a href="" className="mr-[3.5%] w-[7%]">
                     <span>
