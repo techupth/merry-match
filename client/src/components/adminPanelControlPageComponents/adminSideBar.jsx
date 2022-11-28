@@ -6,7 +6,7 @@ function AdminSideBar() {
       <div className="w-[100%] h-[100%] bg-[#ffffff] z-20  border-r-2 ">
         <div className="flex flex-col items-center justify-center">
           <img
-            className="mt-[8rem] h-[full] w-[80%]"
+            className="mt-[1rem] h-[full] w-[80%]"
             src="/public/asset/header/header-merrymatch-logo.svg"
             alt="Merry Match logo"
           />
@@ -21,11 +21,11 @@ function AdminSideBar() {
             >
               {" "}
               <img
-                className=""
+                className="h-7"
                 src="../../../public/asset/adminPanelControl/Vector.svg"
                 alt="caution symbol"
               />{" "}
-              <p className="ml-3 text-[1.2em]">Complaint</p>
+              <p className="ml-3 text-[1.8em]">Complaint</p>
             </button>
           </div>
 
@@ -36,11 +36,11 @@ function AdminSideBar() {
             >
               {" "}
               <img
-                className=""
+                className="h-7"
                 src="../../../public/asset/adminPanelControl/logout-btn.svg"
                 alt="caution symbol"
               />{" "}
-              <p className="ml-3 text-[1.2em]">Log out</p>
+              <p className="ml-3 text-[1.8em]">Log out</p>
             </button>
           </div>
         </div>

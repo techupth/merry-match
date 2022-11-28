@@ -9,7 +9,7 @@ import SwipeModal from "../../components/matchingComponents/swipeModal";
 const Unauthenticated = () => {
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
