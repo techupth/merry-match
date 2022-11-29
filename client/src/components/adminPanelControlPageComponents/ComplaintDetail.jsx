@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import AdminSideBar from "./AdminSideBar";
+import Popup from "./Popup";
 
 const Complaint = () => {
   const params = useParams();
@@ -10,7 +11,25 @@ const Complaint = () => {
   console.log(params.complaintID);
   const [complaint, setComplaint] = useState({});
   const [dateSubmit, setDateSubmit] = useState("");
-  const [dateResolve, setDateResolve] = useState("");
+
+  const [dateAction, setDateAction] = useState("");
+  const [timeAction, setTimeAction] = useState("");
+  
+  
+
+  const [isCancel, setIsCancel] = useState(false);
+  const [isResolve, setIsResolve] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleCancel = () => {
+    setIsCancel(!isCancel);
+    setIsOpen(!isOpen);
+  };
+
+  const toggleResolve = () => {
+    setIsResolve(!isResolve);
+    setIsOpen(!isOpen);
+  };
 
   const getComplaint = async () => {
     const results = await axios(
@@ -18,12 +37,40 @@ const Complaint = () => {
     );
     setComplaint(results.data.data[0]);
     setDateSubmit(results.data.data[0].date_submitted.substr(0, 10));
-    setDateResolve(results.data.data[0].updated_at.substr(0, 10));
+    const dateArr = results.data.data[0].updated_at.split("T");
+    console.log(dateArr);
+    const time = dateArr[1].substr(0, 8)
+    setTimeAction(time);
+    setDateAction(dateArr[0]);
   };
+
+
+
+
+  const handleCancel = async (data) => {
+    console.log(data);
+    const complaintId = data.complaint_id;
+    const newData = {
+      ...data,
+      complaint_status: "Canceled",
+    };
+    await axios.put(`http://localhost:4001/complaints/${complaintId}`, newData);
+  };
+
+  const handleResolve = async (data) => {
+    console.log(data);
+    const complaintId = data.complaint_id;
+    const newData = {
+      ...data,
+      complaint_status: "Resolved",
+    };
+    await axios.put(`http://localhost:4001/complaints/${complaintId}`, newData);
+  };
+
+
 
   console.log(complaint);
   useEffect(() => {
-    getComplaint();
     getComplaint();
   }, []);
 
@@ -104,13 +151,18 @@ const Complaint = () => {
             <div className="w-[40%] mr-10 flex flex-row justify-end items-center">
               <button
                 className="text-[#C70039] font-[700] text-[1em] w-[150px] h-[50px] hover:text-[#FF1659] active:text-[#A62D82] mr-2"
-                onClick={() => { }}
+                onClick={() => {
+                  toggleCancel();
+
+                }}
               >
                 Cancel Complaint
               </button>
               <button
                 className="bg-[#C70039] rounded-[99px] text-[white] font-[700] text-[1em] w-[180px] h-[50px] hover:bg-[#FF1659] active:text-[#A62D82]"
-                onClick={() => { }}
+                onClick={() => {
+                  toggleResolve();
+                }}
               >
                 Resolved Complaint
               </button>
@@ -154,9 +206,8 @@ const Complaint = () => {
                 <p className="text-[600] font-[#646D89] text-[24px] mt-16 ml-20">
                   Resolved date
                 </p>
-                <p className=" text-black text-[1.5em] ml-20 pb-20">
-                  {" "}
-                  {dateResolve}
+                <p className=" text-black text-[1em] ml-20 pb-20">
+                {`${dateAction}  ${timeAction}`}
                 </p>
               </div>
             ) : complaint.complaint_status === "Canceled" ? (
@@ -164,14 +215,78 @@ const Complaint = () => {
                 <p className="text-[600] font-[#646D89] text-[24px] mt-16 ml-20">
                   Canceled date
                 </p>
-                <p className=" text-black text-[1.5em] ml-20 pb-20">
-                  {" "}
-                  {dateResolve}
+                <p className=" text-black text-[1em] ml-20 pb-20">
+                  {`${dateAction}  ${timeAction}`}
                 </p>
               </div>
             ) : null}
           </div>
         </div>
+        {/*  */}
+        {isCancel && isOpen ? (
+          <Popup
+            HeadContent={
+              <p className="text-[20px] font-semibold">Cancel Complaint</p>
+            }
+            MiddleContent={
+              <p className="text-[16px] font-normal text-[#646D89]">
+                Do you sure to cancel this conplaint?
+              </p>
+            }
+            FotterContent={
+              <div className="flex ">
+                <button
+                  className="w-[239px] h-[48px] rounded-full bg-[#FFE1EA]"
+                  onClick={() => {
+                    handleCancel(complaint);
+                    toggleCancel();
+                    navigate("/admin")
+                  }}
+                >
+                  Yes, cancel this complaint
+                </button>
+                <button
+                  className="w-[239px] h-[48px] rounded-full bg-[#C70039] ml-[16px]"
+                  onClick={toggleCancel}
+                >
+                  No, give me more time
+                </button>
+              </div>
+            }
+            handleClose={toggleCancel}
+          />
+        ) : null}
+        {isResolve && isOpen ? (
+          <Popup
+            HeadContent={
+              <p className="text-[20px] font-semibold">Resolve Complaint</p>
+            }
+            MiddleContent={
+              <p className="text-[16px] font-normal text-[#646D89]">
+                This complaint is resolved?
+              </p>
+            }
+            FotterContent={
+              <div className="flex ">
+                <button className="w-[239px] h-[48px] rounded-full bg-[#FFE1EA]" onClick={()=>{
+                  handleResolve(complaint);
+                  toggleResolve();
+                  navigate("/admin")
+                }}>
+                  Yes, it has been resolved
+                </button>
+                <button
+                  className="w-[239px] h-[48px] rounded-full bg-[#C70039] ml-[16px]"
+                  onClick={toggleResolve}
+                >
+                  No, it’s not
+                </button>
+              </div>
+            }
+            handleClose={toggleResolve}
+          />
+        ) : null}
+        {/*  */}
       </div>
     </div>
   );
