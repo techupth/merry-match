@@ -1,18 +1,51 @@
+import axios from "axios";
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { mockComplaints } from "./mockcomplaintdata";
 import { useNavigate } from "react-router-dom";
 
 const ComplaintList = () => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
+  const [complaints, setComplaints] = useState([]);
+  console.log(complaints);
 
   const handleDropDown = () => {
     setIsOpen(!isOpen);
   };
 
+  useEffect(() => {
+    getAllComplaints();
+  }, []);
+
+  const getAllComplaints = async () => {
+    try {
+      const result = await axios.get("http://localhost:4001/complaints");
+      console.log(result.data.data);
+
+      setComplaints(result.data.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const handleStatus = async (data) => {
+    console.log(data);
+    const complaintId = data.complaint_id;
+    const newData = {
+      ...data,
+      complaint_status: "Pending",
+    };
+    console.log(newData);
+    if (data.complaint_status === "New") {
+      await axios.put(
+        `http://localhost:4001/complaints/${complaintId}`,
+        newData
+      );
+    }
+  };
+
   return (
-  
     <div className="w-[100%] h-[100vh] flex flex-col items-start justify-center">
       <div className=" nav-bar w-[80vw] h-[12%] bg-white border-b-2 flex flex-row items-center justify-between">
         <div className="ml-[4rem] text-[2.5em] font-[700] h-fit ">
@@ -135,14 +168,19 @@ const ComplaintList = () => {
           </div>
 
           {/* complaints */}
-          {mockComplaints.map((complaint) => {
+          {complaints.map((complaint) => {
             return (
               <div
                 key={complaint.complaint_id}
-                className="bg-[#ffffff] h-[100px] w-[95%] flex flex-row items-center justify-between font-[500] text-[22px] border-b-2 ml-[3%]"
+                className="bg-[#ffffff] h-[100px] w-[95%] flex flex-row items-center justify-between font-[500] text-[22px] border-b-2 ml-[3%] hover:cursor-pointer hover:bg-[#F1F2F6]"
+                onClick={() => {
+                  handleStatus(complaint);
+                  console.log(complaint);
+                  navigate(`/admin/view/${complaint.complaint_id}`);
+                }}
               >
                 <div
-                  className="ml-[3%] w-[90px] truncate text-[0.8em]"
+                  className="ml-[3%] w-[90px] truncate text-[0.8em] hover:cursor-pointer hover:bg-[#F1F2F6]"
                   onClick={() => {
                     navigate(`/admin/view/${complaint.complaint_id}`);
                   }}
@@ -156,7 +194,7 @@ const ComplaintList = () => {
                   <span>{complaint.description}</span>
                 </div>
                 <div href="" className="w-[10%] text-left text-[0.8em]">
-                  <span>{complaint.date_submitted}</span>
+                  <span>{complaint.date_submitted.substr(0, 10)}</span>
                 </div>
                 {complaint.complaint_status === "New" ? (
                   <a href="" className="mr-[3.5%] w-[7%]">
