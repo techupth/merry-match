@@ -10,11 +10,11 @@ function AdminSideBar() {
       <div className="w-[100%] h-[100%] bg-[#ffffff] z-20  border-r-2 ">
         <div className="flex flex-col items-center justify-center">
           <img
-            className="mt-[1rem] h-[full] w-[80%]"
+            className="mt-[1rem] h-[80%] w-[70%] 2xl:h-[full] 2xl:w-[80%]"
             src="/public/asset/header/header-merrymatch-logo.svg"
             alt="Merry Match logo"
           />
-          <p className="font-[#646D89] text-[1.3rem]">Admin Panel Control</p>
+          <p className="font-[#646D89] text-[1.rem] 2xl:text-[1.3rem]">Admin Panel Control</p>
         </div>
 
         <div className="categories flex flex-col items-center justify-between mt-10 h-[60%]">
