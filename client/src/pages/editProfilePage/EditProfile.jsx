@@ -41,7 +41,7 @@ const EditProfile = () => {
 
   // Photos
   const [Images, setImages] = useState([]);
-
+  console.log(Images)
   //hobbies part
   const animatedComponents = makeAnimated();
   const [contact, setContact] = useState("----contact---");
@@ -167,6 +167,7 @@ const EditProfile = () => {
   const handleUpdate = async (event, userData) => {
     event.preventDefault();
     updateUserProfile(updateUserData);
+    localStorage.setItem("profileImg", Images[0])
   };
 
   const handleHobbie = (data) => {
