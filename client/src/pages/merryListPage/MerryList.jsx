@@ -30,7 +30,7 @@ const MerryList = () => {
   const [preview, setPreview] = useState(false);
 
   const [deleteId, setDeleteId] = useState([]);
-  console.log(deleteId)
+  console.log(deleteId);
 
   const isData = async () => {
     try {
@@ -217,10 +217,7 @@ const MerryList = () => {
                           </div>
                         ) : (
                           <div className="w-[160px] h-[32px] flex border border-[#646D89] rounded-2xl justify-center items-center mr-[16px]">
-                            <p className="ml-[12px] text-[#646D89]">
-                              {" "}
-                              Not Match yet{" "}
-                            </p>
+                            <p className=" text-[#646D89]"> Not Match Yet </p>
                           </div>
                         )}
                         <div className="flex mt-[25px]">
