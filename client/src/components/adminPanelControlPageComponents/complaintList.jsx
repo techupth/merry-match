@@ -55,7 +55,7 @@ const ComplaintList = () => {
   return (
     <div className="w-[100%] h-[100vh] flex flex-col items-start justify-center">
       <div className=" nav-bar w-[80vw] h-[12%] bg-white border-b-2 flex flex-row items-center justify-between">
-        <div className="ml-[4rem] text-[2.5em] font-[700] h-fit ">
+        <div className="ml-[4rem] text-[1.5em] xl:text-[2.5em] font-[700] h-fit ">
           Complaint List
         </div>
         <div className=" two-box flex flex-row justify-between border-3 mr-[4rem]">
@@ -138,12 +138,28 @@ const ComplaintList = () => {
       {/* content */}
       <div className="complaint-list w-[80vw] h-[95vh] bg-[#F6F7FC] items-center overflow-x-scroll">
         <div className=" w-full h-full overflow-y-scroll border-b-2 rounded-b-[30px]">
-          <div className="bg-[#D6D9E4] h-[80px] w-[95%] mt-[2.5%] rounded-t-[30px] flex flex-row items-center justify-between font-[500] text-[22px] ml-[3%]">
-            <span className="ml-[3%] w-[120px]">User</span>
-            <span className="w-[12%] ">Issue</span>
-            <span className="w-[35%]">Description</span>
-            <span className="mr-5">Date Submitted</span>
-            <span className="mr-[6%]">Status</span>
+          <div className="bg-[#D6D9E4] h-[80px] w-[95%] mt-[2.5%] rounded-t-[30px] flex flex-row items-center justify-between font-[500] text-[16px] 2xl:text-[22px] ml-[3%]">
+
+            <div className="w-[15.18%]">
+              <span className=" w-[51.2%] ml-[23%] xl:ml-[22.3%] 2xl:ml-[20.3%]">User</span>
+              {/* <span className="ml-[24.3%] w-[51.2%]">User</span> */}
+            </div>
+            <div className="w-[18.5%]">
+              <span className="w-[84%] ml-[10%] xl:ml-[8%] 2xl:ml-[3%]">Issue</span>
+              {/* <span className="w-[84%] ml-[8%]">Issue</span> */}
+            </div>
+            <div className="w-[35.88%]">
+              <span className="w-[90%]  ml-[7%] xl:ml-[5%] 2xl:ml-[1.5%]">Description</span>
+              {/* <span className="w-[90%] ml-[4%]">Description</span> */}
+            </div>
+            <div className="w-[18.18%]">
+              <span className="w-[80%] ml-[20%] 2xl:ml-[15%]">Date Submitted</span>
+              {/* <span className="w-[80%] ml-[10%]">Date Submitted</span> */}
+            </div>
+            <div className="w-[12.22%]">
+              <span className="w-[76%] ml-[14%] 2xl:ml-[13%]">Status</span>
+              {/* <span className="w-[76%] ml-[12%]">Status</span> */}
+            </div>
           </div>
 
           {/* complaints */}
@@ -195,19 +211,19 @@ const ComplaintList = () => {
                   <div href="" className="w-[32%] truncate text-[0.8em]">
                     <span>{complaint.description}</span>
                   </div>
-                  <div href="" className="w-[10%] text-left text-[0.8em]">
+                  <div href="" className="w-[10%] text-left text-[0.6em] 2xl:text-[0.8em]">
                     <span>{complaint.date_submitted.substr(0, 10)}</span>
                   </div>
                   {complaint.complaint_status === "New" ? (
                     <a href="" className="mr-[3.5%] w-[7%]">
-                      <span className="w-fit p-1 px-2 font-[500] text-[0.8em] bg-[#FAF1ED] rounded-[8px] text-[#7B4429]">
+                      <span className="w-fit p-1 px-2 font-[500] text-[0.75em] 2xl:text-[0.8em] bg-[#FAF1ED] rounded-[8px] text-[#7B4429]">
                         New
                       </span>
                     </a>
                   ) : complaint.complaint_status === "Pending" ? (
                     <a href="" className="mr-[3.5%] w-[7%] mt-5">
                       <span>
-                        <p className="w-fit p-1 px-2 font-[500] text-[0.8em] bg-[#FFF6D5] rounded-[8px] text-[#393735]">
+                        <p className="w-fit p-1 px-2 font-[500] text-[0.75em] 2xl:text-[0.8em] bg-[#FFF6D5] rounded-[8px] text-[#393735]">
                           Pending
                         </p>
                       </span>
@@ -215,7 +231,7 @@ const ComplaintList = () => {
                   ) : complaint.complaint_status === "Resolved" ? (
                     <a href="" className="mr-[3.5%] w-[7%] mt-5">
                       <span>
-                        <p className="w-fit p-1 px-2 font-[500] text-[0.8em] bg-[#E7FFE7] rounded-[8px]  text-[#197418]  ">
+                        <p className="w-fit p-1 px-2 font-[500] text-[0.75em] 2xl:text-[0.8em] bg-[#E7FFE7] rounded-[8px]  text-[#197418]  ">
                           Resolved
                         </p>
                       </span>
@@ -223,7 +239,7 @@ const ComplaintList = () => {
                   ) : complaint.complaint_status === "Canceled" ? (
                     <a href="" className="mr-[3.5%] w-[7%] mt-5">
                       <span>
-                        <p className="w-fit p-1 px-2 font-[500] text-[0.8em] bg-[#F1F2F6] rounded-[8px] text-[#646D89]">
+                        <p className="w-fit p-1 px-2 font-[500] text-[0.75em] 2xl:text-[0.8em] bg-[#F1F2F6] rounded-[8px] text-[#646D89]">
                           Canceled
                         </p>
                       </span>

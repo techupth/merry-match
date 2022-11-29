@@ -100,17 +100,17 @@ const Complaint = () => {
           </div>
 
           {complaint.complaint_status === "New" ||
-          complaint.complaint_status === "Pending" ? (
+            complaint.complaint_status === "Pending" ? (
             <div className="w-[40%] mr-10 flex flex-row justify-end items-center">
               <button
                 className="text-[#C70039] font-[700] text-[1em] w-[150px] h-[50px] hover:text-[#FF1659] active:text-[#A62D82] mr-2"
-                onClick={() => {}}
+                onClick={() => { }}
               >
                 Cancel Complaint
               </button>
               <button
                 className="bg-[#C70039] rounded-[99px] text-[white] font-[700] text-[1em] w-[180px] h-[50px] hover:bg-[#FF1659] active:text-[#A62D82]"
-                onClick={() => {}}
+                onClick={() => { }}
               >
                 Resolved Complaint
               </button>
