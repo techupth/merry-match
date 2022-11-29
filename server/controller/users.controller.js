@@ -11,7 +11,7 @@ const getAllUsers = async (req, res) => {
 
 const getUserById = async (req, res) => {
   const userId = req.params.userId;
-  console.log(userId);
+  // console.log(userId);
   const result = await pool.query(`select * from users where user_id=$1`, [
     userId,
   ]);
@@ -28,10 +28,10 @@ const editUserController = async (req, res) => {
     updated_at: new Date(),
   };
   const yearNow = new Date().getFullYear();
-  console.log(yearNow);
+  // console.log(yearNow);
   const userBirthYear = new Date(updatedUser["birthday"]).getFullYear();
-  console.log(userBirthYear);
-  console.log(yearNow - userBirthYear);
+  // console.log(userBirthYear);
+  // console.log(yearNow - userBirthYear);
 
   await pool.query(
     `UPDATE users
@@ -64,7 +64,7 @@ const editUserController = async (req, res) => {
 
 const deleteUserController = async (req, res) => {
   const userId = req.params.userId;
-  console.log(userId);
+  // console.log(userId);
   await pool.query(
     `
    delete from users where user_id = $1

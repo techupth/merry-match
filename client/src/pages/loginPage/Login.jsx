@@ -84,7 +84,7 @@ const Login = () => {
           </div>
         )}
         <button
-          className="w-[453px] h-[48px] bg-[#C70039] rounded-full mt-[40px] text-[#FFFFFF]"
+          className="w-[453px] h-[48px] font-[700] bg-[#C70039] rounded-full mt-[40px] text-[#FFFFFF]"
           onClick={handleLogin}
         >
           Log in

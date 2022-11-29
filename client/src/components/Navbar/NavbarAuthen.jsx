@@ -19,11 +19,13 @@ const NavbarAuthen = () => {
 
   const decodeFromToken = async () => {
     const token = localStorage.getItem("token");
-
+    const profileImg = localStorage.getItem("profileImg");
     const userData = jwtDecode(token);
 
-    const pic = userData.profile_pics[0];
+    const pic = profileImg
     setImage(pic);
+
+    
 
     const name = userData.name;
     setUserName(name)
@@ -33,11 +35,11 @@ const NavbarAuthen = () => {
   const ref = useRef(null);
   useClickOutside(ref, () => setCallPop(false));
 
-
+ 
 
   useEffect(() => {
     decodeFromToken();
-    console.log("Exucute func!!");
+
   
   }, []);
 

@@ -1,15 +1,22 @@
 import axios from "axios";
 import React from "react";
 import { useState, useEffect } from "react";
-import { mockComplaints } from "./mockcomplaintdata";
 import { useNavigate } from "react-router-dom";
 
 const ComplaintList = () => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
+  const [search, setSearch] = useState("");
+  const [status, setStatus] = useState("All Status");
   const [complaints, setComplaints] = useState([]);
   console.log(complaints);
 
+  // function statusValue(e) {
+  //   console.log(e.target.value)
+  // }
+
+  console.log(search);
+  console.log(status);
   const handleDropDown = () => {
     setIsOpen(!isOpen);
   };
@@ -76,82 +83,54 @@ const ComplaintList = () => {
               id="default-search"
               className="block w-[300px] h-[80%] p-4 pl-10 text-[1em] font-[400] placeholder-[#9AA1B9] border border-gray-300 rounded-[10px] bg-gray-50 focus:ring-[#AF2758] focus:border-[#AF2758]"
               placeholder="Search..."
+              onChange={(e) => setSearch(e.target.value)}
             />
           </div>
           <div>
-            <button
+            <select
               id="dropdownAdminDefault"
               data-dropdown-toggle="adminDropdown"
               className="ml-3 w-[15rem] h-[80%] text-[#9AA1B9] bg-gray-50 border border-gray-300 rounded-[10px] focus:ring-[#AF2758] focus:border-[#AF2758] focus:border-2 text-[16px] font-[400] px-4 py-2.5 text-center inline-flex items-center justify-between "
-              type="button"
-              onClick={() => {
-                handleDropDown();
-              }}
+              type="select"
+              onChange={(e) => setStatus(e.target.value)}
+              // value={status}
             >
-              All Status{" "}
               <img
                 className="h-1.5 ml-1"
                 src="../../../public/asset/adminPanelControl/dropdown.svg"
                 alt="dropdown button"
               />
-            </button>
-
-            <div
-              id="adminDropdown"
-              className={`z-30 w-[210px] ml-5 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 ${
-                isOpen ? "fixed" : "hidden"
-              } `}
-            >
-              <ul
-                className="py-1 text-sm text-gray-700 dark:text-gray-200"
-                aria-labelledby="dropdownAdminDefault"
+              <option
+                value="All Status"
+                className="w-fit p-1 px-2 font-[500] text-[1em] bg-[#FAF1ED] rounded-[8px] text-[#7B4429]"
               >
-                <li>
-                  <a
-                    href="#"
-                    className="new-option block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  >
-                    <p className="w-fit p-1 px-2 font-[500] text-[1em] bg-[#FAF1ED] rounded-[8px] text-[#7B4429]">
-                      {" "}
-                      New
-                    </p>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="resolved-option block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  >
-                    <p className="w-fit p-1 px-2 font-[500] text-[1em] bg-[#E7FFE7] rounded-[8px]  text-[#197418]  ">
-                      {" "}
-                      Resolved
-                    </p>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="pending-option block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  >
-                    <p className="w-fit p-1 px-2 font-[500] text-[1em] bg-[#FFF6D5] rounded-[8px] text-[#393735]">
-                      {" "}
-                      Pending
-                    </p>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="canceled-option block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  >
-                    <p className="w-fit p-1 px-2 font-[500] text-[1em] bg-[#F1F2F6] rounded-[8px] text-[#646D89]">
-                      {" "}
-                      Canceled
-                    </p>
-                  </a>
-                </li>
-              </ul>
-            </div>
+                All Status
+              </option>
+              <option
+                value="New"
+                className="w-fit p-1 px-2 font-[500] text-[1em] bg-[#FAF1ED] rounded-[8px] text-[#7B4429]"
+              >
+                New
+              </option>
+              <option
+                value="Resolved"
+                className="w-fit p-1 px-2 font-[500] text-[1em] bg-[#E7FFE7] rounded-[8px]  text-[#197418] "
+              >
+                Resolved
+              </option>
+              <option
+                value="Pending"
+                className="w-fit p-1 px-2 font-[500] text-[1em] bg-[#FFF6D5] rounded-[8px] text-[#393735]"
+              >
+                Pending
+              </option>
+              <option
+                value="Canceled"
+                className="w-fit p-1 px-2 font-[500] text-[1em] bg-[#FAF1ED] rounded-[8px] text-[#7B4429]"
+              >
+                Canceled
+              </option>
+            </select>
           </div>
         </div>
       </div>
@@ -168,70 +147,91 @@ const ComplaintList = () => {
           </div>
 
           {/* complaints */}
-          {complaints.map((complaint) => {
-            return (
-              <div
-                key={complaint.complaint_id}
-                className="bg-[#ffffff] h-[100px] w-[95%] flex flex-row items-center justify-between font-[500] text-[22px] border-b-2 ml-[3%] hover:cursor-pointer hover:bg-[#F1F2F6]"
-                onClick={() => {
-                  handleStatus(complaint);
-                  console.log(complaint);
-                  navigate(`/admin/view/${complaint.complaint_id}`);
-                }}
-              >
+
+          {complaints
+            .filter((complaint) => {
+              if (status !== "All Status" && search.toLowerCase() !== "") {
+                return (
+                  (complaint.complaint_status.includes(status) &&
+                    complaint.name.toLowerCase().includes(search)) ||
+                  (complaint.complaint_status.includes(status) &&
+                    complaint.issue.toLowerCase().includes(search))
+                );
+              } else if (status !== "All Status") {
+                return complaint.complaint_status.includes(status);
+              } else if (search.toLowerCase() !== "") {
+                return (
+                  complaint.name.toLowerCase().includes(search) ||
+                  complaint.issue.toLowerCase().includes(search)
+                );
+              } else if (status === "All Status") {
+                return complaint;
+              } else if (search.toLowerCase() === "") {
+                return complaint;
+              }
+            })
+            .map((complaint, key) => {
+              return (
                 <div
-                  className="ml-[3%] w-[90px] truncate text-[0.8em] hover:cursor-pointer hover:bg-[#F1F2F6]"
+                  key={complaint.complaint_id}
+                  className="bg-[#ffffff] h-[100px] w-[95%] flex flex-row items-center justify-between font-[500] text-[22px] border-b-2 ml-[3%] hover:cursor-pointer hover:bg-[#F1F2F6]"
                   onClick={() => {
+                    handleStatus(complaint);
+                    console.log(complaint);
                     navigate(`/admin/view/${complaint.complaint_id}`);
                   }}
                 >
-                  <p>{complaint.name}</p>
-                </div>
-                <div href="" className="w-[12%] truncate text-[0.8em]">
-                  <span>{complaint.issue}</span>
-                </div>
-                <div href="" className="w-[32%] truncate text-[0.8em]">
-                  <span>{complaint.description}</span>
-                </div>
-                <div href="" className="w-[10%] text-left text-[0.8em]">
-                  <span>{complaint.date_submitted.substr(0, 10)}</span>
-                </div>
-                {complaint.complaint_status === "New" ? (
-                  <a href="" className="mr-[3.5%] w-[7%]">
-                    <span>
+                  <div
+                    className="ml-[3%] w-[90px] truncate text-[0.8em] hover:cursor-pointer hover:bg-[#F1F2F6]"
+                    onClick={() => {
+                      navigate(`/admin/view/${complaint.complaint_id}`);
+                    }}
+                  >
+                    <p>{complaint.name}</p>
+                  </div>
+                  <div href="" className="w-[12%] truncate text-[0.8em]">
+                    <span>{complaint.issue}</span>
+                  </div>
+                  <div href="" className="w-[32%] truncate text-[0.8em]">
+                    <span>{complaint.description}</span>
+                  </div>
+                  <div href="" className="w-[10%] text-left text-[0.8em]">
+                    <span>{complaint.date_submitted.substr(0, 10)}</span>
+                  </div>
+                  {complaint.complaint_status === "New" ? (
+                    <a href="" className="mr-[3.5%] w-[7%]">
                       <span className="w-fit p-1 px-2 font-[500] text-[0.8em] bg-[#FAF1ED] rounded-[8px] text-[#7B4429]">
                         New
                       </span>
-                    </span>
-                  </a>
-                ) : complaint.complaint_status === "Pending" ? (
-                  <a href="" className="mr-[3.5%] w-[7%] mt-5">
-                    <span>
-                      <p className="w-fit p-1 px-2 font-[500] text-[0.8em] bg-[#FFF6D5] rounded-[8px] text-[#393735]">
-                        Pending
-                      </p>
-                    </span>
-                  </a>
-                ) : complaint.complaint_status === "Resolved" ? (
-                  <a href="" className="mr-[3.5%] w-[7%] mt-5">
-                    <span>
-                      <p className="w-fit p-1 px-2 font-[500] text-[0.8em] bg-[#E7FFE7] rounded-[8px]  text-[#197418]  ">
-                        Resolved
-                      </p>
-                    </span>
-                  </a>
-                ) : complaint.complaint_status === "Canceled" ? (
-                  <a href="" className="mr-[3.5%] w-[7%] mt-5">
-                    <span>
-                      <p className="w-fit p-1 px-2 font-[500] text-[0.8em] bg-[#F1F2F6] rounded-[8px] text-[#646D89]">
-                        Canceled
-                      </p>
-                    </span>
-                  </a>
-                ) : null}
-              </div>
-            );
-          })}
+                    </a>
+                  ) : complaint.complaint_status === "Pending" ? (
+                    <a href="" className="mr-[3.5%] w-[7%] mt-5">
+                      <span>
+                        <p className="w-fit p-1 px-2 font-[500] text-[0.8em] bg-[#FFF6D5] rounded-[8px] text-[#393735]">
+                          Pending
+                        </p>
+                      </span>
+                    </a>
+                  ) : complaint.complaint_status === "Resolved" ? (
+                    <a href="" className="mr-[3.5%] w-[7%] mt-5">
+                      <span>
+                        <p className="w-fit p-1 px-2 font-[500] text-[0.8em] bg-[#E7FFE7] rounded-[8px]  text-[#197418]  ">
+                          Resolved
+                        </p>
+                      </span>
+                    </a>
+                  ) : complaint.complaint_status === "Canceled" ? (
+                    <a href="" className="mr-[3.5%] w-[7%] mt-5">
+                      <span>
+                        <p className="w-fit p-1 px-2 font-[500] text-[0.8em] bg-[#F1F2F6] rounded-[8px] text-[#646D89]">
+                          Canceled
+                        </p>
+                      </span>
+                    </a>
+                  ) : null}
+                </div>
+              );
+            })}
           <div className="bg-[#D6D9E4] h-[20px] w-[95%] border-b-2 ml-[3%] mb-10 rounded-b-[30px]"></div>
         </div>
       </div>

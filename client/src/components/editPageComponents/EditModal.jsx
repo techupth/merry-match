@@ -60,7 +60,7 @@ const EditModal = ({ close, data }) => {
     <div className="bg-[rgba(49,49,49,0.8);] z-30 absolute w-full h-[2400px] flex justify-center">
       <div
         ref={ref}
-        className="editModal bg-white w-[900px] h-[700px] rounded-3xl flex z-30 absolute items-center justify-center font-[400]  mt-[30%]"
+        className="editModal bg-white w-[85%] h-[700px] rounded-3xl flex z-30 absolute items-center justify-center font-[400]  mt-[30%]"
       >
         <div className="XButton absolute right-9 top-3 text-[25px] text-slate-300 ">
           <button
@@ -77,31 +77,31 @@ const EditModal = ({ close, data }) => {
             {step === 1 && (
               <img
                 src={images[0]}
-                className="absolute w-[auto] h-[full] z-0  rounded-3xl"
+                className="absolute h-full z-0 rounded-3xl object-cover"
               />
             )}
             {step === 2 && (
               <img
                 src={images[1]}
-                className=" absolute w-[auto] h-[full] z-0 rounded-3xl"
+                className=" absolute h-full z-0 rounded-3xl object-cover"
               />
             )}
             {step === 3 && (
               <img
                 src={images[2]}
-                className=" absolute w-[auto] h-[full] z-0 rounded-3xl"
+                className=" absolute h-full z-0 rounded-3xl object-cover"
               />
             )}
             {step === 4 && (
               <img
                 src={images[3]}
-                className=" absolute w-[auto] h-[full] z-0 rounded-3xl"
+                className=" absolute h-full z-0 rounded-3xl object-cover"
               />
             )}
             {step === 5 && (
               <img
                 src={images[4]}
-                className=" absolute w-[auto] h-[full] z-0 rounded-3xl"
+                className=" absolute h-full z-0 rounded-3xl object-cover"
               />
             )}
           </div>
@@ -109,14 +109,14 @@ const EditModal = ({ close, data }) => {
           {/* ....................... Match button ....................... */}
 
           {/* X button */}
-          <div className="Button flex flex-row w-[100%] h-[100%] items-center justify-center m-[0%] space-x-3 overflow-hidden mt-[3%]">
-            <a className="XButton w-[3rem] h-[3rem] drop-shadow-2xl mt-[20%]  bg-white rounded-lg flex justify-center items-center hover:bg-[#2A2E3F] z-10">
+          <div className="Button flex flex-row w-[100%] h-[100%] items-center justify-center m-[0%] space-x-3 overflow-hidden mt-[20%] mb-[-45px]">
+            <a className="XButton w-[3rem] h-[3rem] drop-shadow-2xl mt-[20%]  bg-white rounded-lg flex justify-center items-center hover:bg-[#2A2E3F] z-50">
               <img src={xLogo} />
             </a>
 
             {/* <3 button */}
             <a
-              className="HeartButton w-[3rem] h-[3rem] drop-shadow-2xl mt-[20%]  bg-white rounded-lg flex justify-center items-center hover:bg-[#FFB1C8] z-10
+              className="HeartButton w-[3rem] h-[3rem] drop-shadow-2xl mt-[20%]  bg-white rounded-lg flex justify-center items-center hover:bg-[#FFB1C8] z-50
                 "
             >
               <img src={heartLogo} className="ml-1 mt-1" />
@@ -124,7 +124,7 @@ const EditModal = ({ close, data }) => {
           </div>
           {/* ....................... Slide status ........................ */}
 
-          <div className=" flex flex-row justify-center space-x-[65%] bg-white w-[100%] h-[70%] overflow-hidden z-30">
+          <div className=" flex flex-row justify-center space-x-[65%] bg-white w-[100%] h-[70%] overflow-hidden z-20 mt-6 ">
             {step === 1 && (
               <div className="flex">
                 <p className="text-[16px] text-[#757D96] font-[600]">
@@ -179,7 +179,10 @@ const EditModal = ({ close, data }) => {
 
         {/* Information ...................................................................... */}
 
-        <div className="w-[45%] h-[85%] mt-[-5%] flex flex-col justify-center items-center"   id='prevModal'>
+        <div
+          className="w-[45%] h-[85%] mt-[-5%] flex flex-col justify-center items-center"
+          id="prevModal"
+        >
           {/* title */}
           <div className="w-[100%] h-[20%]">
             <span className="text-[46px] font-[900]">{data.name} </span>

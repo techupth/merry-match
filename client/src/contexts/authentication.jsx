@@ -5,7 +5,6 @@ import React, { useState } from "react";
 
 export const AuthContext = React.createContext();
 
-
 const AuthProvider = (props) => {
   const [userData, setUserData] = useState({
     user: null,
@@ -13,7 +12,7 @@ const AuthProvider = (props) => {
   const [loginMsg, setLoginMsg] = useState({ loginKey: "", passwordKey: "" });
   const [errorInputMsg, setErrorInputMsg] = useState(null);
   const [msg, setMsg] = useState({ username: "", email: "" });
-  const [isAdmin, setIsAdmin] = useState(false)
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const navigate = useNavigate();
 
@@ -52,21 +51,20 @@ const AuthProvider = (props) => {
   const login = async (data) => {
     try {
       const result = await axios.post("http://localhost:4001/auth/login", data);
-      console.log(result)
+
       if (result.data.token) {
         const token = result.data.token;
         localStorage.setItem("token", token);
         const userData = jwtDecode(token);
-        console.log(userData.isAdmin)
-        setIsAdmin(userData.isAdmin)
+        localStorage.setItem("profileImg", userData.profile_pics[0]);
         setUserData({ ...userData, user: userData });
         navigate("/");
         return result.data.message;
-      }else if(result.data.adminToken){
-        const adminToken = result.data.adminToken
+      } else if (result.data.adminToken) {
+        const adminToken = result.data.adminToken;
         localStorage.setItem("adminToken", adminToken);
-        navigate("/admin")
-      }else {
+        navigate("/admin");
+      } else {
         if (result.data.message.match("Username")) {
           setMsg({ ...loginMsg, loginKey: result.data.message });
         } else if (result.data.message.match("Password")) {
@@ -86,17 +84,17 @@ const AuthProvider = (props) => {
     setUserData({ ...userData, user: null });
   };
 
-  const deleteuser = async(userId) =>{
-    try{
-    localStorage.removeItem("token");
-    setUserData({ ...userData, user: null });
-    await axios.delete(`http://localhost:4001/users/${userId}`)
-    }catch(err){
-      console.log(err)
+  const deleteuser = async (userId) => {
+    try {
+      localStorage.removeItem("token");
+      setUserData({ ...userData, user: null });
+      await axios.delete(`http://localhost:4001/users/${userId}`);
+    } catch (err) {
+      console.log(err);
     }
   };
-  console.log(isAdmin)
-  const isAdminAuthenticated = Boolean(localStorage.getItem("adminToken"))
+  console.log(isAdmin);
+  const isAdminAuthenticated = Boolean(localStorage.getItem("adminToken"));
   const isAuthenticated = Boolean(localStorage.getItem("token"));
 
   return (
@@ -110,13 +108,13 @@ const AuthProvider = (props) => {
         checkRegister,
         isAuthenticated,
         isAdminAuthenticated,
-        deleteuser
+        deleteuser,
       }}
     >
       {props.children}
     </AuthContext.Provider>
   );
-}
+};
 
 const useAuth = () => React.useContext(AuthContext);
 

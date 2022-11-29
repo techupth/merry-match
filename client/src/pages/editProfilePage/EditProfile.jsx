@@ -41,7 +41,7 @@ const EditProfile = () => {
 
   // Photos
   const [Images, setImages] = useState([]);
-
+  console.log(Images)
   //hobbies part
   const animatedComponents = makeAnimated();
   const [contact, setContact] = useState("----contact---");
@@ -53,7 +53,7 @@ const EditProfile = () => {
   const [preview, setPreview] = useState(false);
 
   const handleClick = () => {
-    ref.current?.scrollIntoView({ behavior: 'smooth' });
+    ref.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   const navigate = useNavigate();
@@ -118,7 +118,7 @@ const EditProfile = () => {
   maxDate.setFullYear(maxDate.getFullYear() - 18);
 
   let minDate = new Date();
-  minDate.setFullYear(minDate.getFullYear() - 60);
+  minDate.setFullYear(minDate.getFullYear() - 55);
 
   const handleCountry = (data) => {
     const getCountryId = data;
@@ -152,7 +152,7 @@ const EditProfile = () => {
   };
 
   console.log(updateUserData);
-  
+
   const updateUserProfile = async (updateUserData) => {
     try {
       await axios.put(
@@ -167,6 +167,7 @@ const EditProfile = () => {
   const handleUpdate = async (event, userData) => {
     event.preventDefault();
     updateUserProfile(updateUserData);
+    localStorage.setItem("profileImg", Images[0])
   };
 
   const handleHobbie = (data) => {
@@ -225,9 +226,9 @@ const EditProfile = () => {
   };
 
   const handleClickScroll = () => {
-    const element = document.getElementById('prev');
+    const element = document.getElementById("prev");
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -245,10 +246,7 @@ const EditProfile = () => {
     <div className="w-full bg-[#FCFCFE] flex flex-col">
       {/* show preview modal */}
       {preview && (
-        <EditModal
-          close={() => setPreview(!preview)}
-          data={updateUserData}
-        />
+        <EditModal close={() => setPreview(!preview)} data={updateUserData} />
       )}
       {isLoading === "loading" ? (
         <div className="flex items-center justify-center mt-[500px] text-[100px]">
@@ -417,7 +415,7 @@ const EditProfile = () => {
               Identities and Interests
             </h1>
             {/* colomn1 */}
-            <div className="column1 flex" >
+            <div className="column1 flex">
               <div className="SexualIdentities flex flex-col mr-[12px] mt-[40px]">
                 <label htmlFor="SexualIdentities">Sexual identities</label>
                 <select
