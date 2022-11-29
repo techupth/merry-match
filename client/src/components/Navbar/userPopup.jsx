@@ -54,7 +54,7 @@ function UserPopup({ close }) {
                   deleteMatch(unMatch);
                 }}
               >
-                Merry list
+                Merry List
               </span>
             </span>
           </a>
