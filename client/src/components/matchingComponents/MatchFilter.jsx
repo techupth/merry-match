@@ -26,7 +26,7 @@ const MatchFilter = () => {
   } = useSwipe();
   const [ageRange, setAgeRange] = useState([
     defaultDataToFilter.ageRange[0],
-    eachUser.user_age + 10,
+    defaultDataToFilter.ageRange[1],
   ]);
   const [meetingIntArr, setMeetingIntArr] = useState([eachUser.meeting_int]);
   // const [userData, setUserData] = useState({});
