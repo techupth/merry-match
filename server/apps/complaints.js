@@ -5,11 +5,12 @@ const complaintsRouter = Router();
 
 complaintsRouter.get("/", async (req, res) => {
   const result = await pool.query(
-    `SELECT complaints.complaint_id, complaints.user_id, issue, description,created_at,complaint_status,users.name
+    `SELECT complaints.*
     FROM complaints
     INNER JOIN users
-    on complaints.user_id = users.user_id`,
-    []
+    on complaints.user_id = users.user_id order by CASE WHEN complaint_status = $1 THEN  0  WHEN complaint_status = $2  THEN 1 WHEN  complaint_status = $3 then 2 ELSE 3 END,
+    complaint_status`,
+    ["New", "Pending", "Canceled"]
   );
 
   return res.json({
@@ -18,7 +19,7 @@ complaintsRouter.get("/", async (req, res) => {
 });
 
 complaintsRouter.get("/:id", async (req, res) => {
-  const complaintId = req.query.id;
+  const complaintId = req.params.id;
   const result = await pool.query(
     `select * from complaints where complaint_id = $1`,
     [complaintId]
@@ -31,19 +32,21 @@ complaintsRouter.get("/:id", async (req, res) => {
 complaintsRouter.post("/", async (req, res) => {
   const newComplaint = {
     ...req.body,
-    created_at: new Date(),
   };
 
   console.log(newComplaint);
 
   await pool.query(
-    `INSERT INTO complaints (user_id, issue,description,created_at,date,complaint_status) values($1, $2, $3, $4, $5,'New')`,
+    `INSERT INTO complaints (name,issue,description,user_id,date_submitted,complaint_status,updated_at,resolved_by) values($1, $2, $3, $4, $5,$6,$7,$8)`,
     [
-      newComplaint.user_id,
+      newComplaint.name,
       newComplaint.issue,
       newComplaint.description,
-      newComplaint.created_at,
-      newComplaint.date,
+      newComplaint.user_id,
+      newComplaint.date_submitted,
+      newComplaint.complaint_status,
+      newComplaint.updated_at,
+      newComplaint.resolved_by,
     ]
   );
 
@@ -53,7 +56,9 @@ complaintsRouter.post("/", async (req, res) => {
 });
 
 complaintsRouter.put("/:id", async (req, res) => {
-  const complaintId = req.query.id;
+  const complaintId = req.body.complaint_id;
+  console.log(req.body);
+
   const updatedStatus = {
     ...req.body,
     updated_at: new Date(),
@@ -65,7 +70,8 @@ complaintsRouter.put("/:id", async (req, res) => {
     WHERE complaint_id=  $1`,
     [complaintId, updatedStatus.complaint_status, updatedStatus.updated_at]
   );
-
+  console.log("success");
+  console.log(`Status ${complaintId} has been updated.`);
   return res.json({
     message: `Status ${complaintId} has been updated.`,
   });

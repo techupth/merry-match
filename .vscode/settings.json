@@ -1,6 +1,9 @@
 {
   "sqltools.connections": [
     {
+      "pgOptions": {
+        "max": 1000
+      },
       "previewLimit": 50,
       "server": "satao.db.elephantsql.com",
       "port": 5432,
