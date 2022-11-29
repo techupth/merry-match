@@ -61,20 +61,14 @@ const NavbarAuthen = () => {
         >
           Start Matching!
         </button>
-        <div className="relative mr-[-15px]">
+
+        <div className=" w-fit p-3 px-4 flex flex-row items-center rounded-t-[25px] rounded-l-[25px] bg-[#64001D]">
+          <a className="text-[#ffffff] text-[1.3rem]">Hi, I'm {userName}!</a>
           <img
-            className="w-[160px] scale-y-[-1]"
-            src="../../../public/asset/NavBarIcon/Rectangle 24668.svg"
+            className="ml-2"
+            src="../../../public/asset/NavBarIcon/starts.svg"
             alt=""
           />
-          <div className="  flex flex-row items-center absolute right-3 bottom-1.5">
-            <a className="text-[#ffffff] text-[1.3rem]">Hi, {userName} !</a>
-            <img
-              className="ml-2"
-              src="../../../public/asset/NavBarIcon/starts.svg"
-              alt=""
-            />
-          </div>
         </div>
 
         <button
