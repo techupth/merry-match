@@ -1,5 +1,4 @@
 import React from "react";
-import { mockEachComplaint } from "./mockcomplaintdata";
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";

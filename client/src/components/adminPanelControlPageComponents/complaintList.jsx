@@ -1,7 +1,6 @@
 import axios from "axios";
 import React from "react";
 import { useState, useEffect } from "react";
-import { mockComplaints } from "./mockcomplaintdata";
 import { useNavigate } from "react-router-dom";
 
 const ComplaintList = () => {

@@ -99,7 +99,7 @@ const Register = () => {
   maxDate.setFullYear(maxDate.getFullYear() - 18);
 
   let minDate = new Date();
-  minDate.setFullYear(minDate.getFullYear() - 60);
+  minDate.setFullYear(minDate.getFullYear() - 55);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
