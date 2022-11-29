@@ -4,6 +4,8 @@ import { protect } from "../middlewares/protect.js";
 
 const filterRouter = Router();
 
+// filterRouter.use(protect);
+
 filterRouter.get("/:userId", async (req, res) => {
   const userId = req.params.userId;
 
@@ -29,12 +31,14 @@ filterRouter.post("/", async (req, res) => {
       [filter.user_id, true]
     );
 
-    const userMatched = isMatched.rows.map((value) => {
+    const userMatched = await isMatched.rows.map((value) => {
       return value.swipee;
     });
 
+    const limit = 32 + userMatched.length;
+
     const result = await pool.query(
-      `select * FROM users where (user_age between $1 and $2) and (meeting_int = $3 or meeting_int = $4 or meeting_int = $5 or meeting_int = $6 or meeting_int = $7) and (sex_identity = $8) and (user_id != $9) limit 30 `,
+      `select * FROM users where (user_age between $1 and $2) and (meeting_int = $3 or meeting_int = $4 or meeting_int = $5 or meeting_int = $6 or meeting_int = $7) and (sex_identity = $8) and (user_id != $9) ORDER BY Random() limit $10`,
       [
         filter.ageRange[0],
         filter.ageRange[1],
@@ -45,6 +49,7 @@ filterRouter.post("/", async (req, res) => {
         filter.meetingInt[4],
         filter.sexPreference,
         filter.user_id,
+        limit,
       ]
     );
 

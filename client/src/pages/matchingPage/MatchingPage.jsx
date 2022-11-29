@@ -53,7 +53,7 @@ const MatchingPage = () => {
         ) : null}
 
         {filterData.loading === true ? (
-          <div className="bg-[#160404] w-[2000px] h-[1000px] text-gray-100 text-[50px] flex justify-center items-center">
+          <div className="bg-[#160404] w-[2000px] h-[1000px] text-pink-200 text-[35px] flex justify-center items-center flex-col">
             <Spinner
               thickness="7px"
               speed="0.65s"
@@ -61,6 +61,7 @@ const MatchingPage = () => {
               color="pink"
               size="xl"
             />
+            Loading....
           </div>
         ) : filterData.data ? (
           <>

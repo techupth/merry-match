@@ -71,7 +71,7 @@ const MatchLog = (props) => {
         Merry Match!
       </h1>
       {isLoading === "loading" ? (
-        <div>Loading...</div>
+        <div className="text-pink-500 text-[24px]">Loading...</div>
       ) : isLoading === "data" ? (
         <div
           id="slider"

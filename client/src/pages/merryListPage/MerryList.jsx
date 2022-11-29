@@ -116,7 +116,7 @@ const MerryList = () => {
       )}
       <div className="w-full flex  justify-center z-0 relative">
         {isLoading === "loading" ? (
-          <div className="w-full h-[1000px] flex flex-col justify-center items-center">
+          <div className="w-full h-[1000px] flex flex-col justify-center items-center text-[35px] text-pink-300">
             <Spinner
               thickness="7px"
               speed="0.65s"
@@ -295,8 +295,8 @@ const MerryList = () => {
               with Merry!
             </h1>
 
-            <div className="flex flex-row justify-center items-center  text-[45px] mt-[150px] mb-[150px] ">
-              No user
+            <div className="flex flex-row justify-center items-center text-gray-300  text-[35px] mt-[150px] mb-[150px] border-[3px] p-10 rounded-full">
+              Not Match yet
             </div>
           </div>
         ) : null}
