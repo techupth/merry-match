@@ -1,5 +1,4 @@
 import React from "react";
-import { mockEachComplaint } from "./mockcomplaintdata";
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -70,10 +69,10 @@ const Complaint = () => {
               </span>
               {complaint.complaint_status === "New" ? (
                 <span className="w-[20%]">
-                  <span className="w-[100px] p-1 px-2 font-[500] text-[0.8em] bg-[#FAF1ED] rounded-[8px] text-[#7B4429]">
+                  <p className="w-fit p-1 px-2 font-[500] text-[0.8em] bg-[#FFF6D5] rounded-[8px] text-[#393735]">
                     {" "}
-                    New{" "}
-                  </span>
+                    Pending
+                  </p>
                 </span>
               ) : complaint.complaint_status === "Pending" ? (
                 <span className="w-[20%]">
