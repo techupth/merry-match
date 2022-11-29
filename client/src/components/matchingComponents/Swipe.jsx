@@ -32,15 +32,12 @@ const Swipe = (props) => {
   const [matchingId, setMatchingId] = useState([]);
   const [isMatch, setIsMatch] = useState(false);
   const [isIndex, setIsIndex] = useState(null);
+  const [isLastIndex, setIsLastIndex] = useState(false);
 
-  // console.log("step", step);
   console.log("current", currentIndex);
-  // console.log(isMatch);
-  // console.log(matchingId);
-  // used for outOfFrame closure
+
   const currentIndexRef = useRef(currentIndex);
-  // console.log(currentIndexRef)
-  // useMemo
+
   const childRefs = useMemo(
     () =>
       Array(filterData.data.length)
@@ -62,9 +59,11 @@ const Swipe = (props) => {
 
   // set last direction and decrease current index
   const swiped = (direction, index) => {
+    console.log(index);
     if (step > filterData.data[index - 1].profile_pics.length - 1) {
       setStep(0);
     }
+
     setLastDirection(direction);
     updateCurrentIndex(index - 1);
     // console.log(index);
@@ -74,6 +73,7 @@ const Swipe = (props) => {
     // console.log(`${name} (${idx}) left the screen!`, currentIndexRef.current);
     // handle the case in which go back is pressed before card goes outOfFrame
     currentIndexRef.current >= idx && childRefs[idx].current.restoreCard();
+
     // TODO: when quickly swipe and restore multiple times the same card,
     // it happens multiple outOfFrame events are queued and the card disappear
     // during latest swipes. Only the last outOfFrame event should be considered valid
@@ -161,7 +161,7 @@ const Swipe = (props) => {
                 setCurrenId(index);
               }}
               swipeRequirementType="position"
-              swipeThreshold={100}
+              swipeThreshold={1}
             >
               <div className="flex justify-center items-center">
                 {/* Matched logo */}
@@ -175,7 +175,10 @@ const Swipe = (props) => {
                   </div>
                 ) : null}
 
-                {index === currentIndex || index === currentIndex - 1 ? (
+                {currentIndex === 0 ? (
+                  null
+                ) : index === currentIndex ||
+                  (index === currentIndex - 1 && index !== 0) ? (
                   <div
                     style={{
                       backgroundImage: "url(" + user.profile_pics[step] + ")",
@@ -238,7 +241,7 @@ const Swipe = (props) => {
                   </div>
                 ) : null}
 
-                {index === currentIndex ? (
+                {currentIndex === 0 ? null : index === currentIndex ? (
                   <div className="button flex flex-row items-center justify-center space-x-3   top-[90%] right-[35%] z-60 absolute   ">
                     <button
                       className="XButton w-[60px] h-[60px] drop-shadow-2xl mr-[10px] mt-[-7.5%]  bg-white rounded-[30%] flex justify-center items-center hover:bg-[#2A2E3F] z-70 xl:w-[70px] xl:h-[70px] 2xl:w-[76px] 2xl:h-[76px]"
@@ -253,8 +256,8 @@ const Swipe = (props) => {
                         // swipe("right", index);
                         let isMatch = false;
 
-                        handleJustSwiped()
-                        setHandleJustSwiped()
+                        handleJustSwiped();
+                        setHandleJustSwiped();
 
                         matchingId.map((id) => {
                           if (id === user.user_id) {
