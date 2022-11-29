@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useSwipe } from "../../contexts/swipeContext";
 import jwtDecode from "jwt-decode";
@@ -10,20 +11,25 @@ import Banner from "../../../public/asset/Login/bannerLogin.png";
 import Footer from "../../components/editPageComponents/Footer";
 
 const UserComplaintPage = () => {
+  const navigate = useNavigate();
   const { eachUser, getEachUser } = useSwipe();
   const [startDate, setStartDate] = useState(new Date());
   const [currentDate, setCurrentDate] = useState("");
   const [issue, setIssue] = useState("");
   const [desc, setDesc] = useState("");
   const [userId, setUserId] = useState("");
-
-
+  const [name, setName] = useState("");
+  const now = new Date();
 
   const complaintForm = {
+    name: name,
     issue: issue,
     description: desc,
-    date: currentDate,
-    user_id:userId,
+    user_id: userId,
+    date_submitted: currentDate,
+    complaint_status: "New",
+    updated_at: now.toISOString(),
+    resolved_by: null,
   };
 
   const handleBirtday = (data) => {
@@ -43,20 +49,23 @@ const UserComplaintPage = () => {
         complaintForm
       );
       console.log(res);
+      alert("Complaint has been submitted :)");
+      navigate("/");
     } catch (err) {
       console.log(err);
     }
   };
 
-  const handleUserId = async () =>{
+  const handleUserInfo = async () => {
     const token = localStorage.getItem("token");
     const userData = jwtDecode(token);
-    setUserId(userData.user_id)
-  }
+    setUserId(userData.user_id);
+    setName(userData.name);
+  };
 
   useEffect(() => {
-    handleUserId()
-    handleBirtday(new Date())
+    handleUserInfo();
+    handleBirtday(new Date());
   }, []);
 
   return (
@@ -101,20 +110,39 @@ const UserComplaintPage = () => {
               />
               <br />
 
-              <label>Date Submitted</label>
+              <label>Date of Issue</label>
               <br />
-              <DatePicker
-                required
-                dateFormat="dd/MM/yyyy"
-                dropdownMode="select"
-                selected={startDate}
-                showMonthDropdown
-                showYearDropdown
-                onChange={(date) => {
-                  handleBirtday(date);
-                }}
-                className="border border-1 border-[#D6D9E4] rounded-[8px] w-[120px] h-[48px] text-black mb-[5%] focus:border-pink-300 focus:border-[2px] text-center"
-              />
+              <div className="relative">
+                <div className="flex absolute inset-y-0 left-[280px] bottom-8 items-center pl-3 pointer-events-none z-10">
+                  <svg
+                    aria-hidden="true"
+                    className="w-5 h-5 text-gray-500 dark:text-gray-400"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                      clipRule="evenodd"
+                    ></path>
+                  </svg>
+                </div>
+                <DatePicker
+                  required
+                  dateFormat="dd/MM/yyyy"
+                  dropdownMode="select"
+                  placeholder={startDate}
+                  selected={startDate}
+                  disabled={true}
+                  showMonthDropdown
+                  showYearDropdown
+                  onSelect={(date) => {
+                    handleBirtday(date);
+                  }}
+                  className="border border-1 border-[#D6D9E4] rounded-[8px]  h-[48px] text-black mb-[5%] w-[60%] focus:border-pink-300 focus:border-[2px] text-left block bg-gray-50 "
+                />
+              </div>
 
               <br />
 

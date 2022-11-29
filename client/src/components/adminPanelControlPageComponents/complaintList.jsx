@@ -1,11 +1,16 @@
+import axios from "axios";
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { mockComplaints } from "./mockcomplaintdata";
+import { useNavigate } from "react-router-dom";
 
 const ComplaintList = () => {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState('')
   const [status, setStatus] = useState('All Status')
+  const [complaints, setComplaints] = useState([]);
+  console.log(complaints);
 
   // function statusValue(e) {
   //   console.log(e.target.value)
@@ -18,6 +23,37 @@ const ComplaintList = () => {
   console.log(status)
   const handleDropDown = () => {
     setIsOpen(!isOpen);
+  };
+
+  useEffect(() => {
+    getAllComplaints();
+  }, []);
+
+  const getAllComplaints = async () => {
+    try {
+      const result = await axios.get("http://localhost:4001/complaints");
+      console.log(result.data.data);
+
+      setComplaints(result.data.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const handleStatus = async (data) => {
+    console.log(data);
+    const complaintId = data.complaint_id;
+    const newData = {
+      ...data,
+      complaint_status: "Pending",
+    };
+    console.log(newData);
+    if (data.complaint_status === "New") {
+      await axios.put(
+        `http://localhost:4001/complaints/${complaintId}`,
+        newData
+      );
+    }
   };
 
   return (
@@ -148,7 +184,8 @@ const ComplaintList = () => {
 
           {/* complaints */}
 
-          {mockComplaints.filter((complaint) => {
+
+          {complaints.filter((complaint) => {
 
             if (status !== 'All Status' && search.toLowerCase() !== '') {
               return complaint.complaint_status.includes(status) && complaint.name.toLowerCase().includes(search) || complaint.complaint_status.includes(status) && complaint.issue.toLowerCase().includes(search)
@@ -167,27 +204,35 @@ const ComplaintList = () => {
             .map((complaint, key) => {
               return (
                 <div
-                  key={key}
-                  className="bg-[#ffffff] h-[100px] w-[95%] flex flex-row items-center justify-between font-[500] text-[22px] border-b-2 ml-[3%]"
+                  key={complaint.complaint_id}
+                  className="bg-[#ffffff] h-[100px] w-[95%] flex flex-row items-center justify-between font-[500] text-[22px] border-b-2 ml-[3%] hover:cursor-pointer hover:bg-[#F1F2F6]"
+                  onClick={() => {
+                    handleStatus(complaint);
+                    console.log(complaint);
+                    navigate(`/admin/view/${complaint.complaint_id}`);
+                  }}
                 >
-                  <a href="" className="ml-[3%] w-[90px] truncate text-[0.8em]">
-                    <span>{complaint.name}</span>
-                  </a>
-                  <a href="" className="w-[12%] truncate text-[0.8em]">
+                  <div
+                    className="ml-[3%] w-[90px] truncate text-[0.8em] hover:cursor-pointer hover:bg-[#F1F2F6]"
+                    onClick={() => {
+                      navigate(`/admin/view/${complaint.complaint_id}`);
+                    }}
+                  >
+                    <p>{complaint.name}</p>
+                  </div>
+                  <div href="" className="w-[12%] truncate text-[0.8em]">
                     <span>{complaint.issue}</span>
-                  </a>
-                  <a href="" className="w-[32%] truncate text-[0.8em]">
+                  </div>
+                  <div href="" className="w-[32%] truncate text-[0.8em]">
                     <span>{complaint.description}</span>
-                  </a>
-                  <a href="" className="w-[10%] text-left text-[0.8em]">
-                    <span>{complaint.date_submitted}</span>
-                  </a>
+                  </div>
+                  <div href="" className="w-[10%] text-left text-[0.8em]">
+                    <span>{complaint.date_submitted.substr(0, 10)}</span>
+                  </div>
                   {complaint.complaint_status === "New" ? (
                     <a href="" className="mr-[3.5%] w-[7%]">
-                      <span>
-                        <span className="w-fit p-1 px-2 font-[500] text-[0.8em] bg-[#FAF1ED] rounded-[8px] text-[#7B4429]">
-                          New
-                        </span>
+                      <span className="w-fit p-1 px-2 font-[500] text-[0.8em] bg-[#FAF1ED] rounded-[8px] text-[#7B4429]">
+                        New
                       </span>
                     </a>
                   ) : complaint.complaint_status === "Pending" ? (
