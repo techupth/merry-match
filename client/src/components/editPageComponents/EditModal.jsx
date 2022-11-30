@@ -73,35 +73,35 @@ const EditModal = ({ close, data }) => {
         </div>
         <div className="relative w-[35%] h-[80%] mb-[10%] rounded-3xl mr-[3%] flex items-center flex-col overflow-hidden mt-[10%] ">
           {/* ....................... Display Pics ....................... */}
-          <div className="flex justify-center items-center w-[95%] h-[120%] mt-[30%] rounded-3xl">
+          <div className="flex justify-center items-center w-[90%] h-[120%] mt-[30%] rounded-3xl z-0">
             {step === 1 && (
               <img
                 src={images[0]}
-                className="absolute h-full z-0 rounded-3xl object-cover"
+                className="absolute w-full z-0 rounded-3xl"
               />
             )}
             {step === 2 && (
               <img
                 src={images[1]}
-                className=" absolute h-full z-0 rounded-3xl object-cover"
+                className=" absolute w-full z-0 rounded-3xl"
               />
             )}
             {step === 3 && (
               <img
                 src={images[2]}
-                className=" absolute h-full z-0 rounded-3xl object-cover"
+                className=" absolute w-full z-0 rounded-3xl"
               />
             )}
             {step === 4 && (
               <img
                 src={images[3]}
-                className=" absolute h-full z-0 rounded-3xl object-cover"
+                className=" absolute w-full z-0 rounded-3xl"
               />
             )}
             {step === 5 && (
               <img
                 src={images[4]}
-                className=" absolute h-full z-0 rounded-3xl object-cover"
+                className=" absolute w-full z-0 rounded-3xl"
               />
             )}
           </div>
@@ -109,14 +109,14 @@ const EditModal = ({ close, data }) => {
           {/* ....................... Match button ....................... */}
 
           {/* X button */}
-          <div className="Button flex flex-row w-[100%] h-[100%] items-center justify-center m-[0%] space-x-3 overflow-hidden mt-[20%] mb-[-45px]">
-            <a className="XButton w-[3rem] h-[3rem] drop-shadow-2xl mt-[20%]  bg-white rounded-lg flex justify-center items-center hover:bg-[#2A2E3F] z-50">
+          <div className="Button flex flex-row w-[100%] h-[100%] items-center ml-[-10%] justify-center m-[0%] space-x-[20%] overflow-hidden mt-[20%] mb-[-45px]">
+            <a className="XButton w-[3rem] h-[3rem] drop-shadow-2xl mt-[20%] bg-white rounded-lg flex justify-center items-center hover:bg-[#2A2E3F] z-50 absolute">
               <img src={xLogo} />
             </a>
 
             {/* <3 button */}
             <a
-              className="HeartButton w-[3rem] h-[3rem] drop-shadow-2xl mt-[20%]  bg-white rounded-lg flex justify-center items-center hover:bg-[#FFB1C8] z-50
+              className="HeartButton w-[3rem] h-[3rem] drop-shadow-2xl mt-[20%]  bg-white rounded-lg flex justify-center items-center hover:bg-[#FFB1C8] z-50 absolute
                 "
             >
               <img src={heartLogo} className="ml-1 mt-1" />

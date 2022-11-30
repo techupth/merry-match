@@ -68,7 +68,6 @@ const Swipe = (props) => {
 
     setLastDirection(direction);
     updateCurrentIndex(index - 1);
-    
   };
 
   const outOfFrame = (name, idx) => {
@@ -122,7 +121,7 @@ const Swipe = (props) => {
     props.setClickCountinue(props.clickCountinue + 1);
   };
 
-//   handle when click <3 button 
+  //   handle when click <3 button
   const handleJustSwiped = () => {
     setJustSwipe(true);
   };
@@ -133,7 +132,7 @@ const Swipe = (props) => {
     setJustSwipe(false);
   };
 
-  //   handle when click X button 
+  //   handle when click X button
   const handleJustX = () => {
     setJustX(true);
   };
@@ -144,7 +143,7 @@ const Swipe = (props) => {
     setJustX(false);
   };
 
-//   useEffect
+  //   useEffect
   useEffect(() => {
     handleMatchingId();
   }, []);
@@ -163,13 +162,21 @@ const Swipe = (props) => {
           data={filterData.data[modalId]}
         />
       )}
-      <h1 className="text-white mt-[20%] text-[3rem] font-[800] z-0 absolute">No more to Merry!</h1>
 
-      <button className="bg-[#C70039] rounded-[99px] text-[white] font-[700] w-[190px] h-[48px] mt-[25%] absolute hover:bg-[#FF1659] active:text-[#A62D82]"
-      onClick={() => window.location.reload(false)}
-      >
-          Find again! 
-      </button>
+      {currentIndex == 0 ? (
+        <div className="flex mt-[20%] flex-col justify-start items-center z-0 absolute w-[550px] h-[100px]">
+          <h1 className="text-white text-[3rem] font-[800]">
+            No more to Merry!
+          </h1>
+
+          <button
+            className="bg-[#C70039] rounded-[99px] text-[white] font-[700] w-[190px] mt-[15%] h-[48px] absolute hover:bg-[#FF1659] active:text-[#A62D82]"
+            onClick={() => window.location.reload(false)}
+          >
+            Find again!
+          </button>
+        </div>
+      ) : null}
 
       <div className="overflow-hidden">
         <div className="cardContainer text-[white] w-[20rem] h-[25rem] overflow-hidden mt-[25%] ">
@@ -200,9 +207,7 @@ const Swipe = (props) => {
                   </div>
                 ) : null}
 
-                {currentIndex === 0 ? (
-                  null
-                ) : index === currentIndex ||
+                {currentIndex === 0 ? null : index === currentIndex ||
                   (index === currentIndex - 1 && index !== 0) ? (
                   <div
                     style={{
@@ -275,10 +280,10 @@ const Swipe = (props) => {
                       className="XButton w-[60px] h-[60px] drop-shadow-2xl mr-[10px] mt-[-7.5%]  bg-white rounded-[30%] flex justify-center items-center hover:bg-[#2A2E3F] z-70 xl:w-[70px] xl:h-[70px] 2xl:w-[76px] 2xl:h-[76px]"
                       onClick={() => {
                         setTimeout(() => {
-                            swipe("right", index);
-                          }, 500);
-                        handleJustX()
-                        setHandleJustX()
+                          swipe("right", index);
+                        }, 500);
+                        handleJustX();
+                        setHandleJustX();
                       }}
                     >
                       <img src={xLogo} />
