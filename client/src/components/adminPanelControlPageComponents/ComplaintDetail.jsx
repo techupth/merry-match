@@ -47,22 +47,13 @@ const Complaint = () => {
 
 
 
-  const handleCancel = async (data) => {
+  const handleStatus = async (data,status) => {
     console.log(data);
+    console.log(status);
     const complaintId = data.complaint_id;
     const newData = {
       ...data,
-      complaint_status: "Canceled",
-    };
-    await axios.put(`http://localhost:4001/complaints/${complaintId}`, newData);
-  };
-
-  const handleResolve = async (data) => {
-    console.log(data);
-    const complaintId = data.complaint_id;
-    const newData = {
-      ...data,
-      complaint_status: "Resolved",
+      complaint_status: status,
     };
     await axios.put(`http://localhost:4001/complaints/${complaintId}`, newData);
   };
@@ -238,7 +229,7 @@ const Complaint = () => {
                 <button
                   className="w-[239px] h-[48px] rounded-full bg-[#FFE1EA]"
                   onClick={() => {
-                    handleCancel(complaint);
+                    handleStatus(complaint,"Canceled");
                     toggleCancel();
                     navigate("/admin")
                   }}
@@ -269,7 +260,7 @@ const Complaint = () => {
             FotterContent={
               <div className="flex ">
                 <button className="w-[239px] h-[48px] rounded-full bg-[#FFE1EA]" onClick={()=>{
-                  handleResolve(complaint);
+                  handleStatus(complaint,"Resolved");
                   toggleResolve();
                   navigate("/admin")
                 }}>
