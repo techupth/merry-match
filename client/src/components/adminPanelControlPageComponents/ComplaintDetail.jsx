@@ -47,7 +47,7 @@ const Complaint = () => {
 
 
 
-  const handleStatus = async (data,status) => {
+  const handleStatus = async (data, status) => {
     console.log(data);
     console.log(status);
     const complaintId = data.complaint_id;
@@ -229,7 +229,7 @@ const Complaint = () => {
                 <button
                   className="w-[239px] h-[48px] rounded-full bg-[#FFE1EA]"
                   onClick={() => {
-                    handleStatus(complaint,"Canceled");
+                    handleStatus(complaint, "Canceled");
                     toggleCancel();
                     navigate("/admin")
                   }}
@@ -259,13 +259,8 @@ const Complaint = () => {
             }
             FotterContent={
               <div className="flex ">
-<<<<<<< HEAD
                 <button className="w-[239px] h-[48px] rounded-full bg-[#FFE1EA]" onClick={() => {
-                  handleResolve(complaint);
-=======
-                <button className="w-[239px] h-[48px] rounded-full bg-[#FFE1EA]" onClick={()=>{
-                  handleStatus(complaint,"Resolved");
->>>>>>> 67931099de277b3e7b6aa020afe6e17d80435086
+                  handleStatus(complaint, "Resolved");
                   toggleResolve();
                   navigate("/admin")
                 }}>
