@@ -14,8 +14,8 @@ const Complaint = () => {
 
   const [dateAction, setDateAction] = useState("");
   const [timeAction, setTimeAction] = useState("");
-  
-  
+
+
 
   const [isCancel, setIsCancel] = useState(false);
   const [isResolve, setIsResolve] = useState(false);
@@ -80,7 +80,7 @@ const Complaint = () => {
       <div className="w-[100%] h-[140vh] flex flex-col items-start justify-start bg-[#F6F7FC]">
         <div className=" nav-bar w-[80vw] h-[13vh] bg-white border-b-2 flex flex-row items-center justify-between">
           <div
-            className="ml-[4rem] text-[2.5em] font-[700] w-[60vw] 
+            className="ml-[4rem] text-[2.5em] font-[700] w-[50vw] 
           flex
           flex-row
           items-center"
@@ -207,7 +207,7 @@ const Complaint = () => {
                   Resolved date
                 </p>
                 <p className=" text-black text-[1em] ml-20 pb-20">
-                {`${dateAction}  ${timeAction}`}
+                  {`${dateAction}  ${timeAction}`}
                 </p>
               </div>
             ) : complaint.complaint_status === "Canceled" ? (
@@ -268,7 +268,7 @@ const Complaint = () => {
             }
             FotterContent={
               <div className="flex ">
-                <button className="w-[239px] h-[48px] rounded-full bg-[#FFE1EA]" onClick={()=>{
+                <button className="w-[239px] h-[48px] rounded-full bg-[#FFE1EA]" onClick={() => {
                   handleResolve(complaint);
                   toggleResolve();
                   navigate("/admin")
