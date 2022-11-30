@@ -28,7 +28,7 @@ function UserPopup({ close }) {
           aria-labelledby="options-menu"
         >
           <a
-            className="block px-4 py-2 text-md hover:bg-gray-100 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600 ml-3 mr-3 mt-3 border-3 bg-gradient-to-r from-[#742138] to-[#9E66A4] rounded-full flex flex-row text-white hover:text-[1.1rem] w-[60%]"
+            className="block px-4 py-2 text-md ml-3 mr-3 mt-3 border-3 bg-gradient-to-r from-[#742138] to-[#9E66A4] rounded-full flex flex-row text-white hover:text-[1.1rem] w-[60%]"
             role="menuitem"
           >
             <img src={profile} className="mr-2" />
