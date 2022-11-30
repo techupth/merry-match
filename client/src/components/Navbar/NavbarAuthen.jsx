@@ -62,26 +62,27 @@ const NavbarAuthen = () => {
           Start Matching!
         </button>
 
-        <div className=" w-fit p-3 px-4 flex flex-row items-center rounded-t-[25px] rounded-l-[25px] bg-[#64001D]">
-          <a className="text-[#ffffff] text-[1.3rem]">Hi, I'm {userName}!</a>
-          <img
-            className="ml-2"
-            src="../../../public/asset/NavBarIcon/starts.svg"
-            alt=""
-          />
+        <div className=" w-fit flex flex-row items-center justify-center">
+          <div className="w-fit p-3 px-4 mr-3 flex flex-row items-center rounded-[25px] bg-[#64001D]">
+            <a className="text-[#ffffff] text-[1rem]">Hi, I'm {userName}!</a>
+            <img
+              className="ml-2"
+              src="../../../public/asset/NavBarIcon/starts.svg"
+              alt=""
+            />
+          </div>
+
+          <button
+            type="button"
+            className="text-[40px] mr-[0]"
+            onClick={() => setCallPop(!callPop)}
+          >
+            <img
+              src={images}
+              className="w-[5rem] h-[5rem] rounded-full object-cover"
+            />
+          </button>
         </div>
-
-        <button
-          type="button"
-          className="text-[40px] mr-[0]"
-          onClick={() => setCallPop(!callPop)}
-        >
-          <img
-            src={images}
-            className="w-[5rem] h-[5rem] rounded-full object-cover"
-          />
-        </button>
-
         {callPop && <UserPopup close={setCallPop} />}
       </div>
     </div>

@@ -231,7 +231,7 @@ const ComplaintList = () => {
                       </span>
                     </a>
                   ) : complaint.complaint_status === "Pending" ? (
-                    <a href="" className="mr-[3.5%] w-[%]">
+                    <a href="" className="mr-[3.5%] w-[7%]">
                       <span className="w-fit p-1 px-2 font-[500] text-[0.75em] 2xl:text-[0.8em] bg-[#FFF6D5] rounded-[8px] text-[#393735]">
                         Pending
                       </span>
