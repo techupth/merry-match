@@ -1,9 +1,9 @@
 import React from "react";
-import Footer from "../../components/ladingPage/footer";
-import Header from "../../components/ladingPage/Header";
-import SecondPart from "../../components/ladingPage/SecondPart";
-import ThirdPart from "../../components/ladingPage/ThirdPart";
-import Navbar from "../../components/Navbar/Navbar";
+import Footer from "../../components/landingPageComponents/Footer";
+import Header from "../../components/landingPageComponents/Header";
+import SecondPart from "../../components/landingPageComponents/SecondPart";
+import ThirdPart from "../../components/landingPageComponents/ThirdPart";
+
 
 
 
