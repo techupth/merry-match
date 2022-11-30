@@ -252,7 +252,6 @@ const MatchFilter = () => {
         <button
           className="bg-[#C70039] rounded-[99px] text-[white] font-[700] w-[99px] h-[48px] hover:bg-[#FF1659] active:text-[#A62D82]"
           onClick={() => {
-            console.log("Filter data by", dataToFilter);
             getDataByFilter(dataToFilter);
           }}
         >
