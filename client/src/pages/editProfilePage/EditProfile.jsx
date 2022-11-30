@@ -5,7 +5,7 @@ import makeAnimated from "react-select/animated";
 import { options } from "../../utils/optionSelect";
 import Select from "react-select";
 import { useNavigate } from "react-router-dom";
-import { Spinner } from "@chakra-ui/react";
+import { Spinner, Tooltip } from "@chakra-ui/react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import jwtDecode from "jwt-decode";
@@ -41,7 +41,7 @@ const EditProfile = () => {
 
   // Photos
   const [Images, setImages] = useState([]);
-  console.log(Images)
+  console.log(Images);
   //hobbies part
   const animatedComponents = makeAnimated();
   const [contact, setContact] = useState("----contact---");
@@ -167,7 +167,7 @@ const EditProfile = () => {
   const handleUpdate = async (event, userData) => {
     event.preventDefault();
     updateUserProfile(updateUserData);
-    localStorage.setItem("profileImg", Images[0])
+    localStorage.setItem("profileImg", Images[0]);
   };
 
   const handleHobbie = (data) => {
@@ -274,27 +274,30 @@ const EditProfile = () => {
 
               {/* preview modal button */}
               <div className=" flex self-end ml-[80px] z-0">
-                <button
-                  onClick={(event) => {
-                    event.preventDefault();
-                    setPreview(!preview);
-                    handleClickScroll();
-                  }}
-                  className="w-[162px] h-[48px] bg-[#FFE1EA] rounded-full text-[#95002B] font-[700]"
-                >
-                  Preview Profile
-                </button>
-
+                <Tooltip label="View profile"  bg='gray.400' >
+                  <button
+                    onClick={(event) => {
+                      event.preventDefault();
+                      setPreview(!preview);
+                      handleClickScroll();
+                    }}
+                    className="w-[162px] h-[48px] bg-[#FFE1EA] rounded-full text-[#C70039] font-[700] hover:bg-[#C70039] hover:text-[#FFE1EA]"
+                  >
+                    Preview Profile
+                  </button>
+                </Tooltip>
                 {/* update profile */}
-                <button
-                  className="w-[162px] h-[48px] bg-[#C70039] ml-[16px] rounded-full text-[#FFFFFF] font-[700]"
-                  onClick={(event) => {
-                    handleUpdate(event, updateUserData);
-                    navigate("/");
-                  }}
-                >
-                  Update Profile
-                </button>
+                <Tooltip label="Update Profile"  bg='gray.400' >
+                  <button
+                    className="w-[162px] h-[48px] bg-[#C70039] ml-[16px] rounded-full text-[#FFFFFF] font-[700] hover:bg-[#FFE1EA] hover:text-[#C70039]"
+                    onClick={(event) => {
+                      handleUpdate(event, updateUserData);
+                      navigate("/");
+                    }}
+                  >
+                    Update Profile
+                  </button>
+                </Tooltip>
               </div>
             </div>
             {/* End Header */}

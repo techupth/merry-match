@@ -11,7 +11,7 @@ const userRouter = Router();
 
 userRouter.delete("/:userId", deleteUserController);
 
-userRouter.use(protect);
+// userRouter.use(protect);
 
 userRouter.get("/", getAllUsers);
 

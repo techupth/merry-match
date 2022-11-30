@@ -90,7 +90,7 @@ const ComplaintList = () => {
             <select
               id="dropdownAdminDefault"
               data-dropdown-toggle="adminDropdown"
-              className="ml-3 w-[15rem] h-[80%] text-[#9AA1B9] bg-gray-50 border border-gray-300 rounded-[10px] focus:ring-[#AF2758] focus:border-[#AF2758] focus:border-2 text-[16px] font-[400] px-4 py-2.5 text-center inline-flex items-center justify-between "
+              className="ml-3 w-[15rem] h-[80%] text-[#9AA1B9] bg-gray-50 border border-gray-300 rounded-[10px] focus:ring-[#AF2758] focus:border-[#AF2758] focus:border-2 text-[16px] font-[400] px-4 py-2.5 text-left inline-flex items-center justify-between "
               type="select"
               onChange={(e) => setStatus(e.target.value)}
               // value={status}
@@ -139,21 +139,28 @@ const ComplaintList = () => {
       <div className="complaint-list w-[80vw] h-[95vh] bg-[#F6F7FC] items-center overflow-x-scroll">
         <div className=" w-full h-full overflow-y-scroll border-b-2 rounded-b-[30px]">
           <div className="bg-[#D6D9E4] h-[80px] w-[95%] mt-[2.5%] rounded-t-[30px] flex flex-row items-center justify-between font-[500] text-[16px] 2xl:text-[22px] ml-[3%]">
-
             <div className="w-[15.18%]">
-              <span className=" w-[51.2%] ml-[23%] xl:ml-[22.3%] 2xl:ml-[20.3%]">User</span>
+              <span className=" w-[51.2%] ml-[23%] xl:ml-[22.3%] 2xl:ml-[20.3%]">
+                User
+              </span>
               {/* <span className="ml-[24.3%] w-[51.2%]">User</span> */}
             </div>
             <div className="w-[18.5%]">
-              <span className="w-[84%] ml-[10%] xl:ml-[8%] 2xl:ml-[3%]">Issue</span>
+              <span className="w-[84%] ml-[10%] xl:ml-[8%] 2xl:ml-[3%]">
+                Issue
+              </span>
               {/* <span className="w-[84%] ml-[8%]">Issue</span> */}
             </div>
             <div className="w-[35.88%]">
-              <span className="w-[90%]  ml-[7%] xl:ml-[5%] 2xl:ml-[1.5%]">Description</span>
+              <span className="w-[90%]  ml-[7%] xl:ml-[5%] 2xl:ml-[1.5%]">
+                Description
+              </span>
               {/* <span className="w-[90%] ml-[4%]">Description</span> */}
             </div>
             <div className="w-[18.18%]">
-              <span className="w-[80%] ml-[20%] 2xl:ml-[15%]">Date Submitted</span>
+              <span className="w-[80%] ml-[20%] 2xl:ml-[15%]">
+                Date Submitted
+              </span>
               {/* <span className="w-[80%] ml-[10%]">Date Submitted</span> */}
             </div>
             <div className="w-[12.22%]">
@@ -211,7 +218,10 @@ const ComplaintList = () => {
                   <div href="" className="w-[32%] truncate text-[0.8em]">
                     <span>{complaint.description}</span>
                   </div>
-                  <div href="" className="w-[10%] text-left text-[0.6em] 2xl:text-[0.8em]">
+                  <div
+                    href=""
+                    className="w-[10%] text-left text-[0.6em] 2xl:text-[0.8em]"
+                  >
                     <span>{complaint.date_submitted.substr(0, 10)}</span>
                   </div>
                   {complaint.complaint_status === "New" ? (
@@ -221,27 +231,21 @@ const ComplaintList = () => {
                       </span>
                     </a>
                   ) : complaint.complaint_status === "Pending" ? (
-                    <a href="" className="mr-[3.5%] w-[7%] mt-5">
-                      <span>
-                        <p className="w-fit p-1 px-2 font-[500] text-[0.75em] 2xl:text-[0.8em] bg-[#FFF6D5] rounded-[8px] text-[#393735]">
-                          Pending
-                        </p>
+                    <a href="" className="mr-[3.5%] w-[%]">
+                      <span className="w-fit p-1 px-2 font-[500] text-[0.75em] 2xl:text-[0.8em] bg-[#FFF6D5] rounded-[8px] text-[#393735]">
+                        Pending
                       </span>
                     </a>
                   ) : complaint.complaint_status === "Resolved" ? (
-                    <a href="" className="mr-[3.5%] w-[7%] mt-5">
-                      <span>
-                        <p className="w-fit p-1 px-2 font-[500] text-[0.75em] 2xl:text-[0.8em] bg-[#E7FFE7] rounded-[8px]  text-[#197418]  ">
-                          Resolved
-                        </p>
+                    <a href="" className="mr-[3.5%] w-[7%]">
+                      <span className="w-fit p-1 px-2 font-[500] text-[0.75em] 2xl:text-[0.8em] bg-[#E7FFE7] rounded-[8px]  text-[#197418]  ">
+                        Resolved
                       </span>
                     </a>
                   ) : complaint.complaint_status === "Canceled" ? (
-                    <a href="" className="mr-[3.5%] w-[7%] mt-5">
-                      <span>
-                        <p className="w-fit p-1 px-2 font-[500] text-[0.75em] 2xl:text-[0.8em] bg-[#F1F2F6] rounded-[8px] text-[#646D89]">
-                          Canceled
-                        </p>
+                    <a href="" className="mr-[3.5%] w-[7%]">
+                      <span className="w-fit p-1 px-2 font-[500] text-[0.75em] 2xl:text-[0.8em] bg-[#F1F2F6] rounded-[8px] text-[#646D89]">
+                        Canceled
                       </span>
                     </a>
                   ) : null}

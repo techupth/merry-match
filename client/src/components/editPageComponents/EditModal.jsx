@@ -60,7 +60,7 @@ const EditModal = ({ close, data }) => {
     <div className="bg-[rgba(49,49,49,0.8);] z-30 absolute w-full h-[2400px] flex justify-center">
       <div
         ref={ref}
-        className="editModal bg-white w-[85%] h-[700px] rounded-3xl flex z-30 absolute items-center justify-center font-[400]  mt-[30%]"
+        className="editModal bg-white w-[80%] h-[700px] rounded-3xl flex z-30 absolute items-center justify-center font-[400]  mt-[30%]"
       >
         <div className="XButton absolute right-9 top-3 text-[25px] text-slate-300 ">
           <button

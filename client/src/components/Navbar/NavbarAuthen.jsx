@@ -4,16 +4,13 @@ import UserPopup from "./userPopup";
 import jwtDecode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 
-
-
 // Hooks
 import useClickOutside from "../../utils/hooks/useClickOutside";
 
 const NavbarAuthen = () => {
-
   const [images, setImage] = useState("");
   const [callPop, setCallPop] = useState(false);
-  const [userName, setUserName] = useState("")
+  const [userName, setUserName] = useState("");
 
   const navigate = useNavigate();
 
@@ -22,25 +19,18 @@ const NavbarAuthen = () => {
     const profileImg = localStorage.getItem("profileImg");
     const userData = jwtDecode(token);
 
-    const pic = profileImg
+    const pic = profileImg;
     setImage(pic);
 
-    
-
     const name = userData.name;
-    setUserName(name)
-
+    setUserName(name);
   };
 
   const ref = useRef(null);
   useClickOutside(ref, () => setCallPop(false));
 
- 
-
   useEffect(() => {
     decodeFromToken();
-
-  
   }, []);
 
   return (
@@ -72,11 +62,18 @@ const NavbarAuthen = () => {
           Start Matching!
         </button>
 
-        <a className="text-[#191C77] text-[1rem]">Hi, {userName}</a>
+        <div className=" w-fit p-3 px-4 flex flex-row items-center rounded-t-[25px] rounded-l-[25px] bg-[#64001D]">
+          <a className="text-[#ffffff] text-[1.3rem]">Hi, I'm {userName}!</a>
+          <img
+            className="ml-2"
+            src="../../../public/asset/NavBarIcon/starts.svg"
+            alt=""
+          />
+        </div>
 
         <button
           type="button"
-          className="text-[40px] mr-[]"
+          className="text-[40px] mr-[0]"
           onClick={() => setCallPop(!callPop)}
         >
           <img
