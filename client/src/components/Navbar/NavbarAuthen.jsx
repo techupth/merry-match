@@ -64,7 +64,7 @@ const NavbarAuthen = () => {
 
         <div className=" w-fit flex flex-row items-center justify-center">
           <div className="w-fit p-3 px-4 mr-3 flex flex-row items-center rounded-[25px] bg-[#64001D]">
-            <a className="text-[#ffffff] text-[1rem]">Hi, I'm {userName}!</a>
+            <a className="text-[#ffffff] text-[1rem]">Hi, {userName}!</a>
             <img
               className="ml-2"
               src="../../../public/asset/NavBarIcon/starts.svg"
