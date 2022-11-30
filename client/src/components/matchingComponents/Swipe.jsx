@@ -163,6 +163,14 @@ const Swipe = (props) => {
           data={filterData.data[modalId]}
         />
       )}
+      <h1 className="text-white mt-[20%] text-[3rem] font-[800] z-0 absolute">No more to Merry!</h1>
+
+      <button className="bg-[#C70039] rounded-[99px] text-[white] font-[700] w-[190px] h-[48px] mt-[25%] absolute hover:bg-[#FF1659] active:text-[#A62D82]"
+      onClick={() => window.location.reload(false)}
+      >
+          Find again! 
+      </button>
+
       <div className="overflow-hidden">
         <div className="cardContainer text-[white] w-[20rem] h-[25rem] overflow-hidden mt-[25%] ">
           {filterData.data.map((user, index) => (
