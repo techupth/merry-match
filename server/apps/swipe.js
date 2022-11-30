@@ -4,7 +4,7 @@ import { pool } from "../utils/db.js";
 
 const swipeRouter = Router();
 
-// swipeRouter.use(protect());
+// swipeRouter.use(protect);
 
 swipeRouter.get("/", async (req, res) => {
   if (req.query.userId) {

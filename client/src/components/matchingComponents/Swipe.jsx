@@ -106,7 +106,7 @@ const Swipe = (props) => {
   const swipe = async (dir) => {
     if (currentIndex < filterData.data.length) {
       await childRefs[currentIndex].current.swipe(dir); // Swipe the card!
-      setCurrentIndex(currentIndex - 1);
+      // setCurrentIndex(currentIndex - 1);
     }
   };
 
@@ -178,7 +178,7 @@ const Swipe = (props) => {
                 setCurrenId(index);
               }}
               swipeRequirementType="position"
-              swipeThreshold={1}
+              swipeThreshold={100}
             >
               <div className="flex justify-center items-center">
                 {/* Matched logo */}

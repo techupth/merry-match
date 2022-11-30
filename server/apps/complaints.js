@@ -30,12 +30,12 @@ complaintsRouter.get("/:id", async (req, res) => {
 });
 
 complaintsRouter.post("/", async (req, res) => {
-  console.log(req.body)
+  // console.log(req.body);
   const newComplaint = {
     ...req.body,
   };
 
-  console.log(newComplaint);
+  // console.log(newComplaint);
 
   await pool.query(
     `INSERT INTO complaints (name,issue,description,user_id,date_submitted,complaint_status,updated_at,resolved_by) values($1, $2, $3, $4, $5,$6,$7,$8)`,
@@ -58,7 +58,7 @@ complaintsRouter.post("/", async (req, res) => {
 
 complaintsRouter.put("/:id", async (req, res) => {
   const complaintId = req.body.complaint_id;
-  console.log(req.body);
+  // console.log(req.body);
 
   const updatedStatus = {
     ...req.body,
@@ -71,7 +71,7 @@ complaintsRouter.put("/:id", async (req, res) => {
     WHERE complaint_id=  $1`,
     [complaintId, updatedStatus.complaint_status, updatedStatus.updated_at]
   );
-  console.log("success");
+  // console.log("success");
   console.log(`Status ${complaintId} has been updated.`);
   return res.json({
     message: `Status ${complaintId} has been updated.`,

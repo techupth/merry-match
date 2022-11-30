@@ -7,7 +7,7 @@ import chat from "../../../public/asset/MerryList/chat.png";
 import view from "../../../public/asset/MerryList/view.png";
 import heartWhite from "../../../public/asset/MerryList/heartWhite.png";
 import heartRed from "../../../public/asset/MerryList/heartRed.png";
-import { Progress, Spinner } from "@chakra-ui/react";
+import { Tooltip, Spinner } from "@chakra-ui/react";
 
 //components
 import Footer from "../../components/editPageComponents/Footer";
@@ -116,7 +116,7 @@ const MerryList = () => {
       )}
       <div className="w-full flex  justify-center z-0 relative">
         {isLoading === "loading" ? (
-          <div className="w-full h-[1000px] flex flex-col justify-center items-center">
+          <div className="w-full h-[1000px] flex flex-col justify-center items-center text-[35px] text-pink-300">
             <Spinner
               thickness="7px"
               speed="0.65s"
@@ -227,6 +227,8 @@ const MerryList = () => {
                               <img src={chat} alt="" />
                             </button>
                           ) : null}
+
+                          <Tooltip label= "View profile" bg='gray.400'>
                           <button
                             className="w-[48px] h-[48px] bg-white rounded-lg flex justify-center items-center drop-shadow-xl mr-[16px]"
                             onClick={(event) => {
@@ -238,7 +240,9 @@ const MerryList = () => {
                             {" "}
                             <img src={view} alt=" " />
                           </button>
+                          </Tooltip>
                           {user.swipe_type === true ? (
+                            <Tooltip label= "UnMerry" bg='gray.400'>
                             <button
                               className="w-[48px] h-[48px] bg-[#C70039] rounded-lg flex justify-center items-center drop-shadow-xl mr-[16px]"
                               onClick={(e) => {
@@ -254,7 +258,9 @@ const MerryList = () => {
                                 alt=""
                               />
                             </button>
+                            </Tooltip>
                           ) : (
+                            <Tooltip label= "Merry" bg='gray.400'>
                             <button
                               className="w-[48px] h-[48px] bg-white  rounded-lg flex justify-center items-center drop-shadow-xl mr-[16px]"
                               onClick={(e) => {
@@ -270,6 +276,7 @@ const MerryList = () => {
                                 alt=""
                               />
                             </button>
+                            </Tooltip>
                           )}
                         </div>
                       </div>
@@ -295,8 +302,8 @@ const MerryList = () => {
               with Merry!
             </h1>
 
-            <div className="flex flex-row justify-center items-center  text-[45px] mt-[150px] mb-[150px] ">
-              No user
+            <div className="flex flex-row justify-center items-center text-gray-300  text-[35px] mt-[150px] mb-[150px] border-[3px] p-10 rounded-full">
+              Not Match yet
             </div>
           </div>
         ) : null}
