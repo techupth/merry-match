@@ -26,7 +26,7 @@ const UserComplaintPage = () => {
     issue: issue,
     description: desc,
     user_id: userId,
-    date_submitted: currentDate,
+    date_submitted: now.toISOString(),
     complaint_status: "New",
     updated_at: now.toISOString(),
     resolved_by: null,
@@ -149,7 +149,10 @@ const UserComplaintPage = () => {
               <button
                 type="submit"
                 className="w-[102px] h-[48px] bg-[#C70039] rounded-full text-white text-[1rem] font-semibold hover:bg-[#a1002e]"
-                onClick={() => handleSubmit(complaintForm)}
+                onClick={() => {
+                  console.log(complaintForm);
+                  handleSubmit(complaintForm);
+                }}
               >
                 Submit
               </button>

@@ -15,8 +15,6 @@ const Complaint = () => {
   const [dateAction, setDateAction] = useState("");
   const [timeAction, setTimeAction] = useState("");
 
-
-
   const [isCancel, setIsCancel] = useState(false);
   const [isResolve, setIsResolve] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -36,16 +34,17 @@ const Complaint = () => {
       `http://localhost:4001/complaints/${params.complaintID}`
     );
     setComplaint(results.data.data[0]);
+    // console.log(results.data.data[0].date_submitted);
+    // console.log(results.data.data[0].date_submitted.toLocaleString());
     setDateSubmit(results.data.data[0].date_submitted.substr(0, 10));
+
     const dateArr = results.data.data[0].updated_at.split("T");
     console.log(dateArr);
-    const time = dateArr[1].substr(0, 8)
+    const time = dateArr[1].substr(0, 8);
     setTimeAction(time);
     setDateAction(dateArr[0]);
   };
-
-
-
+  console.log(dateSubmit);
 
   const handleStatus = async (data, status) => {
     console.log(data);
@@ -57,8 +56,6 @@ const Complaint = () => {
     };
     await axios.put(`http://localhost:4001/complaints/${complaintId}`, newData);
   };
-
-
 
   console.log(complaint);
   useEffect(() => {
@@ -138,13 +135,12 @@ const Complaint = () => {
           </div>
 
           {complaint.complaint_status === "New" ||
-            complaint.complaint_status === "Pending" ? (
+          complaint.complaint_status === "Pending" ? (
             <div className="w-[40%] mr-10 flex flex-row justify-end items-center">
               <button
                 className="text-[#C70039] font-[700] text-[1em] w-[150px] h-[50px] hover:text-[#FF1659] active:text-[#A62D82] mr-2"
                 onClick={() => {
                   toggleCancel();
-
                 }}
               >
                 Cancel Complaint
@@ -231,7 +227,7 @@ const Complaint = () => {
                   onClick={() => {
                     handleStatus(complaint, "Canceled");
                     toggleCancel();
-                    navigate("/admin")
+                    navigate("/admin");
                   }}
                 >
                   Yes, cancel this complaint
@@ -259,11 +255,14 @@ const Complaint = () => {
             }
             FotterContent={
               <div className="flex ">
-                <button className="w-[239px] h-[48px] rounded-full bg-[#FFE1EA]" onClick={() => {
-                  handleStatus(complaint, "Resolved");
-                  toggleResolve();
-                  navigate("/admin")
-                }}>
+                <button
+                  className="w-[239px] h-[48px] rounded-full bg-[#FFE1EA]"
+                  onClick={() => {
+                    handleStatus(complaint, "Resolved");
+                    toggleResolve();
+                    navigate("/admin");
+                  }}
+                >
                   Yes, it has been resolved
                 </button>
                 <button
