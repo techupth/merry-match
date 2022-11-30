@@ -392,7 +392,7 @@ const Register = () => {
                         id="name"
                         value={name}
                         name="firstname"
-                        placeholder="John Snow"
+                        placeholder="John"
                         required
                         onChange={(event) => {
                           setName(event.target.value);
@@ -616,7 +616,7 @@ const Register = () => {
                         </option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
-                        <option value="Intersex">Non-Binary</option>
+                        <option value="LGBTQ+">LGBTQ+</option>
                       </select>
                     </div>
 
