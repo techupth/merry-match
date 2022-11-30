@@ -274,7 +274,7 @@ const EditProfile = () => {
 
               {/* preview modal button */}
               <div className=" flex self-end ml-[80px] z-0">
-                <Tooltip label="View profile"  bg='gray.400' >
+                <Tooltip label="View profile" bg="gray.400">
                   <button
                     onClick={(event) => {
                       event.preventDefault();
@@ -287,7 +287,7 @@ const EditProfile = () => {
                   </button>
                 </Tooltip>
                 {/* update profile */}
-                <Tooltip label="Update Profile"  bg='gray.400' >
+                <Tooltip label="Update Profile" bg="gray.400">
                   <button
                     className="w-[162px] h-[48px] bg-[#C70039] ml-[16px] rounded-full text-[#FFFFFF] font-[700] hover:bg-[#FFE1EA] hover:text-[#C70039]"
                     onClick={(event) => {
@@ -432,7 +432,7 @@ const EditProfile = () => {
                 >
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
-                  <option value="Intersex">Intersex</option>
+                  <option value="LGBTQ+">LGBTQ+</option>
                 </select>
               </div>
 
@@ -449,7 +449,7 @@ const EditProfile = () => {
                 >
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
-                  <option value="Intersex">Intersex</option>
+                  <option value="LGBTQ+">LGBTQ+</option>
                 </select>
               </div>
             </div>

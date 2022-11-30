@@ -203,6 +203,7 @@ const Swipe = (props) => {
                       swipe={swipe}
                       index={index}
                       clickCountinueCount={clickCountinueCount}
+                      currentIndex = {currentIndex}
                     />
                   </div>
                 ) : null}
