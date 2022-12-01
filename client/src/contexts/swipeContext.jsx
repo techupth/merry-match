@@ -71,7 +71,7 @@ const SwipeProvider = (props) => {
     return eachUserResult.data.data[0];
   };
   // console.log("each User", eachUser);
-  console.log("default data to filter", defaultDataToFilter);
+  // console.log("default data to filter", defaultDataToFilter);
 
   const getDataByFilter = async (data) => {
     console.log(data);
@@ -134,7 +134,7 @@ const SwipeProvider = (props) => {
 
   const deleteMatch = async (arr) => {
     const request = arr;
-    console.log(request);
+    // console.log(request);
     const response = await axios.delete(
       `http://localhost:4001/swipe/?request=${request}`
     );

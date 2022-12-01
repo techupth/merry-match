@@ -123,12 +123,14 @@ const Swipe = (props) => {
 
   //   handle when click <3 button
   const handleJustSwiped = () => {
+    console.log("click! swipe");
     setJustSwipe(true);
   };
 
   const setHandleJustSwiped = () => setTimeout(handleJustSwipedClose, 400);
 
   const handleJustSwipedClose = () => {
+    
     setJustSwipe(false);
   };
 
@@ -150,10 +152,10 @@ const Swipe = (props) => {
 
   return (
     <div className="w-full h-[54rem]  bg-[url('../../../public/asset/header/hero-swipe.png')] flex justify-center items-start overflow-hidden overflow-x-hidden xl:h-full">
-      {isMatch === false && justSwipe && (
+      {justSwipe && (
         <PopupWhenSwipe close={() => setJustSwipe(!justSwipe)} />
       )}
-      {isMatch === false && justX && (
+      {justX && (
         <PopupWhenClickX close={() => setJustX(!justX)} />
       )}
       {preview && (
@@ -203,7 +205,7 @@ const Swipe = (props) => {
                       swipe={swipe}
                       index={index}
                       clickCountinueCount={clickCountinueCount}
-                      currentIndex = {currentIndex}
+                      currentIndex={currentIndex}
                     />
                   </div>
                 ) : null}
