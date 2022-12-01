@@ -38,6 +38,7 @@ const EditProfile = () => {
   const [aboutMe, setAboutMe] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [date, setDate] = useState("");
+  console.log(startDate)
 
   // Photos
   const [Images, setImages] = useState([]);
@@ -80,7 +81,7 @@ const EditProfile = () => {
       setAboutMe(result.data.data[0].about_me);
       setContact(result.data.data[0].contact);
       setDate(result.data.data[0].birthday);
-
+      console.log(result.data.data[0])
       // Photo
 
       const newItemImage = [];
@@ -184,9 +185,10 @@ const EditProfile = () => {
   };
 
   const handleDate = (data) => {
+    console.log(data);
     let parts = data.split("T");
     let strDate = parts[0].split("-");
-    const myDate = new Date(strDate[0], strDate[1] - 1, strDate[2]);
+    const myDate = new Date(strDate[0], strDate[1] - 1, (Number(strDate[2])+1) );
     if (myDate != "Invalid Date") {
       setStartDate(myDate);
     }
@@ -217,9 +219,10 @@ const EditProfile = () => {
   };
 
   const handleBirtday = (data) => {
+    console.log(data);
     const year = data.getFullYear();
     const month = data.getMonth() + 1;
-    const day = data.getDate() + 1;
+    const day = data.getDate() ;
 
     const birthday = `${year}-${month}-${day}`;
 

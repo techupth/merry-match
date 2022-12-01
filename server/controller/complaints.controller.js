@@ -59,7 +59,7 @@ const updateComplaintController = async (req, res) => {
 
   const updatedStatus = {
     ...req.body,
-    updated_at: new Date(),
+    // updated_at: new Date(),
   };
 
   await pool.query(

@@ -83,7 +83,7 @@ const Register = () => {
   const handleBirtday = (data) => {
     const year = data.getFullYear();
     const month = data.getMonth() + 1;
-    const day = data.getDate() + 1;
+    const day = data.getDate();
     const birthday = `${year}-${month}-${day}`;
     setBirthday(birthday);
   };
