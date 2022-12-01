@@ -6,7 +6,7 @@ const getComplaintsController = async (req, res) => {
     FROM complaints
     INNER JOIN users
     on complaints.user_id = users.user_id order by CASE WHEN complaint_status = $1 THEN  0  WHEN complaint_status = $2  THEN 1 WHEN  complaint_status = $3 then 2 ELSE 3 END,
-    complaint_status`,
+    complaint_status , date_submitted desc`,
     ["New", "Pending", "Canceled"]
   );
 
