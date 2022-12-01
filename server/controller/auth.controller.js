@@ -61,7 +61,7 @@ const loginController = async (req, res) => {
     [loginKey]
   );
 
-  if (isAdmin.rows[0] !==  undefined) {
+  if (isAdmin.rows[0] !== undefined) {
     let isValidPassword = false;
     if (isAdmin.rows[0].password === password) {
       isValidPassword = true;
@@ -104,7 +104,6 @@ const loginController = async (req, res) => {
     [loginKey]
   );
 
-  
   if (!result.rows[0]) {
     return res.json({
       message: "*Username or Email not found",
