@@ -26,11 +26,13 @@ const UserComplaintPage = () => {
     issue: issue,
     description: desc,
     user_id: userId,
-    date_submitted: now.toISOString(),
+    date_submitted: now.toLocaleString(),
     complaint_status: "New",
-    updated_at: now.toISOString(),
+    updated_at: now.toLocaleString().toISOString(),
     resolved_by: null,
   };
+
+  console.log(complaintForm.date_submitted);
 
   const handleBirtday = (data) => {
     const year = data.getFullYear();

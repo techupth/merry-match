@@ -34,13 +34,14 @@ const Complaint = () => {
       `http://localhost:4001/complaints/${params.complaintID}`
     );
     setComplaint(results.data.data[0]);
-    // console.log(results.data.data[0].date_submitted);
-    // console.log(results.data.data[0].date_submitted.toLocaleString());
+    console.log(results.data.data[0].date_submitted);
+    console.log(results.data.data[0].date_submitted.toLocaleString());
     setDateSubmit(results.data.data[0].date_submitted.substr(0, 10));
 
     const dateArr = results.data.data[0].updated_at.split("T");
     console.log(dateArr);
     const time = dateArr[1].substr(0, 8);
+    console.log(time);
     setTimeAction(time);
     setDateAction(dateArr[0]);
   };
