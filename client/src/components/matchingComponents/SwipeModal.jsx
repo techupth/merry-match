@@ -65,7 +65,7 @@ const SwipeModal = ({ close, data }) => {
 
   return (
       <div
-        className="SwipeModal bg-white w-[1140px] h-[740px] rounded-3xl flex z-30 absolute items-center justify-center font-[400] bottom-[10%] "
+        className="SwipeModal bg-white w-[850px] h-[740px] rounded-3xl flex z-30 absolute items-center justify-center font-[400] bottom-[10%] overflow-x-scroll"
       >
         <div className="XButton absolute right-9 top-3 text-[1.5rem] text-slate-300 ">
           <button
@@ -76,7 +76,7 @@ const SwipeModal = ({ close, data }) => {
             x
           </button>
         </div>
-        <div className=" w-1/2  rounded-3xl mr-[3%] flex  flex-col overflow-hidden  ">
+        <div className=" w-1/2  rounded-3xl ml-[3%] mr-[3%] flex  flex-col overflow-hidden  ">
           {/* ....................... Display Pics ....................... */}
           <div className="flex justify-center items-center rounded-3xl">
             {step === 1 && (

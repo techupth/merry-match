@@ -8,13 +8,15 @@ import xLogo from "../../../public/asset/editModalItems/xLogo.svg";
 import awL from "../../../public/asset/editModalItems/awL.svg";
 import awR from "../../../public/asset/editModalItems/awR.svg";
 import location from "../../../public/asset/editModalItems/location.svg";
+import twoHeartLogo from "../../../public/asset/merryMatchIMG/twoHeartLogo.svg";
 //.............................................................................
 
-const EditModal = ({ close, data }) => {
+const MatchLogPreview = ({ close, data }) => {
   const [step, setStep] = useState(1);
   const [age, setAge] = useState(null);
   const [images, setImages] = useState([]);
   const [hobbies, setHobbies] = useState([]);
+  console.log(data);
 
   const ref = useRef(null);
   useClickOutside(ref, () => close(false));
@@ -26,6 +28,8 @@ const EditModal = ({ close, data }) => {
     }
   };
 
+  // console.log(data.hobby);
+
   const handleBack = (e) => {
     e.preventDefault();
     if (step !== 1) {
@@ -35,34 +39,35 @@ const EditModal = ({ close, data }) => {
 
   const handdleAge = (data) => {
     const year = data.split("-");
-
     const now = new Date().getFullYear();
     const age = now - year[0];
-
     setAge(age);
   };
 
-  const handdleHobbies = (data) => {
-    const hobbies = [];
-    for (let i = 0; i < data.length; i++) {
-      hobbies.push(data[i].value);
+  const handdleHobbie = (data) => {
+    const hobbiesArr = [];
+    if (data !== undefined) {
+      for (let i = 0; i < data.length; i++) {
+        const obj = JSON.parse(data[i]);
+        hobbiesArr.push(obj);
+      }
     }
-    setHobbies(hobbies);
+    setHobbies(hobbiesArr);
   };
 
+  console.log(hobbies);
   useEffect(() => {
     handdleAge(data.birthday);
     setImages(data.profile_pics);
-    handdleHobbies(data.hobby);
+    handdleHobbie(data.hobby);
   }, []);
 
   return (
-    <div className="bg-[rgba(49,49,49,0.8);] z-30 absolute w-full h-[2400px] flex justify-center">
+    <div className="w-[2000px] h-[1200px] bg-[] z-30 absolute flex justify-center mt-[-5%]">
       <div
-        ref={ref}
-        className="editModal bg-white w-[70%] h-[30%] rounded-3xl flex z-30 absolute items-center justify-center font-[400]  mt-[30%]"
+        className="editModal bg-white w-[65rem] h-[35rem] rounded-3xl flex z-30 absolute items-center justify-center font-[400] left-[10%] top-[-10%] overflow-auto"
       >
-        <div className="XButton absolute right-9 top-3 text-[3rem] text-slate-300 ">
+        <div className="XButton absolute right-9 top-3 text-[2.5rem] text-slate-300 ">
           <button
             onClick={() => {
               close(false);
@@ -71,60 +76,49 @@ const EditModal = ({ close, data }) => {
             x
           </button>
         </div>
-        <div className="relative w-[35%] h-[80%] mb-[10%] rounded-3xl mr-[3%] flex items-center flex-col overflow-hidden mt-[10%] ">
+        <div className=" w-1/2  rounded-3xl mr-[%] flex flex-col overflow-hidden relative  ">
           {/* ....................... Display Pics ....................... */}
-          <div className="flex justify-center items-center w-[90%] h-[120%] mt-[30%] rounded-3xl z-0">
+          <div className="flex justify-center items-center rounded-3xl">
             {step === 1 && (
               <img
                 src={images[0]}
-                className="absolute w-full z-0 rounded-3xl"
+                className="w-[20rem] h-[20rem] z-0 rounded-3xl object-cover hover:w-[25rem] hover:h-[25rem] ease-in-out duration-300"
               />
             )}
             {step === 2 && (
               <img
                 src={images[1]}
-                className=" absolute w-full z-0 rounded-3xl"
+                className="w-[20rem] h-[20rem] z-0 rounded-3xl hover:w-[25rem] hover:h-[25rem] ease-in-out duration-300 object-cover"
               />
             )}
             {step === 3 && (
               <img
                 src={images[2]}
-                className=" absolute w-full z-0 rounded-3xl"
+                className="w-[20rem] h-[20rem] z-0 rounded-3xl hover:w-[25rem] hover:h-[25rem] ease-in-out duration-300 object-cover"
               />
             )}
             {step === 4 && (
               <img
                 src={images[3]}
-                className=" absolute w-full z-0 rounded-3xl"
+                className="w-[20rem] h-[20rem] z-0 rounded-3xl hover:w-[25rem] hover:h-[25rem] ease-in-out duration-300 object-cover"
               />
             )}
             {step === 5 && (
               <img
                 src={images[4]}
-                className=" absolute w-full z-0 rounded-3xl"
+                className="w-[478px] h-[478px] z-0 rounded-3xl  hover:w-[25rem] hover:h-[25rem] ease-in-out duration-300 object-cover"
               />
             )}
+
+            <img
+              src={twoHeartLogo}
+              className="w-[20%] h-[auto] absolute right-[10%] bottom-[10%] hover:opacity-20"
+            />
           </div>
 
-          {/* ....................... Match button ....................... */}
-
-          {/* X button */}
-          <div className="Button flex flex-row w-[100%] h-[100%] items-center ml-[-10%] justify-center m-[0%] space-x-[20%] overflow-hidden mt-[20%] mb-[-45px]">
-            <a className="XButton w-[3rem] h-[3rem] drop-shadow-2xl mt-[20%] bg-white rounded-lg flex justify-center items-center hover:bg-[#2A2E3F] z-50 absolute">
-              <img src={xLogo} />
-            </a>
-
-            {/* <3 button */}
-            <a
-              className="HeartButton w-[3rem] h-[3rem] drop-shadow-2xl mt-[20%]  bg-white rounded-lg flex justify-center items-center hover:bg-[#FFB1C8] z-50 absolute
-                "
-            >
-              <img src={heartLogo} className="ml-1 mt-1" />
-            </a>
-          </div>
           {/* ....................... Slide status ........................ */}
 
-          <div className=" flex flex-row justify-center space-x-[65%] bg-white w-[100%] h-[70%] overflow-hidden z-20 mt-6 ">
+          <div className=" flex flex-row justify-center space-x-[65%] mt-[40px]  overflow-hidden z-30">
             {step === 1 && (
               <div className="flex">
                 <p className="text-[16px] text-[#757D96] font-[600]">
@@ -162,7 +156,7 @@ const EditModal = ({ close, data }) => {
               </div>
             )}
 
-            <div className="flex flex-row mt-[3%]">
+            <div className="flex flex-row "  ref={ref} >
               <button
                 onClick={handleBack}
                 className="w-[30px] h-[20px] mr-[10%] "
@@ -179,85 +173,88 @@ const EditModal = ({ close, data }) => {
 
         {/* Information ...................................................................... */}
 
-        <div
-          className="w-[45%] h-[85%] mt-[-5%] flex flex-col justify-center items-center"
-          id="prevModal"
-        >
+        <div className="w-1/2  flex flex-col justify-center items-center ">
           {/* title */}
           <div className="w-[100%] h-[20%] mt-[5%]">
-            <span className="text-[46px] font-[900]">{data.name} </span>
-            <span className="text-[46px] font-[900] text-[#646D89] ml-[30px]">
+            <span className="text-[40px] font-[900]">{data.name} </span>
+            <span className="text-[40px] font-[900] text-[#646D89] ml-[30px]">
               {age}
             </span>
             <br />
 
-            <div className="flex flex-row mt-2">
+            <div className="flex flex-row">
               <img src={location} className="mt-[-1%]" />
 
-              <span className="relative ml-[3%] text-[20px] font-[600] text-[#646D89]">
+              <span className="relative ml-[3%] mt-[1%] text-[20px] font-[600] text-[#646D89]">
                 {data.city}, {data.location}
               </span>
             </div>
           </div>
 
           {/* Sexual identities */}
-          <div className=" w-[100%] h-[25%]">
+          <div className=" w-[100%] mt-[2%]">
             <span className="text-[16px] mr-[5%] ">Sexual identities : </span>
             <span className="text-[20px] text-[#646D89] ml-4 ">
               {data.sex_identity}
             </span>
             <br />
             {/* Sexual preferences */}
-            <span className="text-[16px] mr-[5%]">Sexual preferences : </span>
-            <span className="text-[20px] text-[#646D89]">
-              {data.sex_pref}
-            </span>{" "}
+            <span className="text-[16px] mr-[5%] mt-[20px]">
+              Sexual preferences :{" "}
+            </span>
+            <span className="text-[20px] text-[#646D89]">{data.sex_pref}</span>{" "}
             <br />
             {/* Racial preferences */}
-            <span className="text-[16px] mr-[5%]">Racial preferences : </span>
+            <span className="text-[16px] mr-[5%] mt-[20px]">
+              Racial preferences :{" "}
+            </span>
             <span className="text-[20px] text-[#646D89] ml-1">
               {data.racial_pref}
             </span>{" "}
             <br />
             {/* Meeting interests */}
-            <span className="text-[16px] mr-[5%]">Meeting interests : </span>
+            <span className="text-[16px] mr-[5%] mt-[20px]">
+              Meeting interests :{" "}
+            </span>
             <span className="text-[20px] text-[#646D89] ml-3">
               {data.meeting_int}
             </span>{" "}
             <br />
           </div>
           {/* About me */}
-          <div className="w-[100%] h-[20%] ">
+          <div className="w-[100%] h-[20%] mt-[1%]">
             <h1 className="text-[24px] font-[700]">About me</h1>
-            <div className="[100%] h-[100%] ">
+            <div className="w-[418px] h-[100%] ">
               <p className="text-[16px]  ">{data.about_me}</p>
             </div>
           </div>
           {/* Hobbies */}
-          <div className=" w-[100%]  mt-[10%] flex flex-col h-24">
+          <div className=" w-[100%]  mt-[3%] flex flex-col h-24 overflow-x-scroll">
             <h1 className="font-[700]">Hobbies and Interests</h1>
             <div className="text-[16px] flex row-auto mt-2 w-32 text-center">
-              {hobbies.map((value, index) => {
+              {hobbies.map((item, index) => {
                 return (
                   <div
                     key={index}
                     className="mr-2 text-[#7D2262] rounded-[12px] border-[1px] border-[#DF89C6] px-[12px] py-[6px] text-[16px] flex justify-center items-center"
                   >
-                    {value}
+                    {item.value}
                   </div>
                 );
               })}
             </div>
           </div>
           {/* Contact */}
-          <div className=" w-[100%] h-[10%] mt-[5%]">
-            <h1 className="font-[700]">Contact</h1>
-            <p className="text-[16px]">{data.contact}</p>
-          </div>
+          {data.status === "match" ? (
+            <div className=" w-[100%] h-[10%] mt-[%]">
+              <h1 className="font-[700]">Contact</h1>
+              <p className="text-[16px]">{data.contact}</p>
+            </div>
+          ) : null}
         </div>
       </div>
     </div>
   );
 };
 
-export default EditModal;
+export default MatchLogPreview;
