@@ -139,7 +139,7 @@ const Complaint = () => {
           </div>
 
           {complaint.complaint_status === "New" ||
-          complaint.complaint_status === "Pending" ? (
+            complaint.complaint_status === "Pending" ? (
             <div className="w-[40%] mr-10 flex flex-row justify-end items-center">
               <button
                 className="text-[#C70039] font-[700] text-[1em] w-[150px] h-[50px] hover:text-[#FF1659] active:text-[#A62D82] mr-2"
@@ -193,11 +193,11 @@ const Complaint = () => {
               {dateSubmit}
             </p>
             {complaint.complaint_status === "Resolved" ? (
-              <div>
-                <p className="text-[600] font-[#646D89] text-[24px] mt-16 ml-20">
+              <div className="border-t-2 w-[90%] ml-20 mr-20 h-[160px]">
+                <p className="text-[600] font-[#646D89] text-[24px] mt-10 ">
                   Resolved date
                 </p>
-                <p className=" text-black text-[1em] ml-20 pb-20">
+                <p className=" text-black text-[1em]  pb-20">
                   {`${dateAction}  ${timeAction}`}
                 </p>
               </div>
