@@ -38,7 +38,7 @@ const Complaint = () => {
     console.log(results.data.data[0].date_submitted);
     console.log(results.data.data[0].date_submitted.toLocaleString());
     setDateSubmit(results.data.data[0].date_submitted.substr(0, 10));
-    console.log(results.data.data[0].updated_at)
+    console.log(results.data.data[0].updated_at);
     const dateArr = results.data.data[0].updated_at.split("T");
     console.log(dateArr);
     const time = dateArr[1].substr(0, 8);
@@ -55,7 +55,7 @@ const Complaint = () => {
     const complaintId = data.complaint_id;
     const newData = {
       ...data,
-      updated_at:now.toLocaleString(),
+      updated_at: now.toLocaleString(),
       complaint_status: status,
     };
     await axios.put(`http://localhost:4001/complaints/${complaintId}`, newData);
@@ -221,13 +221,13 @@ const Complaint = () => {
             }
             MiddleContent={
               <p className="text-[16px] font-normal text-[#646D89]">
-                Do you sure to cancel this conplaint?
+                Do you sure to cancel this complaint?
               </p>
             }
             FotterContent={
               <div className="flex ">
                 <button
-                  className="w-[239px] h-[48px] rounded-full bg-[#FFE1EA]"
+                  className="w-[239px] h-[48px] rounded-full bg-[#FFE1EA] font-[700]"
                   onClick={() => {
                     handleStatus(complaint, "Canceled");
                     toggleCancel();
@@ -237,7 +237,7 @@ const Complaint = () => {
                   Yes, cancel this complaint
                 </button>
                 <button
-                  className="w-[239px] h-[48px] rounded-full bg-[#C70039] ml-[16px]"
+                  className="w-[239px] h-[48px] rounded-full bg-[#C70039] ml-[16px] font-[700] text-white"
                   onClick={toggleCancel}
                 >
                   No, give me more time
@@ -260,7 +260,7 @@ const Complaint = () => {
             FotterContent={
               <div className="flex ">
                 <button
-                  className="w-[239px] h-[48px] rounded-full bg-[#FFE1EA]"
+                  className="w-[239px] h-[48px] rounded-full bg-[#FFE1EA] font-[700]"
                   onClick={() => {
                     handleStatus(complaint, "Resolved");
                     toggleResolve();
@@ -270,7 +270,7 @@ const Complaint = () => {
                   Yes, it has been resolved
                 </button>
                 <button
-                  className="w-[239px] h-[48px] rounded-full bg-[#C70039] ml-[16px]"
+                  className="w-[239px] h-[48px] rounded-full bg-[#C70039] ml-[16px]  text-white font-[700]"
                   onClick={toggleResolve}
                 >
                   No, it’s not
