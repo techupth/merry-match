@@ -34,14 +34,14 @@ const UserComplaintPage = () => {
 
   console.log(complaintForm.date_submitted);
 
-  const handleBirtday = (data) => {
-    const year = data.getFullYear();
-    const month = data.getMonth() + 1;
-    const day = data.getDate();
-    const birthday = `${year}-${month}-${day}`;
-    setStartDate(data);
-    setCurrentDate(birthday);
-  };
+  // const handleBirtday = (data) => {
+  //   const year = data.getFullYear();
+  //   const month = data.getMonth() + 1;
+  //   const day = data.getDate();
+  //   const birthday = `${year}-${month}-${day}`;
+  //   setStartDate(data);
+  //   setCurrentDate(birthday);
+  // };
 
   const handleSubmit = async (complaintForm) => {
     try {
@@ -67,7 +67,7 @@ const UserComplaintPage = () => {
 
   useEffect(() => {
     handleUserInfo();
-    handleBirtday(new Date());
+    // handleBirtday(new Date());
   }, []);
 
   return (
@@ -139,9 +139,9 @@ const UserComplaintPage = () => {
                   disabled={true}
                   showMonthDropdown
                   showYearDropdown
-                  onSelect={(date) => {
-                    handleBirtday(date);
-                  }}
+                  // onSelect={(date) => {
+                  //   handleBirtday(date);
+                  // }}
                   className="border border-1 border-[#D6D9E4] rounded-[8px]  h-[48px] text-black mb-[5%] w-[60%] focus:border-pink-300 focus:border-[2px] text-left block bg-gray-50 "
                 />
               </div>
