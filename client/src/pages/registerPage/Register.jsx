@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/authentication";
 import Countrydata from "../../utils/mock-city/Countrydata.json";
@@ -15,7 +15,7 @@ import enUS from "date-fns/locale/en-US";
 
 const Register = () => {
   const navigate = useNavigate();
-  const { register, checkRegister, msg } = useAuth();
+  const { register, checkRegister, msg, setMsg } = useAuth();
 
   registerLocale("enUS", enUS);
 
@@ -110,10 +110,10 @@ const Register = () => {
   };
 
   useEffect(() => {
-    validatePasswordMatch();
     validateEmail();
     validateUsername();
-  }, [confirmPassword, email, username]);
+    validatePasswordMatch();
+  }, [username, email, confirmPassword]);
 
   const checkNoNull = () => {
     if (
@@ -139,7 +139,10 @@ const Register = () => {
 
   const validateEmail = () => {
     const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    if (!email.match(mailFormat)) {
+
+    if (email == "") {
+      setEmailError("");
+    } else if (!email.match(mailFormat)) {
       setEmailError("* Invalid email address!");
     } else {
       setEmailError("");
@@ -147,7 +150,9 @@ const Register = () => {
   };
 
   const validateUsername = () => {
-    if (userInfo.username.length <= 5) {
+    if (userInfo.username.length == "") {
+      setUsernameError("");
+    } else if (userInfo.username.length <= 5) {
       setUsernameError("* Username must be at least 6 characters");
     } else {
       setUsernameError("");

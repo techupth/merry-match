@@ -13,7 +13,8 @@ import Footer from "../../components/editPageComponents/Footer";
 const UserComplaintPage = () => {
   const navigate = useNavigate();
   const { eachUser, getEachUser } = useSwipe();
-  const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(new Date().toLocaleDateString());
+  console.log(startDate);
   const [currentDate, setCurrentDate] = useState("");
   const [issue, setIssue] = useState("");
   const [desc, setDesc] = useState("");
@@ -26,7 +27,7 @@ const UserComplaintPage = () => {
     issue: issue,
     description: desc,
     user_id: userId,
-    date_submitted: now.toLocaleString(),
+    date_submitted: now.toLocaleDateString(),
     complaint_status: "New",
     updated_at: now.toLocaleString(),
     resolved_by: null,

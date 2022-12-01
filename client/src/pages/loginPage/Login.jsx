@@ -19,7 +19,9 @@ const Login = () => {
       password,
     });
     console.log(loginResult);
-    if (loginResult.match("Username")) {
+    if (loginResult.match("Admin")) {
+      setLoginMsg({ ...loginMsg, passwordKey: loginResult });
+    } else if (loginResult.match("Username")) {
       setLoginMsg({ ...loginMsg, loginKey: loginResult });
     } else if (loginResult.match("Password")) {
       setLoginMsg({ ...loginMsg, passwordKey: loginResult });

@@ -75,7 +75,7 @@ const loginController = async (req, res) => {
       );
     } else {
       return res.json({
-        message: "*password Admin is Invalid!!",
+        message: "*Admin Password is Invalid!!",
       });
     }
 
