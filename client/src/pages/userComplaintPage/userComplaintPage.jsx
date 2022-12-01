@@ -28,7 +28,7 @@ const UserComplaintPage = () => {
     user_id: userId,
     date_submitted: now.toLocaleString(),
     complaint_status: "New",
-    updated_at: now.toLocaleString().toISOString(),
+    updated_at: now.toLocaleString(),
     resolved_by: null,
   };
 

@@ -10,6 +10,7 @@ const ComplaintList = () => {
   const [status, setStatus] = useState("All Status");
   const [complaints, setComplaints] = useState([]);
   console.log(complaints);
+  const now = new Date();
 
   // function statusValue(e) {
   //   console.log(e.target.value)
@@ -41,6 +42,7 @@ const ComplaintList = () => {
     const complaintId = data.complaint_id;
     const newData = {
       ...data,
+      updated_at:now.toLocaleString(),
       complaint_status: "Pending",
     };
     console.log(newData);
