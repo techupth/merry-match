@@ -17,8 +17,8 @@ function UserPopup({ close }) {
   const { logout } = useAuth();
 
   return (
-    <div className="inline-block text-left z-50 h-[] absolute right-[3%] top-[80%] cursor-pointer">
-      <div className="origin-top-right  right-0 mt-[10%] w-56 rounded-2xl shadow-lg bg-[white] dark:bg-gray-800 ring-1 ring-black ring-opacity-5 text-[#646D89] ">
+    <div className="inline-block text-left z-50 h-[] absolute right-[7%] top-[80%] cursor-pointer">
+      <div className="origin-top-right  right-0 mt-[15  %] w-[165px] rounded-2xl shadow-lg bg-[white] dark:bg-gray-800 ring-1 ring-black ring-opacity-5 text-[#646D89] ">
         {/* <a onClick={() => close(false)} className="text-red-700 text-[30px] border-3 border-white rounded-full"></a> */}
 
         <div
@@ -28,7 +28,7 @@ function UserPopup({ close }) {
           aria-labelledby="options-menu"
         >
           <a
-            className="block px-4 py-2 text-md ml-3 mr-3 mt-3 border-3 bg-gradient-to-r from-[#742138] to-[#9E66A4] rounded-full flex flex-row text-white hover:text-[1.1rem] w-[60%]"
+            className="block px-4 py-2 text-md ml-3 mr-3 mt-3 border-3 bg-gradient-to-r from-[#742138] to-[#9E66A4] rounded-full flex flex-row text-white hover:text-[1.1rem] w-[75%]"
             role="menuitem"
           >
             <img src={profile} className="mr-2" />
