@@ -168,6 +168,7 @@ const EditProfile = () => {
     event.preventDefault();
     updateUserProfile(updateUserData);
     localStorage.setItem("profileImg", Images[0]);
+    localStorage.setItem("profileName", name);
   };
 
   const handleHobbie = (data) => {
@@ -292,7 +293,9 @@ const EditProfile = () => {
                     className="w-[162px] h-[48px] bg-[#C70039] ml-[16px] rounded-full text-[#FFFFFF] font-[700] hover:bg-[#FFE1EA] hover:text-[#C70039]"
                     onClick={(event) => {
                       handleUpdate(event, updateUserData);
-                      navigate("/");
+                      alert("Updated Sucessfully!");
+                      window.location.reload();
+                      // navigate("/");
                     }}
                   >
                     Update Profile

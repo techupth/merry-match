@@ -15,15 +15,17 @@ const NavbarAuthen = () => {
   const navigate = useNavigate();
 
   const decodeFromToken = async () => {
-    const token = localStorage.getItem("token");
+    //   const token = localStorage.getItem("token");
     const profileImg = localStorage.getItem("profileImg");
-    const userData = jwtDecode(token);
+    const profileName = localStorage.getItem("profileName");
+    // const userData = jwtDecode(token);
 
     const pic = profileImg;
     setImage(pic);
 
-    const name = userData.name;
+    const name = profileName;
     setUserName(name);
+    console.log(name);
   };
 
   const ref = useRef(null);
@@ -31,7 +33,7 @@ const NavbarAuthen = () => {
 
   useEffect(() => {
     decodeFromToken();
-  }, []);
+  }, [userName]);
 
   return (
     <div
@@ -40,7 +42,7 @@ const NavbarAuthen = () => {
     >
       <button
         onClick={() => {
-          navigate("/");
+          navigate("/home");
         }}
       >
         <img
@@ -51,8 +53,6 @@ const NavbarAuthen = () => {
       </button>
 
       <div className=" flex flex-row  items-center justify-between p-0 gap-8 z-40 mr-[10%]">
-        {/* <h2>{userData.name}</h2> */}
-
         <button
           className="text-[#191C77] text-[1rem] hover:text-[black] flex justify-center"
           onClick={() => {

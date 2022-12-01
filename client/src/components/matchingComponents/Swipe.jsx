@@ -130,7 +130,6 @@ const Swipe = (props) => {
   const setHandleJustSwiped = () => setTimeout(handleJustSwipedClose, 400);
 
   const handleJustSwipedClose = () => {
-    
     setJustSwipe(false);
   };
 
@@ -152,12 +151,8 @@ const Swipe = (props) => {
 
   return (
     <div className="w-full h-[54rem]  bg-[url('../../../public/asset/header/hero-swipe.png')] flex justify-center items-start overflow-hidden overflow-x-hidden xl:h-full">
-      {justSwipe && (
-        <PopupWhenSwipe close={() => setJustSwipe(!justSwipe)} />
-      )}
-      {justX && (
-        <PopupWhenClickX close={() => setJustX(!justX)} />
-      )}
+      {justSwipe && <PopupWhenSwipe close={() => setJustSwipe(!justSwipe)} />}
+      {justX && <PopupWhenClickX close={() => setJustX(!justX)} />}
       {preview && (
         <SwipeModal
           close={() => setPreview(!preview)}

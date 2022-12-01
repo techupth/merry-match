@@ -57,6 +57,7 @@ const AuthProvider = (props) => {
         localStorage.setItem("token", token);
         const userData = jwtDecode(token);
         localStorage.setItem("profileImg", userData.profile_pics[0]);
+        localStorage.setItem("profileName", userData.name);
         setUserData({ ...userData, user: userData });
         navigate("/");
         return result.data.message;
