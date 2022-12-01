@@ -1,16 +1,18 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { MdChevronLeft, MdChevronRight } from "react-icons/md";
-import { data } from "../../utils/mock-photo/data";
 import search_heart from "../../../public/asset/merryMatchIMG/search_heart.png";
 import two_heart from "../../../public/asset/merryMatchIMG/two_heart.png";
-
 import { useSwipe } from "../../contexts/swipeContext";
+import MatchLogPreview from "./MatchLogPreview";
 
 const MatchLog = (props) => {
-  const { merryList } = useSwipe();
+  const { merryList, merryListUser, setUnMatch, deleteMatch, unMatch } =
+    useSwipe();
+
   const [isLoading, setIsloading] = useState("NoUser");
   const [userList, setUserList] = useState([]);
+  const [preview, setPreview] = useState(false);
+  const [modalId, setModalId] = useState(null);
 
   const isData = async () => {
     try {
@@ -48,10 +50,6 @@ const MatchLog = (props) => {
     isData();
   }, [props.clickCountinue]);
 
-  // console.log(props.clickCountinue);
-
-  // console.log(userList);
-
   return (
     <div className="MatchLog w-[250px] mt-[240px] h-full px-[16px] z-40 bg-[white] xl:w-[316px]">
       <div className="flex justify-center">
@@ -67,21 +65,35 @@ const MatchLog = (props) => {
       </div>
       <div className="w-full bg-[#D6D9E4] h-[2px] mt-[38px]"> </div>
 
-      <h1 className="text-[#2A2E3F] text-[24px] font-bold mt-[24px]">
+      <h1 className="text-[#2A2E3F] text-[24px] font-bold mt-[24px] text-center">
         Merry Match!
       </h1>
       {isLoading === "loading" ? (
-        <div className="text-pink-500 text-[24px]">Loading...</div>
+        <div className="text-pink-500 text-[24px] text-center mt-[30%]">
+          Loading...
+        </div>
       ) : isLoading === "data" ? (
-        <div
+        <a
           id="slider"
-          className="w-full h-[400px] overflow-x-scroll scroll whitespace-nowrap scroll-smooth mt-[30px] "
+          type="button"
+          className="w-full h-[400px] overflow-x-scroll scroll whitespace-nowrap scroll-smooth mt-[-2%] "
         >
+          {preview && (
+            <MatchLogPreview
+              close={() => setPreview(!preview)}
+              data={userList[modalId]}
+            />
+          )}
           {userList.map((item, index) =>
             item.status === "match" ? (
               <div
                 key={index}
-                className="flex relative hover:scale-105 ease-in-out duration-300 cursor-pointer "
+                className="flex hover:scale-105 ease-in-out duration-300 cursor-pointer relative"
+                onClick={(event) => {
+                  event.preventDefault();
+                  setPreview(!preview);
+                  setModalId(index);
+                }}
               >
                 <img
                   src={two_heart}
@@ -105,7 +117,7 @@ const MatchLog = (props) => {
               </div>
             ) : null
           )}
-        </div>
+        </a>
       ) : null}
     </div>
   );
