@@ -418,9 +418,6 @@ const Register = () => {
                         dropdownMode="select"
                         maxDate={maxDate}
                         minDate={minDate}
-                        // locale={en - Us}
-                        // weekDayFormat="narrow"
-                        // defaultWidth="narrow"
                       />
 
                       {/* .............. */}
@@ -966,11 +963,15 @@ const Register = () => {
                 {step === 3 && (
                   <button
                     type="submit"
+                    onClick={(e) => {
+                      handleSubmit(e);
+                    }}
                     disabled={
                       passwordLengthError !== "" ||
                       passwordMatchError !== "" ||
                       usernameError !== "" ||
-                      emailError !== ""
+                      emailError !== "" ||
+                      birthday == ""
                     }
                     className="mt-[0.5%] text-white bg-[#C70039] hover:bg-red-800 font-[700] rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 disabled:bg-[#F1F2F6] disabled:text-[#646D89] ml-5"
                   >
