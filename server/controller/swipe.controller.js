@@ -12,6 +12,7 @@ const getMerryListController = async (req, res) => {
     INNER JOIN users
     ON swipee = user_id
     where swiper = $1
+    ORDER BY swipe_at DESC
   `,
       [swiperId]
     );
