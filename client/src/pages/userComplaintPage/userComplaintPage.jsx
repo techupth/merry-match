@@ -12,37 +12,28 @@ import Footer from "../../components/editPageComponents/Footer";
 
 const UserComplaintPage = () => {
   const navigate = useNavigate();
+  const now = new Date();
   const { eachUser, getEachUser } = useSwipe();
-  const [startDate, setStartDate] = useState(new Date().toLocaleDateString());
+  const [startDate, setStartDate] = useState(now);
   console.log(startDate);
   const [currentDate, setCurrentDate] = useState("");
   const [issue, setIssue] = useState("");
   const [desc, setDesc] = useState("");
   const [userId, setUserId] = useState("");
   const [name, setName] = useState("");
-  const now = new Date();
 
   const complaintForm = {
     name: name,
     issue: issue,
     description: desc,
     user_id: userId,
-    date_submitted: now.toLocaleDateString(),
+    date_submitted: now.toLocaleString(),
     complaint_status: "New",
     updated_at: now.toLocaleString(),
     resolved_by: null,
   };
 
   console.log(complaintForm.date_submitted);
-
-  // const handleBirtday = (data) => {
-  //   const year = data.getFullYear();
-  //   const month = data.getMonth() + 1;
-  //   const day = data.getDate();
-  //   const birthday = `${year}-${month}-${day}`;
-  //   setStartDate(data);
-  //   setCurrentDate(birthday);
-  // };
 
   const handleSubmit = async (complaintForm) => {
     try {

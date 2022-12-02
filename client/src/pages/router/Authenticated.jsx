@@ -5,7 +5,7 @@ import MerryList from "../merryListPage/MerryList";
 import MatchingPage from "../matchingPage/MatchingPage";
 import NavbarAuthen from "../../components/navbarComponents/NavbarAuthen";
 import { SwipeProvider } from "../../contexts/swipeContext";
-import UserComplaintPage from "../userComplaintPage/userComplaintPage";
+import UserComplaintPage from "../userComplaintPage/UserComplaintPage";
 
 const Authenticated = () => {
   return (
