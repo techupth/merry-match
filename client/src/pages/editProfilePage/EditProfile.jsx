@@ -421,7 +421,7 @@ const EditProfile = () => {
 
             {/* Page 2 */}
             <h1 className="basicInformation text-[#A62D82] mt-[80px] font-bold text-[24px]">
-              Identities and Interests
+              Identities and Interests:
             </h1>
             {/* colomn1 */}
             <div className="column1 flex">

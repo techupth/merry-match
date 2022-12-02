@@ -60,7 +60,7 @@ const EditModal = ({ close, data }) => {
     <div className="bg-[rgba(49,49,49,0.8);] z-30 absolute w-full h-[2400px] flex justify-center">
       <div
         ref={ref}
-        className="editModal bg-white w-[70%] h-[30%] rounded-3xl flex z-30 absolute items-center justify-center font-[400]  mt-[30%]"
+        className="editModal bg-white w-[60%] h-[30%] rounded-3xl flex z-30 absolute items-center justify-center font-[400]  mt-[30%]"
       >
         <div className="XButton absolute right-9 top-3 text-[3rem] text-slate-300 ">
           <button
@@ -71,60 +71,44 @@ const EditModal = ({ close, data }) => {
             x
           </button>
         </div>
-        <div className="relative w-[35%] h-[80%] mb-[10%] rounded-3xl mr-[3%] flex items-center flex-col overflow-hidden mt-[10%] ">
+        <div className="relative w-[35%] h-[35rem] mb-[10%] rounded-3xl mr-[3%] flex items-center flex-col overflow-hidden mt-[10%] ">
           {/* ....................... Display Pics ....................... */}
-          <div className="flex justify-center items-center w-[90%] h-[120%] mt-[30%] rounded-3xl z-0">
+          <div className="imgCard flex justify-center items-center w-[90%] h-[100%] overflow-hidden rounded-3xl z-0">
             {step === 1 && (
               <img
                 src={images[0]}
-                className="absolute w-full z-0 rounded-3xl"
+                className="absolute w-[85%] h-[auto] object-cover z-0 rounded-3xl hover:scale-105 ease-in-out duration-100 " 
               />
             )}
             {step === 2 && (
               <img
                 src={images[1]}
-                className=" absolute w-full z-0 rounded-3xl"
+                className=" absolute w-[85%] h-[auto]  object-cover z-0 rounded-3xl hover:scale-105 ease-in-out duration-100 "
               />
             )}
             {step === 3 && (
               <img
                 src={images[2]}
-                className=" absolute w-full z-0 rounded-3xl"
+                className=" absolute w-[85%] h-[auto]  object-cover z-0 rounded-3xl hover:scale-105 ease-in-out duration-100 "
               />
             )}
             {step === 4 && (
               <img
                 src={images[3]}
-                className=" absolute w-full z-0 rounded-3xl"
+                className=" absolute w-[85%] h-[auto]  object-cover z-0 rounded-3xl hover:scale-105 ease-in-out duration-100 "
               />
             )}
             {step === 5 && (
               <img
                 src={images[4]}
-                className=" absolute w-full z-0 rounded-3xl"
+                className=" absolute w-[85%] h-[auto]  object-cover z-0 rounded-3xl hover:scale-105 ease-in-out duration-100 "
               />
             )}
           </div>
 
-          {/* ....................... Match button ....................... */}
-
-          {/* X button */}
-          <div className="Button flex flex-row w-[100%] h-[100%] items-center ml-[-10%] justify-center m-[0%] space-x-[20%] overflow-hidden mt-[20%] mb-[-45px]">
-            <a className="XButton w-[3rem] h-[3rem] drop-shadow-2xl mt-[20%] bg-white rounded-lg flex justify-center items-center hover:bg-[#2A2E3F] z-50 absolute">
-              <img src={xLogo} />
-            </a>
-
-            {/* <3 button */}
-            <a
-              className="HeartButton w-[3rem] h-[3rem] drop-shadow-2xl mt-[20%]  bg-white rounded-lg flex justify-center items-center hover:bg-[#FFB1C8] z-50 absolute
-                "
-            >
-              <img src={heartLogo} className="ml-1 mt-1" />
-            </a>
-          </div>
           {/* ....................... Slide status ........................ */}
 
-          <div className=" flex flex-row justify-center space-x-[65%] bg-white w-[100%] h-[70%] overflow-hidden z-20 mt-6 ">
+          <div className=" flex flex-row justify-center space-x-[65%] w-[100%] bg-[white] overflow-hidden z-20">
             {step === 1 && (
               <div className="flex">
                 <p className="text-[16px] text-[#757D96] font-[600]">
@@ -162,7 +146,7 @@ const EditModal = ({ close, data }) => {
               </div>
             )}
 
-            <div className="flex flex-row mt-[3%]">
+            <div className="flex flex-row mt-[]">
               <button
                 onClick={handleBack}
                 className="w-[30px] h-[20px] mr-[10%] "

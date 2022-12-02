@@ -215,7 +215,7 @@ const Swipe = (props) => {
                   >
                     <div className="flex flex-col z-[0] w-full ml-[3%]">
                       {/* name & age */}
-                      <div className="flex flex-row mb-[2%]">
+                      <div className="flex flex-row mb-[4%]">
                         <h3 className="text-[white] text-[2rem] m-[0%] mr-[0] font-[700]">
                           {user.name}
                         </h3>
@@ -275,7 +275,7 @@ const Swipe = (props) => {
                 {currentIndex === 0 ? null : index === currentIndex ? (
                   <div className="button flex flex-row items-center justify-center space-x-3   top-[90%] right-[35%] z-60 absolute   ">
                     <button
-                      className="XButton w-[60px] h-[60px] drop-shadow-2xl mr-[10px] mt-[-7.5%]  bg-white rounded-[30%] flex justify-center items-center hover:bg-[#2A2E3F] z-70 xl:w-[70px] xl:h-[70px] 2xl:w-[76px] 2xl:h-[76px]"
+                      className="XButton w-[60px] h-[60px] drop-shadow-2xl mr-[10px] mt-[25.5%]  bg-white rounded-[30%] flex justify-center items-center hover:bg-[#2A2E3F] z-70 xl:w-[70px] xl:h-[70px] 2xl:w-[76px] 2xl:h-[76px]"
                       onClick={() => {
                         setTimeout(() => {
                           swipe("right", index);
@@ -288,7 +288,7 @@ const Swipe = (props) => {
                     </button>
 
                     <button
-                      className="HeartButton w-[60px] h-[60px] drop-shadow-2xl mt-[-7.5%]  bg-white rounded-[30%] flex justify-center items-center hover:bg-[#FFB1C8] z-70 xl:w-[70px] xl:h-[70px] 2xl:w-[76px] 2xl:h-[76px]"
+                      className="HeartButton w-[60px] h-[60px] drop-shadow-2xl mt-[25.5%]  bg-white rounded-[30%] flex justify-center items-center hover:bg-[#FFB1C8] z-70 xl:w-[70px] xl:h-[70px] 2xl:w-[76px] 2xl:h-[76px]"
                       onClick={() => {
                         let isMatch = false;
 
