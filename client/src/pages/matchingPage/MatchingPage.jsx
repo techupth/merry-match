@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import MatchFilter from "../../components/matchingComponents/MatchFilter";
 import Swipe from "../../components/matchingComponents/Swipe";
 import MatchLog from "../../components/matchingComponents/MatchLog";
-import { RemoveScroll } from "react-remove-scroll";
 import { useSwipe } from "../../contexts/swipeContext";
 import { Progress, Spinner } from "@chakra-ui/react";
 
@@ -30,9 +29,6 @@ const MatchingPage = () => {
     }
   };
 
-  // console.log(filterData);
-  // console.log(defaultDataToFilter);
-
   useEffect(() => {
     getDataByFilter(defaultDataToFilter);
     console.log("did");
@@ -44,7 +40,6 @@ const MatchingPage = () => {
   }, []);
 
   return (
-    <RemoveScroll>
       <div className="w-[100%] h-[1000px] overflow-hidden flex flex-row-reverse justify-center items-center">
         {isLoading === true ? null : isLoading === "data" ? (
           <>
@@ -74,7 +69,6 @@ const MatchingPage = () => {
           </>
         ) : null}
       </div>
-    </RemoveScroll>
   );
 };
 

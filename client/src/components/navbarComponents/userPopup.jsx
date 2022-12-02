@@ -28,7 +28,7 @@ function UserPopup({ close }) {
           aria-labelledby="options-menu"
         >
           <a
-            className="block px-4 py-2 text-md ml-3 mr-3 mt-3 border-3 bg-gradient-to-r from-[#742138] to-[#9E66A4] rounded-full flex flex-row text-white hover:text-[1.1rem] w-[75%]"
+            className=" px-4 py-2 text-md ml-3 mr-3 mt-3 border-3 bg-gradient-to-r from-[#742138] to-[#9E66A4] rounded-full flex flex-row text-white hover:text-[1.1rem] w-[75%]"
             role="menuitem"
           >
             <img src={profile} className="mr-2" />
@@ -43,7 +43,7 @@ function UserPopup({ close }) {
             </span>
           </a>
           <a
-            className="block px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-black hover:text-[1.1rem]  dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600 flex flex-row"
+            className=" px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-black hover:text-[1.1rem]  dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600 flex flex-row"
             role="menuitem"
           >
             <img src={merryList} className="mr-2" />
@@ -59,7 +59,7 @@ function UserPopup({ close }) {
             </span>
           </a>
           <a
-            className="block px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-black hover:text-[1.1rem]  dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600 flex flex-row"
+            className=" px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-black hover:text-[1.1rem]  dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600 flex flex-row"
             role="menuitem"
           >
             <img src={compliant} className="mr-2" />
@@ -74,7 +74,7 @@ function UserPopup({ close }) {
             </span>
           </a>
           <a
-            className="block px-4 py-2 text-md text-gray-700 dark:text-gray-100 dark:hover:text-white hover:text-[1.1rem]   dark:hover:bg-gray-600 flex flex-row border-t-2 hover:gray-700"
+            className=" px-4 py-2 text-md text-gray-700 dark:text-gray-100 dark:hover:text-white hover:text-[1.1rem]   dark:hover:bg-gray-600 flex flex-row border-t-2 hover:gray-700"
             role="menuitem"
           >
             <img src={logouticon} className="mr-2 hover:gray-700" />

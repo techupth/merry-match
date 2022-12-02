@@ -134,7 +134,7 @@ const MerryList = () => {
             <h1 className="text-[#A62D82] font-extrabold text-[46px]">
               with Merry!
             </h1>
-            <div className="mt-[56px]">
+            <div>
               {/* เริ่ม return map ตั้งแต่ตรงนี้ */}
               {userList.map((user, index) => {
                 return (
@@ -146,7 +146,7 @@ const MerryList = () => {
                         key={user.swipe_id}
                       >
                         <img
-                          className="w-[187px] h-[187px] rounded-3xl object-cover"
+                          className="w-[187px] h-[187px] rounded-3xl object-cover hover:scale-105 ease-in-out duration-150"
                           src={user.profile_pics[0]}
                           alt=""
                         />
@@ -171,32 +171,18 @@ const MerryList = () => {
                         </div>
 
                         <div className="flex  ">
-                          <div className="w-[200px] mt-[28px] h-[full] text-[1rem]">
+                          <div className="w-[full] mt-[0.5rem] h-[full] text-[1.2rem]">
                             <p className="text-[#2A2E3F] mb-[8px]">
-                              Sexual identities
-                            </p>
-                            <span className="text-[#2A2E3F] mb-[8px]">
-                              Sexual preferences
-                            </span>
-                            <p className="text-[#2A2E3F] mb-[8px]">
-                              Racial preferences
+                              Sexual identities: {user.sex_identity}
                             </p>
                             <p className="text-[#2A2E3F] mb-[8px]">
-                              Meeting interests
+                              Sexual preferences: {user.sex_pref}
                             </p>
-                          </div>
-                          <div className="w-[280px] mt-[28px] h-[full] text-[1rem]">
-                            <p className="text-[#646D89] mb-[8px]">
-                              {user.sex_identity}
+                            <p className="text-[#2A2E3F] mb-[8px]">
+                              Racial preferences: {user.racial_pref}
                             </p>
-                            <p className="text-[#646D89] mb-[8px]">
-                              {user.sex_pref}
-                            </p>
-                            <p className="text-[#646D89] mb-[8px]">
-                              {user.racial_pref}
-                            </p>
-                            <p className="text-[#646D89] mb-[8px]">
-                              {user.meeting_int}
+                            <p className="text-[#2A2E3F] mb-[8px]">
+                              Meeting interests: {user.meeting_int}
                             </p>
                           </div>
                         </div>
@@ -215,21 +201,14 @@ const MerryList = () => {
                             <p className="ml-[12px]">Merry Match!</p>
                           </div>
                         ) : (
-                          <div className="w-[160px] h-[32px] flex border border-[#646D89] rounded-2xl justify-center items-center mr-[16px]">
+                          <div className="w-[160px] h-[2.3rem] flex border border-[#646D89] rounded-2xl justify-center items-center ">
                             <p className=" text-[#646D89]"> Not Match Yet </p>
                           </div>
                         )}
                         <div className="flex mt-[25px]">
-                          {user.status === "match" ? (
-                            <button className="w-[48px] h-[48px] bg-white rounded-lg flex justify-center items-center drop-shadow-xl mr-[16px]">
-                              {" "}
-                              <img src={chat} alt="" />
-                            </button>
-                          ) : null}
-
                           <Tooltip label= "View profile" bg='gray.400'>
                           <button
-                            className="w-[48px] h-[48px] bg-white rounded-lg flex justify-center items-center drop-shadow-xl mr-[16px]"
+                            className="w-[48px] h-[48px] bg-white rounded-lg flex justify-center items-center mr-[16px] drop-shadow-xl"
                             onClick={(event) => {
                               event.preventDefault();
                               setPreview(!preview);
