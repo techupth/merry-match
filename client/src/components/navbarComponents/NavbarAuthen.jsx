@@ -79,7 +79,7 @@ const NavbarAuthen = () => {
           >
             <img
               src={images}
-              className="w-[5rem] h-[5rem] rounded-full object-cover"
+              className="w-[4rem] h-[4rem] rounded-full object-cover"
             />
           </button>
         </div>
