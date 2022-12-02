@@ -38,11 +38,9 @@ const EditProfile = () => {
   const [aboutMe, setAboutMe] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [date, setDate] = useState("");
-  console.log(startDate)
 
   // Photos
   const [Images, setImages] = useState([]);
-  console.log(Images);
   //hobbies part
   const animatedComponents = makeAnimated();
   const [contact, setContact] = useState("----contact---");
@@ -53,11 +51,14 @@ const EditProfile = () => {
   // Preview modal
   const [preview, setPreview] = useState(false);
 
-  const handleClick = () => {
-    ref.current?.scrollIntoView({ behavior: "smooth" });
-  };
+  // const handleClick = () => {
+  //   ref.current?.scrollIntoView({ behavior: "smooth" });
+  // };
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+
+  console.log(location);
+  console.log(city);
 
   const decodeFromToken = async () => {
     const token = localStorage.getItem("token");
@@ -81,7 +82,7 @@ const EditProfile = () => {
       setAboutMe(result.data.data[0].about_me);
       setContact(result.data.data[0].contact);
       setDate(result.data.data[0].birthday);
-      console.log(result.data.data[0])
+      // console.log(result.data.data[0])
       // Photo
 
       const newItemImage = [];
@@ -126,6 +127,7 @@ const EditProfile = () => {
     const getStateData = CountryData.find(
       (country) => country.country_name === getCountryId
     ).states;
+    setCity(getStateData[0].state_name);
     setState(getStateData);
     setLocation(getCountryId);
   };
@@ -151,8 +153,6 @@ const EditProfile = () => {
     profile_pics: Images,
     contact: contact,
   };
-
-  console.log(updateUserData);
 
   const updateUserProfile = async (updateUserData) => {
     try {
@@ -185,10 +185,9 @@ const EditProfile = () => {
   };
 
   const handleDate = (data) => {
-    console.log(data);
     let parts = data.split("T");
     let strDate = parts[0].split("-");
-    const myDate = new Date(strDate[0], strDate[1] - 1, (Number(strDate[2])+1) );
+    const myDate = new Date(strDate[0], strDate[1] - 1, Number(strDate[2]) + 1);
     if (myDate != "Invalid Date") {
       setStartDate(myDate);
     }
@@ -219,10 +218,9 @@ const EditProfile = () => {
   };
 
   const handleBirtday = (data) => {
-    console.log(data);
     const year = data.getFullYear();
     const month = data.getMonth() + 1;
-    const day = data.getDate() ;
+    const day = data.getDate();
 
     const birthday = `${year}-${month}-${day}`;
 
