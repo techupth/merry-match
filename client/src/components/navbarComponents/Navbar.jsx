@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from 'react-scroll'
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -19,12 +20,17 @@ const Navbar = () => {
       </button>
 
       <div className="mr-[10%]  flex flex-row  items-center justify-between p-0 gap-8 ">
-        <a href="#why-merry">
-          <h2>Why Merry Match?</h2>
-        </a>
-        <a href="#howtomerry">
-          <h2>How to Merry</h2>
-        </a>
+        <Link to="why-merry" smooth={true} duration={500}>
+
+          <h2 onClick={() => {
+            navigate("/");
+          }}>Why Merry Match?</h2>
+        </Link>
+        <Link to="howtomerry" smooth={true} duration={500}>
+          <h2 onClick={() => {
+            navigate("/");
+          }}>How to Merry</h2>
+        </Link>
         <button
           className="button-nav bg-[#c70039] shadow-[2px_2px_12px_0_rgba(64, 50, 133, 0.16)] rounded-[99px] text-[#ffffff] h-[48px] w-[90px] font-[700] hover:bg-[#FFE1EA] hover:text-[#95002B] "
           onClick={() => navigate("/login")}
