@@ -202,11 +202,11 @@ const Complaint = () => {
                 </p>
               </div>
             ) : complaint.complaint_status === "Canceled" ? (
-              <div>
-                <p className="text-[600] font-[#646D89] text-[24px] mt-16 ml-20">
+              <div className="border-t-2 w-[90%] ml-20 mr-20 h-[160px]">
+                <p className="text-[600] font-[#646D89] text-[24px] mt-10">
                   Canceled date
                 </p>
-                <p className=" text-black text-[1em] ml-20 pb-20">
+                <p className=" text-black text-[1em] pb-20">
                   {`${dateAction}  ${timeAction}`}
                 </p>
               </div>
