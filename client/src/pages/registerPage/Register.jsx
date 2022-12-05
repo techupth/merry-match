@@ -762,160 +762,160 @@ const Register = () => {
 
                   {/* 1 ** */}
                   <div className="mt-[24px]">
-                {images.length < 1 ? (
-                  <button
-                    className=" w-[200px] h-[200px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]  items-center justify-center  "
-                    type="button"
-                    onClick={handleOpenWidget}
-                  >
-                    + <br /> Upload photo{" "}
-                  </button>
-                ) : (
-                  <div className="relative w-[200px] h-[200px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]">
-                    <img
-                      src={images[0]}
-                      className="w-full h-full rounded-lg object-cover"
-                      alt=""
-                    />
-                    <div className="absolute bottom-0 right-[-10px] top-[-12px]">
+                    {images.length < 1 ? (
                       <button
+                        className=" w-[200px] h-[200px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]  items-center justify-center  "
                         type="button"
-                        className="w-[24px] h-[24px] text-white text-[12px] rounded-full bg-[#7D2262] "
-                        onClick={() => {
-                          handleRemoveImage(0);
-                        }}
+                        onClick={handleOpenWidget}
                       >
-                        X
+                        + <br /> Upload photo{" "}
                       </button>
-                    </div>
+                    ) : (
+                      <div className="relative w-[200px] h-[200px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]">
+                        <img
+                          src={images[0]}
+                          className="w-full h-full rounded-lg object-cover"
+                          alt=""
+                        />
+                        <div className="absolute bottom-0 right-[-10px] top-[-12px]">
+                          <button
+                            type="button"
+                            className="w-[24px] h-[24px] text-white text-[12px] rounded-full bg-[#7D2262] "
+                            onClick={() => {
+                              handleRemoveImage(0);
+                            }}
+                          >
+                            X
+                          </button>
+                        </div>
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
 
                   {/* 2 ** */}
                   <div className="mt-[24px]">
-                {images.length < 2 ? (
-                  <button
-                    className=" w-[200px] h-[200px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]  items-center justify-center  "
-                    type="button"
-                    onClick={handleOpenWidget}
-                  >
-                    + <br /> Upload photo{" "}
-                  </button>
-                ) : (
-                  <div className="relative w-[200px] h-[200px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]">
-                    <img
-                      src={images[1]}
-                      className="w-full h-full rounded-lg object-cover"
-                      alt=""
-                    />
-                    <div className="absolute bottom-0 right-[-10px] top-[-12px]">
+                    {images.length < 2 ? (
                       <button
+                        className=" w-[200px] h-[200px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]  items-center justify-center  "
                         type="button"
-                        className="w-[24px] h-[24px] text-white text-[12px] rounded-full bg-[#7D2262] "
-                        onClick={() => {
-                          handleRemoveImage(1);
-                        }}
+                        onClick={handleOpenWidget}
                       >
-                        X
+                        + <br /> Upload photo{" "}
                       </button>
-                    </div>
+                    ) : (
+                      <div className="relative w-[200px] h-[200px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]">
+                        <img
+                          src={images[1]}
+                          className="w-full h-full rounded-lg object-cover"
+                          alt=""
+                        />
+                        <div className="absolute bottom-0 right-[-10px] top-[-12px]">
+                          <button
+                            type="button"
+                            className="w-[24px] h-[24px] text-white text-[12px] rounded-full bg-[#7D2262] "
+                            onClick={() => {
+                              handleRemoveImage(1);
+                            }}
+                          >
+                            X
+                          </button>
+                        </div>
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
                   {/* 3 ** */}
                   <div className="mt-[24px]">
-                {images.length < 3 ? (
-                  <button
-                    className=" w-[200px] h-[200px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]  items-center justify-center  "
-                    type="button"
-                    onClick={handleOpenWidget}
-                  >
-                    + <br /> Upload photo{" "}
-                  </button>
-                ) : (
-                  <div className="relative w-[200px] h-[200px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]">
-                    <img
-                      src={images[2]}
-                      className="w-full h-full rounded-lg object-cover"
-                      alt=""
-                    />
-                    <div className="absolute bottom-0 right-[-10px] top-[-12px]">
+                    {images.length < 3 ? (
                       <button
+                        className=" w-[200px] h-[200px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]  items-center justify-center  "
                         type="button"
-                        className="w-[24px] h-[24px] text-white text-[12px] rounded-full bg-[#7D2262] "
-                        onClick={() => {
-                          handleRemoveImage(2);
-                        }}
+                        onClick={handleOpenWidget}
                       >
-                        X
+                        + <br /> Upload photo{" "}
                       </button>
-                    </div>
+                    ) : (
+                      <div className="relative w-[200px] h-[200px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]">
+                        <img
+                          src={images[2]}
+                          className="w-full h-full rounded-lg object-cover"
+                          alt=""
+                        />
+                        <div className="absolute bottom-0 right-[-10px] top-[-12px]">
+                          <button
+                            type="button"
+                            className="w-[24px] h-[24px] text-white text-[12px] rounded-full bg-[#7D2262] "
+                            onClick={() => {
+                              handleRemoveImage(2);
+                            }}
+                          >
+                            X
+                          </button>
+                        </div>
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
                   {/* 4 ** */}
                   <div className="mt-[24px]">
-                {images.length < 4 ? (
-                  <button
-                    className=" w-[200px] h-[200px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]  items-center justify-center  "
-                    type="button"
-                    onClick={handleOpenWidget}
-                  >
-                    + <br /> Upload photo{" "}
-                  </button>
-                ) : (
-                  <div className="relative w-[200px] h-[200px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]">
-                    <img
-                      src={images[3]}
-                      className="w-full h-full rounded-lg object-cover"
-                      alt=""
-                    />
-                    <div className="absolute bottom-0 right-[-10px] top-[-12px]">
+                    {images.length < 4 ? (
                       <button
+                        className=" w-[200px] h-[200px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]  items-center justify-center  "
                         type="button"
-                        className="w-[24px] h-[24px] text-white text-[12px] rounded-full bg-[#7D2262] "
-                        onClick={() => {
-                          handleRemoveImage(3);
-                        }}
+                        onClick={handleOpenWidget}
                       >
-                        X
+                        + <br /> Upload photo{" "}
                       </button>
-                    </div>
+                    ) : (
+                      <div className="relative w-[200px] h-[200px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]">
+                        <img
+                          src={images[3]}
+                          className="w-full h-full rounded-lg object-cover"
+                          alt=""
+                        />
+                        <div className="absolute bottom-0 right-[-10px] top-[-12px]">
+                          <button
+                            type="button"
+                            className="w-[24px] h-[24px] text-white text-[12px] rounded-full bg-[#7D2262] "
+                            onClick={() => {
+                              handleRemoveImage(3);
+                            }}
+                          >
+                            X
+                          </button>
+                        </div>
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
                   {/* 5 ** */}
                   <div className="mt-[24px]">
-                {images.length < 5 ? (
-                  <button
-                    className=" w-[200px] h-[200px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]  items-center justify-center  "
-                    type="button"
-                    onClick={handleOpenWidget}
-                  >
-                    + <br /> Upload photo{" "}
-                  </button>
-                ) : (
-                  <div className="relative w-[200px] h-[200px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]">
-                    <img
-                      src={images[4]}
-                      className="w-full h-full rounded-lg object-cover"
-                      alt=""
-                    />
-                    <div className="absolute bottom-0 right-[-10px] top-[-12px]">
+                    {images.length < 5 ? (
                       <button
+                        className=" w-[200px] h-[200px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]  items-center justify-center  "
                         type="button"
-                        className="w-[24px] h-[24px] text-white text-[12px] rounded-full bg-[#7D2262] "
-                        onClick={() => {
-                          handleRemoveImage(4);
-                        }}
+                        onClick={handleOpenWidget}
                       >
-                        X
+                        + <br /> Upload photo{" "}
                       </button>
-                    </div>
+                    ) : (
+                      <div className="relative w-[200px] h-[200px] mr-[0.75rem] flex space-x-2 rounded-lg text-[#7D2262] text-[1rem] font-[500] bg-[#F1F2F6]">
+                        <img
+                          src={images[4]}
+                          className="w-full h-full rounded-lg object-cover"
+                          alt=""
+                        />
+                        <div className="absolute bottom-0 right-[-10px] top-[-12px]">
+                          <button
+                            type="button"
+                            className="w-[24px] h-[24px] text-white text-[12px] rounded-full bg-[#7D2262] "
+                            onClick={() => {
+                              handleRemoveImage(4);
+                            }}
+                          >
+                            X
+                          </button>
+                        </div>
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
                 </div>
               </div>
             )}
@@ -968,11 +968,23 @@ const Register = () => {
                       handleSubmit(e);
                     }}
                     disabled={
+                      name == "" ||
+                      birthday == "" ||
+                      countryid == "" ||
+                      nationStateId == "" ||
+                      username == "" ||
+                      email == "" ||
+                      password == "" ||
+                      confirmPassword == "" ||
+                      sexualIdentities == "" ||
+                      sexualPreferences == "" ||
+                      racialPreferences == "" ||
+                      meetingInterests == "" ||
+                      contact == "" ||
                       passwordLengthError !== "" ||
                       passwordMatchError !== "" ||
                       usernameError !== "" ||
-                      emailError !== "" ||
-                      birthday == ""
+                      emailError !== ""
                     }
                     className="mt-[0.5%] text-white bg-[#C70039] hover:bg-red-800 font-[700] rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 disabled:bg-[#F1F2F6] disabled:text-[#646D89] ml-5"
                   >
