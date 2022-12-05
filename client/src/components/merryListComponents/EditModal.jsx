@@ -45,16 +45,19 @@ const EditModal = ({ close, data }) => {
   const handdleHobbies = (data) => {
     const hobbies = [];
     for (let i = 0; i < data.length; i++) {
-      hobbies.push(data[i].value);
+      const obj = JSON.parse(data[i]);
+      hobbies.push(obj.value);
     }
     setHobbies(hobbies);
   };
+
 
   useEffect(() => {
     handdleAge(data.birthday);
     setImages(data.profile_pics);
     handdleHobbies(data.hobby);
   }, []);
+
 
   return (
     <div className="bg-[rgba(49,49,49,0.8);] z-30 absolute w-full h-[60rem] flex justify-center">
