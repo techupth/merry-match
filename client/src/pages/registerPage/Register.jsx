@@ -105,7 +105,7 @@ const Register = () => {
     event.preventDefault();
     checkNoNull();
     registerNewUser();
-    alert("Register Successfully!");
+    // alert("Register Successfully!");
     navigate("/login");
   };
 
