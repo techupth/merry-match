@@ -76,9 +76,9 @@ const SwipeModal = ({ close, data }) => {
             x
           </button>
         </div>
-        <div className=" w-1/2  rounded-3xl ml-[3%] mr-[3%] flex  flex-col overflow-hidden  ">
+        <div className=" w-1/2  rounded-3xl ml-[3%] mr-[3%] flex  flex-col ">
           {/* ....................... Display Pics ....................... */}
-          <div className="flex justify-center items-center rounded-3xl">
+          <div className="flex justify-center items-center rounded-3xl hover:scale-105 ease-in-out duration-100">
             {step === 1 && (
               <img
                 src={images[0]}
@@ -111,22 +111,9 @@ const SwipeModal = ({ close, data }) => {
             )}
           </div>
 
-          {/* ....................... Match button ....................... */}
-
-          {/* X button */}
-          <div ref2={ref2} className="Button flex   overflow-hidden self-center absolute bottom-[130px]">
-            <a disabled={true} className="XButton w-[60px] h-[60px] drop-shadow-2xl   bg-white rounded-lg flex justify-center items-center hover:bg-[#2A2E3F] z-10 mr-[5px]">
-              <img src={xLogo} />
-            </a>
-
-            {/* <3 button */}
-            <a disabled={true} className="HeartButton w-[60px] h-[60px] drop-shadow-2xl   bg-white rounded-lg flex justify-center items-center hover:bg-[#FFB1C8] z-10 ml-[5px]">
-              <img src={heartLogo} className="ml-1 mt-1" />
-            </a>
-          </div>
           {/* ....................... Slide status ........................ */}
 
-          <div className=" flex flex-row justify-center space-x-[65%] mt-[40px]  overflow-hidden z-30">
+          <div className=" flex flex-row justify-center space-x-[65%] mt-[40px]  overflow-hidden z-30 ">
             {step === 1 && (
               <div className="flex">
                 <p className="text-[16px] text-[#757D96] font-[600]">
