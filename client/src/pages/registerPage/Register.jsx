@@ -754,7 +754,7 @@ const Register = () => {
                     Profile pictures <br />
                   </h1>
 
-                  <p>Upload at least 2 photos</p>
+                  <p>Upload at least 1 photo</p>
                 </div>
 
                 <div className="w-[100%] h-[100%] flex justify-center flex-row items-start">

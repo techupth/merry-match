@@ -548,7 +548,7 @@ const EditProfile = () => {
             <h1 className="ProfilePictures text-[#A62D82] mt-[80px] font-bold text-[24px] z-0">
               Profile pictures
             </h1>
-            <p>Upload at least x photos</p>
+            <p>Upload at least 1 photo</p>
             <div className="profileContainer mt-[24px] flex">
               {/* img Box1 */}
               <div className="mt-[24px]">
