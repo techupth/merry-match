@@ -35,10 +35,8 @@ const MerryList = () => {
     try {
       setIsloading("loading");
       const data = await merryList();
-      // console.log(data)
       setIsloading("NoUser");
       handleStatus(data.matchList, data.matchId);
-      // console.log(data.matchId)
       if (data.matchList.length !== 0) {
         setIsloading("data");
       }
@@ -52,7 +50,6 @@ const MerryList = () => {
     const userList = [...data];
 
     swipeId.map((id) => {
-      // console.log(id);
       for (let i = 0; i < data.length; i++) {
         if (data[i].user_id === id) {
           const user = {

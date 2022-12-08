@@ -18,7 +18,7 @@ const Login = () => {
       username,
       password,
     });
-    console.log(loginResult);
+
     if (loginResult.match("Admin")) {
       setLoginMsg({ ...loginMsg, passwordKey: loginResult });
     } else if (loginResult.match("Username")) {
@@ -31,8 +31,6 @@ const Login = () => {
     }
   };
 
-  // console.log(username);
-  // console.log(password);
   return (
     <div className="contanerLogin bg-white h-[1000px] w-full flex items-center ">
       <div className="lSide w-1/2 flex justify-center">

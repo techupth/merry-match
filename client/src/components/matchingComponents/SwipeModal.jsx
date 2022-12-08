@@ -29,8 +29,6 @@ const SwipeModal = ({ close, data }) => {
     }
   };
 
-  // console.log(data.hobby);
-
   const handleBack = (e) => {
     e.preventDefault();
     if (step !== 1) {

@@ -8,7 +8,6 @@ import Popup from "./Popup";
 const Complaint = () => {
   const params = useParams();
   const navigate = useNavigate();
-  console.log(params.complaintID);
   const [complaint, setComplaint] = useState({});
   const [dateSubmit, setDateSubmit] = useState("");
 
@@ -35,23 +34,14 @@ const Complaint = () => {
       `http://localhost:4001/complaints/${params.complaintID}`
     );
     setComplaint(results.data.data[0]);
-    console.log(results.data.data[0].date_submitted);
-    console.log(results.data.data[0].date_submitted.toLocaleString());
     setDateSubmit(results.data.data[0].date_submitted.substr(0, 10));
-    console.log(results.data.data[0].updated_at);
     const dateArr = results.data.data[0].updated_at.split("T");
-    console.log(dateArr);
     const time = dateArr[1].substr(0, 8);
-    console.log(time.toLocaleString());
     setTimeAction(time);
     setDateAction(dateArr[0]);
   };
-  console.log(dateSubmit);
 
   const handleStatus = async (data, status) => {
-    console.log(data);
-    console.log(status);
-    console.log(now.toLocaleString());
     const complaintId = data.complaint_id;
     const newData = {
       ...data,
@@ -61,7 +51,6 @@ const Complaint = () => {
     await axios.put(`http://localhost:4001/complaints/${complaintId}`, newData);
   };
 
-  console.log(complaint);
   useEffect(() => {
     getComplaint();
   }, []);

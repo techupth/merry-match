@@ -4,7 +4,6 @@ import axios from "axios";
 import makeAnimated from "react-select/animated";
 import { options } from "../../utils/optionSelect";
 import Select from "react-select";
-import { useNavigate } from "react-router-dom";
 import { Spinner, Tooltip } from "@chakra-ui/react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -21,9 +20,7 @@ const EditProfile = () => {
   const [userData, setUserData] = useState({});
   const [getData, setGetData] = useState({});
   const [isLoading, setIsLoading] = useState(null);
-
   const [state, setState] = useState([]);
-
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [birthday, setBirthday] = useState("");
@@ -41,6 +38,7 @@ const EditProfile = () => {
 
   // Photos
   const [Images, setImages] = useState([]);
+
   //hobbies part
   const animatedComponents = makeAnimated();
   const [contact, setContact] = useState("----contact---");
@@ -50,15 +48,6 @@ const EditProfile = () => {
 
   // Preview modal
   const [preview, setPreview] = useState(false);
-
-  // const handleClick = () => {
-  //   ref.current?.scrollIntoView({ behavior: "smooth" });
-  // };
-
-  // const navigate = useNavigate();
-
-  console.log(location);
-  console.log(city);
 
   const decodeFromToken = async () => {
     const token = localStorage.getItem("token");
@@ -82,9 +71,8 @@ const EditProfile = () => {
       setAboutMe(result.data.data[0].about_me);
       setContact(result.data.data[0].contact);
       setDate(result.data.data[0].birthday);
-      // console.log(result.data.data[0])
-      // Photo
 
+      // Photo
       const newItemImage = [];
       if (result.data.data[0].profile_pics[0] !== undefined) {
         const Photo1 = result.data.data[0].profile_pics[0];
@@ -288,6 +276,7 @@ const EditProfile = () => {
                     Preview Profile
                   </button>
                 </Tooltip>
+
                 {/* update profile */}
                 <Tooltip label="Update Profile" bg="gray.400">
                   <button
@@ -296,7 +285,6 @@ const EditProfile = () => {
                       handleUpdate(event, updateUserData);
                       alert("Updated Sucessfully!");
                       window.location.reload();
-                      // navigate("/");
                     }}
                   >
                     Update Profile
@@ -304,10 +292,6 @@ const EditProfile = () => {
                 </Tooltip>
               </div>
             </div>
-            {/* End Header */}
-
-            {/* Page 1 */}
-            {/* colomn 1 */}
 
             <h4 className="basicInformation text-[#A62D82] mt-[80px] font-bold text-[24px] z-0">
               Basic Information
@@ -416,12 +400,9 @@ const EditProfile = () => {
                 />
               </div>
             </div>
-
-            {/* Page 2 */}
             <h1 className="basicInformation text-[#A62D82] mt-[80px] font-bold text-[24px]">
               Identities and Interests:
             </h1>
-            {/* colomn1 */}
             <div className="column1 flex">
               <div className="SexualIdentities flex flex-col mr-[12px] mt-[40px]">
                 <label htmlFor="SexualIdentities">Sexual identities</label>
@@ -457,8 +438,6 @@ const EditProfile = () => {
                 </select>
               </div>
             </div>
-
-            {/* colomn2 */}
             <div className="column2 flex">
               <div className="RacialPreferences flex flex-col mr-[12px] mt-[40px] ">
                 <label htmlFor="RacialPreferences">Racial preferences</label>
@@ -475,7 +454,6 @@ const EditProfile = () => {
                   <option value="Europe">Europe</option>
                 </select>
               </div>
-
               <div className="MeetingInterests flex flex-col  ml-[12px] mt-[40px]">
                 <label htmlFor="MeetingInterests">Meeting interests</label>
                 <select
@@ -495,7 +473,6 @@ const EditProfile = () => {
                 </select>
               </div>
             </div>
-
             <div className="mt-[40px] font-[600]">
               Hobbies / Interests (Maximum 5)
               <Select
@@ -550,7 +527,6 @@ const EditProfile = () => {
             </h1>
             <p>Upload at least 1 photo</p>
             <div className="profileContainer mt-[24px] flex">
-              {/* img Box1 */}
               <div className="mt-[24px]">
                 {Images.length < 1 ? (
                   <button
@@ -581,7 +557,6 @@ const EditProfile = () => {
                   </div>
                 )}
               </div>
-              {/* img Box2 */}
               <div className="mt-[24px]">
                 {Images.length < 2 ? (
                   <button
@@ -612,7 +587,6 @@ const EditProfile = () => {
                   </div>
                 )}
               </div>
-              {/* img Box3 */}
               <div className="mt-[24px]">
                 {Images.length < 3 ? (
                   <button
@@ -643,7 +617,6 @@ const EditProfile = () => {
                   </div>
                 )}
               </div>
-              {/* img Box4 */}
               <div className="mt-[24px]">
                 {Images.length < 4 ? (
                   <button
@@ -674,7 +647,6 @@ const EditProfile = () => {
                   </div>
                 )}
               </div>
-              {/* img Box5 */}
               <div className="mt-[24px]">
                 {Images.length < 5 ? (
                   <button
@@ -705,7 +677,6 @@ const EditProfile = () => {
                   </div>
                 )}
               </div>
-              {/* End Box5 */}
             </div>
           </form>
 

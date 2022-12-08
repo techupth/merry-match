@@ -14,12 +14,8 @@ import PopupWhenSwipe from "./PopupWhenSwipe";
 import PopupWhenClickX from "./PopupWhenClickX";
 
 const Swipe = (props) => {
-  // import filterData มาให้แล้ว แล้วต้องนำลงมา map ลงหน้าแผน swipe
-  // import MerryList from './../../pages/merryListPage/MerryList';
-  // console.log("swipe compoenent rendered!!");
   const { filterData, postSwipe, merryList } = useSwipe();
 
-  // console.log(indexUsers, "from swipe");
   const [currentIndex, setCurrentIndex] = useState(filterData.data.length - 1);
   const [lastDirection, setLastDirection] = useState();
   const [step, setStep] = useState(0);
@@ -36,8 +32,6 @@ const Swipe = (props) => {
   const [isIndex, setIsIndex] = useState(null);
   const [isLastIndex, setIsLastIndex] = useState(false);
 
-  console.log("current", currentIndex);
-
   const currentIndexRef = useRef(currentIndex);
 
   const childRefs = useMemo(
@@ -48,11 +42,9 @@ const Swipe = (props) => {
     [filterData]
   );
 
-  // console.log(childRefs)
   const updateCurrentIndex = (val) => {
     setCurrentIndex(val);
     currentIndexRef.current = val;
-    // setStep(0)
   };
 
   //   Set swipe index
@@ -61,7 +53,6 @@ const Swipe = (props) => {
 
   // set last direction and decrease current index
   const swiped = (direction, index) => {
-    console.log(index);
     if (step > filterData.data[index - 1].profile_pics.length - 1) {
       setStep(0);
     }
@@ -71,13 +62,7 @@ const Swipe = (props) => {
   };
 
   const outOfFrame = (name, idx) => {
-    console.log(`${name} (${idx}) left the screen!`, currentIndexRef.current);
-    // handle the case in which go back is pressed before card goes outOfFrame
     currentIndexRef.current >= idx && childRefs[idx].current.restoreCard();
-
-    // TODO: when quickly swipe and restore multiple times the same card,
-    // it happens multiple outOfFrame events are queued and the card disappear
-    // during latest swipes. Only the last outOfFrame event should be considered valid
   };
 
   //   Handle pictures
@@ -96,7 +81,6 @@ const Swipe = (props) => {
     if (step !== 0 && index === currentIndex) {
       setStep(step - 1);
     } else {
-      console.log(filterData.data[index].profile_pics.length - 1);
       setStep(filterData.data[index].profile_pics.length - 1);
     }
   };
@@ -105,7 +89,6 @@ const Swipe = (props) => {
   const swipe = async (dir) => {
     if (currentIndex < filterData.data.length) {
       await childRefs[currentIndex].current.swipe(dir); // Swipe the card!
-      // setCurrentIndex(currentIndex - 1);
     }
   };
 
@@ -113,7 +96,6 @@ const Swipe = (props) => {
     const data = await merryList();
 
     const matchId = data.matchId.map((value) => value.swiper);
-    // console.log(matchId);
     setMatchingId(matchId);
   };
 
@@ -123,7 +105,6 @@ const Swipe = (props) => {
 
   //   handle when click <3 button
   const handleJustSwiped = () => {
-    console.log("click! swipe");
     setJustSwipe(true);
   };
 
@@ -247,7 +228,6 @@ const Swipe = (props) => {
                     <div className="arrow-buttons absolute right-[5%] space-x-6 bottom-[6%] z-40 ">
                       <button
                         onClick={() => {
-                          console.log(index);
                           handleBack(index);
                         }}
                       >
@@ -259,7 +239,6 @@ const Swipe = (props) => {
 
                       <button
                         onClick={() => {
-                          console.log(index);
                           handleNext(index);
                         }}
                       >
@@ -308,7 +287,6 @@ const Swipe = (props) => {
                           setTimeout(() => {
                             swipe("right", index);
                           }, 500);
-                          console.log("like", index);
                           postSwipe(index, true);
                         }
                       }}

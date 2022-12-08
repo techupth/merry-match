@@ -16,7 +16,6 @@ const MatchLogPreview = ({ close, data }) => {
   const [age, setAge] = useState(null);
   const [images, setImages] = useState([]);
   const [hobbies, setHobbies] = useState([]);
-  console.log(data);
 
   const ref = useRef(null);
   useClickOutside(ref, () => close(false));
@@ -27,8 +26,6 @@ const MatchLogPreview = ({ close, data }) => {
       setStep(step + 1);
     }
   };
-
-  // console.log(data.hobby);
 
   const handleBack = (e) => {
     e.preventDefault();
@@ -55,7 +52,6 @@ const MatchLogPreview = ({ close, data }) => {
     setHobbies(hobbiesArr);
   };
 
-  console.log(hobbies);
   useEffect(() => {
     handdleAge(data.birthday);
     setImages(data.profile_pics);

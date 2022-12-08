@@ -12,7 +12,6 @@ import {
 } from "@chakra-ui/react";
 import { useState, useEffect, useMemo } from "react";
 import { useSwipe } from "../../contexts/swipeContext";
-// import jwtDecode from "jwt-decode";
 
 const MatchFilter = () => {
   const {
@@ -66,7 +65,7 @@ const MatchFilter = () => {
   };
 
   const handleCheckbox = (e) => {
-    console.log([e.target.value, e.target.checked]);
+
     if (!meetingIntArr.includes(e.target.value)) {
       if (e.target.checked) {
         setMeetingIntArr([...meetingIntArr, e.target.value]);
@@ -79,7 +78,7 @@ const MatchFilter = () => {
         setMeetingIntArr(newMeetingIntArr);
       }
     }
-    console.log("datofilter in fx", dataToFilter);
+
   };
 
   // ---------- useEffect ---------
@@ -94,7 +93,6 @@ const MatchFilter = () => {
         <CheckboxGroup
           colorScheme="green"
           defaultValue={defaultCheck}
-          // isChecked={meetingIntArr}
         >
           <Text fontWeight={700} color="#191C77" mb={3}>
             Meeting Interests

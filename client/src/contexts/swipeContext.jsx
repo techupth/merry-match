@@ -23,7 +23,6 @@ const SwipeProvider = (props) => {
 
   const getAllUsers = async () => {
     const result = await axios.get("http://localhost:4001/swipe");
-    // console.log(result.data.data, "get All user");
     setUsers(result.data.data);
     return result.data.data;
   };
@@ -32,12 +31,11 @@ const SwipeProvider = (props) => {
     let initialDataToFilter = {};
     const token = localStorage.getItem("token");
     const userData = jwtDecode(token);
-    // console.log(userData.user_id);
 
     const eachUserResult = await axios.get(
       `http://localhost:4001/filter/${userData.user_id}`
     );
-    console.log("get each user", eachUserResult.data.data[0]);
+
     setEachUser(eachUserResult.data.data[0]);
 
     if (eachUserResult.data.data[0].user_age <= 28) {
@@ -65,35 +63,30 @@ const SwipeProvider = (props) => {
         user_id: eachUserResult.data.data[0].user_id,
       };
     }
-    console.log("default data to filter", initialDataToFilter);
-    console.log("ฟิลเตอร์แล้วจ้า", getDataByFilter(initialDataToFilter));
+
     setDefaultDataToFilter(initialDataToFilter);
     return eachUserResult.data.data[0];
   };
-  // console.log("each User", eachUser);
-  // console.log("default data to filter", defaultDataToFilter);
 
   const getDataByFilter = async (data) => {
-    console.log(data);
     try {
       setFilterData({ ...filterData, loading: true });
       const filteredData = await axios.post(
         "http://localhost:4001/filter",
         data
       );
-      // setIndexUsers(filteredData.data.data.length)
+   
       setFilterData({
         ...filterData,
         data: filteredData.data.data,
         loading: null,
       });
-      // console.log(filteredData.data.data)
+    
     } catch (err) {
       setFilterData({ ...filterData, err: true });
       console.log(err);
     }
   };
-  // console.log("Filter Success", filterData);
 
   const merryList = async () => {
     const token = localStorage.getItem("token");
@@ -104,10 +97,8 @@ const SwipeProvider = (props) => {
         params: userData,
       }
     );
-    // console.log("merryList success", result);
-    // console.log(result)
+  
     setMatchId(result.data.isMatchId);
-    // console.log("merryList success", result);
     setMerryListUser(result.data.data);
     const matchList = result.data.data;
     const matchId = result.data.isMatchId;
@@ -122,23 +113,18 @@ const SwipeProvider = (props) => {
       swipe_type: type,
       swipee: filterData.data[index].user_id,
     };
-    console.log(swipeData);
+
     const response = await axios.post(
       `http://localhost:4001/swipe/`,
       swipeData
     );
-    console.log(response.data.message);
   };
-
-  // console.log(unMatch)
 
   const deleteMatch = async (arr) => {
     const request = arr;
-    // console.log(request);
     const response = await axios.delete(
       `http://localhost:4001/swipe/?request=${request}`
     );
-    console.log(response.data.message);
   };
 
   return (

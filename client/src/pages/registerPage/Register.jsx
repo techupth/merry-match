@@ -4,7 +4,6 @@ import { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/authentication";
 import Countrydata from "../../utils/mock-city/Countrydata.json";
-// import Hobbies, { } from "./hobbieData.";
 import makeAnimated from "react-select/animated";
 import Select from "react-select";
 import { options, optionsContact } from "../../utils/optionSelect";
@@ -72,7 +71,6 @@ const Register = () => {
     profile_pics: images,
     contact,
   };
-  console.log(userInfo);
 
   const registerNewUser = async () => {
     await axios.post("http://localhost:4001/auth/register", userInfo, {
@@ -105,7 +103,6 @@ const Register = () => {
     event.preventDefault();
     checkNoNull();
     registerNewUser();
-    // alert("Register Successfully!");
     navigate("/login");
   };
 
@@ -185,7 +182,6 @@ const Register = () => {
         setHobbies(newHobbies);
         setText("");
       } else {
-        // alert("Maximum 10 Hobbies/ Interests");
       }
     }
   };

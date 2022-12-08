@@ -1,7 +1,7 @@
 import matchedLogo from "../../../public/asset/merryMatchIMG/matchedLogo.png";
 
 const MatchedLogo = ({swipe ,index,clickCountinueCount,currentIndex}) => {
-  console.log(index)
+
   return (
   <>
   {index === currentIndex ? <div className=" absolute flex flex-col items-center">

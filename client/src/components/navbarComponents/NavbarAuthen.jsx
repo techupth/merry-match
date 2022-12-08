@@ -25,7 +25,6 @@ const NavbarAuthen = () => {
 
     const name = profileName;
     setUserName(name);
-    console.log(name);
   };
 
   const ref = useRef(null);

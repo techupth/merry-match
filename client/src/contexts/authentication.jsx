@@ -25,7 +25,6 @@ const AuthProvider = (props) => {
           headers: { "Content-Types": "multipart/form-data" },
         }
       );
-      console.log(result.data.message);
       return result.data.message;
     } catch (error) {
       console.log(error);
@@ -94,7 +93,7 @@ const AuthProvider = (props) => {
       console.log(err);
     }
   };
-  console.log(isAdmin);
+  
   const isAdminAuthenticated = Boolean(localStorage.getItem("adminToken"));
   const isAuthenticated = Boolean(localStorage.getItem("token"));
 

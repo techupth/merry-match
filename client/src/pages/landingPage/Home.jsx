@@ -4,9 +4,6 @@ import Header from "../../components/landingPageComponents/Header";
 import SecondPart from "../../components/landingPageComponents/SecondPart";
 import ThirdPart from "../../components/landingPageComponents/ThirdPart";
 
-
-
-
 const Home = () => {
   return (
     <div className="bg-[#160404]">
